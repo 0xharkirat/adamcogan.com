@@ -127,6 +127,38 @@ WordPress sitemap and fails if any of the 183 post URLs is missing, if any
 dated URL was invented, if any media reference has no file, or if WordPress
 markup leaked into the output.
 
+## Comments
+
+All 175 approved WordPress comments are migrated into `src/data/comments.json`
+and render under each post with their original author names, dates and
+threading. They are read-only history, not editable content, so they live in a
+data file rather than a Tina collection.
+
+They are deliberately not imported into Giscus. Giscus stores comments as
+GitHub Discussion replies, so an import would re-attribute all 175 to whichever
+account ran it, losing 154 real commenters. The archive keeps the record; Giscus
+handles new comments underneath it.
+
+Comment bodies are third-party HTML, so they are reduced once at migration time
+to an inline-only tag set with every attribute except a validated `http(s)`
+href stripped. That is what makes rendering them with `set:html` safe. Do not
+loosen `sanitise()` in `migration/scripts/lib/comments.mjs` without thinking
+about what it is protecting.
+
+### Enabling new comments
+
+Giscus renders only when all four values are set, so an unconfigured build
+falls back to the archive alone instead of emitting a broken widget. Create a
+public GitHub repo with Discussions enabled, then get the ids from
+[giscus.app](https://giscus.app) and set:
+
+```sh
+PUBLIC_GISCUS_REPO=owner/repo
+PUBLIC_GISCUS_REPO_ID=...
+PUBLIC_GISCUS_CATEGORY=Comments
+PUBLIC_GISCUS_CATEGORY_ID=...
+```
+
 ## Deployment
 
 The site targets Vercel and detects the adapter from the platform's own
@@ -144,8 +176,8 @@ Skipping the index step does not fail the build; search just returns nothing.
   form renders with no action and a TODO. The original form contract is
   recorded in `src/data/sidebar.json` under `subscribe.originalForm`. This
   needs a real mailing list (Mailchimp, Buttondown, or similar) before launch.
-- **Comments.** WordPress comments were not migrated. Adding Giscus or a
-  similar service is a separate decision.
+- **New comments.** The 175 existing comments are migrated (see below), but
+  posting a new one needs Giscus configured.
 - **Images.** Images were resized to a 2000px long edge and re-encoded, which
   is lossy. The originals are still on the WordPress host and `3-media.mjs`
   re-fetches them, so this is reversible until that host is switched off.
