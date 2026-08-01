@@ -37,10 +37,22 @@ const year = new Date().getFullYear();
 			<p>
 				&copy; <a href="/">{seo?.siteOwner}</a> {year}
 			</p>
+			{/*
+			  Both credits open in a new tab so a reader is never navigated away
+			  from an article. `rel="noopener"` is required with target="_blank",
+			  and the sr-only note warns screen reader users before they follow a
+			  link that changes context. `noreferrer` is deliberately omitted so
+			  both sites still see the referral.
+			*/}
+			{/*
+			  Kept on one line per link on purpose. A newline before `</a>` becomes
+			  real whitespace inside the anchor, which renders as "TinaCMS , migrated".
+			*/}
 			<p>
-				Powered by <a href="https://tina.io" rel="noopener">TinaCMS</a>, migrated by{' '}
-				<a href="https://harksingh.com" rel="noopener">Harky</a> with{' '}
-				<span aria-label="love" role="img">❤️</span>
+				Powered by{' '}
+				<a href="https://tina.io" target="_blank" rel="noopener">TinaCMS<span class="sr-only"> (opens in a new tab)</span></a>, migrated by{' '}
+				<a href="https://harksingh.com" target="_blank" rel="noopener">Harky<span class="sr-only"> (opens in a new tab)</span></a> with{' '}
+				<span role="img" aria-label="love">❤️</span>
 			</p>
 		</div>
 	</div>

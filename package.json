@@ -7,6 +7,8 @@
   },
   "scripts": {
     "dev": "tinacms dev -c \"astro dev\"",
+    "dev:alt": "tinacms dev --port 4077 --datalayer-port 9077 -c \"astro dev --port 4399\"",
+    "build:alt": "tinacms build --local --skip-cloud-checks --port 4077 --datalayer-port 9077 -c \"astro build\" && pnpm run index-search",
     "build": "tinacms build --content=local -c \"astro build\" && pnpm run index-search",
     "build:local": "tinacms build --local --skip-cloud-checks -c \"astro build\" && pnpm run index-search",
     "preview": "astro preview",
