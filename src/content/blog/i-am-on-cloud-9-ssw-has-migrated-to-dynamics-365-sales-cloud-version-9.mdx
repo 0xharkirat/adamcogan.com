@@ -3,7 +3,7 @@ title: "I am on Cloud 9 – SSW has migrated to Dynamics 365 Sales cloud version
 description: "After months of planning, data trimming and delays (not helped by COVID-19!), I am happy to say that SSW has finally migrated our Dynamics from on-premises to the cloud. It has been well-received by all and the UX is much nicer. In addition, this is not the end of the journey – it is the"
 pubDate: 2020-07-20T07:19:45.000Z
 updatedDate: 2022-09-23T16:53:34.000Z
-heroImage: "/media/2020/07/cloud9-banner-small.jpg"
+heroImage: "/media/2020/07/cloud9-banner-small.webp"
 author: "Adam Cogan"
 categories: ["general"]
 tags: ["cloud", "dynamics-365", "migration"]
@@ -40,7 +40,7 @@ In terms of licencing, many of our clients noticed a change. Microsoft changed t
 One more thing to be aware of with CDS is the space!  I didn’t initially understand that the space you get, is consumed by the default CDS environment entities.  When you purchase Dynamics, you get 10GB of database capacity plus an additional 250MB per user licence – seems like heaps. Right?
 What I didn’t factor in is that each environment (test, staging and production) can consume several GB of this database capacity before you even put any data in! Furthermore it is impossible to delete since it is ‘behind the scenes’.  The additional storage is also extremely expensive at $55 AUD per GB/month ($660 AUD per GB/year).
 
-<Figure src="/media/2020/07/ScreenshotBlog.jpg" alt="" caption="Figure: After creating a new environment you notice that your database usage is 3.5 GB and you haven’t even put in any data yet! Looking at the top 8 storage hogs by size, I see not one is a user table, like account, contact, activity etc. Each one of those GB is $55 AUD per month" />
+<Figure src="/media/2020/07/ScreenshotBlog.webp" alt="" caption="Figure: After creating a new environment you notice that your database usage is 3.5 GB and you haven’t even put in any data yet! Looking at the top 8 storage hogs by size, I see not one is a user table, like account, contact, activity etc. Each one of those GB is $55 AUD per month" />
 
 #### In conclusion
 

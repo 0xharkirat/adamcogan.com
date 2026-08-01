@@ -1,143 +1,202 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/inter';
+@import '@fontsource-variable/open-sans';
 @plugin '@tailwindcss/typography';
 
-/* Drive the dark: variant from the .dark class (toggled by ThemeToggle),
-   not the prefers-color-scheme media query. */
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* Metric-matched Arial fallback so the Inter swap doesn't reflow text (CLS). */
-@font-face {
-	font-family: 'Inter Fallback';
-	src: local('Arial');
-	ascent-override: 90.44%;
-	descent-override: 22.52%;
-	line-gap-override: 0%;
-	size-adjust: 107.12%;
-}
+/*
+ * Theme tokens measured from the live WordPress site (Themify "Basic").
+ * See migration/design/tokens.json for the full capture.
+ *
+ * Two things about the original are deliberate, not oversights:
+ *
+ * 1. There is no dark mode. The site is light only, so the toggle and the
+ *    .dark block that shipped with the starter are gone rather than left
+ *    switched off.
+ * 2. Only Open Sans 400 and 600 are loaded, while the CSS asks for 700
+ *    throughout, so every "bold" renders as 600. We use 600 directly, because
+ *    loading a real 700 face would make the whole site heavier than the
+ *    original.
+ */
 
 @theme inline {
-	--font-sans: 'Inter Variable', 'Inter Fallback', system-ui, sans-serif;
-	--radius-sm: calc(var(--radius) - 4px);
-	--radius-md: calc(var(--radius) - 2px);
-	--radius-lg: var(--radius);
-	--radius-xl: calc(var(--radius) + 4px);
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--color-card: var(--card);
-	--color-card-foreground: var(--card-foreground);
-	--color-popover: var(--popover);
-	--color-popover-foreground: var(--popover-foreground);
-	--color-primary: var(--primary);
-	--color-primary-foreground: var(--primary-foreground);
-	--color-secondary: var(--secondary);
-	--color-secondary-foreground: var(--secondary-foreground);
-	--color-muted: var(--muted);
-	--color-muted-foreground: var(--muted-foreground);
-	--color-accent: var(--accent);
-	--color-accent-foreground: var(--accent-foreground);
-	--color-destructive: var(--destructive);
-	--color-border: var(--border);
-	--color-input: var(--input);
-	--color-ring: var(--ring);
-	--color-chart-1: var(--chart-1);
-	--color-chart-2: var(--chart-2);
-	--color-chart-3: var(--chart-3);
-	--color-chart-4: var(--chart-4);
-	--color-chart-5: var(--chart-5);
-}
+	--font-sans: 'Open Sans Variable', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+	--font-serif: 'Times New Roman', Times, serif;
 
-:root {
-	--radius: 0.625rem;
-	--background: oklch(0.99 0.004 285);
-	--foreground: oklch(0.20 0.03 285);
-	--card: oklch(1 0.002 285);
-	--card-foreground: oklch(0.20 0.03 285);
-	--popover: oklch(1 0.002 285);
-	--popover-foreground: oklch(0.20 0.03 285);
-	--primary: oklch(0.57 0.198 37);
-	--primary-foreground: oklch(0.99 0.005 285);
-	--secondary: oklch(0.96 0.01 285);
-	--secondary-foreground: oklch(0.30 0.04 285);
-	--muted: oklch(0.96 0.01 285);
-	--muted-foreground: oklch(0.48 0.03 285);
-	--accent: oklch(0.95 0.02 285);
-	--accent-foreground: oklch(0.30 0.05 285);
-	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.90 0.012 285);
-	--input: oklch(0.90 0.012 285);
-	--ring: oklch(0.57 0.198 37);
-	--chart-1: oklch(0.646 0.222 41.116);
-	--chart-2: oklch(0.6 0.118 184.704);
-	--chart-3: oklch(0.398 0.07 227.392);
-	--chart-4: oklch(0.828 0.189 84.429);
-	--chart-5: oklch(0.769 0.188 70.08);
-}
+	--color-background: #ffffff;
+	--color-foreground: #333333;
+	/* The one chromatic colour in the design: the 6px top bar, the link
+	   underline on hover, and the back-to-top hover fill. Never body text. */
+	--color-accent-red: #cc4141;
+	--color-band: #f5f5f5;
+	--color-rule: #dddddd;
+	--color-hairline: rgba(0, 0, 0, 0.1);
+	--color-underline: #cccccc;
+	--color-field: #f3f3f3;
+	--color-button: #32373c;
+	--color-chip: #111111;
+	--color-table-rule: #eceeef;
 
-.dark {
-	--background: oklch(0.16 0.02 285);
-	--foreground: oklch(0.95 0.012 285);
-	--card: oklch(0.21 0.025 285);
-	--card-foreground: oklch(0.95 0.012 285);
-	--popover: oklch(0.21 0.025 285);
-	--popover-foreground: oklch(0.95 0.012 285);
-	--primary: oklch(0.70 0.18 40);
-	--primary-foreground: oklch(0.16 0.02 285);
-	--secondary: oklch(0.26 0.03 285);
-	--secondary-foreground: oklch(0.95 0.012 285);
-	--muted: oklch(0.26 0.03 285);
-	--muted-foreground: oklch(0.72 0.03 285);
-	--accent: oklch(0.28 0.04 285);
-	--accent-foreground: oklch(0.95 0.012 285);
-	--destructive: oklch(0.70 0.19 22);
-	--border: oklch(0.95 0.01 285 / 12%);
-	--input: oklch(0.95 0.01 285 / 15%);
-	--ring: oklch(0.70 0.18 40);
+	/* 978px container, split 67.8% / 26.2% with a 54px gutter. */
+	--container-page: 978px;
 }
 
 @layer base {
-	* {
-		border-color: var(--border);
+	html {
+		font-size: 16px;
 	}
+
 	body {
-		background-color: var(--background);
-		color: var(--foreground);
-		font-family: var(--font-sans);
 		margin: 0;
-		padding-top: 5rem;
+		background-color: var(--color-background);
+		color: var(--color-foreground);
+		font-family: var(--font-sans);
+		font-size: 1rem;
+		line-height: 1.5;
+		font-weight: 400;
 	}
-	.bg-default {
-		background-color: var(--background);
+
+	/*
+	 * Links are not a different colour from body text. They are distinguished
+	 * only by a light underline that warms to red on hover. Getting this wrong
+	 * is the fastest way to stop looking like the original.
+	 */
+	a {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: var(--color-underline);
+		text-underline-offset: 2px;
+	}
+
+	a:hover {
+		text-decoration-color: var(--color-accent-red);
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-accent-red);
+		outline-offset: 2px;
 	}
 }
 
-/* Prose (blog body) follows the theme tokens so it inverts in dark mode and
-   keeps the indigo tint, rather than the plugin's default zero-chroma grays.
-   Unlayered so it overrides the typography plugin's layered variables. */
-.prose {
-	--tw-prose-body: var(--foreground);
-	--tw-prose-headings: var(--foreground);
-	--tw-prose-lead: var(--muted-foreground);
-	--tw-prose-links: var(--primary);
-	--tw-prose-bold: var(--foreground);
-	--tw-prose-counters: var(--muted-foreground);
-	--tw-prose-bullets: var(--muted-foreground);
-	--tw-prose-hr: var(--border);
-	--tw-prose-quotes: var(--foreground);
-	--tw-prose-quote-borders: var(--border);
-	--tw-prose-captions: var(--muted-foreground);
-	--tw-prose-kbd: var(--foreground);
-	--tw-prose-code: var(--foreground);
-	--tw-prose-pre-code: var(--secondary-foreground);
-	--tw-prose-pre-bg: var(--muted);
-	--tw-prose-th-borders: var(--border);
-	--tw-prose-td-borders: var(--border);
+/*
+ * Post body. The scale is em-based off 16px: h1 2em, h2 1.8em, h3 1.6em,
+ * h4 1.4em, h5 1.2em, h6 1em, all at weight 600 (see note above).
+ */
+.entry {
+	max-width: none;
+	font-size: 1rem;
+	line-height: 1.5;
 }
 
-@keyframes twinkle {
-	0%, 100% { opacity: 0.25; }
-	50% { opacity: 0.9; }
+.entry :where(p) {
+	margin: 0 0 1.2rem;
 }
-@media (prefers-reduced-motion: no-preference) {
-	.star-twinkle { animation: twinkle var(--twinkle-dur, 4s) ease-in-out infinite; animation-delay: var(--d, 0s); }
+
+.entry :where(h1, h2, h3, h4, h5, h6) {
+	font-weight: 600;
+	color: var(--color-foreground);
+}
+
+.entry :where(h1) { font-size: 2em;   line-height: 1;   margin: 0 0 0.4em; }
+.entry :where(h2) { font-size: 1.8em; line-height: 1.3; margin: 0 0 0.4em; }
+.entry :where(h3) { font-size: 1.6em; line-height: 1.3; margin: 0 0 0.4em; }
+.entry :where(h4) { font-size: 1.4em; line-height: 1.3; margin: 0 0 0.4em; }
+.entry :where(h5) { font-size: 1.2em; line-height: 1.3; margin: 0 0 0.4em; }
+.entry :where(h6) { font-size: 1em;   line-height: 1.3; margin: 0 0 0.4em; }
+
+.entry :where(ul, ol) {
+	margin: 1rem 0 1.4rem 1.5rem;
+	padding: 0;
+	line-height: 1.4;
+}
+
+.entry :where(ul) { list-style: disc; }
+.entry :where(ol) { list-style: decimal; }
+.entry :where(li) { margin: 0 0 0.5rem; }
+
+/* Distinguished only by switching to italic Times. No rule, no background. */
+.entry :where(blockquote) {
+	font-family: var(--font-serif);
+	font-size: 1.1em;
+	font-style: italic;
+	line-height: 1.3;
+	padding: 0.5rem 1.875rem 0.9375rem;
+	margin: 0;
+	border: none;
+	background: none;
+}
+
+/* A 1px mat around in-content images, straight from the original's custom CSS. */
+.entry :where(img) {
+	border: 1px solid var(--color-band);
+	padding: 0.25rem;
+	box-sizing: border-box;
+	max-width: 100%;
+	height: auto;
+}
+
+/* Bold text on a light grey strip flush under the image. Distinctive. */
+.entry :where(figcaption) {
+	font-weight: 600;
+	font-size: 1rem;
+	line-height: 1.5;
+	background-color: var(--color-band);
+	padding: 0.25rem 0.5rem;
+	margin: 0 0 1rem;
+	color: inherit;
+}
+
+.entry :where(figure) {
+	margin: 0 0 1.2rem;
+	width: fit-content;
+	max-width: 100%;
+}
+
+/* Horizontal rules only, no vertical rules, no zebra striping. */
+.entry :where(table) {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0 0 1.2rem;
+	font-size: 1rem;
+	display: block;
+	overflow-x: auto;
+}
+
+.entry :where(th) {
+	font-weight: 600;
+	padding: 0.75rem;
+	text-align: left;
+	border-top: 1px solid var(--color-table-rule);
+	border-bottom: 2px solid var(--color-table-rule);
+}
+
+.entry :where(td) {
+	padding: 0.75rem;
+	border-top: 1px solid var(--color-table-rule);
+	vertical-align: top;
+}
+
+/*
+ * Code on the original is genuinely unstyled: no fill, no padding, no border,
+ * no highlighting. Just smaller monospace on white. Reproduced as measured.
+ */
+.entry :where(pre) {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 13px;
+	line-height: 1.5;
+	overflow-x: auto;
+	margin: 0 0 1.2rem;
+	background: none;
+	padding: 0;
+	border: none;
+}
+
+.entry :where(code) {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 13px;
+	background: none;
+	padding: 0;
+}
+
+.entry :where(pre code) {
+	font-size: inherit;
+	white-space: pre-wrap;
 }

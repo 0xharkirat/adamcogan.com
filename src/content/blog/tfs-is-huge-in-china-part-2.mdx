@@ -77,7 +77,7 @@ Why is the TFS application different from most web applications?
 
 We are not sure why it falls into the 1%, but my understanding is TFS uses a dynamic data schema (Under the covers, they have a long, narrow table that stores dynamic column values as rows that then need to be pivoted to create a short and wide dataset), which makes the SQL queries very expensive, especially when you customize your process template a lot, e.g. adding many custom fields like we did.
 
-<Figure src="/media/2013/08/iisgarden-1.png" alt="IIS under heavy load" caption="Figure: This is IIS under a heavy load. These are queued requests in the IIS worker process (notice they are all in the ExecuteRequest state). Anything that’s over 50 is long and we have one that is an incredible 125 ms. Therefore long running transactions like this benefit from Web Gardens." />
+<Figure src="/media/2013/08/iisgarden-1.webp" alt="IIS under heavy load" caption="Figure: This is IIS under a heavy load. These are queued requests in the IIS worker process (notice they are all in the ExecuteRequest state). Anything that’s over 50 is long and we have one that is an incredible 125 ms. Therefore long running transactions like this benefit from Web Gardens." />
 
 There are another 2 conditions you need to meet before you enable the Web Garden:
 
@@ -92,7 +92,7 @@ This is a tricky question and I wish we could give you a simple answer. In our t
 
 Therefore our IIS AppPool configuration was set at    **maxProcesses = (number of cores) – 1… in our case that equalled “7” (as we had 8 cores)**
 
-<Figure src="/media/2013/08/IIS-Maximum-Worker-Processes.jpg" alt="IIS-Maximum-Worker-Processes" caption="Figure: We found increasing the setting of IIS’s Maximum Worker Processes to “7” gave us the best results." />
+<Figure src="/media/2013/08/IIS-Maximum-Worker-Processes.webp" alt="IIS-Maximum-Worker-Processes" caption="Figure: We found increasing the setting of IIS’s Maximum Worker Processes to “7” gave us the best results." />
 
 ### **Lesson 7: In your integration code, find the performance bottleneck using Visual Studio Profiling (on the client side)**
 
@@ -106,13 +106,13 @@ In this case, tuning indexes can improve an application sometimes more than 10x,
 
 We used the Visual Studio Performance Wizard to analyse our code. It allowed us to identify the bottleneck quickly…
 
-<Figure src="/media/2013/07/performance-wizard.jpg" alt="Figure: Run the Visual Studio Performance Wizard (in VS 2010 and VS 2012)" caption="Figure: Run the Visual Studio Performance Wizard (in VS 2010 and VS 2012)" />
+<Figure src="/media/2013/07/performance-wizard.webp" alt="Figure: Run the Visual Studio Performance Wizard (in VS 2010 and VS 2012)" caption="Figure: Run the Visual Studio Performance Wizard (in VS 2010 and VS 2012)" />
 
-<Figure src="/media/2013/07/performance-diag.jpg" alt="Figure: Or choose the “Performance and Diagnostics” menu in VS 2013" caption="Figure: Or choose the “Performance and Diagnostics” menu in VS 2013" />
+<Figure src="/media/2013/07/performance-diag.webp" alt="Figure: Or choose the “Performance and Diagnostics” menu in VS 2013" caption="Figure: Or choose the “Performance and Diagnostics” menu in VS 2013" />
 
 Here is the 1st report we saw:
 
-<Figure src="/media/2013/07/performance-report.jpg" alt="Figure: Our 1st performance profiling report identifies the bottleneck is NewWorkItem()" caption="Figure: Our 1st performance profiling report identifies the bottleneck is NewWorkItem()" />
+<Figure src="/media/2013/07/performance-report.webp" alt="Figure: Our 1st performance profiling report identifies the bottleneck is NewWorkItem()" caption="Figure: Our 1st performance profiling report identifies the bottleneck is NewWorkItem()" />
 
 You can clearly see the most expensive call in the chart is **NewWorkItem(),** so we dug into this method and found out it it’s actually the object initialization that costs the most. However, we cannot optimize this object initialization because that’s a core object. So we decided to implement an object pool to cache enough pre-initialized objects when the program starts, so then it’s just consuming it from the pool.  Once the code was changed, this reduced the time by 22%.
 
@@ -124,7 +124,7 @@ In lesson 6, we measured the TFS Object Model APIs, but we still needed more opt
 
 We enabled tracing on the client side and generated the following log.
 
-<Figure src="/media/2013/07/perflistener.jpg" alt="Figure: Tracing TFS Web Service calls show the most accessed methods, which was our starting point" caption="Figure: Tracing TFS Web Service calls show the most accessed methods, which was our starting point" />
+<Figure src="/media/2013/07/perflistener.webp" alt="Figure: Tracing TFS Web Service calls show the most accessed methods, which was our starting point" caption="Figure: Tracing TFS Web Service calls show the most accessed methods, which was our starting point" />
 
 We found out the most expensive Web Service offender was **GetMetadataEx2(WorkItemTracking)** which is related to **NewWorkItem()** method, and this proved some of our suspicions before (in lesson 7). The TFS Client Object Model is reliant on some local cache to store the work item schema information, so it doesn’t have to retrieve this information every time.  This confirmed our object pooling solution (in lesson 7) as a way to great benefits.
 

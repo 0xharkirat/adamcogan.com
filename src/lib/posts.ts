@@ -1,0 +1,146 @@
+/**
+ * Post URL construction and archive grouping.
+ *
+ * Every post keeps the permalink it had on WordPress: /YYYY/MM/DD/<slug>/.
+ * That is the whole reason this module exists rather than each route deriving
+ * paths itself - one wrong timezone conversion here would silently break 183
+ * inbound links, so the date maths lives in exactly one place.
+ */
+import taxonomy from '../data/taxonomy.json';
+import { listBlogs } from './data';
+
+export type PostSummary = {
+	slug: string;
+	title: string;
+	description: string;
+	url: string;
+	pubDate: Date;
+	updatedDate: Date | null;
+	heroImage: string | null;
+	author: string | null;
+	categories: string[];
+	tags: string[];
+};
+
+/** Posts per page, matching the WordPress setting the old site used. */
+export const POSTS_PER_PAGE = 10;
+
+/**
+ * WordPress permalinks were generated from the site's local date. `pubDate` is
+ * stored as UTC, so the parts must be read back in UTC too, otherwise a post
+ * published late in the Sydney evening would shift to the previous day.
+ */
+export function dateParts(date: Date) {
+	return {
+		year: String(date.getUTCFullYear()),
+		month: String(date.getUTCMonth() + 1).padStart(2, '0'),
+		day: String(date.getUTCDate()).padStart(2, '0'),
+	};
+}
+
+export function postUrl(slug: string, pubDate: Date): string {
+	const { year, month, day } = dateParts(pubDate);
+	return `/${year}/${month}/${day}/${slug}/`;
+}
+
+export function categoryName(slug: string): string {
+	return (taxonomy.categories as Record<string, { name: string }>)[slug]?.name ?? slug;
+}
+
+export function tagName(slug: string): string {
+	return (taxonomy.tags as Record<string, { name: string }>)[slug]?.name ?? slug;
+}
+
+let cache: PostSummary[] | null = null;
+
+/** All published posts, newest first. Memoised: every route calls this. */
+export async function getPosts(): Promise<PostSummary[]> {
+	if (cache) return cache;
+
+	const nodes = await listBlogs();
+	cache = nodes
+		.filter((node) => node.pubDate)
+		.map((node) => {
+			const slug = node._sys.filename;
+			const pubDate = new Date(node.pubDate as string);
+			return {
+				slug,
+				title: node.title ?? slug,
+				description: node.description ?? '',
+				url: postUrl(slug, pubDate),
+				pubDate,
+				updatedDate: node.updatedDate ? new Date(node.updatedDate) : null,
+				heroImage: node.heroImage ?? null,
+				author: node.author ?? null,
+				categories: (node.categories ?? []).filter((c): c is string => Boolean(c)),
+				tags: (node.tags ?? []).filter((t): t is string => Boolean(t)),
+			};
+		})
+		.sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
+
+	return cache;
+}
+
+export type Page = {
+	posts: PostSummary[];
+	current: number;
+	total: number;
+	/** Absolute path of the previous/next page, or null at the ends. */
+	prevUrl: string | null;
+	nextUrl: string | null;
+	/** Every page number paired with its URL, for the numbered pagination. */
+	pages: { number: number; url: string }[];
+};
+
+/**
+ * Slice a post list into one page.
+ *
+ * `base` is the listing root ('/' or '/category/ai/'). WordPress paginated
+ * every listing as `<base>page/<n>/` with page 1 living at the bare base, and
+ * those URLs are preserved.
+ */
+export function paginate(posts: PostSummary[], current: number, base = '/'): Page {
+	const total = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+	const urlFor = (n: number) => (n === 1 ? base : `${base}page/${n}/`);
+
+	return {
+		posts: posts.slice((current - 1) * POSTS_PER_PAGE, current * POSTS_PER_PAGE),
+		current,
+		total,
+		prevUrl: current > 1 ? urlFor(current - 1) : null,
+		nextUrl: current < total ? urlFor(current + 1) : null,
+		pages: Array.from({ length: total }, (_, i) => ({ number: i + 1, url: urlFor(i + 1) })),
+	};
+}
+
+/** Page numbers 2..N for a listing, used by getStaticPaths on /page/[page]. */
+export function extraPageNumbers(postCount: number): number[] {
+	const total = Math.ceil(postCount / POSTS_PER_PAGE);
+	return Array.from({ length: Math.max(0, total - 1) }, (_, i) => i + 2);
+}
+
+/** Year archives, newest first. Drives both /YYYY/ and the sidebar list. */
+export async function getArchives(): Promise<{ year: number; count: number }[]> {
+	const posts = await getPosts();
+	const counts = new Map<number, number>();
+	for (const post of posts) {
+		const year = post.pubDate.getUTCFullYear();
+		counts.set(year, (counts.get(year) ?? 0) + 1);
+	}
+	return [...counts.entries()]
+		.map(([year, count]) => ({ year, count }))
+		.sort((a, b) => b.year - a.year);
+}
+
+/** Posts grouped by taxonomy slug, for the category and tag archive routes. */
+export async function groupBy(field: 'categories' | 'tags'): Promise<Map<string, PostSummary[]>> {
+	const posts = await getPosts();
+	const groups = new Map<string, PostSummary[]>();
+	for (const post of posts) {
+		for (const slug of post[field]) {
+			if (!groups.has(slug)) groups.set(slug, []);
+			groups.get(slug)!.push(post);
+		}
+	}
+	return groups;
+}

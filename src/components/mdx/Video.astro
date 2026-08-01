@@ -1,7 +1,11 @@
 ---
 /**
- * Self-hosted video. Five posts embed an .mp4/.mov uploaded straight to the
+ * Self-hosted video. Five posts embed a file uploaded straight to the
  * WordPress media library rather than going through YouTube.
+ *
+ * `src` names the MP4. A sibling .webm is emitted for every video by
+ * `migration/scripts/4-optimise-media.mjs` and listed first, so browsers take
+ * the smaller VP9 file and Safari falls back to H.264.
  */
 interface Props {
   src: string;
@@ -9,11 +13,16 @@ interface Props {
 }
 
 const { src, caption = '' } = Astro.props;
+const webm = src.replace(/\.mp4$/i, '.webm');
 ---
 
 <figure class="my-8">
-  <video src={src} controls preload="metadata" class="w-full rounded-xl">
+  <video controls preload="metadata" class="w-full">
+    {webm !== src && <source src={webm} type="video/webm" />}
+    <source src={src} type="video/mp4" />
     <a href={src}>Download the video</a>
   </video>
-  {caption && <figcaption class="mt-2 text-sm leading-snug text-muted-foreground">{caption}</figcaption>}
+  {caption && (
+    <figcaption class="mt-0 mb-4 bg-[#f5f5f5] px-2 py-1 font-semibold">{caption}</figcaption>
+  )}
 </figure>

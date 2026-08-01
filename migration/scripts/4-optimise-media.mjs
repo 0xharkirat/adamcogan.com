@@ -2,19 +2,26 @@
  * Phase 4: make the downloaded media deployable.
  *
  * The WordPress library holds camera and phone originals (one photo is
- * 8256x5504, 16 MB) which is ~645 MB in total. The site's content column is
- * 665px wide, so a 2000px long edge still covers 3x retina and any lightbox
- * use, at roughly a twentieth of the bytes.
+ * 8256x5504, 16 MB) totalling ~641 MB, which is more than a git repo should
+ * carry and more than some hosts accept per file.
  *
- * Videos are transcoded to H.264 MP4: the 33 MB .mov does not play reliably
- * outside Safari, and hosts cap individual asset sizes.
+ *   images  -> resized to a 2000px long edge and encoded as WebP
+ *   GIFs    -> animated WebP, preserving the animation
+ *   video   -> VP9/WebM plus an H.264/MP4 fallback
  *
- * Idempotent: files already at or under the target are left untouched, so a
- * second run is a no-op. Originals remain on the WordPress host, and
- * `1-extract` + `3-media` re-fetch them, so nothing here is a one-way door.
+ * The content column is 665px wide, so 2000px still covers 3x retina.
+ *
+ * Run this against freshly downloaded originals, not against its own output:
+ * re-encoding an already-encoded file loses quality for no size benefit.
+ * Files whose format does not change are left alone when already small, so a
+ * second run is close to a no-op, but `3-media.mjs` should be re-run first if
+ * the settings here change.
+ *
+ * Every rename is propagated back into the MDX, so the content never points at
+ * a file that no longer exists.
  */
-import { readdir, readFile, writeFile, stat, rename, unlink } from "node:fs/promises";
-import { join, extname, dirname, relative } from "node:path";
+import { readdir, readFile, writeFile, stat, unlink, rename } from "node:fs/promises";
+import { join, extname, dirname, relative, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
@@ -22,11 +29,15 @@ import sharp from "sharp";
 
 const run = promisify(execFile);
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const MEDIA = join(ROOT, "public", "media");
+const PUBLIC = join(ROOT, "public");
+const MEDIA = join(PUBLIC, "media");
 
 const MAX_EDGE = 2000;
-const JPEG_QUALITY = 82;
+const WEBP_QUALITY = 82;
 const CONCURRENCY = 6;
+
+const RASTER = new Set([".jpg", ".jpeg", ".png"]);
+const VIDEO = new Set([".mp4", ".mov", ".m4v", ".webm"]);
 
 async function walk(dir) {
   const out = [];
@@ -38,81 +49,99 @@ async function walk(dir) {
   return out;
 }
 
-const RASTER = new Set([".jpg", ".jpeg", ".png", ".webp"]);
-const VIDEO = new Set([".mp4", ".mov", ".m4v", ".webm"]);
+const webPath = (file) => `/${relative(PUBLIC, file).split(/[\\/]/).join("/")}`;
+
+/* --------------------------------------------------------------- images */
 
 async function optimiseImage(file) {
   const before = (await stat(file)).size;
-  const image = sharp(file, { failOn: "none" });
-  const meta = await image.metadata();
   const ext = extname(file).toLowerCase();
+  const target = file.slice(0, -ext.length) + ".webp";
 
-  const oversized = Math.max(meta.width ?? 0, meta.height ?? 0) > MAX_EDGE;
-  // Animated GIFs are excluded upstream; PNGs that are already small are
-  // usually screenshots or logos where re-encoding gains nothing.
-  if (!oversized && before < 400_000) return { file, status: "skipped", before, after: before };
+  const animated = ext === ".gif";
+  const image = sharp(file, { failOn: "none", animated });
+  const meta = await image.metadata();
 
-  let pipeline = image.rotate().resize({
-    width: MAX_EDGE,
-    height: MAX_EDGE,
-    fit: "inside",
-    withoutEnlargement: true,
-  });
+  // Animated frames stack vertically in `pageHeight`, so resizing an animated
+  // GIF by its reported height would squash every frame. Only width is capped.
+  const pipeline = animated
+    ? image.resize({ width: Math.min(meta.width ?? MAX_EDGE, MAX_EDGE), withoutEnlargement: true })
+    : image.rotate().resize({
+        width: MAX_EDGE,
+        height: MAX_EDGE,
+        fit: "inside",
+        withoutEnlargement: true,
+      });
 
-  pipeline =
-    ext === ".png"
-      ? pipeline.png({ compressionLevel: 9, palette: true })
-      : ext === ".webp"
-        ? pipeline.webp({ quality: JPEG_QUALITY })
-        : pipeline.jpeg({ quality: JPEG_QUALITY, mozjpeg: true });
+  const buf = await pipeline.webp({ quality: WEBP_QUALITY, effort: 5 }).toBuffer();
 
-  const buf = await pipeline.toBuffer();
-  if (buf.length >= before) return { file, status: "kept-original", before, after: before };
-
-  await writeFile(file, buf);
-  return { file, status: "resized", before, after: buf.length };
-}
-
-/**
- * Transcode to H.264 + AAC in an MP4 container. `.mov` files are additionally
- * renamed, so every reference to them in the MDX has to be rewritten too.
- */
-async function optimiseVideo(file) {
-  const before = (await stat(file)).size;
-  const target = file.replace(/\.(mov|m4v|webm)$/i, ".mp4");
-  const tmp = `${target}.tmp.mp4`;
-
-  await run("ffmpeg", [
-    "-y", "-i", file,
-    "-vf", "scale='min(1920,iw)':-2",
-    "-c:v", "libx264", "-preset", "slow", "-crf", "23",
-    "-pix_fmt", "yuv420p", "-movflags", "+faststart",
-    "-c:a", "aac", "-b:a", "128k",
-    tmp,
-  ]);
-
-  const after = (await stat(tmp)).size;
-  if (after >= before && target === file) {
-    await unlink(tmp);
+  // Keep the original when WebP genuinely loses, which happens for a few tiny
+  // flat-colour PNGs where the WebP container overhead dominates.
+  if (buf.length >= before && buf.length > 20_000) {
     return { file, status: "kept-original", before, after: before };
   }
 
+  await writeFile(target, buf);
   if (target !== file) await unlink(file);
-  await rename(tmp, target);
+  return {
+    file,
+    status: "webp",
+    before,
+    after: buf.length,
+    renamedFrom: target !== file ? webPath(file) : null,
+    renamedTo: target !== file ? webPath(target) : null,
+  };
+}
+
+/* ---------------------------------------------------------------- video */
+
+/**
+ * Emit both VP9/WebM and H.264/MP4. WebM is the smaller file but Safari only
+ * gained VP9-in-WebM support in 14.1, so the MP4 stays as a <source> fallback
+ * rather than being deleted.
+ */
+async function optimiseVideo(file) {
+  const before = (await stat(file)).size;
+  const stem = file.slice(0, -extname(file).length);
+  const mp4 = `${stem}.mp4`;
+  const webm = `${stem}.webm`;
+  const scale = "scale='min(1920,iw)':-2";
+
+  await run("ffmpeg", [
+    "-y", "-i", file,
+    "-vf", scale,
+    "-c:v", "libx264", "-preset", "slow", "-crf", "23",
+    "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+    "-c:a", "aac", "-b:a", "128k",
+    `${mp4}.tmp.mp4`,
+  ]);
+  await run("ffmpeg", [
+    "-y", "-i", file,
+    "-vf", scale,
+    "-c:v", "libvpx-vp9", "-crf", "34", "-b:v", "0", "-row-mt", "1",
+    "-c:a", "libopus", "-b:a", "96k",
+    `${webm}.tmp.webm`,
+  ]);
+
+  if (file !== mp4) await unlink(file);
+  await rename(`${mp4}.tmp.mp4`, mp4);
+  await rename(`${webm}.tmp.webm`, webm);
+
+  const after = (await stat(mp4)).size + (await stat(webm)).size;
   return {
     file,
     status: "transcoded",
     before,
     after,
-    renamedFrom: target !== file ? `/${relative(join(ROOT, "public"), file)}` : null,
-    renamedTo: target !== file ? `/${relative(join(ROOT, "public"), target)}` : null,
+    renamedFrom: file !== mp4 ? webPath(file) : null,
+    renamedTo: file !== mp4 ? webPath(mp4) : null,
   };
 }
 
-/* ------------------------------------------------------------------- run */
+/* ------------------------------------------------------------------ run */
 
 const files = await walk(MEDIA);
-const images = files.filter((f) => RASTER.has(extname(f).toLowerCase()));
+const images = files.filter((f) => RASTER.has(extname(f).toLowerCase()) || extname(f).toLowerCase() === ".gif");
 const videos = files.filter((f) => VIDEO.has(extname(f).toLowerCase()));
 console.log(`${images.length} images, ${videos.length} videos.`);
 
@@ -135,34 +164,45 @@ await Promise.all(
 );
 process.stdout.write("\n");
 
-const renames = [];
 for (const [i, file] of videos.entries()) {
-  process.stdout.write(`\r  videos ${i + 1}/${videos.length}   `);
+  process.stdout.write(`\r  videos ${i + 1}/${videos.length} (${basename(file)})          `);
   try {
-    const r = await optimiseVideo(file);
-    results.push(r);
-    if (r.renamedFrom) renames.push([r.renamedFrom, r.renamedTo]);
+    results.push(await optimiseVideo(file));
   } catch (err) {
     results.push({ file, status: "error", error: err.message, before: 0, after: 0 });
   }
 }
 process.stdout.write("\n");
 
-// A .mov became a .mp4, so every reference in the migrated content must follow.
+/* Propagate every rename into the migrated content. */
+const renames = results.filter((r) => r.renamedFrom).map((r) => [r.renamedFrom, r.renamedTo]);
 if (renames.length) {
+  // Keyed on the decoded path. Content stores percent-encoded URLs, while the
+  // map is built from raw filesystem paths, and some uploads contain
+  // characters that differ between the two (one macOS screenshot has a narrow
+  // no-break space). Comparing decoded on both sides is what makes them meet.
+  const map = new Map(renames.map(([from, to]) => [decodeURI(from), to]));
+  const reencode = (path) => path.split("/").map(encodeURIComponent).join("/");
+  let touched = 0;
   for (const dir of [join(ROOT, "src", "content", "blog"), join(ROOT, "src", "content", "page")]) {
     for (const name of await readdir(dir)) {
       if (!name.endsWith(".mdx")) continue;
       const path = join(dir, name);
       const original = await readFile(path, "utf8");
-      let updated = original;
-      for (const [from, to] of renames) updated = updated.split(from).join(to);
+      // Replace whole /media/... paths only, so a filename that happens to be a
+      // substring of another cannot be corrupted.
+      const updated = original.replace(/\/media\/[^\s"')\]]+/g, (m) => {
+        const target = map.get(decodeURI(m));
+        if (!target) return m;
+        return m === decodeURI(m) ? target : reencode(target);
+      });
       if (updated !== original) {
         await writeFile(path, updated);
-        console.log(`  rewrote video reference in ${name}`);
+        touched += 1;
       }
     }
   }
+  console.log(`Rewrote media references in ${touched} content files (${renames.length} renames).`);
 }
 
 const sum = (k) => results.reduce((n, r) => n + (r[k] || 0), 0);
@@ -170,8 +210,8 @@ const count = (s) => results.filter((r) => r.status === s).length;
 const errors = results.filter((r) => r.status === "error");
 
 console.log(
-  `\nresized ${count("resized")}, transcoded ${count("transcoded")}, ` +
-    `skipped ${count("skipped")}, kept ${count("kept-original")}, errors ${errors.length}`,
+  `\nwebp ${count("webp")}, transcoded ${count("transcoded")}, ` +
+    `kept ${count("kept-original")}, errors ${errors.length}`,
 );
 console.log(
   `${(sum("before") / 1048576).toFixed(0)} MB -> ${(sum("after") / 1048576).toFixed(0)} MB ` +
