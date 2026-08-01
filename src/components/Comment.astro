@@ -1,0 +1,46 @@
+---
+import FormattedDate from './FormattedDate.astro';
+import type { ArchivedComment } from '../lib/comments';
+
+/**
+ * One archived comment, plus its replies. Recursive, because 7 of the migrated
+ * comments are threaded replies and flattening them would lose who answered
+ * whom.
+ */
+interface Props {
+	comment: ArchivedComment;
+	depth?: number;
+}
+
+const { comment, depth = 0 } = Astro.props;
+const Self = Astro.self;
+---
+
+<li id={`comment-${comment.id}`} class:list={['py-4', depth > 0 && 'ml-6 border-l border-[var(--color-hairline)] pl-6']}>
+	<p class="mb-1 text-[0.9em]">
+		<span class="font-semibold">
+			{comment.authorUrl ? (
+				<a href={comment.authorUrl} rel="nofollow ugc noopener" target="_blank">{comment.author}</a>
+			) : (
+				comment.author
+			)}
+		</span>
+		<span class="mx-2 text-[#999]" aria-hidden="true">/</span>
+		<FormattedDate date={new Date(comment.date)} />
+	</p>
+
+	{/*
+	  Bodies were reduced to a small inline-only tag set at migration time, with
+	  every attribute except a validated href stripped. That is the only reason
+	  this can be set as HTML.
+	*/}
+	<div class="entry text-[0.95em]" set:html={comment.html} />
+
+	{comment.replies.length > 0 && (
+		<ul class="mt-2 list-none p-0">
+			{comment.replies.map((reply) => (
+				<Self comment={reply} depth={depth + 1} />
+			))}
+		</ul>
+	)}
+</li>

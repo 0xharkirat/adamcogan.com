@@ -2,6 +2,8 @@
 import Shell from '../layouts/Shell.astro';
 import TinaIsland from '@tinacms/astro/TinaIsland.astro';
 import PageBody from '../components/islands/PageBody.astro';
+import Comments from '../components/Comments.astro';
+import { commentCountFor } from '../lib/comments';
 import { getConfig, getPage, listPages } from '../lib/data';
 import { islands } from '../lib/islands';
 
@@ -26,4 +28,6 @@ const config = (await getConfig()).data?.config ?? null;
 	<TinaIsland name="page" wrapper={islands.page.wrapper} params={{ slug }} primary>
 		<PageBody data={data} />
 	</TinaIsland>
+	{/* The Tesla page carries a comment, so pages get the archive too. */}
+	{commentCountFor(slug) > 0 && <Comments slug={slug} />}
 </Shell>

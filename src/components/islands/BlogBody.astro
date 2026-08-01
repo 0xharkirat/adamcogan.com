@@ -50,7 +50,7 @@ const { data, summary } = Astro.props;
 			</h1>
 		)}
 
-		{summary && <PostMeta post={summary} />}
+		{summary && <PostMeta post={summary} commentCount={summary.commentCount} />}
 
 		{data.body && (
 			<div data-tina-field={tinaField(data, 'body')} class="entry">

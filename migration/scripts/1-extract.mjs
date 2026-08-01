@@ -81,6 +81,13 @@ await dump("categories", categories);
 await dump("tags", tags);
 await dump("users", users);
 
+// Comments are archived read-only: 154 distinct people wrote them between 2011
+// and 2026, and no comment host can reproduce that authorship, so the original
+// names and dates are preserved as content instead.
+console.log("Comments");
+const comments = await getAll("comments", 100, "&status=approve&orderby=date&order=asc");
+await dump("comments", comments);
+
 // Featured media only: pulling all 1247 library items would mostly be thumbnail
 // variants we never reference. Inline images are resolved from post HTML later.
 const featuredIds = [...new Set([...posts, ...pages].map((p) => p.featured_media).filter(Boolean))];
@@ -103,6 +110,7 @@ await dump("_summary", {
   pages: pages.length,
   categories: categories.length,
   tags: tags.length,
+  comments: comments.length,
   users: users.map((u) => ({ id: u.id, slug: u.slug, name: u.name })),
   featuredMediaReferenced: featuredIds.length,
   featuredMediaResolved: media.length,

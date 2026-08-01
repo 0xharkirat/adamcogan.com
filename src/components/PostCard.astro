@@ -38,7 +38,7 @@ const { post, eager = false } = Astro.props;
 		<a href={post.url} class="no-underline">{post.title}</a>
 	</h2>
 
-	<PostMeta post={post} />
+	<PostMeta post={post} commentCount={post.commentCount} />
 
 	{post.description && <p class="mb-[1.2rem]">{post.description}</p>}
 </article>

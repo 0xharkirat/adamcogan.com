@@ -1,0 +1,79 @@
+---
+import Comment from './Comment.astro';
+import { commentsFor, countComments } from '../lib/comments';
+
+/**
+ * Comments under a post: the migrated WordPress archive, then Giscus for new
+ * ones.
+ *
+ * Two mechanisms rather than one, on purpose. The 175 archived comments were
+ * written by 154 different people; importing them into GitHub Discussions would
+ * re-attribute every one to whichever account ran the import, so they stay here
+ * as content with their real names and dates, read-only.
+ *
+ * Giscus only renders once its four settings are present. It needs a public
+ * GitHub repo with Discussions enabled, and the ids come from giscus.app.
+ * Without them the section degrades to the archive alone rather than emitting a
+ * broken widget.
+ */
+interface Props {
+	slug: string;
+}
+
+const { slug } = Astro.props;
+const comments = commentsFor(slug);
+const total = countComments(comments);
+
+const giscus = {
+	repo: import.meta.env.PUBLIC_GISCUS_REPO,
+	repoId: import.meta.env.PUBLIC_GISCUS_REPO_ID,
+	category: import.meta.env.PUBLIC_GISCUS_CATEGORY,
+	categoryId: import.meta.env.PUBLIC_GISCUS_CATEGORY_ID,
+};
+const giscusReady = Boolean(giscus.repo && giscus.repoId && giscus.category && giscus.categoryId);
+---
+
+<section id="comments" class="mt-10 border-t border-[var(--color-hairline)] pt-6">
+	<h2 class="mb-4 text-[19.2px] font-semibold">
+		{total === 0 ? 'Comments' : `${total} ${total === 1 ? 'Comment' : 'Comments'}`}
+	</h2>
+
+	{comments.length > 0 && (
+		<>
+			<ul class="m-0 list-none divide-y divide-[var(--color-hairline)] p-0">
+				{comments.map((comment) => (
+					<Comment comment={comment} />
+				))}
+			</ul>
+			<p class="mt-4 text-[0.9em] text-[#666]">
+				Comments above were made on the previous version of this site and are kept as a record.
+			</p>
+		</>
+	)}
+
+	{giscusReady ? (
+		<div class="mt-8">
+			<h3 class="mb-3 text-[19.2px] font-semibold">Join the conversation</h3>
+			<script
+				is:inline
+				src="https://giscus.app/client.js"
+				data-repo={giscus.repo}
+				data-repo-id={giscus.repoId}
+				data-category={giscus.category}
+				data-category-id={giscus.categoryId}
+				data-mapping="pathname"
+				data-strict="1"
+				data-reactions-enabled="1"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="light"
+				data-lang="en"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async
+			/>
+		</div>
+	) : (
+		comments.length === 0 && <p class="text-[0.9em] text-[#666]">No comments on this post.</p>
+	)}
+</section>

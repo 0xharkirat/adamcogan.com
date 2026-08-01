@@ -7,6 +7,7 @@
  * inbound links, so the date maths lives in exactly one place.
  */
 import taxonomy from '../data/taxonomy.json';
+import { commentCountFor } from './comments';
 import { listBlogs } from './data';
 
 export type PostSummary = {
@@ -20,6 +21,8 @@ export type PostSummary = {
 	author: string | null;
 	categories: string[];
 	tags: string[];
+	/** Migrated WordPress comments, shown as "N Comments" in the meta line. */
+	commentCount: number;
 };
 
 /** Posts per page, matching the WordPress setting the old site used. */
@@ -81,6 +84,7 @@ export async function getPosts(): Promise<PostSummary[]> {
 				author: node.author ?? null,
 				categories: (node.categories ?? []).filter((c): c is string => Boolean(c)),
 				tags: (node.tags ?? []).filter((t): t is string => Boolean(t)),
+				commentCount: commentCountFor(slug),
 			};
 		})
 		.sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());

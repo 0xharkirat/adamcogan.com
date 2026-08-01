@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 import TurndownService from "turndown";
 import { gfm } from "turndown-plugin-gfm";
 import { toLocal } from "./lib/images.mjs";
+import { buildArchive, countAll } from "./lib/comments.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const RAW = join(ROOT, "migration", "raw");
@@ -410,6 +411,35 @@ async function relinkOptimisedMedia() {
 }
 
 await relinkOptimisedMedia();
+
+/* Comment archive: read-only history, kept out of the MDX so Tina does not
+   present other people's words as editable post content. */
+let commentSummary = { total: 0, posts: 0, orphaned: [] };
+try {
+  const rawComments = JSON.parse(await readFile(join(RAW, "comments.json"), "utf8"));
+  const { archive, total, posts: withComments, orphaned } = buildArchive(rawComments, posts, pages);
+  commentSummary = { total, posts: withComments, orphaned };
+
+  const dropped = rawComments.filter((c) => c.status === "approved").length - total;
+  if (dropped > 0) console.warn(`WARNING: ${dropped} approved comment(s) had no matching post or page.`);
+
+  await mkdir(join(ROOT, "src", "data"), { recursive: true });
+  await writeFile(
+    join(ROOT, "src", "data", "comments.json"),
+    JSON.stringify(
+      Object.fromEntries(Object.entries(archive).sort(([a], [b]) => a.localeCompare(b))),
+      null,
+      2,
+    ),
+  );
+  console.log(
+    `comments: ${total} across ${withComments} posts` +
+      (orphaned.length ? `, ${orphaned.length} reply(s) promoted to top level` : ""),
+  );
+} catch (err) {
+  if (err.code !== "ENOENT") throw err;
+  console.warn("comments: raw/comments.json not found, skipping (run 1-extract.mjs)");
+}
 
 // Taxonomy lookup: frontmatter stores WP slugs so archive URLs stay identical
 // to the old site; this maps them back to display names for the UI.

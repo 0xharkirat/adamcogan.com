@@ -1,0 +1,1539 @@
+{
+  "5-tips-for-github-issues-projects": [
+    {
+      "id": 55345,
+      "author": "Piers Sinclair",
+      "authorUrl": "http://www.ssw.com.au",
+      "date": "2022-03-11T07:35:19Z",
+      "html": "<p>Thanks for posting about this Adam, I think it is important to raise awareness about how devs can manage projects better in GitHub!</p>\n<p>A lot of these things are not super clear when you start out.</p>",
+      "replies": []
+    }
+  ],
+  "8-important-changes-to-the-scrum-guide-for-2021": [
+    {
+      "id": 54930,
+      "author": "Dan",
+      "authorUrl": null,
+      "date": "2022-02-08T20:42:48Z",
+      "html": "<p>Thanks for the summary of the changes.  This is great.  To remain consistent with the update that moved away from roles and toward responsibilities, you should update your 3,5,3,3 to say 3 &#8216;responsibilities&#8217;</p>",
+      "replies": []
+    }
+  ],
+  "8-tips-to-better-architecture-diagrams": [
+    {
+      "id": 41983,
+      "author": "Enrique",
+      "authorUrl": null,
+      "date": "2020-10-13T00:33:22Z",
+      "html": "<p>I think C4 Models cover most of all mix of diagrams you talk about. For a long time, we at our company tried to document in a common language these diagrams, and always we found that every architect has different perceptions about the required level of detail until we discovered the C4 models. It is just a comment.</p>",
+      "replies": []
+    },
+    {
+      "id": 45962,
+      "author": "ALLERMAN1729",
+      "authorUrl": null,
+      "date": "2021-01-01T18:54:45Z",
+      "html": "<p>Thank you!!1</p>",
+      "replies": []
+    },
+    {
+      "id": 61240,
+      "author": "jm",
+      "authorUrl": null,
+      "date": "2022-09-02T02:57:42Z",
+      "html": "<p>image links on this article seem to be broken 🙁</p>",
+      "replies": [
+        {
+          "id": 61260,
+          "author": "Penny Walker",
+          "authorUrl": null,
+          "date": "2022-09-06T09:08:15Z",
+          "html": "<p>Hi JM &#8211; they are all working now! 🙂</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": 80834,
+      "author": "Madeline Pardue",
+      "authorUrl": null,
+      "date": "2024-01-28T22:59:42Z",
+      "html": "<p>Hi Excellent work putting this together! I question what AI will do in this area over the next five years.</p>",
+      "replies": []
+    }
+  ],
+  "9-knights-azure-services-get-started": [
+    {
+      "id": 26046,
+      "author": "Matt Frear",
+      "authorUrl": "http://mattfrear.com",
+      "date": "2018-09-04T10:53:43Z",
+      "html": "<p>Came here after hearing you on .NET Rocks. DevOps project was something I&#8217;d never heard of before and looks useful. Thanks.</p>",
+      "replies": []
+    },
+    {
+      "id": 36047,
+      "author": "Call Center Software",
+      "authorUrl": "https://convoxcallcentersoftware.com/call-center-solutions/",
+      "date": "2020-01-27T04:30:50Z",
+      "html": "<p>Impressive！Thanks for the post  Thanks &amp; Regards,<br>\nFrom <a href=\"https://www.deepijatel.com/\" rel=\"nofollow ugc noopener\" target=\"_blank\">Call Center Software</a>.</p>",
+      "replies": []
+    }
+  ],
+  "a-good-product-owner-can-make-or-break-a-project": [
+    {
+      "id": 421,
+      "author": "Adam Cogan",
+      "authorUrl": null,
+      "date": "2013-09-25T09:00:22Z",
+      "html": "<p>A man who knows a think or two about running teams. Mr TFS Brian Harry @bharry liked my video. Fantastic <a href=\"http://blogs.msdn.com/b/bharry/archive/2013/09/22/what-is-a-product-owner.aspx\" rel=\"nofollow ugc noopener\" target=\"_blank\">http://blogs.msdn.com/b/bharry/archive/2013/09/22/what-is-a-product-owner.aspx</a></p>\n<p>Adam Cogan</p>",
+      "replies": []
+    },
+    {
+      "id": 1258,
+      "author": "Alan Bustamante",
+      "authorUrl": "http://www.xceleratepartners.com",
+      "date": "2014-02-18T16:54:06Z",
+      "html": "<p>The Product Owner video is great, thanks for sharing!</p>",
+      "replies": []
+    },
+    {
+      "id": 12759,
+      "author": "Michael",
+      "authorUrl": "http://agileextensions.com",
+      "date": "2016-05-20T09:46:35Z",
+      "html": "<p>Hey Adam,</p>\n<p>great video &#8211; thanks for sharing.</p>\n<p>Having worked in a few REAL Scrum-Teams by now I feel that the Product Owner has one of the hardest and often most unapprecheated jobs in the Scrum process.<br>\nI am currently trying to figure out how to make the POs life easier inside TFS/VSTS by providing a few extensions to TFS/VSTS. </p>\n<p>What do you think could help in terms of tooling to make Product Owners more successful at their jobs?</p>\n<p>Michael</p>",
+      "replies": []
+    }
+  ],
+  "adams-2017-review": [
+    {
+      "id": 23106,
+      "author": "Andrew",
+      "authorUrl": null,
+      "date": "2018-01-16T07:05:51Z",
+      "html": "<p>No mention of SharePoint?</p>\n<p>I expect it to get serious traction at some point in 2018 with its awesome latest updates</p>",
+      "replies": []
+    }
+  ],
+  "adams-2018-in-review": [
+    {
+      "id": 26630,
+      "author": "Andrew MacNeill",
+      "authorUrl": "http://www.aksel.com",
+      "date": "2019-01-07T09:50:05Z",
+      "html": "<p>Love the Infographic &#8211; what a great idea!</p>",
+      "replies": []
+    }
+  ],
+  "adams-2021-year-in-review": [
+    {
+      "id": 54679,
+      "author": "Emma Bannister",
+      "authorUrl": "http://www.presentationstudio.com",
+      "date": "2022-01-18T02:00:00Z",
+      "html": "<p>Thank you for sharing. </p>\n<p>I love how honest and open you are about your business and communications. I&#8217;m really happy you maintained growth in 2021 and I&#8217;m sure 2022 will be another well earned success (minus the eFoiling accident!).</p>\n<p>Sounds like a solid team.<br>\nStay safe.</p>",
+      "replies": []
+    }
+  ],
+  "adams-2023-year-in-review": [
+    {
+      "id": 82284,
+      "author": "Betty Bondoc",
+      "authorUrl": "http://ssw.com.au",
+      "date": "2024-03-03T23:00:58Z",
+      "html": "<p>What an exciting year for SSW! 🎉</p>",
+      "replies": []
+    }
+  ],
+  "adams-2025-year-in-review": [
+    {
+      "id": 107831,
+      "author": "Greg Joosse",
+      "authorUrl": null,
+      "date": "2026-01-20T09:24:10Z",
+      "html": "<p>Great read and well done</p>",
+      "replies": []
+    }
+  ],
+  "ai-models-with-microsofts-semantic-kernel": [
+    {
+      "id": 77182,
+      "author": "Piers Sinclair",
+      "authorUrl": "http://ssw.com.au",
+      "date": "2023-09-22T05:12:38Z",
+      "html": "<p>Thanks for this valuable contribution! 👏<br>\nPiers Sinclair <a href=\"http://www.ssw.com.au\" rel=\"nofollow ugc noopener\" target=\"_blank\">http://www.ssw.com.au</a></p>",
+      "replies": []
+    },
+    {
+      "id": 79390,
+      "author": "Toby Churches",
+      "authorUrl": "https://www.ssw.com.au/",
+      "date": "2023-11-30T00:12:39Z",
+      "html": "<p>Excellent Content! A very clear and understandable explanation!<br>\nCheers Adam</p>\n<p>Toby Churches <a href=\"https://www.ssw.com.au/\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://www.ssw.com.au/</a></p>",
+      "replies": []
+    }
+  ],
+  "ai-saved-my-life": [
+    {
+      "id": 83868,
+      "author": "Peter Hale",
+      "authorUrl": null,
+      "date": "2024-04-13T01:55:39Z",
+      "html": "<p>Hi Adam</p>\n<p>Join the club. I&#8217;ve just had an SCC (cut out) and BCC removed along with a couple of curets as well as an SCC (cut out) from my nose last November. Is a regular yearly occurrence for me. Had more SCC and Bcc removed than I care to remember &#8211; full of scars &#8211; and missing a bit of an ear. No melanomas so far (touch wood). If i don&#8217;t leave the yearly checkup with at least 4 or 5 biopsies I think something has been missed.</p>\n<p>Just wait until he gets you to go the Efudix route on your face &#8211; I&#8217;ve done it twice and never lasted the distance.</p>\n<p>I&#8217;ve been seeing a dermatologist for the last 40 years. You know what my skin complexion is like.</p>\n<p>Anyhow, really glad you&#8217;ve had it removed. Keep vigilent.</p>\n<p>Regards</p>\n<p>Pete</p>",
+      "replies": []
+    },
+    {
+      "id": 83930,
+      "author": "Dr Larry Whitman",
+      "authorUrl": null,
+      "date": "2024-04-15T02:33:11Z",
+      "html": "<p>Thanks for sharing that important message Adam. That was a fortuitous event for you indeed! I&#8217;m very happy for you with such a scary diagnosis but thank goodness with a wonderful outcome.<br>\nLet&#8217;s hope that your readership think deeply about what you have been through and follow your lead there.<br>\nWishing you the best of health,</p>",
+      "replies": []
+    },
+    {
+      "id": 84669,
+      "author": "Ari",
+      "authorUrl": null,
+      "date": "2024-04-29T04:26:29Z",
+      "html": "<p>I will get my check this month!</p>",
+      "replies": []
+    },
+    {
+      "id": 84670,
+      "author": "Ari",
+      "authorUrl": null,
+      "date": "2024-04-29T04:27:36Z",
+      "html": "<p>A great reminder to get that check done. Im booking now..</p>",
+      "replies": []
+    },
+    {
+      "id": 85356,
+      "author": "Bruce Peattie",
+      "authorUrl": null,
+      "date": "2024-05-15T13:53:59Z",
+      "html": "<p>Good luck Adam. I had 2 melanomas removed 7 years ago.</p>",
+      "replies": []
+    },
+    {
+      "id": 87155,
+      "author": "Ben Giddens - optometrist",
+      "authorUrl": null,
+      "date": "2024-06-22T16:35:40Z",
+      "html": "<p>Met Adam in Strasbourg and we had much to share. Melanoma can be genetically induced too (Bob Marley). Early detection and treatment is life saving. Protect your skin and wear those big wrap sunglasses. Unlike your skin being most affected when the sun is at its highest, your eyes are affected morning and afternoon when the sun is lower in the sky.</p>",
+      "replies": []
+    }
+  ],
+  "aussie-azure-winning-on-visual-studio-online-in-australia": [
+    {
+      "id": 9074,
+      "author": "Grant Adkins",
+      "authorUrl": null,
+      "date": "2015-05-14T01:12:34Z",
+      "html": "<p>Hi Adam</p>\n<p>Is there a way to move an existing VSO account to Australia? We wouldn&#8217;t want to lose all of our history. Looks like it&#8217;s User Voice: <a href=\"https://visualstudio.uservoice.com/forums/121579-visual-studio/suggestions/6633664-change-visual-studio-online-account-region\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://visualstudio.uservoice.com/forums/121579-visual-studio/suggestions/6633664-change-visual-studio-online-account-region</a></p>\n<p>Cheers<br>\nGrant</p>",
+      "replies": []
+    },
+    {
+      "id": 9625,
+      "author": "Ian Yates",
+      "authorUrl": "http://www.medicalit.com.au",
+      "date": "2015-07-24T12:15:09Z",
+      "html": "<p>Somehow this news got past me (although I&#8217;ve missed the past 2 user group meetings in Brisbane).  I just contact MS support to request a move.  Looking forward to the speed improvement  🙂</p>",
+      "replies": []
+    }
+  ],
+  "australian-government-software-project-blow-10-million-dollars": [
+    {
+      "id": 13585,
+      "author": "Ben Cull",
+      "authorUrl": "https://bencull.com",
+      "date": "2016-06-27T08:09:00Z",
+      "html": "<p>Haha, don&#8217;t get me started on Software Development wastage in government. A friend works for a department that has spent nearly 7 million to end up with just a sharepoint list and a form. A little suspicious that they&#8217;re donating back to the people giving them the contract, shouldn&#8217;t that be illegal?</p>",
+      "replies": []
+    },
+    {
+      "id": 13591,
+      "author": "Dave Colvin",
+      "authorUrl": "http://dave.colv.in",
+      "date": "2016-06-28T06:37:14Z",
+      "html": "<p>Government can waste money hand over fist, I have been in government contracts where the department is fairly frugal and sensible, and also the polar opposite. </p>\n<p>That said, I can see the how your costing make sense and this company and software just looks like a way for a political party to fund their own party. </p>\n<p>Do we call it money laundering ?  Or just creative accounting? It is only the punters money? Right?</p>",
+      "replies": []
+    },
+    {
+      "id": 13592,
+      "author": "Paul",
+      "authorUrl": "http://www.paul-usher.com",
+      "date": "2016-06-28T09:21:38Z",
+      "html": "<p>Adam, there are many examples, first it&#8217;s &#8220;we need to get this invoiced before end of financial year&#8221;, to &#8220;we don&#8217;t like you so we&#8217;re going to tender (the successful project) again&#8221; (expenditure for no reason $100,000+)</p>\n<p>Yes, these are facts with emails.</p>",
+      "replies": []
+    },
+    {
+      "id": 13604,
+      "author": "Michael Macliver",
+      "authorUrl": "http://www.triumph.com.au",
+      "date": "2016-06-30T11:16:43Z",
+      "html": "<p>&#8220;In fact, it seems to have originally been built on DataFlex&#8221;</p>\n<p>As a DataFlex developer I’d like to inform you that it is well and truly alive and kicking, and provides a great business application development platform. But don’t take my word for it, take a look <a href=\"http://www.dataaccess.com\" rel=\"nofollow ugc noopener\" target=\"_blank\">http://www.dataaccess.com</a>.</p>\n<p>It’s not DataFlex that’s old it’s the application, which may have been written in an old version of DataFlex. Too hard to tell from the screen shots, but in the 1990’s this might have been Visual DataFlex 4 or 5, in 2016 it’s DataFlex 18.2.</p>\n<p>Ultimately what has more bearing on the quality of an application is not the tool being used but the developers skill in getting the best out of that tool.</p>",
+      "replies": []
+    },
+    {
+      "id": 13745,
+      "author": "Mick",
+      "authorUrl": null,
+      "date": "2016-07-15T00:59:08Z",
+      "html": "<p>I have a simple explanation for why they didn&#8217;t use an off the shelf product: &#8211; the sensitive nature of the intellectual property they were developing.  This is obviously a piece of software the libs wanted as few people to know about as possible. Having to deal with an off the shelf product would require, on occasions, exposing more of that intellectual property than they would like to a third party in order to resolve development issues.  It seems obvious to me why they would spend some extra money to develop it in-house.  </p>\n<p>The price tag of $1M per year is probably exaggerated, but even if it weren&#8217;t, for a company who is solely reliant on the one product, I don&#8217;t think this is an overly excessive amount to pay. Consider the nature of the product they&#8217;re developing, plus all the normal costs a software company would have.  I think it&#8217;s an unfair comparison to judge what a company like SSW would charge, when you consider the economies of scale SSW would have over Parakeelia, from having a larger staff and a larger number of clients.</p>",
+      "replies": [
+        {
+          "id": 16794,
+          "author": "Dan",
+          "authorUrl": null,
+          "date": "2017-02-01T08:35:00Z",
+          "html": "<p>Economies of scale is a poor excuse. Larger companies with more customers have greater overheads, not less.<br>\nAdditionally, customised off the shelf products can be negotiated with NDAs. There are undoubtedly some customers Microsoft does this for. Also, the need for secrecy in intellectual property is of greater concern to the developer, not the end user.<br>\nFinally, by any stretch of the imagination, even if it were the backbone of the business, the price tag is exorbitant. I would challenge you to find any private company willing to continue a subscription at that cost.</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": 13746,
+      "author": "Canberra Gravy Train",
+      "authorUrl": null,
+      "date": "2016-07-15T01:48:08Z",
+      "html": "<p>On a side note I heard they are using this app to manage the NBN</p>",
+      "replies": []
+    },
+    {
+      "id": 14245,
+      "author": "Nick Brooks",
+      "authorUrl": "https://www.nbrooks.id.au",
+      "date": "2016-08-23T09:22:36Z",
+      "html": "<p>Ok, really late to the party (zing) but one thing I don&#8217;t see mentioned here is the support component?  Is there required to be a support hotline with someone available between business hours?  Are there any SLA&#8217;s in place?  Is there &#8216;free&#8217; onsite/offsite training included in the contract?</p>\n<p>Based on my experience that could be a big part of the year-to-year costs depending on the user turnover.  However as you I&#8217;m of the opinion that $1m/year is still ridiculous.</p>",
+      "replies": []
+    }
+  ],
+  "azure-devops-project-languages-technologies": [
+    {
+      "id": 27119,
+      "author": "Matt Wicks",
+      "authorUrl": "https://matt.wicks.net.au",
+      "date": "2019-03-06T22:16:58Z",
+      "html": "<p>Hey Adam,</p>\n<p>   &gt; 2a. GitHub &#8211; Technologies and Languages should be auto-added based on the source code.</p>\n<p>GitHub has had the functionality to give a <a href=\"https://imgur.com/5iuTli9\" rel=\"nofollow ugc noopener\" target=\"_blank\">repository breakdown by language</a> for a while.</p>\n<p>&#8211;matt</p>",
+      "replies": []
+    }
+  ],
+  "better-security-10-tips-for-ceos-and-sysadmins": [
+    {
+      "id": 56033,
+      "author": "Greg J",
+      "authorUrl": "http://www.mysupport.com.au",
+      "date": "2022-04-14T08:03:54Z",
+      "html": "<p>Very good tips, my experience says someone has to have ownership of the rules as generally staff will resist.  This also involves understanding the consequences of failing to follow them.  Also its very easy to screw up and so many vectors are not visible.  But nicely done Adam.</p>",
+      "replies": []
+    },
+    {
+      "id": 74080,
+      "author": "Extratech",
+      "authorUrl": "https://www.extratechs.com.au/academic-course/cyber-security-course-in-australia",
+      "date": "2023-06-26T06:16:50Z",
+      "html": "<p>Thank you for providing such well-written content on your website, kudos.</p>",
+      "replies": []
+    },
+    {
+      "id": 88323,
+      "author": "Jeff",
+      "authorUrl": "https://deepnetsecurity.com/multi-factor-authentication/",
+      "date": "2024-07-26T02:40:54Z",
+      "html": "<p>Protecting your applications and logon access using MFA is practically obligatory now. Your diagrams do illustrate the effect longer and more complex passwords have, but it is surprising how some of the more advanced authentication methods (e.g. FIDO) are still some way from widespread adoption.</p>",
+      "replies": [
+        {
+          "id": 89164,
+          "author": "Warwick",
+          "authorUrl": null,
+          "date": "2024-08-21T08:37:12Z",
+          "html": "<p>Agree &#8211; Passkeys are the way to go long term but unfortunately I think it will still take a while to begin happening.  It&#8217;s a shame too because it&#8217;s not that hard to implement.  See the User Group talk by one of my colleagues Matt Goldman &#8211; <a href=\"https://www.youtube.com/watch?v=K1t73xArqs0\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://www.youtube.com/watch?v=K1t73xArqs0</a> (1hr 20)</p>",
+          "replies": []
+        }
+      ]
+    }
+  ],
+  "breast-improving-radiologists-ability-to-detect-breast-cancer": [
+    {
+      "id": 28751,
+      "author": "Dianne Cook",
+      "authorUrl": null,
+      "date": "2019-07-31T23:23:30Z",
+      "html": "<p>Hi Adam, congratulations on this development, I too have a history of cancer problems in my family.  </p>\n<p>Very best wishes always</p>\n<p>Di Cook</p>",
+      "replies": []
+    }
+  ],
+  "building-croquembouche-just-4-weeks-beautiful-style-cracking-performance": [
+    {
+      "id": 3670,
+      "author": "Andrew Marsland",
+      "authorUrl": "http://www.sitefinity.com",
+      "date": "2014-08-15T07:14:47Z",
+      "html": "<p>Great Job SSW team! Amazing looking website and a fantastic success story!</p>",
+      "replies": []
+    }
+  ],
+  "chatgpt-ssw-cheat-sheet": [
+    {
+      "id": 73292,
+      "author": "Piers Sinclair",
+      "authorUrl": "http://ssw.com.au",
+      "date": "2023-06-14T01:00:16Z",
+      "html": "<p>Thanks for this Adam Cogan, I&#8217;m definitely going to use it in the future.</p>\n<p>-Piers Sinclair<br>\n<a href=\"https://ssw.com.au\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://ssw.com.au</a></p>",
+      "replies": []
+    },
+    {
+      "id": 80470,
+      "author": "Lloyd Collins",
+      "authorUrl": "https://ssw.com.au",
+      "date": "2024-01-11T00:04:50Z",
+      "html": "<p>Thanks for this, really like the cheat sheet diagram. clear and concise</p>\n<p>Lloyd Collins<br>\n<a href=\"https://ssw.com.au\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://ssw.com.au</a></p>",
+      "replies": []
+    }
+  ],
+  "china-coming-to-a-town-near-you": [
+    {
+      "id": 27627,
+      "author": "Mick",
+      "authorUrl": null,
+      "date": "2019-04-11T01:46:46Z",
+      "html": "<p><a href=\"https://www.abc.net.au/4corners/the-uber-story/10912940\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://www.abc.net.au/4corners/the-uber-story/10912940</a></p>\n<p>The Four Corners report about Uber gives you good insight on the kind of battle being waged by companies like Uber to dominate markets.  I feel sorry for taxis in Australia who paid a fortune for taxi licenses that were compulsory before the government basically capitulated to Uber and allowed them to run an unregulated taxi service, in market that was supposed to be regulated.  Before Uber, taxis drivers were spending $250K for a single taxi drivers license. Since Uber entered the market the value of these licenses plummeted as essentially you don&#8217;t need them any more to operate as a taxi.  In the past many drivers relied on the resale of these licenses as means of supporting their retirement. The government basically capitulated to Uber who were flagrantly and deliberately breaking the law, and as reported in the Four Corners program, actively using and developing technology to deliberately evade and hinder the regulators.  </p>\n<p>The first and only fatality involving an autonomous car was operated by Uber, I&#8217;m pretty sure their company culture was a major factor in the cause of that accident.  There&#8217;s a basic lack of morality in this company, its not about what is right or ethical, it&#8217;s about what they can do, what they can get away with.  </p>\n<p>A good thing to keep in mind when you install their app on your phone, which requests permissions on install to access pretty much everything.</p>",
+      "replies": []
+    }
+  ],
+  "coronavirus-what-we-are-doing-at-ssw": [
+    {
+      "id": 37055,
+      "author": "Ken",
+      "authorUrl": null,
+      "date": "2020-03-23T13:55:22Z",
+      "html": "<p>I think it finally started Getting real for everyone , but still many are not taking it seriously. Thanks for the post Adam! Well done!<br>\nWe need more people to take this situation seriously before gets too late. Wearing a face mask all day seems stupid, and uncomfortable, but this virus should not be underestimated.</p>",
+      "replies": []
+    },
+    {
+      "id": 37056,
+      "author": "Robin Lin",
+      "authorUrl": null,
+      "date": "2020-03-23T14:51:24Z",
+      "html": "<p>I want to share my stories about COVID-19.</p>\n<p>My wife went back to her mother&#8217;s house, and then suddenly the town was locked down. I could not see them. see(<a href=\"https://twitter.com/RobinRush1989/status/1242097787266686976\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://twitter.com/RobinRush1989/status/1242097787266686976</a>)</p>\n<p>So I have to go back to work in Hangzhou.  Then began two weeks of isolation life. see(<a href=\"https://twitter.com/RobinRush1989/status/1242098171695599616\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://twitter.com/RobinRush1989/status/1242098171695599616</a>) and (<a href=\"https://twitter.com/RobinRush1989/status/1242098295310147584\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://twitter.com/RobinRush1989/status/1242098295310147584</a>)</p>\n<p>After two weeks of isolation, I still need to show pass to get around. The community and security will check them. see(<a href=\"https://twitter.com/RobinRush1989/status/1242098907967963136\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://twitter.com/RobinRush1989/status/1242098907967963136</a>)</p>",
+      "replies": []
+    },
+    {
+      "id": 37062,
+      "author": "Sharon Du",
+      "authorUrl": null,
+      "date": "2020-03-24T01:27:07Z",
+      "html": "<p>It is really a great post! Actually we really need to treat with this outbreak seriously. Thank you for letting more people know. If we can do self-protection well, we believe everything will be better soon!</p>",
+      "replies": []
+    },
+    {
+      "id": 37063,
+      "author": "Victor",
+      "authorUrl": "http://v1ctoryu.com",
+      "date": "2020-03-24T01:53:38Z",
+      "html": "<p>Stay strong, guys. </p>\n<p>About one month ago, my temperature somehow goes to 37.5°C. Then I went to the clinic and did some tests. It turned out everything is fine. But still, I was forced to be quarantined at home for 7 days. </p>\n<p>Everything about coronavirus is very serious here in Hangzhou. It&#8217;s a very special time for everyone, just make the best of it.</p>",
+      "replies": []
+    },
+    {
+      "id": 37064,
+      "author": "Shane Ye",
+      "authorUrl": "http://yesihao.com",
+      "date": "2020-03-24T02:24:56Z",
+      "html": "<p>Great post! I think wearing a face mask is very important for protecting yourself and others.</p>",
+      "replies": []
+    },
+    {
+      "id": 37065,
+      "author": "Liang Eden",
+      "authorUrl": "http://edenliang.tech",
+      "date": "2020-03-24T02:31:38Z",
+      "html": "<p>Your blog really helps people who follow it.COVID-19 should be taken seriously.<br>\nStay strong.<br>\nIn addition, Some good news from Hangzhou, Which seems Hangzhou might be back to normal soon.<br>\n1.\tThe community didn&#8217;t check my temperature and my Health code today.<br>\n2.\tMy colleagues told me Takeaway goes straight to the office &#8211; Until then, they were only allowed to put it on the guard&#8217;s desk.<br>\n3.\tTraffic jam started. 🙁</p>",
+      "replies": []
+    },
+    {
+      "id": 37066,
+      "author": "Isaac Lu",
+      "authorUrl": null,
+      "date": "2020-03-24T02:48:32Z",
+      "html": "<p>Great post Adam, thank you.<br>\nI&#8217;ve just had a talk with my sister in WeChat last night, who is now in Germany, said she was working at home and go to the store once a week. Cook food by herself help her keep healthy and save money. The only thing that makes her feels bad is that staying at home alone with nobody to talk with. So she uses WeChat more frequently than before.<br>\nAlso, share the good news in Hangzhou, we don&#8217;t need to measure our body temperature today and the food we order can be delivered into office. People can eat food inside the restaurant, sit down, take off your mask and enjoy your goods.<br>\nI hope you guys could keep healthy during the tough days and coronavirus will be controlled soon!</p>",
+      "replies": []
+    },
+    {
+      "id": 37067,
+      "author": "Anky",
+      "authorUrl": null,
+      "date": "2020-03-24T02:58:32Z",
+      "html": "<p>COVID-19 are very contagious, however some people don&#8217;t take it seriously. There are no effective drugs for this disease right now, so the best way is prevent it.<br>\nI love the preventing method, it&#8217;s very effective. The &#8220;8 Steps of Hand Washing &#8221; looks good. In fact, I&#8217;m going to wash my hands right now!</p>",
+      "replies": []
+    },
+    {
+      "id": 37069,
+      "author": "Alvin",
+      "authorUrl": null,
+      "date": "2020-03-24T06:16:11Z",
+      "html": "<p>As an Australian living in China, I&#8217;ve been going through the lockdown for almost 4 weeks. The situation is getting better finally. </p>\n<p>My experience is don&#8217;t panic. No panic buy. No catch up with your friends. Stay at home as much as you can. Wash hands, wear the face mask and google/glasses when going out.</p>\n<p>Try to read some books or learn some new stuff as you have plenty of spare time at home.</p>",
+      "replies": []
+    },
+    {
+      "id": 37071,
+      "author": "Yang",
+      "authorUrl": null,
+      "date": "2020-03-24T10:11:39Z",
+      "html": "<p>I believe everyone is involved in the epidemic. Try to do something unusual during the temporary quarantine days &#8212; read those books you&#8217;ve never finished, take a home fitness class, learn to cook a Chinese dish or do some meditation. Give the period something special to remember, we could go through this safely.</p>",
+      "replies": []
+    }
+  ],
+  "eventcinemas-com-au-is-live": [
+    {
+      "id": 310,
+      "author": "Marty",
+      "authorUrl": "http://www.estatemaster.net",
+      "date": "2013-05-09T21:40:57Z",
+      "html": "<p>Site looks great guys and performance is like a desktop app. Well done!!</p>",
+      "replies": []
+    }
+  ],
+  "farewell-dynamics-crm-2016-hello-dynamics-365": [
+    {
+      "id": 18942,
+      "author": "Andrew Campey",
+      "authorUrl": null,
+      "date": "2017-05-23T00:50:07Z",
+      "html": "<p>I&#8217;m really interested to see how the Marketing component works out.  Adobe and Microsoft working together is an interesting proposition!</p>",
+      "replies": []
+    },
+    {
+      "id": 35548,
+      "author": "michael corsole",
+      "authorUrl": "https://www.isyssolutions.com/",
+      "date": "2020-01-02T08:14:09Z",
+      "html": "<p>Interesting blog! It&#8217;s a really useful blog thanks for sharing. Adobe and Microsoft working together is a great combination.</p>",
+      "replies": []
+    },
+    {
+      "id": 54494,
+      "author": "Steven Johnson",
+      "authorUrl": "https://emarketingplatform.com/blog/trac",
+      "date": "2021-12-28T16:19:53Z",
+      "html": "<p>The Competitors entity of Microsoft Dynamics 365 for Customer Engagement/CRM accompanies other, more popular entities</p>",
+      "replies": []
+    }
+  ],
+  "finishing-feature-world-class-flow": [
+    {
+      "id": 11693,
+      "author": "Ben",
+      "authorUrl": null,
+      "date": "2016-03-10T00:31:41Z",
+      "html": "<p>Adam, when are you going to update your &#8217;email&#8217; process to &#8220;Post update to Slack channel&#8221;? Emails are so 2000&#8217;s 🙂 ! Now you can automate it so Git updates into Slack too.</p>",
+      "replies": []
+    }
+  ],
+  "german-cars-and-user-experience": [
+    {
+      "id": 263,
+      "author": "Peter Drew",
+      "authorUrl": "http://ncg.asn.au",
+      "date": "2012-08-14T00:06:22Z",
+      "html": "<p>When living in Europe, I once had a 5am start where I had to pick up the Mercedes from work and drive it from Austria to Switzerland.  The car was parked (in the snow) in the company carpark and all I had to do was reverse the car back and drive off.  </p>\n<p>Putting the car in reverse required lifting the knob before pulling it into the reverse gear.  Took me nearly 45 minutes of trial error and reading the manual before I could depart!</p>\n<p>It&#8217;s funny how users focus on small aspects of your product.  Something that seems minor like an ipod like control wheel can make or break a design.</p>",
+      "replies": []
+    },
+    {
+      "id": 266,
+      "author": "Tiago Araujo",
+      "authorUrl": "http://www.tiagoaraujo.com",
+      "date": "2012-08-16T13:24:01Z",
+      "html": "<p>Hey Adam, great post. I&#8217;m definitely surprised too. I am currently driving south on Highway 1, California on a Ford Fusion. It doesn&#8217;t come with a built-in touchscreen, but the driving experience is being great for a bigger 4 cylinder car.</p>",
+      "replies": []
+    },
+    {
+      "id": 275,
+      "author": "Rudi",
+      "authorUrl": null,
+      "date": "2012-09-26T07:31:56Z",
+      "html": "<p>As a European you&#8217;ll know what I&#8217;ll say here, but there is more to it.</p>\n<p>The German engineers are actually the ones that did the most usability testing and guarantee you that you will have a safer driving experience. Most European cars (like the PSA group) have copied the dial-with-buttons interface because it allows the driver to operate those systems with a steady control. Personally, having owned an aftermarket GPS-system with a touch screen, I have never felt comfortable operating it whilst driving. </p>\n<p>I&#8217;m sure it takes some getting used to, but once you have driven such a car for some weeks, you can easily operate any other car with those type of controls.</p>\n<p>They key point is that they want you to keep your focus and position as a driver, not as trying to operate the car systems (ironically?). Same reason why these Europeans (Volvo, Mercedes, BMW, Audi, &#8230;) spend months trying to make the new intelligent systems in their cars (lane-departure warning, lane-change warning, car-distance warning, parking distance control) to be as undisruptive as possible. You want to be informed and be focused on the road. Not focused on some warning lights/messages.</p>\n<p>As an example: my sister owns a Nissan Qashqai. It comes with a rear-view parking camera. But it does not beep when you get close to objects. So will you be parking your car, watching the outside of your car and switching back and forth to the camera view ? Or will you be watching the camera view only? Or would you rather be looking outside of your car and listen to the beeps as you get closer to objects you otherwise did not see.</p>",
+      "replies": []
+    },
+    {
+      "id": 285,
+      "author": "Mark Wagner",
+      "authorUrl": "http://Crsw.com",
+      "date": "2012-11-03T17:09:18Z",
+      "html": "<p>Hey Adam. Interesting post. I would have to say my experience with the Audi was the same as yours, and I loved driving the car. My wife was with me when we first sat in the car to familiarize myself with the vehicle. I always take a moment to do this and tend to understand the technology and interface in anything much faster than my wife. However, as my wife and I begane to familiarize ourselves with the &#8220;iPod like wheel&#8221; she almost instantly knew what to do. I loved that. I, being the slow one this time, took a few extra seconds to settle into the interface panel &#8211; and ended up loving it. But the one memory that sticks with me most is how quickly my wife (much less technical) grasped the Audi controls and interface, almost as if she had been using it for weeks.</p>\n<p>Cheers!<br>\nMark</p>",
+      "replies": []
+    }
+  ],
+  "getting-96-code-reuse-with-xamarin-forms": [
+    {
+      "id": 50815,
+      "author": "xamarin mobile app developer",
+      "authorUrl": "https://www.softprodigy.com/xamarin-app-development-services/",
+      "date": "2021-03-02T11:11:29Z",
+      "html": "<p>Yes I agree with the line that Azure mobile services offers a lot more than most mobile developers really think.</p>",
+      "replies": []
+    },
+    {
+      "id": 55318,
+      "author": "Brisk Logic",
+      "authorUrl": "https://www.brisklogic.co/",
+      "date": "2022-03-08T10:44:35Z",
+      "html": "<p>informative article  , thank you for the post everyone is looking for this type article  brisk logic best web development agency   <a href=\"https://www.brisklogic.co/\" rel=\"nofollow ugc noopener\" target=\"_blank\"> digital transformation </a></p>",
+      "replies": []
+    }
+  ],
+  "github-copilot-a-developers-friend-or-foe": [
+    {
+      "id": 79027,
+      "author": "Philip",
+      "authorUrl": "https://powertextor.com/",
+      "date": "2023-11-14T12:20:20Z",
+      "html": "<p>Great insights on GitHub Copilot! It&#8217;s fascinating to see how AI is revolutionizing the development landscape. The experiences shared by SSW developers highlight the tool&#8217;s potential to enhance productivity and streamline coding tasks.</p>",
+      "replies": []
+    }
+  ],
+  "going-handsfree-in-office-365-you-should-using-dictate": [
+    {
+      "id": 61398,
+      "author": "Kevin",
+      "authorUrl": "http://www.information-providers.ie",
+      "date": "2022-09-13T09:12:04Z",
+      "html": "<p>Hi </p>\n<p>Is  Dictate available for Office 365?</p>\n<p>There is no Mic icon.  I have tried everything. I am on a windows PC with a build in mic and using Chrome as my Browser.</p>\n<p>Thank you,<br>\nKevin.</p>",
+      "replies": []
+    },
+    {
+      "id": 79732,
+      "author": "Maria",
+      "authorUrl": "https://powertextor.com/",
+      "date": "2023-12-11T11:16:38Z",
+      "html": "<p>Hi there! Thanks for sharing this insightful post about Microsoft&#8217;s Dictate feature in Office 365. It&#8217;s great to see how technology is evolving to not only enhance accessibility but also boost productivity.</p>",
+      "replies": []
+    }
+  ],
+  "google-search-australia-no-longer-feeling-lucky": [
+    {
+      "id": 41478,
+      "author": "Calum",
+      "authorUrl": null,
+      "date": "2020-09-08T02:27:44Z",
+      "html": "<p>Govt should be supporting innovation in Australia rather than propping up outdated legacy media.<br>\nNews Corp should be innovating instead of crying to govt about not making money.</p>\n<p>Fact is in 2020 we don&#8217;t need billion-dollar media companies feeding us information &#8211; thanks to the internet all it takes to be a journalist is a laptop and some opinions/information, and fundamental media business models need to adapt to the new paradigm. </p>\n<p>Next up the big horse lobby will be asking for govt subsidised stables in every town.</p>",
+      "replies": []
+    },
+    {
+      "id": 41481,
+      "author": "Mick",
+      "authorUrl": null,
+      "date": "2020-09-08T06:06:57Z",
+      "html": "<p>Well something has to be done.  </p>\n<p>I don&#8217;t think the way these tech companies work is actually working at all. Across the world there&#8217;s a crisis in journalistic standards, as media organisations have been decimated by big tech&#8217;s business model i.e to take content, give nothing for it in return.   </p>\n<p>Companies like Google, Facebook and Twitter are increasingly being asked to do fact checking and ensuring that the material they are publishing meets what was formerly known as journalistic standards and this is because no one else is doing it.  These tech companies lack the resources, the experience and the desire to do the work that journalists use to do, which has resulted in a period in which society itself seems to be in regression, climate change skeptics, &#8220;fake news&#8221;, populist politics, people tearing down 5G towers, BIll Gates is the mastermind behind Corona virus&#8230; a wild fire of stupidity. The internet at the moment seems to be making us all dumber.   If Google, Facebook and Twitter can&#8217;t do better, they better start paying someone who can.</p>",
+      "replies": [
+        {
+          "id": 41522,
+          "author": "Stephen",
+          "authorUrl": null,
+          "date": "2020-09-09T21:18:59Z",
+          "html": "<p>I question climate change, I have questions about 5G, I am a Microsoft Partner and Google Partner and I question the moral intent of these companies. Finally, I have a lot of questions about COVID-19.</p>\n<p>Furthermore, I have a BSc (Mathematics &amp; Physics) and I have been involved with medical research. I&#8217;m proud of my achievements and that I am a third-generation Australian growing up on a dairy farm. I&#8217;m also humble enough to know that I don&#8217;t have all the answers and I&#8217;ve found myself down some rabbit holes many times.</p>\n<p>Personally, the more choice over media the better. Already, it is impossible to buy or rent certain movies. Soon my children will be subject to having same-sex couples kissing on mainstream media as the &#8220;new normal&#8221;.</p>\n<p>I&#8217;d like to have a say about what is normal because both industry and Government seem to be out of control and I&#8217;m not about to trust any church organisation either.</p>\n<p>COVID-19 should not be promoted as &#8220;normal&#8221;, in fact is called &#8220;novel&#8221;. I propose we call it the current shitty virus because I for one am getting tired of governments playing politics with topics such as climate change and COVID.</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": 41531,
+      "author": "Matt",
+      "authorUrl": null,
+      "date": "2020-09-10T12:10:10Z",
+      "html": "<p>Interesting analysis. I wouldn&#8217;t be surprised if the current Murdoch government (no, I didn&#8217;t spell Morrison wrong) passes this law, and Google and Facebook follow through and the rest of us suffer the diminishing value of the internet. Maybe once the dinosaurs die off and retire, Australia will return to a forward thinking mentality. Let&#8217;s just hope it&#8217;s not too late for us to catch up.</p>\n<p>You can look at it as a symptom of a broader problem here in Australia &#8211; namely, that the last generation of mega-successful entrepreneurs (e.g. the entertainment, news media and retail giants) feel that they can use their clout to stymie progress and innovation at the expense of the Australian consumer. And, worse, prevent Aussies from accessing better products and services at better prices, just so that these moguls can protect their domains and cashpiles, rather than innovating and keeping up with the rest of the world.</p>\n<p>And that&#8217;s really where the long term damage comes. Australia doesn&#8217;t have a particularly strong spirit of innovation at the moment. In fact, for a country that used to be pioneering (we were one of the first to ban incandescent lightbulbs, back in 2009, for example), we&#8217;ve reverted to a country of regressive people becoming more and more hardline conservative. And, political views aside, this is hurting us as a country. As the rest of the world embraces innovation and develops, and adopts, the technology of the future, we&#8217;re willingly leaving ourselves behind.</p>\n<p>While I find it hard to feel sorry for either side in this Goliath vs Goliath match, it&#8217;s a shame that Aussies will be caught in the middle.</p>",
+      "replies": []
+    },
+    {
+      "id": 41552,
+      "author": "Joe",
+      "authorUrl": null,
+      "date": "2020-09-12T00:36:46Z",
+      "html": "<p>The proposed law is asking Google to pay for sending traffic to news sites. This is ridiculous: web sites pay to receive traffic, not the other way round!</p>\n<p>If the LNP wants to rein in Google and Facebook, how about getting them to pay their fair share of tax, instead of trying to transfer a share of their revenue to their mate Rupert Murdoch.</p>",
+      "replies": []
+    }
+  ],
+  "helping-each-other-in-the-workplace": [
+    {
+      "id": 55290,
+      "author": "Deanna",
+      "authorUrl": null,
+      "date": "2022-03-07T11:49:10Z",
+      "html": "<p>I’ve not tried #6 Scrum just with myself but that would be super helpful to quiet nagging insecurities.</p>",
+      "replies": []
+    },
+    {
+      "id": 55329,
+      "author": "Emma Bannister",
+      "authorUrl": "https://www.presentationstudio.com/",
+      "date": "2022-03-09T02:34:35Z",
+      "html": "<p>Nice article. Thanks.<br>\nIt really makes you think. For me, given how tricky the last few years have been &#8211; I&#8217;d go with No 9.<br>\nGoals that are attainable. Then recognise you have achieved them and praise and acknowledge that moment. If you are always striving for more; you risk never appreciating what you have. Emma</p>",
+      "replies": []
+    },
+    {
+      "id": 55343,
+      "author": "Piers Sinclair",
+      "authorUrl": null,
+      "date": "2022-03-10T22:02:53Z",
+      "html": "<p>This is an important message on recognising and speaking up about unfairness.</p>\n<p>On the other hand, it&#8217;s also vital to make note of your own short comings and how you can improve yourself (aka a growth mindset).</p>",
+      "replies": []
+    }
+  ],
+  "high-fashion-and-javascript-frameworks": [
+    {
+      "id": 11463,
+      "author": "Ryan Southgate",
+      "authorUrl": "http://www.twitter.com/ryan_southgate",
+      "date": "2016-02-22T09:13:48Z",
+      "html": "<p>Great post, I was wondering if you have seen Aurelia (www.Aurelia.io) &#8211; and whether you consider this to be making headway in 2016 &#8211; I personally think they&#8217;ve not got as big a marketing force as React/AngularJS &#8211; however the framework does look really promising and &#8220;non-intrusive&#8221;</p>",
+      "replies": []
+    }
+  ],
+  "how-ai-can-help-you-kickstart-your-blog": [
+    {
+      "id": 107688,
+      "author": "Pam",
+      "authorUrl": null,
+      "date": "2025-11-25T15:44:26Z",
+      "html": "<p>Thanks for this valuable contribution! 👏<br>\nPam Pan </p>",
+      "replies": []
+    }
+  ],
+  "how-to-avoid-being-electrocuted": [
+    {
+      "id": 60970,
+      "author": "Len",
+      "authorUrl": null,
+      "date": "2022-08-19T02:21:54Z",
+      "html": "<p>I know how you felt.<br>\nMany years ago (Shhhh!) I sent -385V up my right arm. (DC is the stuff that makes your muscles lock.) Alone, I was sitting cross-legged on the floor testing a faulty Short Wave Radio receiver I had built. My finger was touching the metal part of the test probe when I touched the grid of a pentode valve. Zap! My fingers locked on. Fortunately I had the presence of mind to rock myself back and forth until I broke contact.<br>\nI should have known better (been more careful) but I survived; a wiser man.</p>",
+      "replies": []
+    },
+    {
+      "id": 60986,
+      "author": "David Pierson",
+      "authorUrl": null,
+      "date": "2022-08-19T21:41:41Z",
+      "html": "<p>That&#8217;s a scary and nasty thing to happen and very glad you are recovering. Do please follow up with the office. You said it was SSW Brisbane so that&#8217;s a commerical workplace.  Here, quote: &#8220;the Queensland Electrical Safety Regulation requires workplaces to have RCDs (safety switch) protection and regular trip time testing to ensure these devices provide adequate protection in the event of electric fault. In most cases, RCDs must be tested every six (6) months. &#8221;<br>\nIf the RCD was working you wouldn&#8217;t have experienced what you did.</p>",
+      "replies": []
+    },
+    {
+      "id": 62876,
+      "author": "Michelle",
+      "authorUrl": "http://fullertonelectricpros.com",
+      "date": "2022-10-28T23:27:52Z",
+      "html": "<p>I knocked myself off a ladder once because I thought the power was off trying to replace a light and I didn&#8217;t test it&#8230; and got super lucky.  Always make sure you turn the breaker off and don&#8217;t be like me&#8230; spend the money on a voltage tester to make sure it isn&#8217;t live (even after you flip the switch on the electrical panel).</p>",
+      "replies": []
+    },
+    {
+      "id": 71044,
+      "author": "The Electrician Of Costa Mesa",
+      "authorUrl": "https://costamesaelectricians.com/",
+      "date": "2023-04-17T02:26:50Z",
+      "html": "<p>Great article! Electrocution is a serious and potentially life-threatening hazard that can occur in a variety of settings, from the workplace to the home. To avoid electrocution, it is important to follow proper electrical safety practices such as turning off the power before performing electrical work, using insulated tools and gloves, and keeping electrical equipment dry and away from water sources. It is also important to avoid touching electrical equipment with wet hands or when standing on wet surfaces. Regular maintenance, inspection, and repair of electrical systems can help prevent accidents caused by faulty wiring or damaged equipment. Lastly, being aware of the potential hazards and following safe electrical practices can help protect yourself and others from the risks of electrocution.</p>",
+      "replies": []
+    },
+    {
+      "id": 77482,
+      "author": "Doppelstabmattenzaun Aufbau",
+      "authorUrl": "https://www.zaun7.de/doppelstabmattenzaun/",
+      "date": "2023-09-27T20:35:31Z",
+      "html": "<p>Your detailed explanations and practical tips for electrical safety are not only informative but also crucial for everyone to understand. Electricity can be both a powerful resource and a potential hazard, and your post provides valuable insights into how to navigate it safely.</p>",
+      "replies": []
+    }
+  ],
+  "how-to-choose-the-right-software-architecture": [
+    {
+      "id": 104610,
+      "author": "Somad Yessoufou",
+      "authorUrl": null,
+      "date": "2025-07-10T23:05:40Z",
+      "html": "<p>Thank you for the detailed summary and the image. I&#8217;ve learned a lot from them. I found the explanation to be excellent, clear, insightful, and grounded in real-world experience. It effectively highlights that architectural decisions and contextual and not a one-size-fits-all solution. I would appreciate it if you could share more of this kind of knowledge with me.</p>",
+      "replies": []
+    }
+  ],
+  "i-like-big-bots-and-i-cannot-lie": [
+    {
+      "id": 30824,
+      "author": "Ulysses Maclaren",
+      "authorUrl": "http://www.ssw.com.au",
+      "date": "2019-09-27T00:12:28Z",
+      "html": "<p>1. Change from<br>\n    For example, the Facebook Messenger Bot helps user’s setup and send set responses to customers based upon using the key words in their enquiry.<br>\nTo<br>\n    For example, the Facebook Messenger Bot helps users setup and send set responses to customers based upon using the key words in their enquiry. </p>\n<p>2. Change from<br>\n    So I ask Sophie “I have an Angular question, who can I talk to?”<br>\nTo<br>\n    So I ask Sophie “I have an Azure question, who can I talk to?” </p>\n<p>3. Change from<br>\n    It has already helped bring about the discovery of “Sex 4 grades” epidemic in Liberia<br>\nTo<br>\n    It has already helped bring about the discovery of the “Sex 4 grades” epidemic in Liberia</p>",
+      "replies": []
+    },
+    {
+      "id": 31041,
+      "author": "Michael A Smedley",
+      "authorUrl": "http://michaelsmedley.com",
+      "date": "2019-09-29T23:49:00Z",
+      "html": "<p>Great Article &#8211; I recently visited a City council with the biggest intranet you have ever seen and nobody can find anything, Asking natural language questions and getting timely answers is exactly what a Bot can do and is perfect for this council and perfect for many other use cases.</p>",
+      "replies": []
+    },
+    {
+      "id": 31043,
+      "author": "Patrick Zhao",
+      "authorUrl": null,
+      "date": "2019-09-30T00:57:20Z",
+      "html": "<p>1. Can emphasize that: Bot frameworks have eased the development of the natural language processing part, allowing developers to focus on implementing the business logic.<br>\n2. A good Bot should be able to integrate with different enterprise systems to simplify the workflow and common tasks.</p>",
+      "replies": []
+    }
+  ],
+  "introducing-ssw-people": [
+    {
+      "id": 36295,
+      "author": "Tim Daly",
+      "authorUrl": "http://oculuma.com.au",
+      "date": "2020-02-12T00:03:35Z",
+      "html": "<p>Great article, Adam!</p>",
+      "replies": []
+    }
+  ],
+  "jack-cogan-rip": [
+    {
+      "id": 166,
+      "author": "Scott Barnes (@MossyBlog)",
+      "authorUrl": "http://www.riagenic.com",
+      "date": "2012-01-05T12:34:19Z",
+      "html": "<p>Brilliant read, sad though of his passing..</p>\n<p>Thanks for sharing.</p>",
+      "replies": []
+    },
+    {
+      "id": 167,
+      "author": "TJ",
+      "authorUrl": "http://www.codebyts.com",
+      "date": "2012-01-05T22:53:34Z",
+      "html": "<p>What an incredible life, what an incredible story.</p>\n<p>It looks like he was a remarkable man. </p>\n<p>Rest in peace Mr. Jack Cogan.</p>",
+      "replies": []
+    },
+    {
+      "id": 168,
+      "author": "Paul Reynolds",
+      "authorUrl": null,
+      "date": "2012-01-05T23:19:28Z",
+      "html": "<p>A great post&#8230;best wishes Adam</p>",
+      "replies": []
+    },
+    {
+      "id": 169,
+      "author": "Lee &amp; Laura Powell",
+      "authorUrl": null,
+      "date": "2012-01-06T00:25:11Z",
+      "html": "<p>Hi Adam,</p>\n<p>Lee and I wanted to let you know our thoughts are with you at this time. From your blog it appears your dad lived a very full life and shared so much with you and your sister.<br>\nTake care.</p>",
+      "replies": []
+    },
+    {
+      "id": 170,
+      "author": "Eric Phan",
+      "authorUrl": "http://Ericphan.info",
+      "date": "2012-01-06T06:05:16Z",
+      "html": "<p>A great life story full of fantastic memories. Rest in peace Jack Cogan</p>",
+      "replies": []
+    },
+    {
+      "id": 171,
+      "author": "Paul Usher",
+      "authorUrl": null,
+      "date": "2012-01-06T06:59:39Z",
+      "html": "<p>Deepest sympathies Adam. Love to you and the family. </p>\n<p>Rest in peace Mr Cogan, you leave a amazing legacy behind.</p>",
+      "replies": []
+    },
+    {
+      "id": 172,
+      "author": "Serena Chen",
+      "authorUrl": null,
+      "date": "2012-01-06T09:47:57Z",
+      "html": "<p>Unregretful life, Brilliant story. </p>\n<p>Thanks for sharing.</p>\n<p>Rest in peace Jack Cogan</p>",
+      "replies": []
+    },
+    {
+      "id": 173,
+      "author": "Diganta Kumar",
+      "authorUrl": "http://www.digantakumar.com",
+      "date": "2012-01-06T13:03:37Z",
+      "html": "<p>Please accept my heartfelt condolences on the loss of your Father. </p>\n<p>This blog post is a wonderful tribute!</p>",
+      "replies": []
+    },
+    {
+      "id": 174,
+      "author": "Sam",
+      "authorUrl": null,
+      "date": "2012-01-06T13:10:19Z",
+      "html": "<p>May he rest In Peace.  Very nice life story.<br>\nSam Feferkorn<br>\nNew York</p>",
+      "replies": []
+    },
+    {
+      "id": 175,
+      "author": "Ilona Randall",
+      "authorUrl": null,
+      "date": "2012-01-07T05:32:55Z",
+      "html": "<p>So sorry to hear about your dad. Love the tribute &#8211; very personal and funny. I am sure he would have loved it. Ilona x</p>",
+      "replies": []
+    },
+    {
+      "id": 177,
+      "author": "Sarah Evans",
+      "authorUrl": null,
+      "date": "2012-01-07T20:39:18Z",
+      "html": "<p>My condolences on your fathers passing.  What  wonderful life he had.<br>\nSarah (Louise&#8217;s Friend)</p>",
+      "replies": []
+    },
+    {
+      "id": 178,
+      "author": "Roger",
+      "authorUrl": null,
+      "date": "2012-01-08T00:43:10Z",
+      "html": "<p>Beautiful</p>",
+      "replies": []
+    },
+    {
+      "id": 179,
+      "author": "Lisa Bamberger",
+      "authorUrl": null,
+      "date": "2012-01-08T01:21:25Z",
+      "html": "<p>Well done Adam, what a great gift this is for your girls. Eve &amp; Ruby will learn to honor their parents from your loving example.</p>\n<p>We send you all our love and prayers.<br>\nPeter, Lisa, Sasha &amp; Marea</p>",
+      "replies": []
+    },
+    {
+      "id": 180,
+      "author": "Peter Williams",
+      "authorUrl": null,
+      "date": "2012-01-08T03:54:22Z",
+      "html": "<p>Brilliant, thanks for sharing (via Steve Forte). I recently returned from my father&#8217;s 80th in Armidale NSW, he&#8217;s only just thinking of retiring the business he started at age 40. One of the grandchildren put together a great photobook for the occasion, similar to the series you&#8217;ve got here. I&#8217;m now having second thoughts about the snip&#8230;.</p>",
+      "replies": []
+    },
+    {
+      "id": 187,
+      "author": "Ibrahim Qutish",
+      "authorUrl": null,
+      "date": "2012-01-16T08:09:38Z",
+      "html": "<p>Dearest Adam,<br>\nIn these sad times, please accept my deepest condolences and prayers to Jack&#8217;s soul. God bless his soul, I am sure he is a better place now&#8230; </p>\n<p>I knew Jack Cogan, as a great man with lots of sense of humor.</p>",
+      "replies": []
+    },
+    {
+      "id": 188,
+      "author": "Ibrahim Qutish",
+      "authorUrl": null,
+      "date": "2012-01-16T08:12:06Z",
+      "html": "<p>Jack was indeed a nice man with sense of humor,, I still remember and always tell the first time he talked to me at 3 Cannons Pde, Forestville, when he asked where are you from.. I replied Jordan.. he laughed and said, do you know the difference between Ausralian women and Jordanian women,,, I said no,, he said: In Australia, women get stoned and then they commit adultery,, but in Jordan they commit adultery then they get stoned&#8230;</p>",
+      "replies": []
+    },
+    {
+      "id": 189,
+      "author": "Ibrahim Qutish",
+      "authorUrl": null,
+      "date": "2012-01-16T08:13:10Z",
+      "html": "<p>&#8230;. I also remember when he finally got that old rusty tractor to work after weeks of sanding, painting and mechanic work.. then he drove it around the backyard with a huge loud laugh .. ,,</p>",
+      "replies": []
+    },
+    {
+      "id": 199,
+      "author": "venkatarangan thirumalai",
+      "authorUrl": "http://www.venkatarangan.com/blog",
+      "date": "2012-02-01T12:30:46Z",
+      "html": "<p>May his soul rest in peace. </p>\n<p>Adam, a nicely told post. You have captured finely an amazing 95 years of a by-gone era.</p>",
+      "replies": []
+    },
+    {
+      "id": 256,
+      "author": "Robert Cogan",
+      "authorUrl": "http://www.cogans.ie",
+      "date": "2012-07-16T21:04:08Z",
+      "html": "<p>Very touching tribute.  My Dad and I also own a &#8220;Cogans Garage&#8221; but in Cork, Ireland.  My Grandfather set this up in 1936 and its still going!!  I&#8217;m fairly certain your family would have come from Ireland at some stage?<br>\nRob Cogan<br>\nCork<br>\nIreland</p>",
+      "replies": []
+    },
+    {
+      "id": 276,
+      "author": "Perry Codes",
+      "authorUrl": null,
+      "date": "2012-10-08T18:12:08Z",
+      "html": "<p>Adam &#8211;<br>\nThanks for sharing this. Sounds like your father did what a lot of people fail to do &#8211; which is make the most of the precious time we have in this life. </p>\n<p>Warm regards ~ Jason</p>",
+      "replies": []
+    },
+    {
+      "id": 20132,
+      "author": "Frank",
+      "authorUrl": "http://Not%20yet",
+      "date": "2017-07-25T06:41:29Z",
+      "html": "<p>Really very nice life story, simple with full love&#8230;</p>",
+      "replies": []
+    },
+    {
+      "id": 51123,
+      "author": "Kathy Mclennan",
+      "authorUrl": null,
+      "date": "2021-03-28T20:02:18Z",
+      "html": "<p>Hi Adam I am Kathy your cousin. I have very fond memories of the farm in Musselbrook.  We would go up there with Nanny and stay.  I loved Uncle Jack, he was a lovely man.</p>",
+      "replies": []
+    }
+  ],
+  "learn-the-4-steps-to-get-users-in-china": [
+    {
+      "id": 24044,
+      "author": "Ken Kramme",
+      "authorUrl": null,
+      "date": "2018-03-11T22:18:35Z",
+      "html": "<p>Good posting.</p>",
+      "replies": []
+    }
+  ],
+  "luckin-coffee-vs-starbucks-a-luckin-success-in-china": [
+    {
+      "id": 26599,
+      "author": "Christopher",
+      "authorUrl": null,
+      "date": "2019-01-03T17:09:31Z",
+      "html": "<p>It’s interesting.  Your post never mentions about the difference in taste/quality of the two, which in my opinion is also one of the most important items.</p>",
+      "replies": []
+    },
+    {
+      "id": 26661,
+      "author": "Carlo Odello",
+      "authorUrl": null,
+      "date": "2019-01-10T00:43:17Z",
+      "html": "<p>Great post, thanks. I am working in the coffee business (Italian espresso) and what’s happening right now in China is impressive. I visit the country from time to time and it’s awesome to see such a fast developing market especially compared to ours.</p>",
+      "replies": []
+    },
+    {
+      "id": 35549,
+      "author": "Nick",
+      "authorUrl": "https://coffee-facts.com",
+      "date": "2020-01-02T08:52:30Z",
+      "html": "<p>Also interesting on the coffee production side, now Yunnan is becoming a major coffee production center, see <a href=\"https://coffee-facts.com/culture/coffee-and-china-changing-the-geopolitics-of-coffee/\" rel=\"nofollow ugc noopener\" target=\"_blank\">https://coffee-facts.com/culture/coffee-and-china-changing-the-geopolitics-of-coffee/</a></p>",
+      "replies": []
+    }
+  ],
+  "managing-your-azure-costs": [
+    {
+      "id": 70569,
+      "author": "Brian Battles",
+      "authorUrl": "http://www.BrianBattles.com",
+      "date": "2023-03-30T01:36:31Z",
+      "html": "<p>Why would anyone fall for this Azure stuff in the first place? I don&#8217;t get it.</p>",
+      "replies": []
+    }
+  ],
+  "mcp-as-your-integration-layer": [
+    {
+      "id": 107522,
+      "author": "Raul",
+      "authorUrl": null,
+      "date": "2025-09-17T18:09:13Z",
+      "html": "<p>This is really exciting!! I&#8217;ve been thinking at something similar for my company to solve the integration problems. One thing holding me back is the performance. AI systems need a lot of compute power to do their magic. Integrating single records are not a problem, but what about importing thousands of records? (like initializing parts or addresses catalogs). I suppose the MCP server should support batches for optimizing the number of calls.</p>\n<p>Great content! Thank you.</p>",
+      "replies": []
+    }
+  ],
+  "motorbike-accident": [
+    {
+      "id": 17637,
+      "author": "Larry Whitman",
+      "authorUrl": "http://neutralbaychiropracticcentre.com.au",
+      "date": "2017-03-12T10:50:28Z",
+      "html": "<p>OMG ‼️  WTF &#8230;. You&#8217;re not kidding me with this email Adam &#8230;. Bloody hell #idiot sounds rather apt. Who rides in shorts and a T-shirt ??? You know better than that.   Skin and bitumen should never have their marriage consummated.<br>\nBroken ribs too.  They are agony and the next four to six weeks will be so painful&#8230;. but then you don&#8217;t want to hear that do you !<br>\nAnd just when I got you feeling so much better!!!!<br>\nSo what hospital has the pleasure of your company and for how long ??<br>\nLove your obvious sense of humour in your post despite being through such a horrible experience.<br>\nYou&#8217;re convincing me to sign up to your blog.<br>\nBest wishes mate. Cheers, DocLarry</p>",
+      "replies": []
+    },
+    {
+      "id": 17644,
+      "author": "Penny",
+      "authorUrl": null,
+      "date": "2017-03-12T23:13:37Z",
+      "html": "<p>I can probably fix your backpack&#8230; not your skin though! You are very lucky to still have all your bits! :S</p>",
+      "replies": []
+    },
+    {
+      "id": 17646,
+      "author": "Thiago Passos",
+      "authorUrl": "https://passos.com.au",
+      "date": "2017-03-13T00:32:33Z",
+      "html": "<p>That sucks. Hope you get better soon.</p>",
+      "replies": []
+    },
+    {
+      "id": 17656,
+      "author": "Aras Geylani",
+      "authorUrl": "https://www.linkedin.com/in/agilest",
+      "date": "2017-03-13T20:29:26Z",
+      "html": "<p>Sorry to see that, get well soon!</p>",
+      "replies": []
+    },
+    {
+      "id": 17657,
+      "author": "Mike Fourie",
+      "authorUrl": "http://www.freetodev.com",
+      "date": "2017-03-14T00:15:46Z",
+      "html": "<p>Hey Adam, just to let you know that your © Copyright 2016 is out of date at the footer of this blog.  </p>\n<p>Mike</p>\n<p>Oh BTW, get well soon&#8230;. 🙂</p>",
+      "replies": []
+    },
+    {
+      "id": 17661,
+      "author": "Ray Bradbery",
+      "authorUrl": null,
+      "date": "2017-03-14T05:05:12Z",
+      "html": "<p>Hi Adam sorry to hear. I recently had a cycling accident. Hit a burnt out stolen car and ended up in its boot at 4:45 am. The paramedics were most friendly as well.<br>\nRob Castaneda suggests we both take up more safe hobby.s Luckily haven&#8217;t dropped the motor bike but always wear my leathers for the very reason you outlined.</p>",
+      "replies": []
+    },
+    {
+      "id": 17663,
+      "author": "Alex",
+      "authorUrl": null,
+      "date": "2017-03-14T07:15:19Z",
+      "html": "<p>Alive is the most important and thank GOD to that!!!<br>\nGet better and we are all missing you here at .NET UG at Canberra! Get better soon and just take pain killers, they are not that bad&#8230;</p>",
+      "replies": []
+    },
+    {
+      "id": 17667,
+      "author": "Blake",
+      "authorUrl": null,
+      "date": "2017-03-14T16:20:18Z",
+      "html": "<p>Adam. Feel better man.</p>",
+      "replies": []
+    },
+    {
+      "id": 17778,
+      "author": "Cosma",
+      "authorUrl": null,
+      "date": "2017-03-19T10:52:04Z",
+      "html": "<p>Im glad to hear you are alive! Only wearing shorts and tshirt on a bike is a big mistake. I hope you will lern from your mistakes. I dont think the solution is not to ride a bike anymore because if it is your passion you should not give it up. Not because you are afraid. Maybe because you have a wife and children who will ask you to. Life is dangerous and riding a bike without protection gear is careless. Be aware of the danger protect yourself and know your limits. I know someone who had a motorcycle accident in which he lost his wife almost his left arm and almost two legs. He had a very good protection gear which obviously saved him. He is suffering from a Post traumatic stress disorder and was not able to get out of bed for 10 months. He had to learn how to walk again. The accident is almost a year ago and yesterday he bought a new bike. He has been riding for 20 years and it has been part of his life. Also he has never had an accident before. Although I couldnt have stopped him I even supported him because I know what it means to him.<br>\nYes, riding a bike is dangerous, but so is riding a bicycle in traffic or skiing, snowbording, climbing, hiking&#8230;&#8230;. Even doing the household is dangerous and a lot of people die (allthough that would be embarrassing).<br>\nSome people first need to get hurt before they learn something. Please send me a picture of your protection gear before you ride your bike again and dont forget back protection. You should prefer leather. If its too hot take the tesla with aircon. Just remember not to act like an idiot again. Please<br>\nLove Cosma</p>",
+      "replies": []
+    },
+    {
+      "id": 17780,
+      "author": "Rolf Huisman",
+      "authorUrl": null,
+      "date": "2017-03-19T12:51:49Z",
+      "html": "<p>Get wellson</p>",
+      "replies": []
+    },
+    {
+      "id": 23099,
+      "author": "Aaron Seet",
+      "authorUrl": null,
+      "date": "2018-01-15T15:46:35Z",
+      "html": "<p>I&#8217;ve had two major crashes during my early &#8220;biking career&#8221;.</p>\n<p>The first time I skidded with my left leg trapped under the bike when the tyres could not handle my MotoGP-style cornering. Wearing cargo berms and T-shirt, my left shin and left elbow lost plenty of skin. Thankfully no musculoskeletal injuries. Shoes DEFINITELY protected my toes from nasty business.</p>\n<p>Second time I bumped over some weird object while cornering, and totally ruined my line sending me knocking the road-divider kerb. I landed on the OPPOSITE SIDE of the road. It was industrial area and if I had been riding during peak hours I would&#8217;ve been run over by oncoming lorries or trucks, and game over for me. I sustained surface scratches again to my right side limbs.</p>\n<p>After that I wisened up and wore armoured jackets and gloves. For the remaining four years til I scrapped the bike though, I hadn&#8217;t had an accident ever since. Probably due to my maturity with a more cautious and alert riding style.</p>\n<p>My fellow rider friend once told me, it is a CERTAIN eventuality that a motorcyclist will crash, be it alone or involving other vehicles/pedestrians, minor or major. I have no choice now but to believe him. 🙂</p>",
+      "replies": []
+    }
+  ],
+  "my-2012-as-a-microsoft-regional-director": [
+    {
+      "id": 291,
+      "author": "Brian Lagunas",
+      "authorUrl": "http://brianlagunas.com",
+      "date": "2012-12-14T03:09:52Z",
+      "html": "<p>That&#8217;s great Adam!  Your community appreciates all the time and hard work you commit to them each year.  It was great seeing you again at Build and thanks for coming out to Boise Code Camp.  Maybe one day I will receive the MVP award and will run into you at the MVP summit.</p>",
+      "replies": []
+    }
+  ],
+  "my-george-michael-tribute-7-signs-for-his-7-number-one-singles": [
+    {
+      "id": 16435,
+      "author": "Steph",
+      "authorUrl": null,
+      "date": "2017-01-12T11:17:31Z",
+      "html": "<p>Amazing, loved reading this Adam. A true fan! Taken way too soon, his music will live on for centuries to come.</p>",
+      "replies": []
+    }
+  ],
+  "my-top-3-ai-image-generators": [
+    {
+      "id": 108355,
+      "author": "Pixapi",
+      "authorUrl": "https://pixapi.ai/",
+      "date": "2026-07-05T20:14:57Z",
+      "html": "<p>Adam, your top 3 AI image generator list is a great starting point for any designer looking to integrate generative AI into their creative process. The way you’ve highlighted the specific strengths of each tool—from artistic flair to photorealism—is very helpful. In late 2025 and moving into 2026, we’re seeing that the next level of efficiency for designers and developers alike is programmatic control over these models. That’s why we’ve been building Pixapi, which provides a unified visual AI API for image generation, editing, and async video generation. It essentially allows teams to integrate these powerful creative tools directly into their backend workflows via a single API. This unified approach really helps in maintaining brand consistency across large-scale projects. I completely agree that designers should embrace these tools rather than fear them. Among the generators you listed, which one do you think offers the most reliable results for consistent brand-specific characters? Thanks for sharing your top picks!</p>",
+      "replies": []
+    },
+    {
+      "id": 108381,
+      "author": "Alex Turner",
+      "authorUrl": "https://pictro.ai",
+      "date": "2026-07-11T13:28:50Z",
+      "html": "<p>Really great comparison of AI image generators. I would also add pictro.ai to the list &#8211; it offers excellent quality for photorealistic image generation and has been my go-to tool for design projects. The prompt engineering tips you shared are very practical.</p>",
+      "replies": []
+    }
+  ],
+  "ndc-2020-smashing-the-virtual-barrier": [
+    {
+      "id": 48549,
+      "author": "filmi full izle",
+      "authorUrl": "https://www.filmyani.com/",
+      "date": "2021-01-16T23:55:47Z",
+      "html": "<p>I really enjoy the blog article. Really looking forward to read more. Great. Beverlee Hayward Anderegg</p>",
+      "replies": []
+    }
+  ],
+  "new-features-in-visual-studio-2013-and-tfs-2013": [
+    {
+      "id": 379,
+      "author": "Aghilas Yakoub",
+      "authorUrl": "http://almbyaghilasyakoub.wordpress.com",
+      "date": "2013-08-06T12:17:31Z",
+      "html": "<p>Hi Adam, do you think that with news features on TFS 2013 about testing on Team Web Access, Microsoft Test Manager can be removed for the 2 or 3 next years, i speak about news on creating and organising test plan, suite, configuring virtual environment etc&#8230;</p>\n<p>Thank&#8217;s for attention</p>",
+      "replies": [
+        {
+          "id": 382,
+          "author": "Adam Cogan",
+          "authorUrl": null,
+          "date": "2013-08-11T22:15:50Z",
+          "html": "<p>Well the ability now to do manual testing in the web is great. However there is a long way to go if Microsoft were to move all the functionality of MTM (Microsoft Test Manager) into the web.</p>\n<p>For now I will use both, but MTM mainly because I want rich bug reports.</p>\n<p>Adam Cogan</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": 384,
+      "author": "Aghilas Yakoub",
+      "authorUrl": "http://almbyaghilasyakoub.wordpress.com/",
+      "date": "2013-08-13T13:28:11Z",
+      "html": "<p>I think the same thing, exact for bug report, thank you Adam for answer</p>\n<p>Aghilas Yakoub</p>",
+      "replies": []
+    }
+  ],
+  "power-bi-no-more-guessing": [
+    {
+      "id": 15060,
+      "author": "Greg",
+      "authorUrl": null,
+      "date": "2016-10-18T19:24:29Z",
+      "html": "<p>We&#8217;re looking for something similar to replace some cubes. Are you using Microsoft power bi cloud product or are you running it locally through ssrs?</p>",
+      "replies": [
+        {
+          "id": 15063,
+          "author": "Nick Wienholt SSW",
+          "authorUrl": "http://ssw.com.au",
+          "date": "2016-10-19T01:59:04Z",
+          "html": "<p>Hi Greg,</p>\n<p>At SSW, all new efforts have been focused on Power BI. We still have some reports and many legacy reports on SSRS (an on-premises SQL Server 2016 instance) but focusing all new efforts on cloud-based Power BI. All the cubes have been retired due to various issues, such as development time, slow iterations and stale data.</p>",
+          "replies": [
+            {
+              "id": 15064,
+              "author": "Greg",
+              "authorUrl": null,
+              "date": "2016-10-19T02:13:55Z",
+              "html": "<p>Thanks Nick, although I&#8217;m still not quite clear. Are you shipping all of your data (or at least the parts you want to query) into Microsoft&#8217;s Power BI cloud service? Or are you querying the data locally? I&#8217;m guessing if you&#8217;re sending it up to Microsoft then it&#8217;s either hourly or daily (based on their pricing page), but that seems to grate with Adam&#8217;s comment &#8220;The 1st was performance, in that when you source stale data, you couldn’t just quickly get it refreshed, so you’re looking at stale data, which is annoying.&#8221; Lots of days wouldn&#8217;t refresh quickly</p>",
+              "replies": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15065,
+      "author": "Nick Wienholt SSW",
+      "authorUrl": "http://ssw.com.au",
+      "date": "2016-10-19T06:50:01Z",
+      "html": "<p>Hi Greg,</p>\n<p>&gt; Are you shipping all of your data (or at least the parts you want to query) into Microsoft’s Power BI cloud service? </p>\n<p>Yes</p>\n<p>&gt; “The 1st was performance, in that when you source stale data, you couldn’t just quickly get it refreshed, so you’re looking at stale data, which is annoying.”</p>\n<p>There are two elements to the refresh &#8211; how long it actually takes, and who is confident and has the correct permissions to run the refresh.  We have found that power users are much more confident in kicking off a Power BU refresh compared to refreshing an OLAP cube.</p>\n<p>We haven&#8217;t found any significant performance issues in the refresh cycle.</p>\n<p>Hope that answers the question.</p>",
+      "replies": []
+    }
+  ],
+  "powering-a-business-with-low-code": [
+    {
+      "id": 51285,
+      "author": "Ulysses Maclaren",
+      "authorUrl": "http://www.ssw.com.au",
+      "date": "2021-04-29T05:38:28Z",
+      "html": "<p>We&#8217;re getting more and more enquiries for Power Apps this year&#8230; it&#8217;s really taken off!<br>\nUlysses Maclaren <a href=\"http://www.ssw.com.au\" rel=\"nofollow ugc noopener\" target=\"_blank\">http://www.ssw.com.au</a></p>",
+      "replies": []
+    },
+    {
+      "id": 51287,
+      "author": "Ulysses Maclaren",
+      "authorUrl": "http://www.ssw.com.au",
+      "date": "2021-04-29T05:46:27Z",
+      "html": "<p>At SSW, we have traditionally made full stack web apps, and that usually what most people want, but we&#8217;re getting more and more enquiries for Power Apps this year&#8230; it&#8217;s really taken off!<br>\nUlysses Maclaren <a href=\"http://www.ssw.com.au\" rel=\"nofollow ugc noopener\" target=\"_blank\">http://www.ssw.com.au</a></p>",
+      "replies": []
+    }
+  ],
+  "professional-scrum-developer-course-new-delhi-day-1": [
+    {
+      "id": 2,
+      "author": "Abhishek Singh",
+      "authorUrl": null,
+      "date": "2011-06-03T11:27:03Z",
+      "html": "<p>Adam Cogan Comments : &#8220;Every half hour or so, a “black room event” occurred. No, not a “black swan event”  .  Apparently power outages are fairly common in Delhi, but every time it happened, the laptops switched to battery and all network connections were lost.&#8221;</p>\n<p>      Hey Adam Power Outrage is not common in delhi  , but the issue was related with that Zukaso Permises. 🙂</p>",
+      "replies": []
+    }
+  ],
+  "real-pain-two-weeks-crash": [
+    {
+      "id": 17877,
+      "author": "Aras",
+      "authorUrl": null,
+      "date": "2017-03-24T09:36:11Z",
+      "html": "<p>Human body is agile but it sprints at a mysterious cadence. Time rights wrongs, hang tough buddy.</p>",
+      "replies": []
+    },
+    {
+      "id": 17927,
+      "author": "Mehmet Ozdemir",
+      "authorUrl": "http://mehmet.ozdemir.id.au",
+      "date": "2017-03-26T21:56:11Z",
+      "html": "<p>I&#8217;d add #4 <a href=\"http://www.sydneymotorsportpark.com.au/experiences/stayupright/\" rel=\"nofollow ugc noopener\" target=\"_blank\">http://www.sydneymotorsportpark.com.au/experiences/stayupright/</a> practice in a safe environment at the track.</p>",
+      "replies": []
+    }
+  ],
+  "skin-cancer-ouch": [
+    {
+      "id": 25953,
+      "author": "Daniel",
+      "authorUrl": "https://www.webz.net.au",
+      "date": "2018-08-02T02:13:00Z",
+      "html": "<p>I hope you are well. Reading your story gave me chills&#8230;<br>\nI&#8217;ve done my first skin check this year &#8211; I&#8217;m 35.  Had a very similar guy just going through some skin changes and saying its all fine. Didn&#8217;t give me much confidence, to be honest.</p>\n<p>We should create an AI driven website or an app where you upload photos of your skin and you will get results within a few minutes on how likely your changes are dangerous.<br>\nThat at least would be more accurate as an initial consultation.</p>",
+      "replies": []
+    },
+    {
+      "id": 25954,
+      "author": "Peter Hale",
+      "authorUrl": null,
+      "date": "2018-08-02T04:53:50Z",
+      "html": "<p>Hi Adam</p>\n<p>I know all about these things.  I&#8217;ve been at the dermatologist every year for the last 30 years and have had numerous procedures over the years for all sorts of things in all parts of my skin.  Actually, my wife is going tomorrow for her yearly checkup and I&#8217;m due in early September and I just know there will be more to cut out or burnt.</p>\n<p>All the best. doesn&#8217;t hurt.</p>\n<p>Pete</p>",
+      "replies": []
+    },
+    {
+      "id": 25956,
+      "author": "Penny Walker",
+      "authorUrl": null,
+      "date": "2018-08-02T07:36:34Z",
+      "html": "<p>That was a really close call. I definitely want to get a skin check now.</p>",
+      "replies": []
+    },
+    {
+      "id": 87453,
+      "author": "MoleMap",
+      "authorUrl": "https://www.molemap.net.au/",
+      "date": "2024-07-01T22:05:22Z",
+      "html": "<p>Adam Cogan&#8217;s personal account of dealing with skin cancer offers a candid perspective on the impact and challenges of the disease. It emphasizes the importance of regular skin checks and sun protection in preventing skin cancer. This firsthand experience serves as a powerful reminder to prioritize skin health and take proactive measures for early detection and treatment.</p>",
+      "replies": []
+    }
+  ],
+  "ssw-had-fun-at-ndc-gotta-catch-em-all": [
+    {
+      "id": 84672,
+      "author": "Ari G",
+      "authorUrl": "http://ssw.com.au",
+      "date": "2024-04-29T04:56:05Z",
+      "html": "<p>Great tale. Nice result. Thanks for this valuable contribution.</p>",
+      "replies": []
+    }
+  ],
+  "ssw-newcastle-now-open-we-are-coding-by-the-sea": [
+    {
+      "id": 50985,
+      "author": "Di Cook",
+      "authorUrl": null,
+      "date": "2021-03-18T06:07:33Z",
+      "html": "<p>Adam, it&#8217;s fabulous to see how positive and successful your life is.  </p>\n<p>My very best wishes</p>\n<p>Di Cook</p>",
+      "replies": []
+    },
+    {
+      "id": 51286,
+      "author": "Ulysses Maclaren",
+      "authorUrl": "http://www.ssw.com.au",
+      "date": "2021-04-29T05:40:20Z",
+      "html": "<p>One very legitimate reason for setting up a new office is the Newcastle Retreat and Opening Party! 🙂<br>\nUlysses Maclaren <a href=\"http://www.ssw.com.au\" rel=\"nofollow ugc noopener\" target=\"_blank\">http://www.ssw.com.au</a></p>",
+      "replies": []
+    }
+  ],
+  "teaching-kids-to-code-in-sydney": [
+    {
+      "id": 10622,
+      "author": "Hila Galapo",
+      "authorUrl": "http://hdg-thefish.blogspot.com.au/",
+      "date": "2015-11-11T22:36:12Z",
+      "html": "<p>Hi Adam, </p>\n<p>Great story! Well done and great inspiration!</p>\n<p>Regards,<br>\nHila,<br>\nA female programmer<br>\nand a mother of 2 girls!</p>",
+      "replies": []
+    },
+    {
+      "id": 10625,
+      "author": "Russell Oates",
+      "authorUrl": "https://www.education.gov.au/",
+      "date": "2015-11-12T00:21:09Z",
+      "html": "<p>Hey Adam. What a great idea to go out and do that. Good on you.</p>\n<p>Touch Develop&#8217;s a great way to get that age group involved and thinking without bogging the kids down. My daughter (Y8) took to it immediately.</p>",
+      "replies": []
+    },
+    {
+      "id": 10634,
+      "author": "Ariel",
+      "authorUrl": null,
+      "date": "2015-11-12T14:18:46Z",
+      "html": "<p>Adam,</p>\n<p>Your post inspired me to do the same in my children school!! Can you give me some guidelines about how to plan this? like time that this took, what did you teach to them, level, etc?<br>\nThanks!!</p>",
+      "replies": []
+    }
+  ],
+  "technology-in-a-pandemic-helping-control-coronavirus": [
+    {
+      "id": 36678,
+      "author": "Craig Woollett",
+      "authorUrl": null,
+      "date": "2020-03-10T03:33:29Z",
+      "html": "<p>The most rewarding work is in helping the community. its no wonder SSW in China can work superhuman hours to protect the community</p>",
+      "replies": []
+    },
+    {
+      "id": 36692,
+      "author": "Peggy Garberick",
+      "authorUrl": null,
+      "date": "2020-03-10T11:23:16Z",
+      "html": "<p>I retired from IT about 2 years ago. I&#8217;m happy to see that you guys are on top of this! Really!</p>",
+      "replies": []
+    }
+  ],
+  "tesla": [
+    {
+      "id": 16398,
+      "author": "Derek Ward",
+      "authorUrl": "http://dwardentp@yahoo.com",
+      "date": "2017-01-11T07:16:55Z",
+      "html": "<p>Ive ordered 30 days ago for delivery in late Marxh 2017.<br>\nAre there any discounts that I could still take advantage of? Please advise. Thank you</p>",
+      "replies": []
+    }
+  ],
+  "tfs-is-huge-in-china-part-2": [
+    {
+      "id": 9614,
+      "author": "Janet Conklin",
+      "authorUrl": null,
+      "date": "2015-07-22T18:39:43Z",
+      "html": "<p>I have read your articles with great interest!  Can you elaborate on how you determined which custom fields needed to be indexed?  Did you use DMV&#8217;s? </p>\n<p>Thank you,<br>\nJanet Conklin</p>",
+      "replies": []
+    }
+  ],
+  "the-microsoft-band-2-user-experience-who-would-have-thought-sleep-could-be-so-interesting": [
+    {
+      "id": 10888,
+      "author": "Byron Boardman",
+      "authorUrl": null,
+      "date": "2015-12-10T22:59:38Z",
+      "html": "<p>Nice review.  I picked up my Band 2 on Tuesday.  The Step counter is way out for me, but I have found the tighter I have it the less steps it picks up.</p>\n<p>also as of today (mine just got updated) your point 6  &#8220;Control the music playing from your phone&#8221; has been added in 🙂</p>",
+      "replies": []
+    },
+    {
+      "id": 10918,
+      "author": "Cary Landholt",
+      "authorUrl": "https://matchup.io",
+      "date": "2015-12-15T19:48:40Z",
+      "html": "<p>Terrific and thorough write-up, Adam!</p>\n<p>I&#8217;m an engineer at Matchup and am pleased to share we&#8217;ll be providing Microsoft Band support by the end of this year.</p>",
+      "replies": []
+    },
+    {
+      "id": 11859,
+      "author": "Peter Kellner",
+      "authorUrl": "http://peterkellner.net",
+      "date": "2016-03-20T18:38:19Z",
+      "html": "<p>I had an apple watch for a while but hated that it had to shake it to turn it on. I switched to the Microsoft band a few months ago.  My biggest wish is that I could return text messages from it with my iphone.  I don&#8217;t love the UI but it&#8217;s OK.  Like you mention, when I use my laptop keyboard, the band is in the wrong place and hard to move out of the way without taking my band off completely.</p>",
+      "replies": []
+    },
+    {
+      "id": 11885,
+      "author": "Daniel Ellsworth",
+      "authorUrl": null,
+      "date": "2016-03-22T18:01:36Z",
+      "html": "<p>I&#8217;d love it if they&#8217;d rotate the face so it was parallel with your arm like an actual watch.</p>\n<p>Mine doesn&#8217;t sync very will with my bike rides.  About 80% of the time after a ride I have to turn off both the watch and the Samsung 6S phone I have in order for it to sync.  It&#8217;d be nice to have some kind of force sync option.</p>\n<p>I agree with your other suggestions &#8211; particularly the waterproof bit.</p>\n<p>I love mine&#8230;..</p>",
+      "replies": []
+    }
+  ],
+  "the-vs-2015-ebook-behind-the-scenes": [
+    {
+      "id": 10676,
+      "author": "Ka Kss",
+      "authorUrl": null,
+      "date": "2015-11-17T00:27:41Z",
+      "html": "<p>Hi,</p>\n<p>Could not download &#8216;Visual Studio 2015 (Anti-Inflammatory) Check List PDF&#8217;</p>\n<p>Could you please send back via email.</p>\n<p>Thanks.</p>",
+      "replies": []
+    }
+  ],
+  "tips-for-tesla": [
+    {
+      "id": 9805,
+      "author": "Ken Schwaber",
+      "authorUrl": null,
+      "date": "2015-08-16T15:56:17Z",
+      "html": "<p>As software a software person, whenever I drive a non-Teala, all I see is technical debt. Even the German cars with the improved safety and handling features using a small processor (compared to the nVidia supercomputer in the Tesla) and it is patched on top of an old analog system. Think that when you drive the Tesla, the power is already created in the battery. In other cars, you have to carry around the fuel, the power plant, and the distribution system. Think of the wind up when you press the &#8220;Gas&#8221; pedal for the gas to get to the engine, explosions to be managed, drive train to spin up, right gear to carry the rpm to the rear axle, etc.<br>\nEveryone else is going to have a heck of a time getting rid of their technical debt (including the suppliers like Conti and Delphi), both in product, components, factories, skills, and training.<br>\nWe were going to use Tesla Autopilot as a case study in our Nexus course. However, try figuring out their development platform and developer skills. I tried to reverse engineer it from the customer blogs and Tesla job opening descriptions and came up short.</p>",
+      "replies": []
+    },
+    {
+      "id": 11290,
+      "author": "Andrew",
+      "authorUrl": null,
+      "date": "2016-01-31T00:17:44Z",
+      "html": "<p>HI Adam,<br>\nI&#8217;ve also got a small garage &#8211; what&#8217;s the total internal length of your garage? Do you use auto parking to get the car in and out? Is there room in there for a charger?<br>\nAndrew</p>",
+      "replies": []
+    },
+    {
+      "id": 11358,
+      "author": "Adam Cogan",
+      "authorUrl": "http://www.ssw.com.au",
+      "date": "2016-02-09T09:13:17Z",
+      "html": "<p>Hi Andrew,<br>\nWidth X length<br>\n2.6 m X 5.4 m<br>\nNo I don&#8217;t have the new Summons feature yet. Yes it can fit the charger.</p>\n<p>Be aware that this small garage was built back in the 1920&#8217;s and the Tesla really couldn&#8217;t fit in a smaller garage. Btw that width measurement is at the narrowest, inside the garage it is 3.05m wide and that just allows the door to open enough to let me out!</p>\n<p>I don&#8217;t think the Model X would fit 🙁</p>\n<p>&#8211; @AdamCogan</p>",
+      "replies": []
+    }
+  ],
+  "upgrading-tfs-2010-to-tfs-2012-rc-done": [
+    {
+      "id": 244,
+      "author": "Lei",
+      "authorUrl": null,
+      "date": "2012-06-03T17:17:55Z",
+      "html": "<p>Great work! Can&#8217;t wait to use it &#8230;</p>",
+      "replies": []
+    },
+    {
+      "id": 247,
+      "author": "Damian lucas",
+      "authorUrl": null,
+      "date": "2012-06-06T12:33:15Z",
+      "html": "<p>Does he ps2010 connector still work?</p>",
+      "replies": []
+    }
+  ],
+  "video-killed-the-bibliophile-video-vs-books": [
+    {
+      "id": 52082,
+      "author": "Matt G",
+      "authorUrl": "http://goforgoldman.com",
+      "date": "2021-07-15T09:21:24Z",
+      "html": "<p>Is it true that books are &#8216;dead&#8217;, or is it more that expanding learning into other formats has made technical self-education more accessible?</p>\n<p>I&#8217;m a fan of books (although prefer eBooks these days) and videos. I like videos for explaining concepts, and prefer text for step by step tutorials as it makes it easier for me to follow at my own pace.</p>\n<p>Both have their strengths and weaknesses. I find concepts easier to explain and easier to understand in video format. And sometimes its much easier to show someone something &#8211; which you can do more effectively in video &#8211; than to tell them. But you can&#8217;t ctrl-f a video, which you can with text.</p>\n<p>Rather than trying to decide whether one format or the other is better, I prefer to think that now we have the luxury of both which means more people, irrespective of learning style, have access to quality content.</p>",
+      "replies": []
+    },
+    {
+      "id": 52094,
+      "author": "John Stericker",
+      "authorUrl": null,
+      "date": "2021-07-15T23:43:51Z",
+      "html": "<p>Great article, thanks for sharing Adam.<br>\nI&#8217;m deep in a YouTube based learning journey at the moment.<br>\nThoroughly enjoying Robert Sapolsky (from Stanford) and his lecture series on Human Behaviour Biology.<br>\nThe access to content is mind-blowing, and inspiring at the same time.<br>\nThe availability and ease-of-access to audiobooks is also amazing.<br>\nGreat time to be alive, if you love to learn 🙂<br>\nJohn</p>",
+      "replies": []
+    }
+  ],
+  "video-the-ssw-motorcycle-risky-attempt-to-move-a-big-motorbike-up-some-stairsit-seemed-like-a": [
+    {
+      "id": 28337,
+      "author": "Jacob Duane",
+      "authorUrl": "http://www.bennettphilp.com.au",
+      "date": "2019-06-10T23:21:07Z",
+      "html": "<p>Adam</p>\n<p>I just watched the clip on moving the motor bike.  Me thinks that every bit of insurance cover was suspended for the duration of that project.</p>\n<p>I did notice that Anastasia was nowhere to be seen!</p>",
+      "replies": []
+    }
+  ],
+  "why-ssw-is-moving-to-angularjs": [
+    {
+      "id": 6088,
+      "author": "Kalvin Ernst",
+      "authorUrl": "https://kalfabriq.codeplex.com/",
+      "date": "2014-11-16T03:55:03Z",
+      "html": "<p>Hi Adam,</p>\n<p>Great blog article on angularJS and I agree, it is the way to go now.<br>\nI have used in my last Project, a non angularJS approach, using iframes,<br>\nbut will use angularJS from now on.</p>\n<p>I am old .NET warrior and was thinking of retiring from code, BUT after looking at the new<br>\nVS 2015, Community, etc, I want to keep going. Finally we have Open Source VS.<br>\nWould love to do your firebootcamp course, but out of my price range.</p>\n<p>Looking for work, still.</p>\n<p>Cheers.<br>\nKalvin Ernst</p>",
+      "replies": []
+    },
+    {
+      "id": 6125,
+      "author": "Paul Glavich",
+      "authorUrl": null,
+      "date": "2014-11-17T20:25:53Z",
+      "html": "<p>And I thought it was because of the awesome presentation I gave at SSW on Angular&#8230;.. 🙂</p>\n<p>Great move guys, good to hear. The next step is to be writing your current Angular code in a way that supports much easier migration to 2.0</p>",
+      "replies": []
+    },
+    {
+      "id": 6493,
+      "author": "Hans Kruger",
+      "authorUrl": null,
+      "date": "2014-11-30T22:06:37Z",
+      "html": "<p>Nice article, but I am still unclear as to how Angular and MVC complement each other. I am not a web developer, but my impression is that both technologies are muturally exclusive. I get how simple binding frameworks, such as Knockout, work beautifully with MVC. However, Angular is about building SPA applications and I cannot really see how it makes sense to use features, such as routing, on the client as well as server side. I would be very keen to see how you guys reconcile both technologies. Maybe another blog post? 🙂</p>",
+      "replies": []
+    }
+  ]
+}

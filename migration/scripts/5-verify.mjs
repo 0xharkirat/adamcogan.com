@@ -130,9 +130,44 @@ console.log(`  ${referenced.size} distinct media URLs in the built HTML`);
 if (brokenMedia) fail(`${brokenMedia} media references have no file`);
 else ok("every media reference resolves to a file on disk");
 
-/* ---------------------------------------------- 5. no WordPress leftovers */
+/* ------------------------------------------------------- 5. comments */
 
-console.log("\n5. WordPress leftovers in the built HTML");
+console.log("\n5. Migrated comments");
+
+const rawComments = JSON.parse(await readFile(join(ROOT, "migration", "raw", "comments.json"), "utf8"));
+const archive = JSON.parse(await readFile(join(ROOT, "src", "data", "comments.json"), "utf8"));
+const countAll = (list) => list.reduce((n, c) => n + 1 + countAll(c.replies ?? []), 0);
+const archived = Object.values(archive).reduce((n, list) => n + countAll(list), 0);
+const approved = rawComments.filter((c) => c.status === "approved").length;
+
+if (archived !== approved) fail(`archived ${archived} comments but ${approved} were approved on WordPress`);
+else ok(`all ${archived} approved comments archived across ${Object.keys(archive).length} pages`);
+
+// The bodies are rendered with set:html, so the sanitiser is a trust boundary.
+const archiveText = JSON.stringify(archive);
+const dangerous = /<script|<iframe|javascript:|\son[a-z]+\s*=/i.exec(archiveText);
+if (dangerous) fail(`archived comment HTML contains "${dangerous[0]}"`);
+else ok("no scripts, iframes, javascript: URLs or event handlers in comment HTML");
+
+// A rendered page should actually show them, not just hold the data.
+const sampleSlug = Object.keys(archive).find((s) => countAll(archive[s]) > 1);
+let rendered = false;
+if (sampleSlug) {
+  const author = archive[sampleSlug][0].author;
+  for (const f of builtFiles) {
+    if (!f.endsWith("index.html") || !f.includes(sampleSlug)) continue;
+    const html = await readFile(f, "utf8");
+    if (html.includes('id="comments"') && html.includes(author)) { rendered = true; break; }
+  }
+}
+if (rendered) ok(`comments render on the page (checked "${sampleSlug}")`);
+else fail(`comments data exists but no built page renders them (checked "${sampleSlug}")`);
+
+
+
+/* ---------------------------------------------- 6. no WordPress leftovers */
+
+console.log("\n6. WordPress leftovers in the built HTML");
 
 const leaks = { "wp-content": 0, themify: 0, "wp-block": 0 };
 for (const file of htmlFiles) {
