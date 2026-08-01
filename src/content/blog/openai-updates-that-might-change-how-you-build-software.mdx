@@ -1,0 +1,87 @@
+---
+title: "OpenAI – 2 Updates That Might Change How You Build Software"
+description: "OpenAI just hosted their “DevDay 2025” and as usual, it’s a big update. They dropped heaps of things that are going to change the way we build software, but I’d like to focus on 2, which really blew my mind: AgentKit and Apps in ChatGPT. #1 AgentKit Agent SDK The new Agents SDK, currently in"
+pubDate: 2025-10-13T06:26:22.000Z
+updatedDate: 2025-12-18T04:12:49.000Z
+heroImage: "/media/2025/10/Blog-Banner-1.jpg"
+author: "Adam Cogan"
+categories: ["ai", "chatgpt", "general"]
+tags: ["agent-builder", "ai", "ai-agents", "ai-automation", "automation", "autonomous-agents", "low-code", "openai"]
+legacyUrl: "/2025/10/13/openai-updates-that-might-change-how-you-build-software/"
+wpId: 5228
+---
+
+OpenAI just hosted their “[DevDay 2025](https://openai.com/devday/)” and as usual, it’s a big update. They dropped heaps of things that are going to change the way we build software, but I’d like to focus on 2, which really blew my mind: AgentKit and Apps in ChatGPT.
+
+## #1 AgentKit
+
+### Agent SDK
+
+The new Agents SDK, currently in preview, turns ChatGPT from a talker into a doer. You can now build [AI](https://www.ssw.com.au/consulting/artificial-intelligence?) assistants that browse the web, call APIs/MCPs, read and write files, and even delegate tasks to other agents, all while being monitorable (aka safe, trackable, and debuggable).
+
+Previously, you had to juggle multiple APIs, manage context manually, and write orchestration loops just to get an AI to do something practical. Now, with the new Responses API and Agents SDK, it’s all wrapped into a clean development experience. We’ve been using AutoGen for a while, and love the flexibility it brings. You can read more about it here: [https://www.ssw.com.au/rules/agentic-ai/](https://www.ssw.com.au/rules/agentic-ai/)
+
+I look forward to testing it a bit more to see how the two compare.
+
+Here’s how simple it looks in code 👇
+
+```
+from openai import OpenAI
+
+client = OpenAI()
+
+agent = client.agents.create(
+    name="Flight Booker",
+    instructions="Book the cheapest flight from Sydney to Oslo next month.",
+    tools=["browser", "calendar", "email"]
+)
+
+response = agent.run("Find flights that arrive before 10am.")
+print(response.output)
+```
+
+👉 **Tip:** If you’re a dev who loves Clean Architecture, treat agents like controllers: each one owns a task, handles context, and delegates the rest.
+
+### Agent Builder (RIP n8n?)
+
+Agent Builder is a tool in the kit that helps you quickly build smart AI assistants. It has a visual canvas (familiar if you’ve used n8n) plus solid templates.
+
+It comes with built-in guard rails (safety), RAG to query your own docs, tool use (web/code/MCP), and routing via structured JSON. It’s a shortcut for building AI chatbots or helpers that actually _do_ things, fast enough for prototypes, but solid enough to use in real projects.
+
+So far, n8n still wins as the automation “Swiss-army knife” by having a huge connector library, schedules/webhooks, retries, error handling, and self-hosting. It’s also open source and agnostic, whereas Agent Builder is only for OpenAI models.
+
+You can also combine the two by designing your agent in Agent Builder, exporting to code, and orchestrating it from n8n when you need enterprise-grade triggers, retries, and cross-system glue.
+
+Given how quickly AI is developing, I do wonder how long we will still need low-code agent builders, given that AI is already allowing non-technical product owners to build apps… and it’s only going to get better! 🤔
+
+<Figure src="/media/2025/10/image-1.png" alt="A screen with a number of template options as click through" caption="Figure: Agent Builder – Heaps of templates to get you started" />
+
+<Figure src="/media/2025/10/image.png" alt="A screen showing the set up for a workflow on Agent Builder" caption="Figure: Agent Builder Creating a workflow view" />
+
+## #2 – Apps SDK
+
+In my [last blog, I spoke about how exciting the Model Context Protocol (MCP)](https://adamcogan.com/2025/09/15/mcp-as-your-integration-layer/) is for developers. It helps move away from complicated integrations, making your apps essentially ‘plug and play’. The Apps SDK is another leap forward. ChatGPT becomes the platform, and other apps become part of the chat experience, not something separate. So instead of ChatGPT saying “Here’s a link to do that,” the app itself **(like a calendar, map, or design tool)** can open and work inside the chat. You don’t have to leave the conversation; you can talk to the app, use its features, and see results all in one place.
+
+It’s also built on top of MCP, which means if your service already supports MCP, integrating with ChatGPT could take minutes, not weeks.
+
+Imagine a user saying, “Find a house in Brisbane under $900k.”
+
+ChatGPT detects the intent, launches your real estate app inside the chat, shows listings, and keeps the conversation going, all in one flow. No pop-ups. No redirects.
+
+While this is really cool, you can’t help but feel it would have been cooler if they’d expanded MCP instead of adding a proprietary display layer that only works in their ecosystem… The benefit of MCP is that it plugs in anywhere… It’s kind of like creating an Apple Lightning cable instead of just using USB-C, which is universal. 🤷
+
+It remains to be seen whether the Apps SDK will shake everything up, or just become the next custom GPT – cool but not game-changing. It’s currently in preview, so perhaps we’ll see more advancements later this year.
+
+Right now, it is a bit limited; we can develop our own apps, but we can’t deploy to other people yet. The current partners are, Booking.com, Canva, Coursera, Figma, Expedia, Spotify, and Zillow. I know Uly has already started building playlists for his salsa classes! 💃
+
+<Figure src="/media/2025/10/image-3.png" alt="" caption="Figure: An example of how Apps SDK lets you stay within the app and ask questions without leaving the conversation" />
+
+## The Future: Conversations as Platforms
+
+With Agents and the Apps SDK working together, ChatGPT isn’t just an assistant anymore… It’s an operating system for interactions.
+
+Apps will live _within_ conversations. Agents will _run_ them. And developers who adapt early will own the next generation of user experiences.
+
+My biggest takeaway for developers is to stop writing glue code and start writing Agents. Stop fighting integrations and start building Apps… because the way we build software just changed… again.
+
+Let me know what you think of the new tools below (or if you have a headache)! 😁

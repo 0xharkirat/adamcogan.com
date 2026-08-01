@@ -1,0 +1,19 @@
+---
+/**
+ * Self-hosted video. Five posts embed an .mp4/.mov uploaded straight to the
+ * WordPress media library rather than going through YouTube.
+ */
+interface Props {
+  src: string;
+  caption?: string;
+}
+
+const { src, caption = '' } = Astro.props;
+---
+
+<figure class="my-8">
+  <video src={src} controls preload="metadata" class="w-full rounded-xl">
+    <a href={src}>Download the video</a>
+  </video>
+  {caption && <figcaption class="mt-2 text-sm leading-snug text-muted-foreground">{caption}</figcaption>}
+</figure>

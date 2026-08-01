@@ -1,0 +1,93 @@
+---
+title: "Avoiding Storms with BDD & Automated Testing"
+description: "With BDD (Behavioural-Driven Development) and Gherkin syntax you can write unit test scenarios in plain text using a few key words (Given, When, Then). Plain text makes the test scenarios easy to understand, even for non-techies."
+pubDate: 2021-11-05T01:50:24.000Z
+updatedDate: 2022-09-21T22:32:56.000Z
+heroImage: "/media/2021/11/Blog-Banner-BDD-Automated-Testing.jpg"
+author: "Adam Cogan"
+categories: ["automated-testing", "general", "ssw-rules"]
+tags: ["automated-testing", "automated-ui-testing", "bdd", "gtihub-actions", "ui", "ux"]
+legacyUrl: "/2021/11/05/bdd-and-automated-testing/"
+wpId: 3836
+---
+
+The quicker you find a bug, the quicker it is to fix.
+
+**How cool would it be to write tests in plain text?
+**With BDD (Behavioural-Driven Development) and Gherkin syntax you can write unit test scenarios in plain text using a few key words (Given, When, Then). Plain text makes the test scenarios easy to understand, even for non-techies.
+
+**How cool would it be to never have to do manual tests?**
+With automated UI testing, you can create quick ‘smoke’ tests to check your UI is working as expected using the BDD method outlined above. Matt Goldman’s video below is a great example of this.
+
+**How cool would it to be to record your tests?**
+I remember when Excel Macros got people so excited back in the day. Excel allowed the masses to click “Record a macro” and then it would write the VBA script for you.
+We used to use Selenium automated tested, these days we use Playwright as it is more solid. One of the other cool things about Playwright is, you can record the automation as a video. Is that awesome or is it super awesome?
+
+<YouTubeEmbed videoId="2hibiFfuPao" caption="Figure: Matt Goldman’s Great Video" />
+
+### What is BDD?
+
+It’s no secret that bespoke software development takes a lot of time and experimentation. Miscommunication is common between developers and the business professionals, and this can add additional development time.
+
+Like Scrum is a fancy word for communication, BDD is another thing that helps communicate with the Product Owner. Anything that aides in a Product Owner getting smarter, is a good thing.
+
+BDD focuses on clearing the confusion between the developers, testers, and the Product Owner. It ensures all development projects remain focused on delivering what the business needs while meeting the requirements.
+
+Less communication issues = better software solutions & less $ spent!
+
+<Figure src="/media/2021/11/BDD-cartoon-1-scaled.jpg" alt="Figure of the normal development process" caption="Figure: What is the cost of translation? BDD helps branch the communication between the 3 different languages" />
+
+Key benefits of BDD
+
+-   User needs – software development meets the user requirements
+-   Features are understood
+-   Translation Cost – a shared language ensures everyone (technical or not) has project visibility
+-   Code Quality – improved quality code reducing costs of maintenance and minimising project risk
+
+### BDD + Gherkin Syntax
+
+Using [Gherkin syntax](https://specflow.org/learn/gherkin/) and a BDD framework like [SpecFlow](https://specflow.org/learn/gherkin/) you can write test scenarios in plain language using a few key words (Given, When, Then). Plain language makes the test scenarios easy to understand, even for non-technical team members.
+
+First think about the different scenarios that you want to test, then write them out in plain language using Gherkin syntax.
+
+<Figure src="/media/2021/11/image.png" alt="Good example of Gherkin syntax scenarios" caption="Figure: Good example – Gherkin syntax scenarios (Given, When, Then)" />
+
+Once you have your scenarios lined up, you should begin to write the test steps for each scenario….
+
+<Figure src="/media/2021/11/image-1.png" alt="Good example of test steps to run" caption="Figure: Good example – test steps to run, matching the Gherkin Syntax" />
+
+However, BDD won’t give you optimal software by itself. To ensure the health of your application, you should also be doing Automated UI Testing.
+
+Everyone knows they should do testing, but project budgets and time constraints don’t always allow for it.
+
+What if there was a fast way to do testing that allowed you to track the health of your project before bugs start becoming a problem? Overall, the longer it takes to find a bug, the longer it takes to fix and there is always a larger $ value attached to it.
+
+To see more about this check out this SSW Rule: [Do You Follow BDD](https://www.ssw.com.au/rules/bdd)?
+
+### Why use Automated UI Testing?
+
+-   Unit tests are critical – but they only test core logic in isolation (units), they don’t represent the application in real-usage
+-   Integration Tests aren’t enough either – while addressing some of the limitations of unit testing, they’re costly to write and slower to run
+-   The UI is what the user sees and ‘touches’ – if an interface is weird and buggy, users will soon become former customers
+
+### Tools – Playwright vs Selenium
+
+Automated UI testing (aka end-to-end testing) is an awesome way to automate the process of browser-based testing.
+
+In the old days, [Selenium](https://www.selenium.dev/) was the gold standard, but these days it has been overtaken by [Playwright](https://playwright.dev/) which lets you write tests in many popular languages including .NET, Java, Python and Node.js
+
+Playwright has a few advantages over Selenium:
+
+-   Actionability
+-   Performance
+-   Stability
+-   Switching browser contexts for parallel testing
+-   and more…
+
+Playwright offers a [super cool feature](https://playwright.dev/docs/cli/#generate-code) that lets developers record actions in the browser to automatically generate the code for tests. Check it out:
+
+<YouTubeEmbed videoId="KccXW4t5X-k" />
+
+You can see more on this on the SSW Rule: [Do you use Automated UI Testing?](https://www.ssw.com.au/rules/automated-ui-testing)
+
+What do you think? Will you use a nice combination of BDD and Automated UI testing on your next project? Let me now your thoughts in the comments below!

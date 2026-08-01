@@ -1,0 +1,100 @@
+---
+title: "8 Tips to Strengthen Your DevOps (Project KNOWnoise)"
+description: "At SSW each year we are lucky to deliver a lot of cool projects. I want to call out one project that solved a complex business challenge, and was fun to deliver. It had the usual, modern web technologies and cloud, and the project really benefited from great DevOps practices. The lead developer was "
+pubDate: 2019-12-13T18:51:20.000Z
+updatedDate: 2022-09-23T16:54:37.000Z
+heroImage: "/media/2019/12/AdamsBlog-8TipsToStrenghthenYourDevOps.jpg"
+author: "Adam Cogan"
+categories: ["general"]
+tags: []
+legacyUrl: "/2019/12/13/8-tips-to-strengthen-your-devops-project-knownoise/"
+wpId: 3248
+---
+
+<YouTubeEmbed videoId="wiFadV5SOPc" caption=".NET, NgRx and Angular – How We Developed ‘KNOWnoise’ with Hutchison Weller" />
+
+At SSW each year we are lucky to deliver a lot of cool projects. I want to call out one project that solved a complex business challenge, and was fun to deliver. It had the usual, modern web technologies and cloud, and the project really benefited from great DevOps practices. The lead developer was SSW Solution Architect, [Matt Wicks](https://sharepoint.ssw.com.au/AboutUs/Employees/Pages/Matt.aspx). Matt is also a Microsoft DevOps FastTrack Partner Consultant, and he runs a great team, as well as being passionate about great DevOps.
+
+The Client was Hutchison Weller and they had a vibrant Product Owner, plus a cool project name. Project KNOWnoise is an application that enables them to know in advance, the construction noise that machinery will generate.
+
+#### MAKING THE CLIENT HAPPY
+
+Hutchison Weller had a unique requirement, they needed something that could help manage the environmental impacts their clients face when planning and delivering construction projects. If their client had a construction project that was going to create a lot of noise, they were going to have to pay a lot of $ for accommodation. If the app could predict who was going to be affected and how badly, then it could help to save a lot of $ for that client.
+
+The major part of the project was to help manage the noise outputs created by machinery and construction, and the effect they have on the nearby public. The developed application, [KNOWnoise](https://hutchisonweller.com/knownoise/)™ enables a DIY form of noise assessment.
+
+#### BUILDING THE WEB APP
+
+Like too many applications, the client’s initial modelling for this was developed in Excel using a series of very complicated Lookups to do the calculations. While it worked on smaller projects, it couldn’t handle large construction projects as these could have large construction areas and potentially thousands of buildings where the construction noise would be heard – this would multiply out into millions of rows in Excel (which it couldn’t handle).
+
+Poor old Excel was getting a bad rap as they were encountering many other technical issues including:
+
+-   Excel would freeze regularly because of the way it was doing calculations
+-   If you were using a different version of Excel the macros might not work
+-   Excel had size limitations so they couldn’t use it on the large projects
+
+The new web app was built using:
+
+-   Angular, NgRx, and .NET Core
+-   Hosted in Azure
+-   Scrum
+-   Architecture – Built using Clean Architecture principals – watch Jason Taylor’s [awesome video: Clean Architecture](https://rules.ssw.com.au/the-best-clean-architecture-learning-resources) on the topic and SSW’s [Rules to Better Clean Architecture](https://rules.ssw.com.au/rules-to-better-clean-architecture).
+-   Automation – with Azure DevOps build and release pipelines. Regular automatic deployments to dev, test and production environments
+-   Quality – Extensive unit and integration testing
+-   Quality – Every pull request automatically ran the tests (great DevOps)
+-   An awesome software team!
+
+This gave the team the confidence to do fear free refactoring when moving to the scary “large” projects
+
+<Figure src="/media/2019/12/image-1.png" alt="" caption="Figure: On the left of the screenshot it shows the different machinery and the project noise levels. On the right it shows the affected properties. Red is very bad, yellow is noisy, green is good." />
+
+<Figure src="/media/2019/12/image.png" alt="" caption="Figure: In this screenshot the red indicates a large cluster of houses that will be seriously affected by noise. If there is night time work, then the occupants would need accommodation." />
+
+#### MOVING ONTO THE SCARY “LARGE” PROJECTS
+
+I’m a fan of “if you’re going to fail, then fail fast”. So before launch, the first project we tested, was one that was much larger than the client had ever previously worked on and it performed great.
+
+Before each new project, a data import step needs to be undertaken. This posed an issue as there would be a lot of data (in some cases 2+ million rows) to import and validate before a project can be used by end users. Inserting that into Azure SQL requires a lot of $ DTUs (the Azure charge unit for memory and CPU). We didn’t want to put in any manual steps, e.g to dial it up to improve performance. The problem would be, if they forgot to dial it back down, that could lead to a $25k Azure bill for the month. WOOOOAH!
+
+Note: Cosmos DB would have been faster, but would have cost a lot more. So it wasn’t really an option due to the volume of data. The data imports are not a frequent activity so Azure SQL database was chosen.
+
+#### WHAT WAS THE SOLUTION?
+
+There were a few ways SSW managed to revolutionise the app. They pulled all of the lookup data and calculated results out of the SQL database and stored them as JSON files in Azure Blob Storage. This eliminated the need to hit up Azure SQL for thousands of reads, updates and deletes every time that a user would make changes to their construction plans; this sped up user operations and reduced the number of DTUs that the database required for normal daily use. Azure Blob storage is a fraction of a cent per GB, so from a data volume perspective it is much cheaper. Importing data into database and reading and saving results was faster, it had a more predictable response time, and avoided worrying about noisy neighbours in a database, and since a lot of data was no longer in the database – it shrank drastically. More importantly, its cost to run reduced drastically.
+
+In order to make this happen, we did a big refactor of the code, but since we were using the Clean Architecture pattern we knew where to make the changes, and we had all of the unit tests and integration tests in place meaning we had a high level of confidence that we could make those changes. Great DevOps pays for itself!
+
+![](/media/2019/12/image-1.jpeg)
+
+#### INVESTING IN GOOD DEVOPS
+
+Investing in good DevOps practices from the beginning pays for itself very quickly. Having your unit and integration tests in place means you can make sure that you are reducing the risk of introducing regressions. Running your tests with every Pull Request means you can move forward faster and with more confidence as your master branch will only contain a stream of clean commits. If someone needs to take over the project, or picks up a new piece of work, they will start from a clean starting point. The process picks up bugs early.
+
+#### HYPOTHESIS DRIVEN DEVELOPMENT
+
+While we wouldn’t always recommend failing, it had its place in this project. We decided to use hypothesis driven development to see if we could discover the best architecture model to solve our data import issue. We had logs and stats from Application Insights to discover the root cause of our problem. We had a few ideas on how to solve it, so we developed and tested a few options to solve the problem, for example, we tried Azure Functions, then we tried Cosmos DB, before finally testing Azure Blob Storage. We had the stats for each of the runs and were able to empirically compare the results to determine that Azure Blob Storage was the best solution for this problem – it was the simplest, it provided the best performance and turned out to also be the cheapest. It just goes to show how important it is to keep an open mind in terms of storage; not everything needs to be in a SQL database.
+
+#### OTHER COOL STUFF
+
+We were able to do some cool things in Google Maps. Half of the interface uses Google Maps and we were able to overlay some cool visualisations to help people do their job. We were really happy that Hutchison Weller was able to use the extensible system we developed and changed the way users select where construction was taking place – they were able to change the overlays on the map from squares to hexagons without our involvement. This meant that they can choose where construction work is being done with greater accuracy. Visually it’s a lot cooler.
+
+Regarding the Azure cost, we were blown away with how cheap it is to run to this app, considering where it started from, and where it is now. We’ve improved performance, past the spec. The cost of running the app is a drop in the ocean, which is a huge win for Hutchison Weller. This app has allowed them to land some very large projects, like West Connex and other large infrastructure projects affecting millions of people. A huge win for a smaller company.
+
+## 8 Tips to Strengthen Your DevOps
+
+![](/media/2019/12/image.jpeg)
+
+1.  Testing – automate your tests and run them before you start work and when you finish your work – if there is a problem, fix it straight away
+2.  Pull Requests – they should trigger builds that run all your tests. Remember tests that aren’t executed, atrophy quickly
+3.  Deploy – use Azure and deploy to it regularly. Run your integrations tests against it. Running your application on Azure is very different to running it on your local machine. The earlier you discover these differences the better
+4.  Automate – have a release pipeline in place with environment promotion, don’t deploy to production unless you have successful deployments to your staging environment.
+5.  Monitoring – use Application Insights and logging, this will help with postmortems and debugging production
+6.  Source Code – merge your code frequently, this will reduce your merge and integration debt
+7.  Deploy – release each PBIs as completed. This can be part of your definition of done. It will help you discover issues very quickly – rollback is easier and it’s easy to isolate the problem area
+8.  Deploy – keep your configuration settings and secrets out of code. Use KeyVault in your ARM templates
+
+Having trouble with Clean Architecture? We have some great resources here: [https://rules.ssw.com.au/the-best-clean-architecture-learning-resources](https://rules.ssw.com.au/the-best-clean-architecture-learning-resources)
+
+Some projects feel like cross country skiing – hard work! This project felt more like down hill skiing – the pull requests, the clean architecture and the good DevOps helped heaps. SSW solved the client’s complex business problem and moved their business from a fragile Excel solution (with GOTO statements) to a long term solution running on modern web technology and Azure. They now have a solution that will grow with them over the years.
+
+I’m so proud of this project and I hope you enjoy [the case study](https://www.ssw.com.au/SSW/Consulting/Case-Study/HutchisonWeller.aspx).

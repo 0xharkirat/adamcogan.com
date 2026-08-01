@@ -1,0 +1,1483 @@
+{
+  "categories": {
+    "general": {
+      "name": "General",
+      "count": 114,
+      "description": ""
+    },
+    "scrum": {
+      "name": "Scrum",
+      "count": 10,
+      "description": ""
+    },
+    "training": {
+      "name": "Training",
+      "count": 9,
+      "description": ""
+    },
+    "gadgets": {
+      "name": "Gadgets",
+      "count": 2,
+      "description": ""
+    },
+    "user-experience": {
+      "name": "User Experience",
+      "count": 6,
+      "description": ""
+    },
+    "ssw-projects": {
+      "name": "SSW Projects",
+      "count": 28,
+      "description": ""
+    },
+    "tfs": {
+      "name": "TFS",
+      "count": 4,
+      "description": ""
+    },
+    "family": {
+      "name": "Family",
+      "count": 11,
+      "description": ""
+    },
+    "firebootcamp": {
+      "name": "FireBootCamp",
+      "count": 11,
+      "description": ""
+    },
+    "logo": {
+      "name": "Logo",
+      "count": 1,
+      "description": ""
+    },
+    "xamarin": {
+      "name": "Xamarin",
+      "count": 3,
+      "description": ""
+    },
+    "angular": {
+      "name": "Angular",
+      "count": 7,
+      "description": ""
+    },
+    "user-groups": {
+      "name": "User groups",
+      "count": 3,
+      "description": ""
+    },
+    "visual-studio": {
+      "name": "Visual Studio",
+      "count": 5,
+      "description": ""
+    },
+    "ssw-onion-architecture": {
+      "name": "SSW Onion Architecture",
+      "count": 1,
+      "description": ""
+    },
+    "ssw-data-onion": {
+      "name": "SSW Data Onion",
+      "count": 1,
+      "description": ""
+    },
+    "crm": {
+      "name": "CRM",
+      "count": 4,
+      "description": ""
+    },
+    "tesla": {
+      "name": "Tesla",
+      "count": 1,
+      "description": ""
+    },
+    "awards": {
+      "name": "Awards",
+      "count": 2,
+      "description": ""
+    },
+    "ssw-china": {
+      "name": "SSW China",
+      "count": 4,
+      "description": ""
+    },
+    "chinafy": {
+      "name": "Chinafy",
+      "count": 6,
+      "description": ""
+    },
+    "ebook": {
+      "name": "ebook",
+      "count": 3,
+      "description": ""
+    },
+    "microsoft-band-2": {
+      "name": "Microsoft Band 2",
+      "count": 3,
+      "description": ""
+    },
+    "ssw-logo": {
+      "name": "SSW Logo",
+      "count": 1,
+      "description": ""
+    },
+    "javascript-frameworks": {
+      "name": "JavaScript Frameworks",
+      "count": 3,
+      "description": ""
+    },
+    "work-flow": {
+      "name": "work flow",
+      "count": 1,
+      "description": ""
+    },
+    "sharepoint": {
+      "name": "SharePoint",
+      "count": 3,
+      "description": ""
+    },
+    "renovation": {
+      "name": "renovation",
+      "count": 2,
+      "description": ""
+    },
+    "power-bi": {
+      "name": "Power BI",
+      "count": 2,
+      "description": ""
+    },
+    "ssw-getaway": {
+      "name": "SSW Getaway",
+      "count": 2,
+      "description": ""
+    },
+    "george-michael": {
+      "name": "George Michael",
+      "count": 1,
+      "description": ""
+    },
+    "non-ssw-projects": {
+      "name": "Non-SSW projects",
+      "count": 4,
+      "description": ""
+    },
+    "interview": {
+      "name": "Interview",
+      "count": 5,
+      "description": ""
+    },
+    "microsoft-ignite": {
+      "name": "Microsoft Ignite",
+      "count": 3,
+      "description": ""
+    },
+    "microsoft-teams": {
+      "name": "Microsoft Teams",
+      "count": 1,
+      "description": ""
+    },
+    "net-core": {
+      "name": ".NET Core",
+      "count": 6,
+      "description": ""
+    },
+    "ndc-sydney": {
+      "name": "NDC Sydney",
+      "count": 8,
+      "description": ""
+    },
+    "customer-experience": {
+      "name": "Customer Experience",
+      "count": 3,
+      "description": ""
+    },
+    "ssw-party": {
+      "name": "SSW Party",
+      "count": 2,
+      "description": ""
+    },
+    "azure": {
+      "name": "Azure",
+      "count": 5,
+      "description": ""
+    },
+    "employment": {
+      "name": "Employment",
+      "count": 1,
+      "description": ""
+    },
+    "skin-cancer": {
+      "name": "skin cancer",
+      "count": 1,
+      "description": ""
+    },
+    "ssw-rules": {
+      "name": "SSW Rules",
+      "count": 9,
+      "description": ""
+    },
+    "ai": {
+      "name": "AI",
+      "count": 17,
+      "description": ""
+    },
+    "ssw-tv": {
+      "name": "SSW TV",
+      "count": 6,
+      "description": ""
+    },
+    "digital-platforms": {
+      "name": "Digital Platforms",
+      "count": 2,
+      "description": ""
+    },
+    "architecture": {
+      "name": "Architecture",
+      "count": 3,
+      "description": ""
+    },
+    "adams-diaries-from-old-rules": {
+      "name": "Adam's Diaries - from old rules",
+      "count": 1,
+      "description": ""
+    },
+    "documentation": {
+      "name": "Documentation",
+      "count": 2,
+      "description": ""
+    },
+    "power-apps": {
+      "name": "Power Apps",
+      "count": 1,
+      "description": ""
+    },
+    "office-365": {
+      "name": "Office 365",
+      "count": 1,
+      "description": ""
+    },
+    "accessibility": {
+      "name": "Accessibility",
+      "count": 2,
+      "description": ""
+    },
+    "automated-testing": {
+      "name": "Automated Testing",
+      "count": 1,
+      "description": ""
+    },
+    "github": {
+      "name": "GitHub",
+      "count": 6,
+      "description": ""
+    },
+    "security": {
+      "name": "Security",
+      "count": 1,
+      "description": ""
+    },
+    "power-automate": {
+      "name": "Power Automate",
+      "count": 1,
+      "description": ""
+    },
+    "chatgpt": {
+      "name": "ChatGPT",
+      "count": 6,
+      "description": ""
+    },
+    "data-engineering": {
+      "name": "Data Engineering",
+      "count": 1,
+      "description": ""
+    },
+    "net": {
+      "name": ".NET",
+      "count": 9,
+      "description": ""
+    },
+    "tina-cms": {
+      "name": "Tina CMS",
+      "count": 6,
+      "description": ""
+    },
+    "net8-migration": {
+      "name": ".NET8 Migration",
+      "count": 1,
+      "description": ""
+    },
+    "ssw-timepro": {
+      "name": "SSW TimePro",
+      "count": 1,
+      "description": ""
+    },
+    "microsoft-aspire": {
+      "name": "Microsoft Aspire",
+      "count": 1,
+      "description": ""
+    }
+  },
+  "tags": {
+    "2023": {
+      "name": "2023",
+      "count": 1
+    },
+    "sswtv": {
+      "name": "SSWTV",
+      "count": 2
+    },
+    "user-interface": {
+      "name": "User Interface",
+      "count": 1
+    },
+    "navigation": {
+      "name": "Navigation",
+      "count": 1
+    },
+    "user-group": {
+      "name": "User Group",
+      "count": 2
+    },
+    "sydney": {
+      "name": "Sydney",
+      "count": 1
+    },
+    "hanselman": {
+      "name": "Hanselman",
+      "count": 1
+    },
+    "ssw-team": {
+      "name": "SSW Team",
+      "count": 1
+    },
+    "ssw-tv": {
+      "name": "SSW TV",
+      "count": 6
+    },
+    "eve-cogan": {
+      "name": "Eve Cogan",
+      "count": 2
+    },
+    "anastasia": {
+      "name": "Anastasia",
+      "count": 2
+    },
+    "event-cinemas": {
+      "name": "event cinemas",
+      "count": 1
+    },
+    "2012-retrospective": {
+      "name": "2012 retrospective",
+      "count": 1
+    },
+    "brian-harry": {
+      "name": "Brian Harry",
+      "count": 2
+    },
+    "microsoft": {
+      "name": "Microsoft",
+      "count": 2
+    },
+    "crm": {
+      "name": "CRM",
+      "count": 1
+    },
+    "touchdevelop-com": {
+      "name": "touchdevelop.com",
+      "count": 1
+    },
+    "review": {
+      "name": "review",
+      "count": 3
+    },
+    "motorbike-accident": {
+      "name": "motorbike accident",
+      "count": 2
+    },
+    "m": {
+      "name": "m",
+      "count": 0
+    },
+    "dynamics-crm": {
+      "name": "Dynamics CRM",
+      "count": 2
+    },
+    "dynamics-365": {
+      "name": "Dynamics 365",
+      "count": 4
+    },
+    "events": {
+      "name": "events",
+      "count": 1
+    },
+    "ndc-sydney": {
+      "name": "NDC Sydney",
+      "count": 5
+    },
+    "richard-campbell": {
+      "name": "Richard Campbell",
+      "count": 1
+    },
+    "history-of-net": {
+      "name": "History of .NET",
+      "count": 1
+    },
+    "cx": {
+      "name": "CX",
+      "count": 3
+    },
+    "ux": {
+      "name": "UX",
+      "count": 4
+    },
+    "customer-experience": {
+      "name": "customer experience",
+      "count": 3
+    },
+    "year-in-review": {
+      "name": "year in review",
+      "count": 8
+    },
+    "ssw-melbourne": {
+      "name": "SSW Melbourne",
+      "count": 1
+    },
+    "ssw-brisbane": {
+      "name": "SSW Brisbane",
+      "count": 1
+    },
+    "full-stack": {
+      "name": "Full Stack",
+      "count": 0
+    },
+    "sharepoint-online": {
+      "name": "SharePoint Online",
+      "count": 1
+    },
+    "office-365": {
+      "name": "Office 365",
+      "count": 2
+    },
+    "azure-services": {
+      "name": "Azure Services",
+      "count": 2
+    },
+    "sugarlearning": {
+      "name": "SugarLearning",
+      "count": 1
+    },
+    "relationship-management": {
+      "name": "Relationship management",
+      "count": 1
+    },
+    "employment": {
+      "name": "Employment",
+      "count": 1
+    },
+    "personal": {
+      "name": "personal",
+      "count": 1
+    },
+    "rules": {
+      "name": "rules",
+      "count": 1
+    },
+    "consulting": {
+      "name": "consulting",
+      "count": 1
+    },
+    "teamwork": {
+      "name": "teamwork",
+      "count": 3
+    },
+    "conference": {
+      "name": "Conference",
+      "count": 3
+    },
+    "rules-to-better-angular": {
+      "name": "Rules to Better Angular",
+      "count": 1
+    },
+    "angular": {
+      "name": "Angular",
+      "count": 1
+    },
+    "ssw-rules": {
+      "name": "SSW Rules",
+      "count": 1
+    },
+    "china": {
+      "name": "china",
+      "count": 4
+    },
+    "coffee": {
+      "name": "coffee",
+      "count": 1
+    },
+    "starbucks": {
+      "name": "starbucks",
+      "count": 1
+    },
+    "luckin": {
+      "name": "luckin",
+      "count": 1
+    },
+    "2018-in-review": {
+      "name": "2018 in review",
+      "count": 1
+    },
+    "leadership": {
+      "name": "leadership",
+      "count": 1
+    },
+    "david-neal": {
+      "name": "david neal",
+      "count": 1
+    },
+    "dear-microsoft": {
+      "name": "dear microsoft",
+      "count": 1
+    },
+    "tip-dont-rant": {
+      "name": "tip don't rant",
+      "count": 1
+    },
+    "chinafy": {
+      "name": "chinafy",
+      "count": 1
+    },
+    "uber": {
+      "name": "uber",
+      "count": 1
+    },
+    "didi": {
+      "name": "didi",
+      "count": 1
+    },
+    "github": {
+      "name": "github",
+      "count": 8
+    },
+    "coronavirusbushfires": {
+      "name": "CoronavirusBushfires",
+      "count": 0
+    },
+    "corona-virus": {
+      "name": "Corona Virus",
+      "count": 0
+    },
+    "coronavirus": {
+      "name": "Coronavirus",
+      "count": 4
+    },
+    "bushfire": {
+      "name": "Bushfire",
+      "count": 0
+    },
+    "covid-19": {
+      "name": "covid-19",
+      "count": 1
+    },
+    "awards": {
+      "name": "awards",
+      "count": 0
+    },
+    "working-from-home": {
+      "name": "Working from Home",
+      "count": 1
+    },
+    "remote-work": {
+      "name": "Remote Work",
+      "count": 1
+    },
+    "teams": {
+      "name": "Teams",
+      "count": 2
+    },
+    "general": {
+      "name": "General",
+      "count": 1
+    },
+    "video": {
+      "name": "Video",
+      "count": 2
+    },
+    "cms": {
+      "name": "CMS",
+      "count": 5
+    },
+    "content-management": {
+      "name": "Content Management",
+      "count": 3
+    },
+    "cloud": {
+      "name": "Cloud",
+      "count": 1
+    },
+    "migration": {
+      "name": "Migration",
+      "count": 3
+    },
+    "google": {
+      "name": "Google",
+      "count": 1
+    },
+    "digital-platforms": {
+      "name": "Digital PLatforms",
+      "count": 0
+    },
+    "news": {
+      "name": "News",
+      "count": 1
+    },
+    "government-legislation": {
+      "name": "Government Legislation",
+      "count": 1
+    },
+    "architecture-diagrams": {
+      "name": "Architecture Diagrams",
+      "count": 2
+    },
+    "projects": {
+      "name": "Projects",
+      "count": 1
+    },
+    "virtual-conference": {
+      "name": "Virtual Conference",
+      "count": 1
+    },
+    "interviews": {
+      "name": "Interviews",
+      "count": 2
+    },
+    "ndc-sydney-2020": {
+      "name": "NDC Sydney 2020",
+      "count": 1
+    },
+    "gitbook": {
+      "name": "GitBook",
+      "count": 1
+    },
+    "ebook": {
+      "name": "ebook",
+      "count": 1
+    },
+    "documentation": {
+      "name": "documentation",
+      "count": 2
+    },
+    "embracing-change": {
+      "name": "Embracing change",
+      "count": 1
+    },
+    "2020-in-review": {
+      "name": "2020 in review",
+      "count": 1
+    },
+    "project-management": {
+      "name": "Project Management",
+      "count": 2
+    },
+    "tech-debt": {
+      "name": "Tech Debt",
+      "count": 1
+    },
+    "technical-debt": {
+      "name": "Technical Debt",
+      "count": 2
+    },
+    "powerapps": {
+      "name": "PowerApps",
+      "count": 1
+    },
+    "power-apps": {
+      "name": "Power Apps",
+      "count": 1
+    },
+    "microsoft-power-suite": {
+      "name": "Microsoft Power Suite",
+      "count": 2
+    },
+    "low-code": {
+      "name": "Low-code",
+      "count": 2
+    },
+    "scrum": {
+      "name": "Scrum",
+      "count": 2
+    },
+    "scrum-guide-2020": {
+      "name": "Scrum Guide 2020",
+      "count": 1
+    },
+    "scrum-guide-update": {
+      "name": "Scrum Guide Update",
+      "count": 1
+    },
+    "secrets": {
+      "name": "Secrets",
+      "count": 1
+    },
+    "secure-code": {
+      "name": "Secure Code",
+      "count": 1
+    },
+    "connection-strings": {
+      "name": "Connection Strings",
+      "count": 1
+    },
+    "managed-identities": {
+      "name": "Managed Identities",
+      "count": 1
+    },
+    "azure-key-vault": {
+      "name": "Azure Key Vault",
+      "count": 1
+    },
+    "e-learning": {
+      "name": "E-learning",
+      "count": 0
+    },
+    "audiobooks": {
+      "name": "audiobooks",
+      "count": 0
+    },
+    "multiselect": {
+      "name": "Multiselect",
+      "count": 1
+    },
+    "reporting": {
+      "name": "Reporting",
+      "count": 1
+    },
+    "dictate": {
+      "name": "Dictate",
+      "count": 1
+    },
+    "voice-to-text": {
+      "name": "voice-to-text",
+      "count": 1
+    },
+    "accessibility": {
+      "name": "Accessibility",
+      "count": 1
+    },
+    "error-handling": {
+      "name": "Error handling",
+      "count": 1
+    },
+    "code-health": {
+      "name": "code health",
+      "count": 0
+    },
+    "application-insights": {
+      "name": "Application insights",
+      "count": 1
+    },
+    "healthy-code": {
+      "name": "healthy code",
+      "count": 1
+    },
+    "report-bugs": {
+      "name": "report bugs",
+      "count": 1
+    },
+    "ui": {
+      "name": "UI",
+      "count": 3
+    },
+    "automated-testing": {
+      "name": "Automated Testing",
+      "count": 1
+    },
+    "bdd": {
+      "name": "BDD",
+      "count": 1
+    },
+    "automated-ui-testing": {
+      "name": "Automated UI Testing",
+      "count": 1
+    },
+    "gtihub-actions": {
+      "name": "GtiHub Actions",
+      "count": 1
+    },
+    "github-issues": {
+      "name": "GitHub Issues",
+      "count": 2
+    },
+    "github-projects": {
+      "name": "GitHub Projects",
+      "count": 2
+    },
+    "fairness": {
+      "name": "Fairness",
+      "count": 1
+    },
+    "speaking-up": {
+      "name": "Speaking Up",
+      "count": 1
+    },
+    "management": {
+      "name": "Management",
+      "count": 1
+    },
+    "people": {
+      "name": "People",
+      "count": 0
+    },
+    "people-management": {
+      "name": "People Management",
+      "count": 1
+    },
+    "cyber-crime": {
+      "name": "Cyber Crime",
+      "count": 1
+    },
+    "ransomware": {
+      "name": "Ransomware",
+      "count": 1
+    },
+    "malware": {
+      "name": "Malware",
+      "count": 1
+    },
+    "ransom-attacks": {
+      "name": "Ransom Attacks",
+      "count": 1
+    },
+    "cyber-security": {
+      "name": "Cyber Security",
+      "count": 1
+    },
+    "tiktok": {
+      "name": "TikTok",
+      "count": 1
+    },
+    "social-media": {
+      "name": "Social Media",
+      "count": 1
+    },
+    "advertising": {
+      "name": "Advertising",
+      "count": 1
+    },
+    "power-automate": {
+      "name": "Power Automate",
+      "count": 1
+    },
+    "flow": {
+      "name": "Flow",
+      "count": 1
+    },
+    "automated-flows": {
+      "name": "Automated Flows",
+      "count": 1
+    },
+    "user-experience": {
+      "name": "User Experience",
+      "count": 1
+    },
+    "customer-journey": {
+      "name": "Customer Journey",
+      "count": 2
+    },
+    "journey-mapping": {
+      "name": "Journey Mapping",
+      "count": 1
+    },
+    "ai": {
+      "name": "AI",
+      "count": 17
+    },
+    "blog": {
+      "name": "BLog",
+      "count": 1
+    },
+    "blogging": {
+      "name": "Blogging",
+      "count": 1
+    },
+    "aiwriter": {
+      "name": "AIwriter",
+      "count": 1
+    },
+    "ndc": {
+      "name": "NDC",
+      "count": 3
+    },
+    "ndc-sydney-2022": {
+      "name": "NDC Sydney 2022",
+      "count": 1
+    },
+    "developers": {
+      "name": "Developers",
+      "count": 1
+    },
+    "retreat": {
+      "name": "Retreat",
+      "count": 2
+    },
+    "team-bonding": {
+      "name": "Team Bonding",
+      "count": 1
+    },
+    "copilot": {
+      "name": "Copilot",
+      "count": 4
+    },
+    "ai-code-writer": {
+      "name": "ai code writer",
+      "count": 1
+    },
+    "family": {
+      "name": "Family",
+      "count": 1
+    },
+    "covid": {
+      "name": "Covid",
+      "count": 1
+    },
+    "post-covid": {
+      "name": "post-covid",
+      "count": 1
+    },
+    "new-year": {
+      "name": "New Year",
+      "count": 1
+    },
+    "2022-year-in-review": {
+      "name": "2022 Year in Review",
+      "count": 1
+    },
+    "video-terminology": {
+      "name": "Video terminology",
+      "count": 1
+    },
+    "video-production": {
+      "name": "Video production",
+      "count": 1
+    },
+    "video-terms": {
+      "name": "Video terms",
+      "count": 1
+    },
+    "azure": {
+      "name": "Azure",
+      "count": 2
+    },
+    "azure-cost": {
+      "name": "Azure Cost",
+      "count": 1
+    },
+    "azure-spend": {
+      "name": "Azure Spend",
+      "count": 1
+    },
+    "azure-monitoring": {
+      "name": "Azure monitoring",
+      "count": 1
+    },
+    "france": {
+      "name": "France",
+      "count": 1
+    },
+    "cultural-exchange": {
+      "name": "Cultural Exchange",
+      "count": 1
+    },
+    "april-fools": {
+      "name": "April Fools",
+      "count": 1
+    },
+    "multicultural-teams": {
+      "name": "Multicultural Teams",
+      "count": 1
+    },
+    "working-overseas": {
+      "name": "Working overseas",
+      "count": 1
+    },
+    "chatgpt": {
+      "name": "ChatGPT",
+      "count": 4
+    },
+    "chatgpt4": {
+      "name": "ChatGPT4",
+      "count": 2
+    },
+    "chatgpt3": {
+      "name": "ChatGPT3",
+      "count": 2
+    },
+    "ndc-oslo": {
+      "name": "NDC Oslo",
+      "count": 2
+    },
+    "open-ai": {
+      "name": "Open AI",
+      "count": 1
+    },
+    "prompt-engineering": {
+      "name": "Prompt Engineering",
+      "count": 1
+    },
+    "autonomous": {
+      "name": "Autonomous",
+      "count": 0
+    },
+    "autonomous-agents": {
+      "name": "autonomous agents",
+      "count": 2
+    },
+    "microsoft-fabric": {
+      "name": "Microsoft Fabric",
+      "count": 2
+    },
+    "data": {
+      "name": "Data",
+      "count": 1
+    },
+    "data-engineering": {
+      "name": "Data Engineering",
+      "count": 1
+    },
+    "brainstorming": {
+      "name": "Brainstorming",
+      "count": 1
+    },
+    "team-work": {
+      "name": "Team work",
+      "count": 0
+    },
+    "collaboration": {
+      "name": "Collaboration",
+      "count": 1
+    },
+    "kernal": {
+      "name": "Kernal",
+      "count": 0
+    },
+    "dyanamics": {
+      "name": "Dyanamics",
+      "count": 0
+    },
+    "outlook": {
+      "name": "Outlook",
+      "count": 1
+    },
+    "semantic-kernel": {
+      "name": "Semantic Kernel",
+      "count": 2
+    },
+    "copilots": {
+      "name": "Copilots",
+      "count": 1
+    },
+    "azure-devops": {
+      "name": "Azure DevOps",
+      "count": 1
+    },
+    "microsoft-semantic-kernel": {
+      "name": "Microsoft Semantic Kernel",
+      "count": 1
+    },
+    "software-development": {
+      "name": "Software Development",
+      "count": 3
+    },
+    "orchestration": {
+      "name": "orchestration",
+      "count": 1
+    },
+    "chatbots": {
+      "name": "chatbots",
+      "count": 1
+    },
+    "website": {
+      "name": "website",
+      "count": 2
+    },
+    "feeback": {
+      "name": "Feeback",
+      "count": 0
+    },
+    "feedback": {
+      "name": "Feedback",
+      "count": 1
+    },
+    "retrospective": {
+      "name": "Retrospective",
+      "count": 2
+    },
+    "critical-feedback": {
+      "name": "Critical Feedback",
+      "count": 1
+    },
+    "net": {
+      "name": ".NET",
+      "count": 4
+    },
+    "net-8": {
+      "name": ".NET 8",
+      "count": 3
+    },
+    "net-aspire": {
+      "name": ".NET Aspire",
+      "count": 1
+    },
+    "microsoft-aspire": {
+      "name": "Microsoft Aspire",
+      "count": 2
+    },
+    "containers": {
+      "name": "Containers",
+      "count": 1
+    },
+    "retrospective-retrospective-2023": {
+      "name": "Retrospective Retrospective 2023",
+      "count": 0
+    },
+    "retrospective-2023": {
+      "name": "Retrospective 2023",
+      "count": 1
+    },
+    "ndc-sydney-2024": {
+      "name": "NDC Sydney 2024",
+      "count": 1
+    },
+    "scott-hanselman": {
+      "name": "Scott Hanselman",
+      "count": 1
+    },
+    "migrations": {
+      "name": "Migrations",
+      "count": 2
+    },
+    "medical-ai": {
+      "name": "Medical AI",
+      "count": 1
+    },
+    "dermatology": {
+      "name": "Dermatology",
+      "count": 1
+    },
+    "melanoma": {
+      "name": "Melanoma",
+      "count": 1
+    },
+    "clean-architecture": {
+      "name": "Clean Architecture",
+      "count": 2
+    },
+    "templates": {
+      "name": "Templates",
+      "count": 1
+    },
+    "markdown": {
+      "name": "Markdown",
+      "count": 2
+    },
+    "markdown-editor": {
+      "name": "Markdown Editor",
+      "count": 1
+    },
+    "tinacms": {
+      "name": "TinaCMS",
+      "count": 6
+    },
+    "headless-cms": {
+      "name": "Headless CMS",
+      "count": 2
+    },
+    "tina": {
+      "name": "Tina",
+      "count": 1
+    },
+    "automation": {
+      "name": "Automation",
+      "count": 2
+    },
+    "conferences": {
+      "name": "Conferences",
+      "count": 1
+    },
+    "net-8-migration": {
+      "name": ".NET 8 Migration",
+      "count": 1
+    },
+    "migration-stories": {
+      "name": "Migration Stories",
+      "count": 2
+    },
+    "large-migrations": {
+      "name": "Large Migrations",
+      "count": 2
+    },
+    "tinaupdates": {
+      "name": "TinaUpdates",
+      "count": 1
+    },
+    "pnpm": {
+      "name": "pnpm",
+      "count": 1
+    },
+    "package-manager": {
+      "name": "Package Manager",
+      "count": 1
+    },
+    "react-integration": {
+      "name": "React Integration",
+      "count": 1
+    },
+    "media-manager": {
+      "name": "Media Manager",
+      "count": 1
+    },
+    "adrs": {
+      "name": "ADRs",
+      "count": 1
+    },
+    "architectural-decision-records": {
+      "name": "Architectural Decision Records",
+      "count": 1
+    },
+    "smart-software-decisions": {
+      "name": "Smart software decisions",
+      "count": 1
+    },
+    "software-documentation": {
+      "name": "software documentation",
+      "count": 1
+    },
+    "wordpress": {
+      "name": "WordPress",
+      "count": 1
+    },
+    "wp-engine": {
+      "name": "WP Engine",
+      "count": 1
+    },
+    "automattic": {
+      "name": "Automattic",
+      "count": 1
+    },
+    "github-copilot": {
+      "name": "GitHub Copilot",
+      "count": 1
+    },
+    "ai-copilot": {
+      "name": "AI copilot",
+      "count": 2
+    },
+    "dev-surveys": {
+      "name": "Dev Surveys",
+      "count": 1
+    },
+    "coding-support": {
+      "name": "Coding support",
+      "count": 1
+    },
+    "2024-retrospective": {
+      "name": "2024 Retrospective",
+      "count": 1
+    },
+    "speaking": {
+      "name": "Speaking",
+      "count": 1
+    },
+    "cursor": {
+      "name": "Cursor",
+      "count": 1
+    },
+    "coding": {
+      "name": "Coding",
+      "count": 1
+    },
+    "code-copilot": {
+      "name": "Code copilot",
+      "count": 1
+    },
+    "ai-tools": {
+      "name": "AI Tools",
+      "count": 3
+    },
+    "seo": {
+      "name": "SEO",
+      "count": 1
+    },
+    "llms": {
+      "name": "LLMs",
+      "count": 1
+    },
+    "llms-txt": {
+      "name": "llms.txt",
+      "count": 1
+    },
+    "robots-txt": {
+      "name": "robots.txt",
+      "count": 1
+    },
+    "gpt": {
+      "name": "GPT",
+      "count": 1
+    },
+    "easyleave": {
+      "name": "EasyLeave",
+      "count": 1
+    },
+    "timepro": {
+      "name": "TimePro",
+      "count": 1
+    },
+    "timesheets": {
+      "name": "timesheets",
+      "count": 1
+    },
+    "yakshaver": {
+      "name": "YakShaver",
+      "count": 1
+    },
+    "bug-reporting": {
+      "name": "Bug Reporting",
+      "count": 1
+    },
+    "pbi-creation": {
+      "name": "PBI Creation",
+      "count": 1
+    },
+    "work-tasks": {
+      "name": "Work Tasks",
+      "count": 1
+    },
+    "efficiency": {
+      "name": "Efficiency",
+      "count": 1
+    },
+    "ai-agents": {
+      "name": "AI Agents",
+      "count": 2
+    },
+    "software-architecture": {
+      "name": "Software Architecture",
+      "count": 1
+    },
+    "vsa": {
+      "name": "VSA",
+      "count": 1
+    },
+    "vertical-slice-architecture": {
+      "name": "Vertical Slice architecture",
+      "count": 1
+    },
+    "modular-monolith": {
+      "name": "Modular Monolith",
+      "count": 1
+    },
+    "microservices": {
+      "name": "Microservices",
+      "count": 1
+    },
+    "decision-tree": {
+      "name": "Decision tree",
+      "count": 1
+    },
+    "aspire-9-4": {
+      "name": "Aspire 9.4",
+      "count": 1
+    },
+    "aspire-cli": {
+      "name": "Aspire CLI",
+      "count": 1
+    },
+    "github-integrations": {
+      "name": "GitHub Integrations",
+      "count": 1
+    },
+    "resource-graph-dashboard": {
+      "name": "Resource Graph Dashboard",
+      "count": 1
+    },
+    "ai-features": {
+      "name": "AI features",
+      "count": 1
+    },
+    "model-context-protocol": {
+      "name": "Model Context Protocol",
+      "count": 1
+    },
+    "mcp": {
+      "name": "MCP",
+      "count": 1
+    },
+    "openai": {
+      "name": "OpenAI",
+      "count": 1
+    },
+    "agent-builder": {
+      "name": "Agent Builder",
+      "count": 1
+    },
+    "ai-automation": {
+      "name": "AI Automation",
+      "count": 1
+    },
+    "backlog": {
+      "name": "Backlog",
+      "count": 1
+    },
+    "duplicates": {
+      "name": "Duplicates",
+      "count": 1
+    },
+    "content-editing": {
+      "name": "Content Editing",
+      "count": 1
+    },
+    "community": {
+      "name": "community",
+      "count": 0
+    },
+    "microsoft-mvp": {
+      "name": "Microsoft MVP",
+      "count": 0
+    },
+    "keynote": {
+      "name": "Keynote",
+      "count": 0
+    },
+    "payroll": {
+      "name": "Payroll",
+      "count": 0
+    },
+    "redesign": {
+      "name": "Redesign",
+      "count": 1
+    },
+    "design": {
+      "name": "Design",
+      "count": 1
+    },
+    "websites": {
+      "name": "websites",
+      "count": 1
+    },
+    "landing-pages": {
+      "name": "landing pages",
+      "count": 1
+    },
+    "best-practice": {
+      "name": "best practice",
+      "count": 1
+    }
+  },
+  "authors": {
+    "adamcogan": {
+      "name": "Adam Cogan",
+      "description": "More at www.adamcogan.com"
+    },
+    "pennywalkerssw-com-au": {
+      "name": "Penny Walker",
+      "description": ""
+    }
+  }
+}

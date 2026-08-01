@@ -1,0 +1,84 @@
+---
+title: "TFS is huge in China – the work item journey with 20 million records (Part I)"
+description: "Update: Lei Xu has also posted this in Chinese. Recently Lei Xu and I completed a hair-raising TFS 2012 project. We hit some snags trying to optimize Work Items with 20,000,000 records. Let me tell you the story… It was completed shortly after arriving home from the MVP Summit in Redmond. It was luc"
+pubDate: 2013-08-04T04:00:21.000Z
+updatedDate: 2017-02-06T16:41:06.000Z
+author: "Adam Cogan"
+categories: ["scrum", "ssw-projects", "tfs"]
+tags: []
+legacyUrl: "/2013/08/04/tfs-is-huge-in-china-part-1/"
+wpId: 396
+---
+
+**Update:** Lei Xu has also posted this in Chinese.
+
+Recently Lei Xu and I completed a hair-raising TFS 2012 project. We hit some snags trying to optimize Work Items with 20,000,000 records. Let me tell you the story…
+
+It was completed shortly after arriving home from the [MVP Summit](https://blogs.msdn.microsoft.com/mvpawardprogram/2013/02/15/2013-mvp-summit-and-20th-anniversary/ "MVP Summit") in Redmond. It was lucky we were full of information from Brian Harry and his team. This job turned out to be one of the most challenging that I’ve ever done, pushing the performance limits of Team Foundation Server 2012 (these tips apply to TFS 2013 and 2010 as well).
+
+<Figure src="/media/2013/07/brian-lei.jpg" alt="brian-lei" caption="Figure: Brian Harry and Lei Xu @ MVP Summit" />
+
+First some background: the client runs one of the biggest development teams in the world. They have over 20,000 developers and have a lot of experience gathering, analyzing and acting on performance metrics acquired while testing software prior to wide scale deployment. The system we needed to implement and customize had to cope with a massive number of concurrent requests, of course in very timely fashion. We used the TFS Integration Platform and the TFS Object Model to implement most of the functionality required.
+
+Initially we thought TFS should be able to handle the load without too many problems, because Microsoft has been [dogfooding TFS in their developer division](http://blogs.msdn.com/b/bharry/archive/2009/09/04/dogfooding-tfs-2010-in-devdiv.aspx) for a long time, with great results.
+
+However, like every story, things will never run as you expect. Once the coding was done, with all the data access, business logic and interface implementations on top of TFS Object Model, it was time for the 1st performance tests.
+
+The initial results were disappointing:
+
+| Test Case | Target | Initial time (Before tuning) Red if target missed |
+| --- | --- | --- |
+| Create Operation |  |  |
+| No concurrency | 200 ms | **1200 ms** |
+| 10 concurrency | 500 ms | **2700 ms** |
+| 100 concurrency | 1500 ms | \>**3000 ms** |
+| Query Operation |  |  |
+| No concurrency | 200 ms | 234 ms |
+| 10 concurrency | 500 ms | 565 ms |
+| 100 concurrency | 1500 ms | **3000 ms** |
+
+**Figure: The initial performance results were disappointing – some being 5-6 times worse than the target**
+
+It was powered by a great beefy SQL Server, so even though the TFS collection database had 20 million work items in it, I was shocked.
+
+But also like every story, there is a happy ending, so here is the result after our tuning:
+
+| Test Case | Target | After Tuning |
+| --- | --- | --- |
+| Create Operation |  |  |
+| No concurrency | 200 ms | 87 ms |
+| 10 concurrency | 500 ms | 399 ms |
+| 100 concurrency | 1500 ms | **2500 ms** (single server) or 1500 ms (NLB) |
+| Query Operation |  |  |
+| No concurrency | 200 ms | 28 ms |
+| 10 concurrency | 500 ms | 32 ms |
+| 100 concurrency | 1500 ms | 200 ms |
+
+**Figure: The client was happy with the results, we made our target in each case. That said, I think we were pushing TFS limits**
+
+# More information:
+
+There were many lessons that we learned and many people who helped. Let me summarize the lessons.
+
+### Lesson 1: Team Work
+
+I put team work as the top one, as great software development is never a one man job, especially when you are dealing with a complex system. This system has many moving parts, including lots of performance tuning to TFS 2012, SQL Server, Windows Server 2012, IIS 8, the majority of TFS web services and the TFS Object Model. We were lucky enough to have experts for each of these parts and when put together, we achieved our goal.
+
+During this project I got help from guys at Microsoft, my colleagues at SSW and couple of MVPs around the world. These included Brian Harry (Microsoft Technical Fellow, father of TFS), Aaron Hallberg (TFS DevTeam), Tiago Pascoal (ALM MVP), Ramesh Rajagopal (DevDiv from MS Dev Center), Julia Liuson (Manager of TFS DevTeam), Yongming Yi (MS Technical Specialist) … and more.
+
+In short, if you want to do the job right, you need the right people. Having such a great team was essential for the end result.
+
+### Lesson 2: Performance testing should be done as early as possible
+
+We used Scrum for this project and we built in unit tests and load tests from the very 1st sprint. One large impediment we had was the hardware. We didn’t get the right hardware until end of the project.
+
+The results from the initial performance tests were poor. Thankfully this was not a too big of surprise for the client because one benefit of Agile methodology like Scrum is being transparent. This transparency led to understanding from the client.
+
+The other main benefit of implementing performance testing early was that we had enough time to contact helpful people to gain support.
+
+As you see the first 2 lessons are really not technical lessons. My next blog post will cover the technical lessons…
+
+[Read part II here](https://adamcogan.com/2013/08/04/tfs-is-huge-in-china-part-2/ "TFS is huge in China – the work item journey with 20 million records (Part II)").
+
+Cheers,
+@AdamCogan

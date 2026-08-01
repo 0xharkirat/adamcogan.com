@@ -53,15 +53,18 @@ node_modules/
 # Astro
 .astro
 
-# TODO: After scaffolding from this template, DELETE the block below so your
-# chosen lockfile (we recommend pnpm-lock.yaml) is committed. See README → "Commit your lockfile".
-# Package Manager Lock Files
+# Package Manager Lock Files (pnpm-lock.yaml is committed on purpose)
 package-lock.json
-pnpm-lock.yaml
 yarn.lock
 .yarn/cache
 bun.lockb
 deno.lock
+
+# Migration working data. Re-creatable with `node migration/scripts/1-extract.mjs`
+# and the Playwright capture; 64 MB of raw WordPress JSON and reference
+# screenshots is not worth carrying in history.
+migration/raw
+migration/design/shots
 
 # builds
 .vercel

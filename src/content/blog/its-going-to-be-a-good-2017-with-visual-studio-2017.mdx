@@ -1,0 +1,213 @@
+---
+title: "It’s going to be a good 2017 with Visual Studio 2017"
+description: "2016 was a big year for Microsoft developers. We saw good work from Microsoft – the 3 biggest items for SSW are: Extending .NET to non-Microsoft platforms like OSX and Linux with the release of .NET Core, Visual Studio Code and Visual Studio for Mac Some of the guys in the SSW office are now"
+pubDate: 2017-02-08T04:06:02.000Z
+updatedDate: 2017-02-09T05:32:57.000Z
+author: "Adam Cogan"
+categories: ["visual-studio"]
+tags: []
+legacyUrl: "/2017/02/08/its-going-to-be-a-good-2017-with-visual-studio-2017/"
+wpId: 2896
+---
+
+2016 was a big year for Microsoft developers. We saw good work from Microsoft – the 3 biggest items for SSW are:
+
+1.  Extending .NET to non-Microsoft platforms like OSX and Linux with the release of .NET Core, Visual Studio Code and Visual Studio for Mac
+    Some of the guys in the SSW office are now developing solely on a Mac and now have the option to deploy to Linux.
+    The most important reason we are embracing .NET Core is it is \***500%** **faster**\*
+2.  Embraced tools from other platforms like Docker, Gulp and NPM.
+    Most of our new web projects start with Angular and use [Angular CLI](https://rules.ssw.com.au/dont-base-your-projects-on-the-angular-io-tutorials) or Webpack which you can get from NPM
+3.  Focus on cross platform mobile development with the purchase of Xamarin (native), updates to Apache Cordova (hybrid) and updates to UWP (Win10 platforms)
+
+There’s a lot to be excited about, plus much more. Therefore, I look forward to 2017 with the release of Visual Studio 2017.
+
+### The install is quick
+
+At SSW we [hire](https://www.ssw.com.au/ssw/Employment/Employment.aspx) a lot of talented developers and, as such, need to get them up and running quickly. In the past we’ve maintained [windows images](https://www.ssw.com.au/ssw/standards/Rules/RulesToBetterWindows7Deployment.aspx#DeployingWindows7) that developers can just load onto their machines and be up and running with all the tools installed in about 30 minutes. However, we’ve found the images to be difficult to maintain because software gets updated more frequently these days. We now recommend installing Windows 10 and then using [Chocolatey](https://rules.ssw.com.au/do-you-know-the-quickest-way-to-get-your-windows-10-soe-up-and-running) to get up and running with the latest software quickly.
+
+In the old days the Visual Studio 2015 installer used to be a big bottleneck (6 GB install) with it taking an hour or two to install + any other updates.
+
+Thankfully, Visual Studio 2017 comes with a new streamlined installer that can install a minimal version of Visual Studio (less than 0.5 GB) that supports 20 programming languages with Intellisense. Now you choose a platform to develop for by choosing a “workload”, which will install the required components.
+
+<Figure src="/media/2017/02/Visual-Studio-2017-Installer-.jpg" alt="Figure: The new Visual Studio 2017 Installer showing the different workloads. We usually choose “Web development”." caption="Figure: The new Visual Studio 2017 Installer showing the different workloads. We usually choose “Web development”." />
+
+### Using Visual Studio is much quicker
+
+The speed improvements don’t just end there. There’s also lightweight solution loading and general speed improvements everywhere that speed up loading a solution. As an example, our [SSW TimePro](https://sswtimepro.com/) (our time sheeting solution that integrates with CRM and VisualStudio.com/TFS) project has 39 projects with a mix of Web Projects and Class libraries and the results are:
+
+-   VS2015 – 45 seconds to load
+-   VS2017 – 30 seconds to load
+
+Those 15 seconds may not seem much, but it all adds up.
+
+### ![VS-loading](/media/2017/02/VS-loading.jpg)The death of VB.NET
+
+Most new client projects at SSW have the services written in C# and the front end in Angular. We’ve also converted many clients from VB.NET to C#. In March 2015 we bit the bullet and converted our [www.ssw.com.au](http://www.ssw.com.au) website from VB.NET to C#. The primary driver for this was because we had nothing else in VB.NET and I got sick of developers complaining about it. I’m sure if I asked any of them to write new code in VB.NET they’d say “[Cash me outside how bow dah”](https://youtu.be/QxU6jF7_YTU?t=18).
+
+I find it interesting if you look at [Google trends](https://www.google.com.au/trends/explore?q=C%23,%2Fm%2F01dpgv,AngularJS) AngularJS has just became more popular than VB.NET.
+
+<Figure src="/media/2017/02/Google-trends-Csharp-VB-NET-AngularJS.jpg" alt="Figure: Google trends for C#, VB.NET and AngularJS. Shows the decline of VB.NET and rise of Angular" caption="Figure: Google trends for C#, VB.NET and AngularJS. Shows the decline of VB.NET and rise of Angular" />
+
+### The old C# 6.0
+
+Last year Eric Phan did a [Dev Superpowers video outlining the new C# 6.0 features](https://tv.ssw.com/6757/c-sharp-6-features-you-should-be-using-now-dev-superpowers-episode-22-eric-phan) that came out with Visual Studio 2015. So check that out to recap before jumping into the new C# 7.0 features. In Visual Studio 2015 Update 2 the Roslyn analysers included super cool refactoring tips that encouraged the use of the new C# 6.0 features, so all devs should be familiar with them by now.
+
+<Figure src="/media/2017/02/favourite-feature-CodeLens.jpg" alt="Figure: My favourite feature was CodeLens, see the orange circle, it lets me know where it’s used. The one thing I would love is to see if this method is slow or causing errors. The information is in App Insights and RayGun" caption="Figure: My favourite feature was CodeLens. See the orange circle – it lets me know where it’s used. The one thing I would love is to see if this method is slow or causing errors. The information is in App Insights and RayGun" />
+
+### C# 7.0 almost forms full sentences
+
+So with Visual Studio 2017 we get several new C# 7.0 features like:
+
+-   #1 Tuple Types and Tuple Literals
+
+var oldTuple = newTuple<string, decimal, bool>("A", 123, true);
+Trace.WriteLine($"\{oldTuple.Item1\} \[VIP: \{oldTuple.Item3\}\] ordered \{oldTuple.Item2:c2\}");
+
+**Figure: Old Way – This is the old way of using a tuple**
+
+var literalTuple = ("A", 123, true);
+Trace.WriteLine($"\{literalTuple.Item1\} \[VIP: \{literalTuple.Item3\}\] ordered \{literalTuple.Item2:c2\}");
+
+**Figure: New Way – Declaring the tuple is now simpler**
+
+var namedTuple = (Name: "A", OrderTotal: 123, IsVIP: true);
+Trace.WriteLine($"\{namedTuple.Name\} \[VIP: \{namedTuple.IsVIP\}\] ordered \{namedTuple.OrderTotal:c2\}");
+
+**Figure: New Way – Declaring the tuple with named items makes the code very readable**
+
+-   #2 Inline out variables
+
+int i;
+if (int.TryParse("123", out i))
+\{
+    // Do something
+\}
+
+**Figure: Old Way – Previously you would have to declare the variable “i” first, before passing it to the TryParse method**
+
+if (int.TryParse("123", out var i))
+\{
+    // Do something
+\}
+
+**Figure: New Way – now we can just declare the output variable “i” when we use it**
+
+<Figure src="/media/2017/02/VS-2017-new-reactoring-tools.jpg" alt="Figure: The best part is the new refactoring tools actually suggest using the new the inline output variable, when you try to use the old way" caption="Figure: The best part is the new refactoring tools actually suggest using the new the inline output variable, when you try to use the old way" />
+
+-   #3 Pattern matching in ‘switch’ statements
+
+class Bird \{ \}
+
+class Magpie : Bird \{
+public bool IsSwoopingSeason \{ get; set; \} = false;
+\}
+
+class Budgie : Bird \{
+public string FavouriteFood \{ get; set; \} = "Bird seed";
+\}
+
+public string SuggestAnAction(Bird bird)
+\{
+if (bird == null)
+throw new ArgumentNullException(nameof(bird));
+
+if (bird is Magpie)
+\{
+var magpie = bird as Magpie;
+
+if (magpie.IsSwoopingSeason)
+return "Bring a helmet";
+return "Go for a stroll";
+\}
+else if (bird is Budgie)
+\{
+var budgie = bird as Budgie;
+return $"Bring \{budgie.FavouriteFood\} for the walk";
+\}
+       else return "Do nothing";
+\}
+
+**Figure: Old Way – Have to use IF statements and find the type of the bird to determine the action**
+
+C# 6.0 – Switch statements only worked on value types like strings and ints
+
+C# 7.0 – Switch statements support complex types like classes
+
+class Bird \{ \}
+
+class Magpie : Bird \{
+public bool IsSwoopingSeason \{ get; set; \} = false;
+\}
+
+class Budgie : Bird \{
+public string FavouriteFood \{ get; set; \} = "Bird seed";
+\}
+
+public string SuggestAnAction2(Bird bird)
+\{
+    switch (bird)
+    \{
+        case Magpie m when m.IsSwoopingSeason == true:
+            return "Bring a helmet";
+        case Magpie m when m.IsSwoopingSeason == false:
+           return "Go for a stroll";
+        case Budgie b:
+            return $"Bring \{b.FavouriteFood\} for the walk";
+        case null:
+            throw new ArgumentNullException(nameof(bird));
+        default:
+            return "Do nothing";
+    \}
+\}
+
+**Figure: New Way – You can now use the switch statement to match on the inherited type, create an alias then reference any properties in the condition of the case statement**
+
+This is just 3 features, there are heaps more. Overall developers will see that the new C# 7.0 features help to make code more concise and readable
+
+### Find your code like a pro – better navigation
+
+As code bases grow, developers need a better way of navigating code. If you are still using CTRL + SHIFT + F to find code in your solution then you’re doing it wrong!
+
+<Figure src="/media/2017/02/bad-example-using-ctrl-shift-f.jpg" alt="Figure: Bad Example – Using CTRL + SHIFT + F to find all in the solution gives a wall of text" caption="Figure: Bad Example – Using CTRL + SHIFT + F to find all in the solution gives a wall of text" />
+
+Back in Visual Studio 2012, it introduced the Solution Explorer Search (CTRL + 😉 which helps you find files, methods and properties in the Solution Explorer
+
+<Figure src="/media/2017/02/better-example-using-ctrl-semicolon.jpg" alt="Figure: Better Example – Using CTRL + ; searching in the Solution Explorer window" caption="Figure: Better Example – Using CTRL + ; searching in the Solution Explorer window" />
+
+Now Visual Studio 2017 it introduces Go to All with CTRL + T
+
+<Figure src="/media/2017/02/good-example-using-go-to-all.jpg" alt="Figure: Good Example – Using Go To All to quickly find what you’re after" caption="Figure: Good Example – Using Go To All to quickly find what you’re after" />
+
+Check out the 7 icons at the bottom. The new Go to All feature lets you filter for Files, Types, Members and Fields to help you quickly narrow down the code you are after.
+
+But you say, I just want CTRL + G to go to a line number.
+
+The VS team have also integrated the Go to line number into this search box e.g. :12
+
+<Figure src="/media/2017/02/go-to-line-integrated.jpg" alt="Figure: Go To Line has been integrated into the Go to All search box" caption="Figure: Go To Line has been integrated into the Go to All search box" />
+
+There’s a lot more than the above but my top 10 are:
+
+1.  .NET Core – faster app
+2.  Live Unit tests – I’m feeling NCrunch
+3.  Better Refactoring suggestions – so you use C# better
+4.  Go To All CTRL + T – find things faster
+5.  A nicer Find All References UI – more colours and more hovering
+6.  EditorConfig support to enforce code styling rules – unlike StyleCop it forces it
+7.  Syncing Extensions to the cloud with Roaming Extensions manager – feels like I’m in Chrome
+8.  Better Intellitrace summary and code profiling
+9.  Improved Debugging with:
+    1.  Run to Click
+    2.  Improved Exception handler (no more null reference debugging needed) and
+    3.  CodeLens improvements to show App Insights data, Exception counts during debug
+
+<Figure src="/media/2017/02/app-insights-data-in-CodeLens.jpg" alt="Figure: App Insights data now showing in CodeLens" caption="Figure: App Insights data now showing in CodeLens" />
+
+Be sure to check out my upcoming sessions at:
+
+-   Ignite
+-   Canberra
+-   Sydney
+-   Brisbane
+-   Melbourne
+-   Adelaide

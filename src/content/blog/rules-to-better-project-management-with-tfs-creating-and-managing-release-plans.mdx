@@ -1,0 +1,579 @@
+---
+title: "Rules to Better Project Management with TFS (Creating and Managing Release Plans)"
+description: "Note: This content is from old “RulesToBetterProjectManagementWithTFS.aspx”. The current rules to follow are SSW Rules to Better Scrum At SSW we advocate using the rich features of email and a release plan approachto getting work done. Follow these steps and you will have happier clients and clients"
+pubDate: 2007-07-18T15:36:00.000Z
+updatedDate: 2023-12-27T23:11:28.000Z
+author: "Adam Cogan"
+categories: ["adams-diaries-from-old-rules", "general"]
+tags: []
+legacyUrl: "/2007/07/18/rules-to-better-project-management-with-tfs-creating-and-managing-release-plans/"
+wpId: 4648
+---
+
+**Note:** This content is from old “RulesToBetterProjectManagementWithTFS.aspx”.
+The current rules to follow are [SSW Rules to Better Scrum](https://www.ssw.com.au/rules/rules-to-better-scrum)
+
+At SSW we advocate using the rich features of email and a release plan approach
+to getting work done. Follow these steps and you will have happier clients and clients
+that know what is going on.
+
+1.  ## Do you know what Outlook add-ins you
+    need?
+
+    At SSW we advocate using the rich features of email to describe work items. As Team
+    Foundation Server (TFS) does not support this implicitly, you need to use a 3rd
+    party solution:
+
+    -   Team Companion ($) Recommended
+    -   TeamLook from Personify Design ($)
+    -   Outlook TFS Addin (free)
+
+    <Figure src="/media/2023/12/TeamCompanionMain.jpg" alt="" caption="Figure: Good Example – Using Team Companion" />
+
+    <Figure src="/media/2023/12/TeamLookNewWI.png" alt="" caption="Figure: Bad Example – Using TeamLook" />
+
+    Team Companion is the best TFS tool for Outlook, it allows you to easily:
+
+    -   Move emails (from your inbox) to the current sprint (in TFS)
+    -   Close items and reply ‘done’ to the client (with the history)
+    -   Download and work offline (with the TFS work items) in Outlook
+
+    Above features are almost all you need to easily manage the process to track a job.
+
+2.  ## Do you use printed ‘SSW Story Cards’ with your customers in the Spec Review?
+
+    When doing a Spec Review, always bring printed SSW Story Cards.
+
+    -   Complete the story card with the client
+    -   Teach the clients how to complete story cards by themselves
+    -   Go to Web Portal (projects.ssw.com.au/tfs/Northwind) and enter the story
+    -   Write the Story ID field on the card
+    -   Stick the cards on the project room wall maximizing visibility
+
+    <Figure src="/media/2023/12/SSWStoryCard.jpg" alt="SSW Story Card" caption="Figure: SSW Story Card" />
+
+3.  ## Dones – Do you reply ‘Done – changeset xxx’ (bad example using TFS instead of TeamCompanion)
+
+    1.  When the work item is completed opens up the work item and opens the original attachment
+        email and click “reply to all”
+
+        A Feature request for TFS would be to have a ‘Reply to All’ option on the File Attachments dialog (see figure below), this would open a new email with the original message.
+        Once this message has been sent it then should add the file to the file attachments for the work item.
+
+        At this stage this is the way to do it manually.
+
+        <Figure src="/media/2023/12/TFSWA_CompleteWI_Step1.jpg" alt="Open original email from work items" caption="Figure: Bad Example – Open work item and select file attachments, then open the original email request (using TFSWA)" />
+
+    2.  Select ‘reply to all’ and create a ‘done’ email
+
+        <Figure src="/media/2023/12/DraftReplyToAll.gif" alt="Explain what you did." caption="Figure: Bad Example – Reply ‘done’ to all (using TFSWA)" />
+
+    3.  Save “done” email as msg file to a local folder
+
+        <Figure src="/media/2023/12/SaveAsMsg.gif" alt="Save email as msg file" caption="Figure: Bad Example – Save ‘done’ email as msg file to a local folder (using TFSWA)" />
+
+        <Figure src="/media/2023/12/TFSWA_CompleteWI_Step4.jpg" alt="Attach done email into the work item" caption="Figure: Bad Example – Attach ‘done’ email back against the work item (using TFSWA)" />
+
+    4.  Change the status of the work item and update the hours worked
+
+        <Figure src="/media/2023/12/TFSWA_CompleteWI_Step5.jpg" alt="Close work items with actual hours spent." caption="Figure: Bad Example – Change Status to ‘Closed’, add hours to worked completed and change remaining hours to 0 (using TFSWA)" />
+
+4.  ## Dones – Describe the work item request in an email
+
+    The required work item (bug request, new feature or change) should be described in sufficient detail in the body of an email and emailed according to the projects work item communication standard. It is preferred that the email not include any attachments.
+
+    <Figure src="/media/2023/12/RequirementEmail.gif" alt="Confirming requirement with email" caption="Figure: Confirming the requirement by sending an email to yourself" />
+
+5.  ## Dones – Move the email from your inbox to a TFS Work Item (via an Outlook Addin)
+
+    Open the task email and click on “New Work Item from Mail” in Team Companion toolbar, the good thing about this it will automatically attach the original email as an attachment when you check the option.
+
+    <Figure src="/media/2023/12/TFS_OAdd_01.jpg" alt="Converting email to TFS with TeamCompanion" caption="Figure: Convert the email into a TFS work item by click TeamCompanion’s ‘New Work Item from Mail’ button" />
+
+    <Figure src="/media/2023/12/TFS_OAdd_02.jpg" alt="Converting email to TFS with TeamCompanion" caption="Figure: The original email will be attached to the TFS work item so you have the original (plus all the rich formatting in the email)" />
+
+    Ensure you inform the client that the current task, and all subsequent tasks, will be added to backlog, or to a specified iteration.
+
+    Hi Adam,
+
+    Your task has been added to the next release, Release 04. All subsequent tasks will be added to this iteration unless otherwise specified.
+
+    Regards,
+
+    Jonny Trees
+    www.ssw.com.au
+
+    **Figure: After converting the email into TFS work item, you should send the client**
+    **an email**
+
+    **Note:** Once you’ve moved the email into TFS as work item, you should delete the original email from your inbox or move it to a outlook folder called “Moved to TFS” to avoid duplication.
+
+6.  ## Done – Do you fix/update the TeamCompanion template, so the email “subject” doesn’t
+    change?
+
+    Generally email subject should not change as it affects threading in Outlook.
+
+    Out of the box, Team Companion does change the “Email Subject” in the “Send Email” tab. To avoid this, change to “System.Title” as new task subject.
+
+    Change from:
+
+    <Figure src="/media/2023/12/TFS_SendMail_Option1.jpg" alt="Send Email option" caption="Figure: The default template changes the subject" />
+
+    To
+
+    <Figure src="/media/2023/12/TFS_SendMail_Option.jpg" alt="Send Email option" caption="Figure: Change the New Email subject to be ‘RE: {System.Title}’ so the subject does not change" />
+
+    **Note:** You should add “RE:” as the prefix because this generated email will normally be a reply to the original request.
+
+7.  ## Dones – Do you fix/update the TeamCompanion template, so the email “history” looks
+    decent?
+
+    <Figure src="/media/2023/12/TFS_SendMail_Option2.jpg" alt="Send Email option" caption="Figure: Change the “New e-mail body:” so you can generate a proper “done” mail" />
+
+    Besides the Email subject, you should:
+
+    1.  Update the “New e-mail body” to the following:
+
+        Done
+        <br />
+        <br />
+        -----------------------------------
+        <br />
+        <b>Work Item URL: </b>\{TeamCompanion.WorkItemUrl\}
+        <br />
+        <b>Area: </b> \{System.AreaPath\}
+        <br />
+        <b>Iteration: </b>\{System.IterationPath\}
+        <br />
+        <b>Type: </b> \{System.WorkItemType\}
+        <br />
+        <b>State: </b> \{System.State\}
+        <br />
+        <b>Estimated</b>: \{Microsoft.VSTS.Scheduling.BaselineWork\}
+        <br />
+        <b>Completed</b>: \{Microsoft.VSTS.Scheduling.CompletedWork\}
+        <br />
+        <b>Additional</b>: \{SSW.Agile.Additional\}
+        -----------------------------------
+
+        **Note:** If you are reply “done” to a work item other than “Task”, you need to manually remove the following fields because these work items don’t have these fields:
+
+        -   Estimated: \{Microsoft.VSTS.Scheduling.BaselineWork\}
+        -   Completed: \{Microsoft.VSTS.Scheduling.CompletedWork\}
+        -   Additional: \{SSW.Agile.Additional\}
+    2.  Uncheck “Use Work Item Html preview as Email body”.
+    3.  Check “Use HTML markup in body”.
+    4.  Choose “Send Email (and Attach to Work Item)” as “Default Send by Mail action”.
+8.  ## Dones – Do your “dones” include the right details
+
+    -   Description of the original change request
+    -   Baseline estimates
+    -   Completed time
+    -   Technical detail & code if the client is interested (you will need to factor time for this in your estimate)
+    -   Relevant screenshots
+    -   A link or reference to the original item in TFS
+9.  ## Dones – Do you reply ‘Done – changeset xxx’? (4 step of using TeamCompanion instead of plain TFS)
+
+    Here are the steps to follow when you complete a task. Generate the email using TeamCompanion and you will get the TFS work item into an acceptable state to send to a client:
+
+    -   Step 1: Open the work item using Team Companion
+    -   Step 2: Choose in the menu “Done”
+    -   Step 3: Include the replied original request (the customers email) as history
+    -   Step 4: Send the done email (and TeamCompanion will close the work item in the current backlog)
+
+    #### More Information
+
+    **Step 1: Open the work item and the customers email**
+
+    **Note:** Make sure you have followed rule “Dones – Move the email from your inbox to a TFS Work Item (via an Outlook Addin)” to create work items in TFS. If you followed this rule then you have attached the original email to the work item.
+
+    A done email should include the original request as part of the history so your client can easily see what the original task was.
+
+    -   Open the work item
+
+        <Figure src="/media/2023/12/open-work-item.jpg" alt="Work Item File Attachments" caption="Figure: Open the work item using Team Companion" />
+
+    -   Open the email in attachments hit ‘Reply’ to this email and copy the email history (we will use the history of this email in our “Done” email).
+
+        <Figure src="/media/2023/12/email-clipboard.jpg" alt="Replied original request email as the history" caption="Figure: Once opened, Control+A, Control+C to copy the email history to the clipboard" />
+
+    **Step 2: Choose “Done”**
+
+    <Figure src="/media/2023/12/choose-done.jpg" alt="Generate done mail template" caption="Choose “Done”" />
+
+    You will see that the following Windows, check “Send done e-mail” and click “OK”
+
+    <Figure src="/media/2023/12/done-window.jpg" alt="Generate done mail template" caption="Figure: The done windows from Team Companion that will close the work item from you" />
+
+    **Step 3: Include the replied original request email (the customers email) as history**
+
+    As you can see, this “done” email template only includes basic information about
+    the work item – missing the customers history! In order to keep client fully informed about the task, you should
+    include the original email history that we copied to the clipboard in step 1.
+
+    **Note:** You should not do it the other way around as TeamCompanion will not attach it back to the work item.
+
+    <Figure src="/media/2023/12/TFS_4StepDone_5.jpg" alt="Proper done mail" caption="Figure: Wooolaaaah… The properly formatted “done” email" />
+
+    Take note of the 4 red rectangles above. They are the steps to follow, being:
+
+    1.  Enter the client’s email
+    2.  Make it clear that the task is done
+    3.  Include necessary information about the implementation/fix and screen shots
+    4.  Paste the reply to the original email as the history
+
+    **Step 4: Send the done email (and TeamCompanion close the work item in the current backlog)**
+
+    Now you are all set. All you need to do now is to send this “done” email is click the “Send” button.
+
+    TeamCompanion will attach this “done” email back to the work item and close it.
+
+    <Figure src="/media/2023/12/done-attachment.jpg" alt="File Attachments" caption="Figure: You will now have the attachments – the “Done” email" />
+
+    And the work item is now closed.
+
+    <Figure src="/media/2023/12/closed-work-item.jpg" alt="work item is closed" caption="Figure: The work item is closed in TFS 2012" />
+
+10.  ## Initializing the Project – Do you get the work items into TFS via Excel
+
+     -   Open SSW Priorities Estimate Template in Excel
+
+         <Figure src="/media/2023/12/ExcelSSWTemplate.jpg" alt="Find SSW Template - 'New | My templates... | SSW_Proposal-Project | SSWPrioritiesEstimateTemplate.xltx'" caption="Figure: Find SSW Template – ‘New | My templates… | SSW_Proposal-Project | SSWPrioritiesEstimateTemplate.xltx’" />
+
+     -   Add the tasks and additional tasks into Release\_XX sheet
+
+         <Figure src="/media/2023/12/ExcelReleaseSheet.jpg" alt="Copy work items to Release_XX sheet" caption="Figure: Copy work items to Release_XX sheet" />
+
+         **Note:** The Project Management tasks will be calculated based on your tasks
+
+     -   Create a new sheet and go to Team tab
+     -   Click “New List” and choose your project
+
+         <Figure src="/media/2023/12/ExcelFindProject.jpg" alt="Find your project in the list" caption="Figure: Find your project in the list" />
+
+         <Figure src="/media/2023/12/ExcelInputList.jpg" alt="Choose 'Input list' to download the empty template" caption="Figure: Choose ‘Input list’ to download the empty template" />
+
+     -   Add the other useful columns e.g. Baseline Work, Remaining Work, Completed Work
+         into Excel
+
+         <Figure src="/media/2023/12/ExcelChooseColumnsButton.jpg" alt="Click 'Choose columns'" caption="Figure: Click ‘Choose columns’" />
+
+         <Figure src="/media/2023/12/ExcelChooseColumnsList.jpg" alt="Select columns in the left list" caption="Figure: Select columns in the left list" />
+
+     -   Copy work items (including the Project Management tasks) from Release\_XX to the new sheet
+
+         <Figure src="/media/2023/12/ExcelWorkItems.jpg" alt="Copy work items from Release_XX" caption="Figure: Copy work items from Release_XX" />
+
+     -   Click “Publish” button to upload the work items to TFS
+11.  ## Triage the work item
+
+     If you are already working on an iteration, you will need to Triage the work item. Ideally choose a future iteration.
+
+     <Figure src="/media/2023/12/TFS_TW_01.jpg" alt="Assign the converted task to an interation" caption="Figure: Triage the work item. Aim to assign the task to a future iteration" />
+
+12.  ## What if this is a related work item?
+
+     -   If the request is related to another work item or is a duplicate request, [create a link to the other work item (see below)](#Links)
+     -   If the request is a bug from a closed work item that needs to be re-opened
+
+         <Figure src="/media/2023/12/TFSWA_AttachFile.jpg" alt="Close work items with actual hours spent." caption="Figure: Bad Example – Work Item is re-opened and email added to attachments (using TFSWA)" />
+
+         <Figure src="/media/2023/12/TeamCompanionAttachEmail.jpg" alt="Attach Email - Team Companion" caption="Figure: Good Example – Work Item is re-opened and email added to the attachments (using Team Companion)" />
+
+13.  ## Do you know what to do with a duplicate? (aka Linking Work Items)
+
+     If a work item is related to another work item or is a duplicate request, create a link between the work items.
+
+     In the next version of Visual Studio Team System 2008 there is a feature of hierarchy tables that may allow better management of related work items and multiple change requests on the same work item.
+
+     <Figure src="/media/2023/12/TFSWA_LinkWorkItem.jpg" alt="Add link between work items" caption="Figure: Bad Example – Add the link between the two work items, you will be prompted for search options to locate the related item (using TFSWA)" />
+
+     <Figure src="/media/2023/12/TFSWA_FindWorkItem.jpg" alt="Locate Work Item" caption="Figure: Bad Example – Locate original work item from your work items list (using TFSWA)" />
+
+     <Figure src="/media/2023/12/TFSWA_LinkWorkItemComplete.jpg" alt="Locate Work Item" caption="Figure: Bad Example – Link has been added and you can save the new work item (using TFSWA)" />
+
+     Team Companion provides an easy way to link with an existing work item.
+
+     <Figure src="/media/2023/12/TeamCompanionOpenWorkItem.jpg" alt="Open the existing work item" caption="Figure: Good Example – Open an existing work item from work item list (using Team Companion)" />
+
+     <Figure src="/media/2023/12/TeamCompanionAddRelatedWI.jpg" alt="Create related work item" caption="Figure: Good Example – Link has been added to the new created work item (using Team Companion)" />
+
+14.  ## Do you use the Implementation tab to organize your requirements hierarchy?
+
+     At SSW, we are using Agile process to manage our project, in MSF Agile Template 5.0, there are different work item types that can help us to organize our requirements hierarchy. User Stories work items present a piece of user requirements, normally it describe a complete scenario a user interact with the software; such description make senses to customer as well as the developers, provide the team a common understanding
+     of what is required. Tasks work items make more senses to the developers which provide a breakdown of a single User Story, and they can be filled into the “Implementation”
+     tab of a User Story by linking them together.
+
+     The advantages of this new MSF Agile Template 5.0 and Team Foundation Server 2010 is it understands the hierarchy itself by providing Child/Parent link type between User Stories and Tasks, therefore not only the people understand their relationship, but also the server itself can use such links to generate more meaningful reports.
+
+     <Figure src="/media/2023/12/Agile5LinkTypes.jpg" alt="Link types" caption="Figure:Child/Parent link types" />
+
+     Compare to the old Agile Template which only provide links between work items, it couldn’t distinguish a child or a parent.
+
+     <Figure src="/media/2023/12/Agile4LinkTab.jpg" alt="Agile 4 Links tab" caption="Figure: Bad Example – The old Agile template only provides “related” links" />
+
+     <Figure src="/media/2023/12/Agile5ImpTab.jpg" alt="Agile 5 Implementation tab" caption="Figure: Good Example – Using the “Implementation” tab to organize hierarchy by using “Child” link type" />
+
+15.  ## Do you avoid creating multiple Team Projects for the same project?
+
+     TFS uses Team Project to manage sources code, Work Items and other project related document; the source control allows you to create multiple solution folders under the same Team Project to meet your need. You shouldn’t create multiple Team Projects for the same project as this make it very difficult to query the Work Items, create reference between projects and make builds.
+
+     TFS Team Project should be considered from a project management point of view instead of technical point of view, you should use a Team Project to manage all resources in your project, including source code, documentations and reports etc. If you are separating the related source code into different Team Project, you will find it’s difficult for you to decide the location of your other resources should be going to, like your release plan, project update etc.
+
+     <Figure src="/media/2023/12/BadMultipleProject.gif" alt="Bad Multiple Project Example" caption="Figure: Bad Example – Multiple Team Projects for the same product" />
+
+     <Figure src="/media/2023/12/GoodMultipleProject.gif" alt="Good Multiple Project Example" caption="Figure: Good Example – Multiple solution folders in the same Team Project" />
+
+16.  ## Reports – Do you know how to create a sprint backlog (was release plan) with TFS?
+
+     <Figure src="/media/2023/12/Scrum-Overview-Diagram-Update-Product-Backlog.jpg" alt="The Update Product Backlog Stage" caption="Figure: At this point, you are at “Update Product Backlog” stage" />
+
+     Prior to your meeting with the customer you should prepare. Get your ‘Sprint Contract’ (was ‘Release Plan’) email ready, so after the meeting you can adjust and promptly send it. Let’s learn how to do it.
+
+     1.  1.  Open your team project in Visual Studio
+             **Tip:** Use SSW Agile Template to create or upgrade your TFS team project. See Do you use SSW Agile Template for SSW project?
+         2.  Create a new TFS iteration for your sprint
+             **Tip:** Go to Visual Studio | Team | Team Project Settings | Areas and Iterations
+
+             <Figure src="/media/2023/12/AreasAndIterations.png" alt="Create Iteration in TFS" caption="Figure: Create Iteration in TFS" />
+
+     1.  1.  Add the task work items
+             **Tip:** Use Excel as per Initializing the Project – Do you get the work items into TFS via Excel
+             **Note:** You should have already used Team Companion to create your user stories as per Use Outlook Add-in to move the email to a TFS Work Item
+
+     1.  1.  Estimate each task and fill in fields of ‘Baseline work’ and ‘Remaining work’
+             **Tip:** The value of the two fields should be equal before the work item starts
+
+             <Figure src="/media/2023/12/TFS_WorkItem_Baseline.gif" alt="create work item for release plan" caption="Figure: Fill in ‘Baseline work’ and ‘Remaining work’ fields (Tip: Use Excel instead of Visual Studio)" />
+
+     1.  1.  Create an email as per Do you have a contract between Product Owner and the Team?
+         2.  In your email add the tasks
+             **Tip:** Attach a PDF of the Story Overview report
+             or
+             Open Excel and copy the stories
+
+             <Figure src="/media/2023/12/StoriesOverviewReport.jpg" alt="Stories Overview Report" caption="Figure: Open the ‘Stories Overview Report’ and attach .pdf in your sprint contract (was ‘Release Plan’ email)" />
+
+17.  ## Do you know how to create a Release Update/Debrief report with TFS?
+
+     As per Do you get regular updates on costs and progress? we send project update report to client every week (usually on Monday) and a debrief report at the end of each release.
+
+     Before using TFS to generate release update or debrief report, you should createa Release Plan following Do you know how to create a project release plan with TFS?
+
+     Then you need:
+
+     -   Follow Dones – Do you reply ‘Done – changeset xxx’ (bad example using TFS instead of TeamCompanion) to complete work item
+         after it’s done or update
+     -   Update work items which are not done
+
+         <Figure src="/media/2023/12/TFS_WorkItem_Completed.gif" alt="update work item" caption="Figure: Update work item fields" />
+
+     -   Go to TFS report server and open report folder of your team project, generate project Update/Debrief from SSW Release Update
+
+         <Figure src="/media/2023/12/TFS_UP_01.jpg" alt="release update/debrief report" caption="Figure: SSW Release Update report" />
+
+18.  ## Do you use TFS Proxy server for Build server?
+
+     Automated build contribute the most load on TFS server, adding a TFS proxy server even in the same LAN will help to reduce the concurrent connections to the main TFS server.
+
+19.  ## Do you know how to find the URL of a task?
+
+     -   Open the TFS Web Access in browser
+     -   Find and click on your task
+
+         <Figure src="/media/2023/12/FindYourTask.png" alt="Find your task" caption="Figure: Find your task" />
+
+         <Figure src="/media/2023/12/SeeTaskDetail.png" alt="Click on your task and see the detail" caption="Figure: Click on your task and see the detail" />
+
+     -   Get the URL in the address bar
+20.  ## Do you know about the nice URLs for TFS Web Access?
+
+     By default the URLs that come out of TFS Web Access are ugly:
+
+     http://tfswa.ssw.com.au/UI/Pages/WorkItems/WorkItemEdit.aspx?pid=1425&state-guid=0b5f1ed0-6ca5-4907-8ff4-9a41b4c11581&oqs=pid%3d1425%26state-guid%3d436808a0-3f8e-452a-97c4-c93ef887e160%26oqs%3did%253d10197
+
+     You can use the following nice URLs to get access to the work items you need:
+
+     Open a work item
+
+     http:///wi.aspx?id=<workItemID>
+
+     Open a work item in a team collection by GUID
+
+     http:///**wi**.aspx?id=<workItemID>&pguid=<teamProjectCollectionGuid>
+
+     Open a work item in a team collection by collection name
+
+     http:///**wi**.aspx?id=<workItemID>&pname=<teamProjectCollectionName>
+
+     Create a new work item
+
+     http:///**wi**.aspx?wit=<workItemType>&pcname=<CollectionName>&pname=<ProjectName>
+
+     <Figure src="/media/2023/12/TSWALinkCreator.jpg" alt="TSWA Link Creator" caption="Figure: Create nice URL by TSWA Link Auditor" />
+
+21.  ## Do you know how to refresh the cube?
+
+     Note: These are instructions for TFS 2010 Beta 2
+
+     If you enter data and then look at reports you will see stale data!!!
+
+     <Figure src="/media/2023/12/StaleData.jpg" alt="The TFS Warehouse needs to be updated." caption="Figure: The report footer tells you that the TFS Warehouse is not up to date" />
+
+     The UI does not provide an easy option. However you have 2 \*hard\* ways of updating the TFS Data Warehouse.
+
+     **Option 1.** Open SQL Management Studio and then force re-processing
+
+     **Option 2.** Open the TFS Web Services in IE and then force processing (Recommended – see below)
+
+     More info on Option 2 follow these instructions to reprocess the data warehouse using the web services (this took us a long time to work out):
+
+     1.  Open IIS Manager
+     2.  Go to “Team Foundation Server”
+     3.  Open the feature “Directory browsing”
+     4.  “Enable”
+     5.  Back to “Team Foundation Server”
+     6.  “Browse website”
+     7.  Browse to http://localhost:8080/tfs/TeamFoundation/Administration/v3.0/WarehouseControlService.asmx
+
+         <Figure src="/media/2023/12/WebService.jpg" alt="Warehouse Control web services" caption="Figure: You will need to call 2 of these web services" />
+
+     8.  Invoke “ProcessWarehouse” with the parameter “DefaultCollection” (or whatever your collection is called)
+
+         <Figure src="/media/2023/12/ProcessWarehouse.jpg" alt="Process Warehouse" caption="Figure: Call “ProcessWarehouse” web service with paramter “DefaultCollection”" />
+
+     9.  Invoke “ProcessAnalysisDatabase” with parameter “Full”
+
+         <Figure src="/media/2023/12/ProcessAnalysisDatabase.jpg" alt="Process Analysis Database" caption="Figure: Call “ProcessAnalysisDatabase” with paramter “Full”" />
+
+     10.  Now once the the reprocess is completed, the reports are up to date
+22.  ## Do you explain the 3 concepts to a client?
+
+     **Step 1: Line up some ducks**
+
+     ![Ducks in row](/media/2023/12/ducksinrow.jpg)
+
+     Lining up the ducks means to get ready. To get the project ready you need to know
+     the client’s requirements. The best way to track requirements is through User Stories.
+     Present the client with User Story Cards and get them to start filing in what they want to get out of the application.
+
+     <Figure src="/media/2023/12/filledStoryCard.jpg" alt="Filled Story Card" caption="Figure: Clear concise requirements captured in a User Story Card" />
+
+     **Step 2: Do a few practice shots**
+
+     ![Target](/media/2023/12/target.jpg)
+
+     Start preparing. Get the user story cards and enter them into TFS. Pick the high
+     priority ones to do in this iteration and start the mockups and test cases.
+
+     **Step 3: Do it for real (start the race)**
+
+     ![startofrace](/media/2023/12/startofrace.jpg)
+
+     Once everything has been prepared you can start the real development work.
+
+23.  ## Do you know when to create the team project and ‘TFS Portal’ for a prospect/client?
+
+     When a prospect/client is ready to move forward (typically after a Specification Review), you need to create a place to collaborate. Here is how you create a TFS Portal:
+
+     1.  Create a TFS project (to track the work items and releases)
+     2.  Create a SharePoint project site
+
+     You can do both of these at the same time by creating a TFS project and use a SharePoint dashboard.
+
+     <Figure src="/media/2023/12/CreateNewSPSite.jpg" alt="Create New SP Site" caption="Figure: Choose to create a new SharePoint site when creating TFS project" />
+
+     Next, make sure that all the documents for this client are kept in the same place.
+
+     Move all the documents you’ve created for this client, from the ‘Prospects Site (Document Library)’ into the new project site.
+
+     A few other things to do frequently do right away
+
+     1.  If required, create an external user account for the Product Owner. This enables the client access to your SharePoint Extranet to see the documents, sites and reports.
+     2.  If required, let the client know they can upload additional files, or download a
+         copy of the project for testing and deployment.
+     3.  Check permissions and access rights
+     4.  Consider synchronizing the project documents offline via Outlook or SharePoint Workspaces
+     5.  Edit the SharePoint site landing wiki-page and upload some pictures of the team
+
+     <Figure src="/media/2023/12/AddImgToTeamSite.jpg" alt="Add an image To Team Site once the TFS portal is ready" caption="Figure: Once your ‘TFS Portal’ is ready, add a picture of the team site, prior to letting them know about the new site" />
+
+24.  ## Do you know how to create your Project Portal (for existing TFS Team Projects)
+
+     Unfortunately the TFS team did not have time to build the feature to create a SharePoint site, after the project is created. Next version, we hope.
+
+     There is a goofy work around.1.  Create a new temporary project (with a SharePoint site for it)
+     2.  Disable the site for the new project, by checking off ‘\[x\] Enable team project portal’
+     3.  Go back to the old TFS project
+     4.  Enable the site for the original one (pointing to that newly created site)
+     5.  Finally, delete the temporary project you created
+25.  ## Do you know how to get SharePoint 2010 working with TFS 2010?
+
+     There are some steps to getting Sharepoint 2010 working with Team Foundation Server 2010 to get some lovely dashboards
+
+     <Figure src="/media/2023/12/SPWithTFS2010.jpg" alt="Dashboards take the guessing out of the Project Planning and estimation" caption="Figure: Dashboards take the guessing out of Project Planning and estimation. Plus writing these reports would be boring!" />
+
+26.  ## Do you know how to make a better subject and keep threading using TeamCompanion?
+
+     For the most of time, when we put email as an attachment in TFS via TeamCompanion, we keep the original email subject and the Title in TFS consistent so the threading won’t be lost. However, sometimes we need to change the Title when the original email subject is not crystal clear or redundant.
+
+     We need to follow the pattern if we need to change the Title as below.
+
+     \[New Subject\] WAS: \[Old Subject\]
+
+     <Figure src="/media/2023/12/KeepTreading-Bad.jpg" alt="" caption="Figure: Bad Example – The Title is totally changed and the treading is broken" />
+
+     <Figure src="/media/2023/12/KeepTreading-Good.jpg" alt="" caption="Figure: Good Example – Keep the old Title to keep the threading" />
+
+27.  ## Do you check that the 3 services are running on their own AD accounts?
+
+     <Figure src="/media/2023/12/DefaultAdministrationAccount.jpg" alt="Default Administrator account" caption="Figure: Bad example – using the default Administrator account" />
+
+     <Figure src="/media/2023/12/CreateNewAccount.jpg" alt="Create new account" caption="Figure: Better example – At least don’t use the Administrator account, create a new account" />
+
+     <Figure src="/media/2023/12/SpecificADAccount.jpg" alt="Specific AD Account" caption="Figure: Best example – A specific AD account for each major server" />
+
+     <Figure src="/media/2023/12/NetworkAdminName.jpg" alt="Network admin name" caption="Figure: Bad example – using the network admin’s name" />
+
+     <Figure src="/media/2023/12/SQLServerAccount.jpg" alt="SQL Server Account" caption="Figure: Good example – a specific SQL Server account being used (Suggestion: Make the text box wider and link to the one in ‘Services’)" />
+
+28.  ## Do you know to use SharePoint over SharePoint Foundation for TFS?
+
+     There are advantages to using Microsoft Office SharePoint Server (MOSS) over SharePoint Foundation when plugging TFS into SharePoint.
+
+     -   **Better reporting** – Excel Services instead of Reporting Services
+     -   **Dashboards** – Pulling all the information together under nice dynamic headings
+     -   **Customizing** – It is much easier to customize Excel reports than Reporting
+         Services
+
+     <Figure src="/media/2023/12/ProjectDashboard.jpg" alt="Project Dashboard - limited dashboard and reports" caption="Figure: OK Example – Using SharePoint Foundation you get limited dashboards and reports" />
+
+     <Figure src="/media/2023/12/BugDashboard.jpg" alt="Bug Dashboard" caption="Figure: Ultimate example – The bug dashboard gives you easy access to all the data" />
+
+29.  ## Do you know wither to use a Wiki or Document Library?
+
+     When you create a new team project it has both a Document Library and a Wiki and
+     you should know
+
+     <Figure src="/media/2023/12/TeamInfomation.jpg" alt="Add team information" caption="Figure: Always add team information to a Wiki and Client communication to the Document Library" />
+
+     We recommend:-   Document Library
+         -   for documents received from (or sent to) the client
+     -   Wiki
+         -   for collaboration within the team
+         -   Server settings and connection details
+         -   Hyperlinks to reading material
+
+30.  ## Do you know where to keep server details
+
+     If you need to store details about a server or configuration of that server for
+     use on your project you should store it in a Wiki.
+
+     <Figure src="/media/2023/12/WikiExample.jpg" alt="Wiki is a good example for editing" caption="Figure: Good example – Things on a Wiki can easily be edited and quickly checked" />
+
+## Acknowledgments
+
+Adam Cogan
+Justin King
+Mark Liu
+Lei XU

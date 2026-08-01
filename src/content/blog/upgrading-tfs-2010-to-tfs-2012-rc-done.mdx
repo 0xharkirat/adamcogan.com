@@ -1,0 +1,43 @@
+---
+title: "Upgrading TFS 2010 to TFS 2012 RC – Done"
+description: "Over the weekend, we decided to take the plunge and upgrade the SSW TFS 2010 instance to the shiny new TFS 2012 release candidate. Initially, there was some debate as to whether we should upgrade what is the busiest server in our environment. One call to Grant Holliday made all the difference and we"
+pubDate: 2012-06-03T13:29:21.000Z
+updatedDate: 2017-02-06T16:41:09.000Z
+author: "Adam Cogan"
+categories: ["general"]
+tags: []
+legacyUrl: "/2012/06/03/upgrading-tfs-2010-to-tfs-2012-rc-done/"
+wpId: 211
+---
+
+Over the weekend, we decided to take the plunge and upgrade the SSW TFS 2010 instance to the shiny new TFS 2012 release candidate.
+
+Initially, there was some debate as to whether we should upgrade what is the busiest server in our environment.  One call to [Grant Holliday](http://blogs.msdn.com/b/granth/ "Grant Holliday's Blog") made all the difference and we quickly reached a consensus.  The upgrade was going ahead and [Damian Brady](http://www.damianbrady.com.au "Damian Brady") was the guy in the hot seat!
+
+There are three main upgrade paths:
+
+1.  Upgrade from a Basic or Express version of TFS
+2.  Upgrade in place
+3.  **Upgrade and move to new hardware (recommended)**
+
+We chose option 3 for a few reasons.  We used the opportunity to move to a SQL Server 2012 instance and change our hardware configuration a bit, but more importantly option 3 gave us **the simplest** rollback path; simply turn off the new server and bring the old one back up, then change any DNS settings back.
+
+It was a very straightforward process (with a few coffee breaks):
+
+-   Before you start – getting the VMs ready
+-   Preparation steps – stopping the servers and backing up
+-   Installing and upgrading TFS 2012
+-   Configuring Reporting Services
+
+The initial feedback from the test developers is extremely positive. They can’t wait to start using it!
+
+I want to mention a couple of great blog posts.  There was a [series of blog posts from Tim Elhajj](http://elhajj.wordpress.com/ "Tim Elhajj"), and of course we could leverage off our [Rules to Better TFS 2010 Migration](http://rules.ssw.com.au/tfs/RulesToBetterTFS2010Migration/Pages/default.aspx "Rules to Better TFS 2010 Migration") and the related blog posts ([first](http://blog.hinshelwood.com/deploying-visual-studio-2010-team-foundation-server-beta-2-done/ "Deploying Visual Studio 2010 Beta"), [second](http://blog.hinshelwood.com/upgrading-from-tfs-2010-beta-2-to-tfs-2010-rc-done/ "Upgrading from TFS 2010 Beta 2 to TFS 2010 RC Done"), [third](http://blog.hinshelwood.com/upgrading-from-tfs-2010-rc-to-tfs-2010-rtm-done/ "Upgrading from TFS 2010 RC to TFS 2010 RTM Done")) from Martin Hinshelwood for ideas.
+
+Well done to the TFS team, they’ve really done a great job in this version.
+
+SSW may have a possible claim to fame here – we might be the first company to deploy TFS 2012 RC to live.  I have not seen any blog posts about other companies migrating their live environment yet.  I’m a TFS MVP and nobody on that list has posted about their migration yet.  I’m expecting the punctilious Martin Hinshelwood to send us a nice scotch whisky!
+
+For all the gory details and a step by step walkthrough, see [Damian Brady’s blog post](https://damianbrady.com.au/2012/06/03/upgrading-tfs2010-tfs2012-rc-done/ "Damian Brady - Upgrading TFS 2010 to TFS 2012 RC - Done").
+
+Cheers,
+@AdamCogan

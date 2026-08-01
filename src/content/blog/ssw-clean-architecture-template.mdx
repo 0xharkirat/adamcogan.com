@@ -1,0 +1,101 @@
+---
+title: "Announcing the SSW Clean Architecture Template!"
+description: "Get your next project up and running really quickly using the SSW Clean Architecture Template!"
+pubDate: 2024-05-09T04:57:55.000Z
+updatedDate: 2024-05-09T04:58:00.000Z
+heroImage: "/media/2024/05/Announcing-the-SSW-Clean-Architecture-Template-Blog-Banner.jpg"
+author: "Adam Cogan"
+categories: ["net", "net-core", "architecture"]
+tags: ["net", "architecture-diagrams", "clean-architecture", "templates"]
+legacyUrl: "/2024/05/09/ssw-clean-architecture-template/"
+wpId: 4841
+---
+
+Large enterprise .NET projects come in all shapes and sizes, but at SSW we’ve always had a desire to make it follow a whole bunch of rules so that we incorporate all the best practices from past projects. A huge benefit is when a software developer moves from one client to another, the structure looks very familiar, and therefore they can get into the business problem quicker.
+
+When you start a new project, it can take ages, weeks to get the API into a decent shape. What I’m going to announce today will make a ton of .NET developers very happy, because they can get the best practices solution now in minutes.
+
+Since .NET 1.0, SSW has always had a ‘data guy’, who is in charge of best practices around structuring software projects.
+
+A year ago, again I got some of my Solution Architects, [Daniel M](https://www.ssw.com.au/people/daniel-mackay/)., [William L](https://www.ssw.com.au/people/william-liebenberg/)., [Matt G](https://www.ssw.com.au/people/matt-goldman/)., [Matt W.,](https://www.ssw.com.au/people/matt-wicks/) [Chris C.,](https://www.ssw.com.au/people/chris-clement/) as well as young gun [Luke P.](https://www.ssw.com.au/people/luke-parker/) together and we spent a few wonderful days in Mittagong on an “Architecture Retreat”.  In between fancy dinners, lunches, and breakfasts, one of our goals was to decide what our general architectural recommendations should be going forward. As a result, we decided to create an open-source project: **[SSW Clean Architecture Template (aka SSW CA)](http://github.com/SSWConsulting/SSW.CleanArchitecture)** which the team has been using and working on for the past year.
+
+We have now decided that the template has matured enough to announce it as GA (Generally Available)! 🥳
+
+> 🔔 Ding dong! We're excited to announce the release of our SSW [#CleanArchitecture](https://twitter.com/hashtag/CleanArchitecture?src=hash&ref_src=twsrc%5Etfw) [#Template](https://twitter.com/hashtag/Template?src=hash&ref_src=twsrc%5Etfw) v2024.2! 🔔
+> This version has been a year of hard work and was kicked off at our Clean Architecture Retreat in Mittagong.
+>
+> It's finally ready for you to use on your .NET projects.
+>
+> Our goal… [pic.twitter.com/UVgNNHEwUO](https://t.co/UVgNNHEwUO)
+>
+> — SSW / SSW TV (@SSW\_TV) [March 14, 2024](https://twitter.com/SSW_TV/status/1768409780023144773?ref_src=twsrc%5Etfw)
+
+✅ You can find the template GitHub here: [github.com/SSWConsulting/SSW.CleanArchitecture](https://github.com/SSWConsulting/SSW.CleanArchitecture)
+
+<Figure src="/media/2024/03/image-4.png" alt="Screen shot of the easy start" caption="Figure: Getting started with the SSW Clean Architecture Template takes minutes ⚡" />
+
+The main driver behind building an SSW template was to rapidly kick-start client projects in a consistent way that aligns with SSW’s best practices. This template is not only used on SSW projects, but you can also learn it from our Clean Architecture [1-day Superpowers](https://www.ssw.com.au/events/clean-architecture-superpowers-tour) and [2-day Workshop](https://www.ssw.com.au/events/clean-architecture-workshop) events.
+
+We are also doing regular Community Updates which are posted to the Software Architecture Whiterobes (SAW) [YouTube channel](https://www.youtube.com/@SSWSAW). Check out the content and let us know what you think!
+
+## ✨ Features[](https://github.com/SSWConsulting/SSW.CleanArchitecture#-features)
+
+-   🔨 `dotnet new` cli template – to get you started quickly
+-   📦 Slim – no authentication provider, no authorization & no UI framework
+    -   You can add these yourself or use one of our reference architectures from [awesome-clean-architecture](https://github.com/SSWConsulting/awesome-clean-architecture)
+    -   as per [ssw.com.au/rules/choosing-authentication/](https://ssw.com.au/rules/choosing-authentication/)
+-   🎯 Domain Driven Design Patterns
+    -   [Super Hero Domain](https://github.com/SSWConsulting/SSW.CleanArchitecture/blob/main/docs/domain.md)
+    -   AggregateRoot
+    -   Entity
+    -   ValueObject
+    -   DomainEvent
+-   🌐 Minimal Endpoints – because it’s fast & simple. ⚡
+    -   Extension methods to ensure consistent HTTP Verbs & Status Codes
+-   📝 OpenAPI/Swagger – easily document your API
+    -   as per [ssw.com.au/rules/do-you-document-your-webapi/](https://ssw.com.au/rules/do-you-document-your-webapi/)
+-   🔑 Global Exception Handling – it’s important to handle exceptions in a consistent way & protect sensitive information
+    -   Transforms exceptions into a consistent format following the [RFC7231 memo](https://datatracker.ietf.org/doc/html/rfc7231#section-6.1)
+-   🗄️ Entity Framework Core – for data access
+    -   Comes with Migrations & Data Seeding
+    -   as per [ssw.com.au/rules/rules-to-better-entity-framework/](https://ssw.com.au/rules/rules-to-better-entity-framework/)
+-   🧩 Specification Pattern – abstract EF Core away from your business logic
+-   🔀 CQRS – for separation of concerns
+    -   as per [ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer/](https://ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer/)
+-   📦 MediatR – for decoupling your application
+-   📦 FluentValidation – for validating requests
+    -   as per [ssw.com.au/rules/use-fluent-validation/](https://ssw.com.au/rules/use-fluent-validation/)
+-   📦 AutoMapper – for mapping between objects
+-   🆔 Strongly Typed IDs – to combat primitive obsession
+    -   e.g. pass `CustomerId` type into methods instead of `int`, or `Guid`
+    -   Entity Framework can automatically convert the int, Guid, nvarchar(..) to strongly typed ID.
+-   📁 Directory.Build.Props
+    -   Consistent build configuration across all projects in the solution
+        -   e.g. Treating Warnings as Errors for Release builds
+    -   Custom per project
+        -   e.g. for all test projects we can ensure that the exact same versions of common packages are referenced
+        -   e.g. XUnit and NSubstitute packages for all test projects
+-   ⚖️ EditorConfig – comes with the [SSW.EditorConfig](https://github.com/SSWConsulting/SSW.EditorConfig)
+    -   Maintain consistent coding styles for individual developers or teams of developers working on the same project using different IDEs
+        -   as per [ssw.com.au/rules/consistent-code-style/](https://ssw.com.au/rules/consistent-code-style/)
+-   🧪 Testing
+    -   as per [ssw.com.au/rules/rules-to-better-testing/](https://www.ssw.com.au/rules/rules-to-better-testing/)
+    -   Simpler Unit Tests for Application
+        -   **No Entity Framework mocking required** thanks to **Specifications**
+        -   as per [ssw.com.au/rules/rules-to-better-unit-tests/](https://www.ssw.com.au/rules/rules-to-better-unit-tests/)
+    -   Better Integration Tests
+        -   Using [Respawn](https://github.com/jbogard/Respawn) and [TestContainers](https://dotnet.testcontainers.org/)
+        -   Integration Tests at Unit Test speed
+        -   Test Commands and Queries against a Real database
+        -   No Entity Framework mocking required
+        -   No need for In-memory database provider
+-   Architecture Tests
+    -   Using [NetArchTest](https://github.com/BenMorris/NetArchTest)
+    -   Know that the team is following the same Clean Architecture fundamentals
+    -   The tests are automated so discovering the defects is fast
+
+The template is open source and we have a lot of exciting upcoming features. If you have any feedback please submit a [GitHub Issue](https://github.com/SSWConsulting/SSW.CleanArchitecture/issues).
+
+If you need help on any architecture-related matters, feel free to get in touch: [ssw.com.au/company/contact-us](https://www.ssw.com.au/company/contact-us)
+
+<YouTubeEmbed videoId="lU7R-7Wb1js" caption="Video: The Software Architects White Robes Feb Community Update 2024" />

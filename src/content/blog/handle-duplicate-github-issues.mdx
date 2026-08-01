@@ -1,0 +1,43 @@
+---
+title: "How to Handle Duplicate GitHub Issues Without Annoying Your Users"
+description: "I love feedback. When you run a popular app or open source project like TinaCMS, duplicate issues are a good problem to have – it means people care enough to tell you about bugs or when they have good ideas. Teams I see at other companies see duplicates as noise, something to be swept away"
+pubDate: 2025-12-05T11:55:00.000Z
+updatedDate: 2025-12-18T04:10:30.000Z
+heroImage: "/media/2025/12/Blog-Banner-Handling-Duplicates.jpg"
+author: "Adam Cogan"
+categories: ["ai", "general", "github"]
+tags: ["ai", "backlog", "cx", "duplicates", "github", "github-issues", "github-projects", "software-development"]
+legacyUrl: "/2025/12/05/handle-duplicate-github-issues/"
+wpId: 5263
+---
+
+I love feedback. When you run a popular app or open source project like [TinaCMS](https://tina.io/), duplicate issues are a good problem to have – it means people care enough to tell you about bugs or when they have good ideas.
+
+Teams I see at other companies see duplicates as noise, something to be swept away quickly. If your default is to close a duplicate with a cold “Closed as duplicate” and nothing else, you’re quietly training your users to stop helping you. Let’s fix that.
+
+<YouTubeEmbed videoId="ZlY_TrR3R-4" caption="Video: Duplicate PBIs | Luke Cook | SSW Rules: https://www.youtube.com/watch?v=ZlY_TrR3R-4&t=1s" />
+
+### When GitHub Issues Explode After a Release
+
+Here’s a common scenario for product companies. You ship a new version, something subtle breaks, and suddenly you see your GitHub backlog with a bunch of dupes.
+E.g. “menu is broken on mobile.”
+Note: For teams that use AI tools like [YakShaver.ai](https://yakshaver.ai/) the dupe problem is more noticeable.
+
+Most teams I see do the same thing, they pick one “real” issue to keep, then slam _Closed as duplicate_ on the rest, and move on. That’s great for your backlog as you’re keeping it clean, but it’s a pretty terrible CX (Customer eXperience) for the people who took time out of their day to help you. If all they ever get back is a cold auto-email, they’re a lot less likely to report the next bug.
+
+### Turn Duplicates into a Better Experience
+
+The solution is simple, every time you close a duplicate, treat it like a tiny customer interaction. Add a short note explaining where the work is being tracked and how they can follow it.
+E.g. “Thanks for reporting this! We’re tracking it on #123 – feel free to subscribe there for updates.”
+
+When the issue is completed, they are informed and it gives them the opportunity to then test it works for them. This will keep your open-source community more engaged.
+
+### Automate the Good Manners with GitHub Actions
+
+If all this sounds good, you can go one step further and automate it. Use a small GitHub Action that runs when the main bug is closed and posts a friendly comment back on all the duplicates
+E.g. “We’ve fixed this – thanks again for reporting it 🙌”
+This positive ping when the fix ships, they’re likely to test it for you, and you’ve turned noisy duplicates into a free testing army.
+
+Clean backlog, happy users, better product – all for a few extra lines of YAML.
+
+How do you deal with duplicates? Let me know in the comments.

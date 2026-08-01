@@ -1,0 +1,94 @@
+---
+title: "From Chaos to Clarity: The Essential Role of Architectural Decision Records (ADRs)"
+description: "Architectural Decision Records (ADRs) are crucial for documenting key decisions in software projects, preventing miscommunication, and ensuring transparency. By using ADRs, teams can avoid repeating mistakes, foster collaboration, and provide valuable historical context for future developers."
+pubDate: 2024-10-09T09:53:53.000Z
+updatedDate: 2024-10-09T09:53:56.000Z
+heroImage: "/media/2024/09/From-Chaos-to-Clarity_Blog-Banner.png"
+author: "Adam Cogan"
+categories: ["net", "documentation", "general"]
+tags: ["adrs", "architectural-decision-records", "documentation", "smart-software-decisions", "software-documentation"]
+legacyUrl: "/2024/10/09/essential-role-of-architectural-decision-records/"
+wpId: 4983
+---
+
+In any software project, decisions made early on can have far-reaching impacts. Yet, all too often, crucial choices go undocumented, leading to confusion, inefficiencies, and even costly mistakes down the line.
+
+How many times have you thought you’ve improved something in the code, only to find a good reason it wasn’t built that way? It can be a costly oversight. That’s where Architectural Decision Records (ADRs) come in, providing a powerful solution to maintain clarity and consistency in decision-making.
+
+<YouTubeEmbed videoId="9w5yApybZbY" caption="Video: Architecture Decision Records (ADRs) | Daniel Mackay https://www.youtube.com/watch?v=9w5yApybZbY" />
+
+## ⚠️ The Dangers of Not Documenting Important Decisions
+
+When decisions aren’t properly recorded, teams face several risks:
+
+1.  **Lack of communication** – Without a clear trail of decision-making, teams can struggle to understand the rationale behind certain actions. This leads to miscommunication and confusion.
+
+2.  **Loss of IP** – Key knowledge gets lost when a team member leaves or moves on, especially if decisions are stuck in someone’s head instead of being written down.
+
+3.  **Loss of historical context** – Projects often evolve, and what seemed like the right decision months ago, might no longer make sense. Without documentation, the reasons for a decision are easily forgotten.
+
+4.  **Repeating mistakes** – When lessons learned aren’t recorded, teams are doomed to repeat past mistakes, wasting time and resources.
+
+5.  **Auditing and governance** – Without a record of key decisions, auditing becomes a nightmare. It’s hard to assess whether the right calls were made, especially when you can’t trace the reasoning behind them.
+
+One of the greatest benefits of ADRs is how they make developers think more objectively. When a decision is likely to be contentious, it can be quicker to document it through an ADR and seek feedback than to move forward without consensus. Additionally, the practice of documenting who made the decision and why ensures that there’s always a second pair of eyes on major calls, much like peer review in pull requests, or the [SSW Checked by Rule](https://www.ssw.com.au/rules/checked-by-xxx/).
+
+## 🧠 ADRs and Knowledge Sharing
+
+Another key advantage of ADRs is knowledge sharing. By documenting architectural decisions, teams create a knowledge base that other Solution Architects and developers can reference. This fosters a culture of learning and helps teams avoid “reinventing the wheel” when tackling familiar problems.
+
+Future developers joining a project also benefit from ADRs, gaining access to the historical context behind decisions and understanding why certain paths were taken.
+
+## 🧠 What Decisions go in an ADR?
+
+Not every decision requires documentation in an ADR. Here’s when you should consider using one:
+
+-   **High-impact decisions** that could affect the project’s direction
+-   **Irreversible or costly changes** that can’t easily be undone
+-   **Long-term implications** where a decision could affect future growth or scalability
+-   **Choices involving multiple options** with trade-offs that need to be evaluated
+
+Basically, it’s anything that’s hard to change. 👑
+
+<Figure src="/media/2024/09/ssw-clean-architecture-template-adr.png" alt="Figure: SSW.CleanArchitecture KB showing all ADRs" caption="Figure: SSW.CleanArchitecture KB showing all ADRs: SSW.CleanArchitecture ADRs" />
+
+## 💾 Where Should ADRs Be Stored?
+
+ADRs should live wherever your technical documentation resides, ensuring easy access for all stakeholders. Popular storage options include:
+
+-   Git (storing ADRs alongside your code is a common practice)
+-   Wikis like GitHub or Confluence
+
+## 🛠️ What Tools Can I Use to Create ADRs?
+
+ADRs can be created in any format that’s readable and accessible, but a few tools make this process easier:
+
+-   Log4Brains (Recommended): A dedicated ADR tool that helps you create and manage ADRs easily.
+-   Markdown files: A lightweight, flexible format often used with Git.
+-   Wiki platforms: Platforms like GitHub or Confluence allow ADRs to be stored and viewed easily.
+
+Log4Brains is a great tool for creating and viewing ADRs. Here’s how to get started:
+
+1.  Install Log4Brains globally via npm:
+    `npm install -g log4brains`
+
+2.  Initialize your git repository for ADRs:
+    `log4brains init`
+
+3.  Create a new ADR:
+    `log4brains adr new`
+
+4.  Preview your ADRs:
+    `log4brains preview`
+
+By following this simple setup, you can streamline the documentation process and make it easier for teams to access ADRs.
+
+Architectural Decision Records are a critical tool for documenting important decisions in software projects. By using ADRs, teams can avoid the pitfalls of undocumented decisions, foster better collaboration, and ensure long-term success.
+
+Adopting ADRs might seem like extra work initially, but the long-term benefits far outweigh the effort. If you’re looking to improve your team’s decision-making process, ADRs are an excellent place to start.
+
+Want to know more? Check out this SSW Rule [Do you use Architectural Decision Records (ADRs)?](https://www.ssw.com.au/rules/architectural-decision-records/)
+
+You can also see more examples of ADRs with log4brains in action on our [SSW.CleanArchitecture ADRs](https://sswconsulting.github.io/SSW.CleanArchitecture/) which I also [covered in my blog a few months ago](https://adamcogan.com/2024/05/09/ssw-clean-architecture-template/).
+
+**Is this something that has caused an issue for you in a project? How did you document it? I’d love to hear your thoughts in the comments! ⬇️**

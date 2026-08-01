@@ -1,0 +1,44 @@
+---
+title: "A Glimpse into your ASP.NET App"
+description: "Diagnosing issues with your web app can be one of the most difficult things for developers. Sometimes, the browser just doesn’t show you what you expect. Visual Studio is the best possible IDE to help developers see what’s going on with their code during development, but what about what’s happening "
+pubDate: 2013-07-11T07:23:04.000Z
+updatedDate: 2017-02-06T16:24:05.000Z
+author: "Adam Cogan"
+categories: ["general"]
+tags: []
+legacyUrl: "/2013/07/11/a-glimpse-into-your-asp-net-app/"
+wpId: 372
+---
+
+Diagnosing issues with your web app can be one of the most difficult things for developers.  Sometimes, the browser just doesn’t show you what you expect.  Visual Studio is the best possible IDE to help developers see what’s going on with their code during development, but what about what’s happening in the ASP.NET framework?  And what about after it’s been deployed?
+
+Last year at Tech Ed, I showed off a tool called [Glimpse](http://getglimpse.com/ "Glimpse - the open source diagnostics platform of the web") during [one of my presentations](http://channel9.msdn.com/Events/TechEd/Australia/2012/DEV211 "Channel 9 - What's New in VS 2012").  As it turned out, one of the creators – [Anthony van der Hoorn](http://blog.getglimpse.com/author/avanderhoorn/ "Anthony van der Hoorn's blog") – was in the audience!
+
+SSW’s [Damian Brady](http://www.damianbrady.com.au "Damian Brady's Blog") recently spoke to Anthony about Glimpse – you can see the video at [SSW TV](http://tv.ssw.com/3796/why-you-should-be-using-glimpse-anth "Why you should be using Glimpse on every project").
+
+Since that interview, the Glimpse team has released a major update with a really awesome new feature – the Heads Up Display (HUD).
+
+When it was turned on, Glimpse used to give you a small icon that you would click on to see all the information.  It meant that you had to go looking for problems.
+
+<Figure src="/media/2013/07/old_glimpse_icon.png" alt="Figure: The old Glimpse icon" caption="Figure: The old Glimpse icon" />
+
+Now, Glimpse gives you a powerful Heads Up Display that you can keep open to show you important statistics without taking up much of the browser real-estate.
+
+If you want to know how many database queries your code ran, all you have to do is glance down (and install the [Glimpse.Ado](http://nuget.org/packages/Glimpse.Ado/ "Nuget - Glimpse ADO") and [Glimpse.EF](http://nuget.org/packages/Glimpse.EF5/ "Glimpse - EF 5") packages of course).
+
+<Figure src="/media/2013/07/new_glimpse_hud.png" alt="Figure: The new Glimpse Heads Up Display" caption="Figure: The new Glimpse Heads Up Display" />
+
+If you want more information, you can hover over a section to drill into it a bit further – again, you don’t need to click anything.  It goes away when your mouse moves away.
+
+<Figure src="/media/2013/07/glimpse_hud_expanded.png" alt="Figure: Hovering over the Glimpse HUD gives you even more information" caption="Figure: Hovering over the Glimpse HUD gives you even more information" />
+
+Of course, you can always click the Glimpse icon to see all the information including the actual SQL queries that were run.  With this version it’s been given a nice “Metro” refresh as well.
+
+<Figure src="/media/2013/07/glimpse_full.png" alt="Figure: The Full view of Glimpse" caption="Figure: The Full view of Glimpse" />
+
+If you’re not using Glimpse, you should be! Check out our [Do You Use Glimpse?](http://rules.ssw.com.au/SoftwareDevelopment/RulesToBetterMVC/Pages/Do-you-use-Glimpse.aspx "SSW Rules - Do You Use Glimpse?") rule.
+
+Of course if you’re good and you are using Glimpse on your project, you should upgrade to the latest version to get all the new goodness.
+
+Cheers,
+@AdamCogan

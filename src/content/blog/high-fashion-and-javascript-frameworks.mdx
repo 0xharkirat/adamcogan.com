@@ -1,0 +1,87 @@
+---
+title: "High Fashion and JavaScript Frameworks"
+description: "JavaScript frameworks are a lot like high fashion. One moment you’re in and the next, you’re out. To demonstrate just how turbulent the current landscape is, we made a short “Mad Money” style parody video explaining which JavaScript frameworks you should be using this year. It’s only 2 minutes long,"
+pubDate: 2016-02-10T01:06:59.000Z
+updatedDate: 2019-08-26T15:40:23.000Z
+author: "Adam Cogan"
+categories: ["angular", "javascript-frameworks"]
+tags: []
+legacyUrl: "/2016/02/10/high-fashion-and-javascript-frameworks/"
+wpId: 2712
+---
+
+JavaScript frameworks are a lot like high fashion. One moment you’re in and the next, you’re out.
+
+![Best-JavaScript-frameworks-banner](/media/2016/02/Best-JavaScript-frameworks-banner.png)
+
+To demonstrate just how turbulent the current landscape is, we made a short “Mad Money” style parody video explaining which JavaScript frameworks you should be using this year. It’s only 2 minutes long, give it a watch now and then I’ll cut through the hype and explain what you \*really\* need to know for the upcoming year of JavaScript.
+
+<YouTubeEmbed videoId="Mf3wEJHAMXw" />
+
+## The Big Players
+
+If you do any web development at all, you need to be across at least one of the big players. These technologies are changing the entire industry and even if you don’t plan on implementing them, you should at least understand what they are and why they’re useful.
+
+### Angular 2
+
+I’ll start with Angular 2 as it’s my personal favourite and it’s something we’ve been proud to include in a couple of last years projects ([See my review of 2015 here](https://adamcogan.com/2016/01/13/adams-2015-in-review/)). Not only that, but we’ve already begun to flesh out the best practices for enterprise development with our [Angular 2 Music Store](https://github.com/SSWConsulting/enterprise-musicstore-ui-angular2) open source project on Github.
+
+Angular 2 is a javascript framework that lets you build everything from small dynamic components all the way to enterprise-sized client side applications. If you didn’t know, Angular 2 was completely rewritten from the ground up, learning from all the mistakes of the first version (which was still pretty excellent and game changing). This time they’ve gone for performance over all else and it has stirred up quite a controversy.
+
+Anyone who had learned the first version was now facing another steep new learning curve and a major migration ahead of them. Despite this pain, most developers agree the changes are for the better and it is a sensible choice for new projects.
+
+This evolution from version 1 to 2 has taken quite some time however, which has left room for other frameworks to grow and mature. An example of this is the next big player:
+
+### React
+
+It’s less of a framework and more of a library, but that doesn’t make React any less powerful. It uses an opinionated “One way down” approach to data binding, but this opinion is also the key to its performance. No child can affect the parent directly which allows for some clever caching and DOM manipulation.
+
+React is maintained by Facebook (among others) and has had the chance to be battle hardened against many large scale websites including Facebook itself.
+
+If you haven’t played with either of these frameworks give React a go, and when you’re familiar with component-style dynamic UIs, head on over to Angular for a bigger challenge.
+
+## JavaScript in Mobile (aka Hybrid Apps)
+
+Mobile development demand continues to rise and we’ve seen no shortage of projects looking for a cross-platform solution. SSW has used a number of great options for cross-platform native applications like [Xamarin](http://xamarin.com/%22%20%5Ct%20%22_blank), React Native, Flutter and [Telerik’s NativeScript](https://www.progress.com/nativescript), however they also come with great (read: huge) price tags. A cheaper way to go is to use a web framework for cross-compatibility or my favorite PWAs (Progressive Web Apps). These solutions don’t always look and feel as good as a native app, but they’re certainly getting better.
+
+Of course some customers will insist on native, if so we recommend Xamarin, but hybrid apps are becoming more performant and looking better all the time. Speaking of which:
+
+### Ionic 2
+
+Ionic 2 is a web framework built on top of Angular 2 and Cordova to build hybrid apps that offer a native look and feel for both IOS and Android. It is comprised of components that are easy to piece together to form an application, and APIs that give you access to native features on the device, such as the camera.
+
+You can rapidly create native looking applications and get them into the app store before you’ve even had a chance to create your first screen in Xamarin. 🙂
+
+<Figure src="/media/2016/02/Ionic-easy-custom-lists.jpg" alt="Figure: Custom lists using cards, FABs (Floating Action Buttons) and tabs are all easy." caption="Figure: Custom lists using cards, FABs (Floating Action Buttons) and tabs are all easy." />
+
+<Figure src="/media/2016/02/Ionic-easy-using-web-skills.jpg" alt="Figure: You can use your existing web skills to render some sweet coloured circles." caption="Figure: You can use your existing web skills to render some sweet coloured circles." />
+
+<Figure src="/media/2016/02/Ionic-list-buttery-smooth.jpg" alt="Figure: Lists are buttery smooth and a sinch to implement." caption="Figure: Lists are buttery smooth and a cinch to implement." />
+
+### React Native
+
+React Native offers up much the same experience and is of course built on top of React. It handles the compilation of your application into an IOS or Android project and facilitates running these so you can see your changes in the emulator or device as you code.
+
+<Figure src="/media/2016/02/React-Native-even-complex-lists-are-simple.jpg" alt="Figure: Even complex lists are pretty simple." caption="Figure: Even complex lists are pretty simple." />
+
+<Figure src="/media/2016/02/React-Native-all-the-components.jpg" alt="Figure: Every component known to man has been used here." caption="Figure: Every component known to man has been used here." />
+
+<Figure src="/media/2016/02/React-Native-maps-using-GPS.jpg" alt="Figure: Maps can pick up on your native device’s GPS location." caption="Figure: Maps can pick up on your native device’s GPS location." />
+
+## Notable Mention
+
+Some frameworks aren’t quite riding the hype train, but they’re at least worth knowing about if you haven’t seen them yet.
+
+### Polymer
+
+Polymer is an implementation of the new web standard called “Web Components”. Web Components are essentially self-contained HTML elements (much like the video tag in HTML5) that can perform functionality, render content and bind to data. They have a minimalist approach to communication, with everything joining via attributes, but the underlying idea and structure is quite appealing.
+
+Being a web standard, it also gains the advantage of being natively implemented by the browsers which offers incredible performance. The down side of being a standard though is that uptake amongst browsers is slow and tedious, leaving much of the heavy lifting to Polymer trying to fill the gaps. Currently only Chrome supports the standard, and even then it only supports a small portion of the standard.
+
+It’s an interesting framework to look at and contrast with Angular and React to see the strengths and weaknesses of each. To understand exactly what this confusing new technology is all about, I suggest you watch the [Introduction to Polymer.](https://www.youtube.com/watch?v=MaWcS-10NIw)
+
+## In Memoriam
+
+Though I wouldn’t go ripping out JavaScript frameworks from your existing applications just because the new hotness came along, I would suggest that you consider your plans for migration. Browsers relentlessly march forward leaving a sea of change in their wake. As we move more critical path code from the server into the browser, we should be careful that a browser change that causes a bug in a framework that has lost momentum doesn’t leave us stranded.
+
+If you’re still using Backbone, Ember or the .NET community’s previous favorite, Knockout, then you’re wearing last year’s Ugg Boots. I suggest you slip into something from this season and make Heidi proud.

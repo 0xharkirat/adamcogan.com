@@ -1,0 +1,42 @@
+---
+title: "TFS 2012 RTM to RC – Done"
+description: "Last weekend, we decided to take the plunge and upgrade our SSW TFS 2012 RC instance to the shiny new TFS 2012 RTM. It was early I know, we considered the risks vs the rewards, made a roll-back plan with HyperV and quickly decided it was worth the effort. We ploughed ahead with the upgrade"
+pubDate: 2012-08-13T10:00:26.000Z
+updatedDate: 2016-02-02T05:48:13.000Z
+author: "Adam Cogan"
+categories: ["general"]
+tags: []
+legacyUrl: "/2012/08/13/tfs-2012-rtm-to-rc-done/"
+wpId: 259
+---
+
+Last weekend, we decided to take the plunge and upgrade our SSW TFS 2012 RC instance to the shiny new TFS 2012 RTM.
+
+It was early I know, we considered the risks vs the rewards, made a roll-back plan with HyperV and quickly decided it was worth the effort.  We ploughed ahead with the upgrade with Damian Brady in the hot seat again!
+
+There were two main upgrade paths available to us:
+
+– Upgrade in place (recommended)
+
+– Upgrade and move to new hardware
+
+You might remember we chose to upgrade and move to new hardware [when we upgraded from TFS 2010 to TFS 2012 RC](http://blog.damianbrady.com.au/2012/08/11/upgrading-from-tfs-2012-rc-to-tfs-2012-rtm-done/ "Upgrading from TFS 2012 RC to TFS 2012 RTM – Done").  We choose option 2 this time for a couple of reasons. Firstly, the environment was still new as a result of our last upgrade so there was no point upgrading again. Secondly, we were moving from one version of TFS 2012 to another, so we would expect less to change this time.
+
+It was a very straightforward process (with a few coffee breaks):
+
+1.  Screenshot our existing configuration (my favorite job)
+2.  Back up the databases and snapshot the servers
+3.  Uninstall TFS 2012 RC
+4.  Install TFS 2012 RTM
+5.  Configure TFS 2012 RTM (including Reporting Services and Build Servers)
+
+The feedback from all the developers has been extremely positive.
+
+No news from the Hinshelwood… he must be slacking off these days 🙂
+
+Many thanks to [Terje Sandstrom](http://geekswithblogs.net/terje/Default.aspx "Geeks with Blogs - Terje Sandstrom") for his assistance with a couple of TFS binding issues we wanted changed.
+
+**Thanks to the TFS team for another great RTM version.**
+
+Cheers,
+@AdamCogan

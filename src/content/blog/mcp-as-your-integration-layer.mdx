@@ -1,0 +1,55 @@
+---
+title: "MCP as Your Integration Layer"
+description: "While working with teams, I’ve learnt that the best way to unlock innovation is to bring everyone together and work on a problem. We do this a few times a year by running Rules to Better Brainstorming Days. I love seeing developers step away from client work to share real pains and ideas, because th"
+pubDate: 2025-09-15T12:52:01.000Z
+updatedDate: 2025-12-18T04:14:09.000Z
+heroImage: "/media/2025/09/Blog-Banner.jpg"
+author: "Adam Cogan"
+categories: ["ai", "general"]
+tags: ["ai", "mcp", "model-context-protocol"]
+legacyUrl: "/2025/09/15/mcp-as-your-integration-layer/"
+wpId: 5208
+---
+
+While working with teams, I’ve learnt that the best way to unlock innovation is to bring everyone together and work on a problem. We do this a few times a year by running [Rules to Better Brainstorming Days.](https://www.ssw.com.au/rules/rules-to-better-brainstorming/) I love seeing developers step away from client work to share real pains and ideas, because the software engineers know where the pain is and where the opportunities lie. You get more out of the day by preparing properly, voting on ideas, forming teams, and reviewing the solution options. Over the years, we have turned many raw complaints into tangible outcomes that have made SSW better.
+
+The most recent one was a few weeks ago down in SSW Melbourne. You’re going to love seeing what they delivered in 1 day. It extends our new [AI](https://www.ssw.com.au/consulting/artificial-intelligence?) product YakShaver.ai, which [I blogged about recently](https://adamcogan.com/2025/05/14/ai-your-next-bug-report/). It solves a major problem and allows people to stop stepping over problems that they observe. Rightly, everyone likes to stay focused and not fall down a rabbit hole of bug reporting, aka ‘shaving the yak’.
+
+YakShaver is the ultimate bug reporter, but it has a long list of feature requests. We are now able to add new features so fast through the magic of Model Context Protocol (MCPs)…
+
+## What are MCPs?
+
+When people ask me “what’s MCP?”, I think the nicest explanation I’ve heard is that it’s the USB of AI: a standard port that lets any AI model to use your product as a tool. You publish your capabilities as tools on an MCP server, and clients, e.g., GitHub, Cursor, Claude Desktop, etc., can discover and call them over JSON-RPC.
+
+For example, in SSW’s YakShaver’s case, customers track PBIs in different systems (Jira, Zendesk, GitHub Issues, SharePoint, etc.). Without MCP, you’d write a separate integration for each client, and this is a lot of work. Now with MCPs, you publish your actions once and point clients at them. Integrations become config, not code. Swapping Jira for GitHub – Change the connection, not your app.
+
+MCP standardises how tools are exposed as capabilities (functions with JSON schemas), so an LLM/agent can discover, plan, and call them through one interface. You add/swap systems by changing the config. It’s language-agnostic and deployment-flexible: run servers in the cloud or on a local box for privacy, with per-user tokens and audit trails.
+
+For devs, that means fewer SDKs to juggle, consistent error handling, and agentic workflows that span trackers, docs, CI/CD, and repos from one plug. 👑
+
+## Top 10 things that excite devs about MCPs
+
+The main thing I love about developing with MCP, is the flexibility. It saves you a lot of time. Here’s a more complete list:
+
+1.  **Flexibility and time saving –** so much less code.
+2.  **Compose multi-server workflows for complex tasks –** Mix and match MCPs in one plan & let the agent call tools across servers, pass outputs as inputs, manage dependencies/rollbacks, and complete end-to-end tasks.
+3.  **Shipping integrations as config, not code –** Expose tools once; swap Jira ↔ GitHub by changing a connection, not a release.
+4.  **One interface, many clients** – Cursor, Copilot, Claude Desktop, vs your MCP server works everywhere without one-off plugins.
+5.  **Fewer SDKs to juggle** – Call JSON-typed functions over JSON-RPC; consistent errors, retries, and timeouts across systems.
+6.  **Fast prototyping & testing** – Point at mock MCPs, replay logs, and stub tools to iterate safely.
+7.  **Language & stack agnostic** – Implement servers in whatever you ship today; keep your existing services.
+8.  **Reuse across teams and products** – Publish a capability once (e.g., “publish rule.md”), call it from any MCP-aware client.
+9.  **Security that fits enterprises** – Per-user tokens, auditable calls, and the option to run on a local server for data privacy.
+10.  **Agentic workflows out of the box** – Let LLMs discover capabilities, plan steps, and chain actions across trackers, docs, CI/CD, and repos.
+
+## The Future of MCP and YakShaver
+
+I highly recommend you watch Calum Simpson, Brady Stroud, Andrew Waltos, and Shane Diprose’s presentation to see the endless options we now have for YakShaver in the future. It’s long, but it’s entertaining! This is an internal presentation.
+
+<YouTubeEmbed videoId="_VlEmo0j3Sk" caption="Figure: The internal video is a 1-day spike showing how much you can get done with MCPs. (7 min)" />
+
+Adding Jira is going to be so much easier with MCPs.
+
+Do you have a product that could be boosted by an MCP? If your AI could plug into all your tools with zero code, what workflows would you unlock? Let me know in the comments! 👇
+
+<Figure src="/media/2025/09/image.png" alt="Screenshot of the roadmap from the YakShaver website" caption="Figure: The YakShaver Roadmap" />

@@ -1,0 +1,88 @@
+---
+title: ".NET Aspire – The Future of Microservices made simple for .NET 8"
+description: ".NET 8 brings a transformative evolution, emphasizing speed, security, and features. The highlight is .NET Aspire, revolutionizing microservices with streamlined orchestration, observability, resilience, and easy integration of cloud-native components. Find out how to use it"
+pubDate: 2023-12-15T05:13:12.000Z
+updatedDate: 2023-12-21T23:01:37.000Z
+heroImage: "/media/2023/12/Net-Aspire-Future-of-MicroServices-Blog-Banner.jpg"
+author: "Adam Cogan"
+categories: ["net", "general"]
+tags: ["net", "net-8", "net-aspire", "containers", "microsoft-aspire"]
+legacyUrl: "/2023/12/15/dot-net-aspire/"
+wpId: 4604
+---
+
+For years, .NET has been a dependable framework for constructing resilient and scalable applications. The release of .NET 8 marks a significant evolution in our software ecosystem, introducing a host of compelling features and enhancements.
+
+.NET 8 is simpler, has better performance, and is more secure. The migration path is hairy, however, it promises a lot of cool new features for developers.
+
+<Figure src="/media/2023/12/image.png" alt=".NET 8 Release features from Microsoft" caption="Figure: The most important features from the .NET 8 release" />
+
+## Revolutionize your Microservices
+
+One of the things I’m most excited about is .NET Aspire. Microsoft released it a couple of weeks ago (in preview), and it is set to revolutionize the local development experience (aka DevX) for Distributed Applications (aka microservices)… although not just microservices.
+
+I spoke to some of my devs about .NET Aspire recently and we think is a great option for “any” local development, not just for microservices. Especially when using containers for standing up dependencies like SQL Server or CosmosDB, Redis, Azure Storage, etc. The out-of-the-box tooling for logs, traces, and metrics, e.g. .NET garbage collector state, HTTP queue length, etc., is extremely valuable to keep an eye on how the application is performing and communicating with its dependencies.
+
+## The Pain ❌
+
+Before this, it was so painful. Most developers didn’t have all the logs, traces, and metrics set up, and had nothing or used the default Application Insights functionality. At SSW, we usually went the extra mile and used an advanced App Insights configuration. We used to have to manually start up and configure dependencies like:
+
+-   SQL Server
+-   Redis Cache
+-   RabbitMQ and others…
+
+On top of all of that, we also had to make sure hostnames and ports were correctly configured and were running smoothly. Then you used to have to start other microservices before you could start the one you’re interested in. Once running, each app logged telemetry in different places. If one failed, it was hard to know which one it was, and debugging was super difficult across multiple apps.
+
+## The Cure ✅
+
+The goal of .NET Aspire is to improve the local development experience for Distributed Applications (aka microservices). In a nutshell, .NET Aspire helps to improve:
+
+-   [Orchestration](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/app-host-overview) – one-click to start _all-the-things_
+-   [Observability](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/telemetry) – we get logs, traces, and metrics all-in-one place, for all apps
+-   [Health Checks](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/health-checks)
+-   [Resiliency](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/service-defaults#add-service-defaults-functionality)
+-   [Components](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/components-overview?tabs=dotnet-cli#available-components) – facilitate the integration of cloud-native applications with prominent services and platforms such as Redis, Azure SQL, CosmosDB, Azure ServiceBus, RabbitMQ, Postgres, etc.
+
+The great thing about a .NET Aspire orchestrated application is that we can add all the Projects and Components into one solution. These make up the overall microservices system and have a way to describe how the applications are connected.
+
+```
+var builder = DistributedApplication.CreateBuilder(args);
+
+var cache = builder.AddRedisContainer("cache");
+var heroApi = builder.AddProject<Projects.AspiringHeroes_Api>("heroesRestAPI");
+var heroGrpc = builder.AddProject<Projects.AspiringHeroes_Grpc>("heroesGrpcService");
+
+builder.AddProject<Projects.AspiringHeroes_Web>("webUI")
+    .WithReference(cache)
+    .WithReference(heroApi)
+    .WithReference(heroGrpc);
+
+builder.Build().Run();
+```
+
+_**Figure: Developers now use C# to describe the projects and components in the microservices system**_
+
+The `AppHost` and [`ServiceDefaults`](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/service-defaults) projects are responsible for all configuration that enables health checking, resiliency, service discovery, telemetry, and more. Wow! ⭐
+
+## Give it a go!
+
+[William Liebenberg](https://ssw.com.au/people/william-liebenberg/) created a great [Getting Started Project, “AspiringHeroes”](https://github.com/william-liebenberg/aspiringheroes?tab=readme-ov-file). I highly recommend you spin it up – it takes about 10 minutes to follow the instructions!
+
+<Figure src="/media/2023/12/image-5.png" alt="Melbourne attendees to the .NET Superpowers course" caption="Figure: Two of my best .NET guys, Daniel Mackay, and William Liebenberg, just ran a really well-received course, The .NET 8 Superpowers, and the attendees loved the Aspire demo." />
+
+<Figure src="/media/2023/12/image-1.png" alt="Aspire Dashboard - Projects View" caption="Figure: Aspire Dashboard – Projects View" />
+
+<Figure src="/media/2023/12/image-2.png" alt="Aspire Dashboard - Traces View" caption="Figure: Aspire Dashboard – Traces View" />
+
+<Figure src="/media/2023/12/image-3.png" alt="Aspire Dashboard - Trace Details View" caption="Figure: Aspire Dashboard – Trace Details View" />
+
+## Deployment
+
+Aspire applications are going to be right at home in any environment that supports containers. For example, in Azure, we have Azure Container Apps (ACA), and Azure Kubernetes Services (AKS).
+
+On the one side, you’ve got the [Microsoft Azure Developer CLI](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd) (AZD) to easily deploy .NET Aspire apps to Azure Container Apps, and then you have the open-source [Aspirate](https://github.com/prom3theu5/aspirational-manifests) tool to help deploy your Aspire applications to a Kubernetes cluster. Both of those are covered in the Microsoft docs:
+
+-   ACA: [https://learn.microsoft.com/en-us/dotnet/aspire/deployment/azure/aca-deployment-azd-in-depth](https://learn.microsoft.com/en-us/dotnet/aspire/deployment/azure/aca-deployment-azd-in-depth?tabs=windows)
+-   K8S: [https://learn.microsoft.com/en-us/dotnet/aspire/deployment/k8s-deployment](https://learn.microsoft.com/en-us/dotnet/aspire/deployment/k8s-deployment)
+
+Have you used .NET Aspire yet? I’d love to hear your thoughts. Leave me a comment below!

@@ -1,0 +1,160 @@
+---
+title: "SharePoint 2016 – The future’s so bright I gotta wear shades (⌐■_■)"
+description: "SSW is live with SharePoint 2016 and to me, this is the most exciting release ever! Jeff Teper, the boss of SharePoint, is back and you can definitely feel it in the latest feature announcements. I see cohesion in the announced features, a vision of connecting people with their data both organizatio"
+pubDate: 2016-05-11T05:47:23.000Z
+updatedDate: 2016-05-11T08:23:53.000Z
+author: "Adam Cogan"
+categories: ["sharepoint"]
+tags: []
+legacyUrl: "/2016/05/11/sharepoint-2016-futures-bright-gotta-wear-shades/"
+wpId: 2742
+---
+
+SSW is live with SharePoint 2016 and to me, this is the most exciting release ever! Jeff Teper, the boss of SharePoint, is back and you can definitely feel it in the latest feature announcements. I see cohesion in the announced features, a vision of connecting people with their data both organizational and personal, on all devices, in the cloud, on-premises and all done with the elegance of a modern web UI.
+
+Let’s go through the cool stuff. Some of it has already been released and some of it has only just been announced, but all of it is awesome.
+
+## SharePoint is back!
+
+Sometimes brands are killed like in an episode of the Sopranos (or for the youngsters, Game of Thrones) such as in 2010 when Microsoft shifted strategy and “Silverlighted” developers! So in 2011, when I saw Office 365 released without prominently displaying the SharePoint brand, I got the heebie-jeebies and thought SharePoint might have been “Silverlighted” too. It turns out I was jumping at shadows. In 2016, we see Microsoft has renamed “Sites” to “SharePoint”. Think this looks better?
+
+<Figure src="/media/2016/05/sp1.png" alt="The new Office 365" caption="Figure: The new Office 365" />
+
+## Home Page gets “Delved”
+
+We get a shiny new SharePoint home page in Office 365. Previously the home page showed only your own team sites and recently visited sites, but this gave you no visibility to the rest of your organization. If you were lucky, your SysAdmin manually added key sites to the promoted sites. The home page now acts as a top-level directory, that helps you find all the sites in your organization, both in the cloud and on-premises, all powered by the Office Graph API
+
+<Figure src="/media/2016/05/sp2.png" alt="Out with the old…" caption="Figure: Out with the old…" />
+
+<Figure src="/media/2016/05/sp3.png" alt="In with the new SharePoint 2016" caption="Figure: In with the new" />
+
+### Modernized Team Site
+
+The team site got a major revamp, both in look and in technology. At first glance, you will enjoy a new responsive design that looks and works great, both in the browser and on mobile.
+
+<Figure src="/media/2016/05/sp4.png" alt="SharePoint Team Site's new design - both sexy and functional" caption="Figure: SharePoint Team Site’s new design – both sexy and functional" />
+
+<Figure src="/media/2016/05/sp5.png" alt="A more intuitive editing experience" caption="Figure: A more intuitive editing experience" />
+
+It also comes with an improved editing experience. There is no more ribbon, instead we get a simpler inline menu (more like [wix](http://www.wix.com/)).
+
+As a content editor, you would’ve noticed how simple it is to make a change and add new web parts using this page editor. As a developer, you would be wondering how Microsoft did this. Under the covers, there is a new development framework that is designed with all the best modern web technologies. More on that later.
+
+Out of the box, the team site comes with:
+
+-   Internal newsfeed
+-   Activities – shows site activities and important documents
+-   Members – on the top right you see team members
+-   Documents library – more on that later
+-   OneNote – a collaborative scratch pad that replaces your traditional wiki
+
+Every Office 365 group will get a team site. This will be the heart of team collaboration where members come to:
+
+-   Share knowledge with OneNote
+-   See what others are doing with site activities
+-   Collaborate with document libraries and lists
+
+## Modernized Document Library
+
+<Figure src="/media/2016/05/sp6.png" alt="Changed from this…" caption="Figure: Changed from this…" />
+
+<Figure src="/media/2016/05/sp7.png" alt="To this" caption="Figure: To this" />
+
+<Figure src="/media/2016/05/sp8.png" alt="It now has a thumbnail view…" caption="Figure: It now has a thumbnail view…" />
+
+The first thing you will notice is that the UI is updated to be consistent with OneDrive.
+
+<Figure src="/media/2016/05/sp9.png" alt="And an improved quick search without taking you away" caption="Figure: And an improved quick search without taking you away" />
+
+<Figure src="/media/2016/05/sp10.png" alt="You can also manage your metadata without leaving your library" caption="Figure: You can also manage your metadata without leaving your library" />
+
+You also get [keyboard shortcuts](https://rules.ssw.com.au/keyboard-shortcuts) in 2016.
+
+### Moving Files between OneDrive and SharePoint
+
+Moving documents between SharePoint sites and OneDrive used to be impossible. You had to download and then re-upload the document to the destination. Then you ended up with duplicate files and lost history. All users will welcome the new “Move To” and “Copy To” actions in SharePoint.
+
+### The New SharePoint Framework
+
+The New SharePoint Framework
+
+Sit back kids: it’s time for a history lesson…
+
+-   In the beginning (2001-2007), we had nothing. SharePoint 2001 and 2003 were immutable and could not be changed
+-   In 2007, we got server-side farm solutions in the form of .wsp files, that deployed DLLs with ASP.NET components
+-   In 2010, we got sandbox solutions that also deployed DLLs with ASP.NET components. These had limited SharePoint access and ran in a separate ‘sandbox’ process to ensure it was safe
+-   In 2013, we got client-side JavaScript-only web parts, which could be safely deployed to Office 365
+-   In 2013, we also got provider-hosted SharePoint add-ins. These self-contained extensions of SharePoint websites ran outside the SharePoint server and could be safely deployed to Office 365
+
+In 2016, we will receive a new SharePoint framework that fully embraces client-side programming, with all the popular open source tools such as Gulp and Yeoman.
+
+The new SharePoint framework in 2016 includes:
+
+-   New page and canvas programming model
+-   New development process. At a high level, a developer will now:
+    -   Start with a SharePoint template in Yeoman to create the project
+    -   Use Visual Studio to add and update TypeScript code and configuration
+    -   Use Gulp (or npm) to resolve JavaScript dependencies
+    -   Use the new SharePoint Workbench (which runs on Node.js) to test their code locally without connecting to a SharePoint server (you don’t even need IIS). This means a dev no longer needs a beefy machine with SharePoint installed just to test some web parts
+    -   Use Gulp to package a project
+    -   Publish a package to a CDN to be used in production – this should be done by an automated deployment tool, such as Octopus Deploy
+
+<Figure src="/media/2016/05/sp11.png" alt="Check out the simplified workflow" caption="Figure: Check out the simplified workflow" />
+
+## Microsoft Flow
+
+Microsoft has given us multiple workflow solutions in SharePoint, CRM and TFS. They were all based on WF and were too intimidating to become mainstream. Now we get Microsoft Flow, a web-based automation solution that is designed for power users and supports a wide range of scenarios. It is similar to the popular If This Then That ([IFTTT](https://ifttt.com/), a sexy web-based automation solution full of recipes.
+
+<Figure src="/media/2016/05/sp12.png" alt="IFTTT lets you choose the parameters of your scenarios and then notifies you if the situation arises" caption="Figure: IFTTT lets you choose the parameters of your scenarios and then notifies you if the situation arises" />
+
+<Figure src="/media/2016/05/sp13.png" alt="Microsoft Flow Templates looking very similar" caption="Figure: Microsoft Flow Templates looking very similar" />
+
+<Figure src="/media/2016/05/sp14.png" alt="SharePoint 2016 will have built-in support for Microsoft Flow" caption="Figure: SharePoint will have built-in support for Microsoft Flow" />
+
+Microsoft Flow provides automation across multiple platforms such as SharePoint, DropBox, SalesForce, Twitter, Github etc. It’s still in its infancy: it doesn’t have any forms to interact with users. You can manually wire it up to look at a SharePoint list and, optionally, use a PowerApp to build an interface on top. But that process is not simple. You’re better off staying with a more mature workflow solution, such as Nintex or K2.
+
+<Figure src="/media/2016/05/sp15.png" alt="You can customize and configure a flow in the browser" caption="Figure: You can customize and configure a flow in the browser" />
+
+## OneDrive ❤ SharePoint
+
+The OneDrive mobile apps will be updated to support syncing with SharePoint document libraries.
+
+Suggestion: I would like to see the ability to set filters on the sync on my mobile device, e.g. for only important files, or to avoid large files.
+
+The OneDrive desktop apps have been updated to support syncing with SharePoint document libraries.
+
+Both mobile and desktop apps will be updated to support publishing to SharePoint document libraries.
+
+## SharePoint Mobile App – “Intranet in your pocket”
+
+Better late than never! We have a new mobile SharePoint app that works similarly to OneDrive app, but it also lets you access publishing and team sites on your phone. It also comes with a “recently used sites and documents” feature that actually works across all sites and devices.
+
+The SharePoint mobile app will be shipped for iOS by the end of the first half of 2016, followed by Windows and Android versions by the end of the second half of 2016.
+
+**Introduction video:**
+
+<YouTubeEmbed videoId="L4OmRsiXbVw" />
+
+## **Power Apps**
+
+I know you thought power users were meant to use Access or LightSwitch but the strategy has shifted.
+
+PowerApps is the official “no code” solution to create simple web and mobile applications. It gives you an easy-to-use form builder (similar to Access, InfoPath, LightSwitch, etc.), and lets you pick where to store your data (SharePoint Online, SalesForce, Azure Database, Custom API, etc).
+
+For example, you can use a SharePoint list as your data source, then tie it together with Microsoft Flow. This is a powerful platform to create fast business solutions.
+
+## Delve
+
+Previously we had MySites, where users will occasionally store their documents, but it has fallen out of favour as users gravitated to OneDrive.
+
+In SharePoint 2016, MySites have been replaced by Delve. Delve is the poster child of Office Graph. It utilizes your usage data across the cloud to highlight documents, sites and people that you care about. Currently, it only works for documents and sites stored in the cloud. On-premises support is coming, but no date is announced.
+
+## Delve Statistics – analytics on internal document usage
+
+<Figure src="/media/2016/05/sp16.png" alt="These statistics are used to determine what to show in your profile, team site and mobile app" caption="Figure: These statistics are used to determine what to show in your profile, team site and mobile app" />
+
+Don’t we want to see the most popular documents in our organizations? In SharePoint, document statistics have always been hidden. However, in the most recent OneDrive update, we have seen that document analytics provide insight into document usage, reach and impact. Let’s hope they bring this cool feature into SharePoint as well.
+
+In conclusion,  I am very excited about the upcoming SharePoint release. The functionality has become much more intuitive and will improve the efficiency of the UI. This is about connecting all the data we need, and having it accessible to us anytime, anywhere. And it’s all done with the latest mobile web technology, elegantly and efficiently.
+
+I really think this is the best SharePoint so far, with Jeff Teper back at the helm, these guys are definitely heading the right direction. I’m looking forward to seeing the new features that are yet to be released implemented at SSW.

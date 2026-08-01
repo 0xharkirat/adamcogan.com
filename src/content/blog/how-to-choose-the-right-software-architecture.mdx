@@ -1,0 +1,66 @@
+---
+title: "How to Choose the Right Software Architecture"
+description: "As software devs, one of the most important things we do on a greenfield project is to choose the right software architecture. It is called architecture when it’s hard to change. ✅ Get it right, and your project becomes maintainable, scalable, and a pleasure to develop. ❌ Get it wrong, and you notic"
+pubDate: 2025-07-08T08:29:36.000Z
+updatedDate: 2025-07-08T08:29:41.000Z
+heroImage: "/media/2025/06/Blog-Banner-Architecture.jpg"
+author: "Adam Cogan"
+categories: ["net", "general", "ssw-onion-architecture"]
+tags: ["clean-architecture", "decision-tree", "microservices", "modular-monolith", "software-architecture", "vertical-slice-architecture", "vsa"]
+legacyUrl: "/2025/07/08/how-to-choose-the-right-software-architecture/"
+wpId: 5171
+---
+
+As software devs, one of the most important things we do on a greenfield project is to choose the right software architecture. It is called architecture when it’s hard to change.
+
+✅ Get it right, and your project becomes maintainable, scalable, and a pleasure to develop.
+
+❌ Get it wrong, and you notice it with every feature you add.
+
+## Commonly chosen .NET architectures:
+
+### #1 Clean Architecture (CA)
+
+Clean Architecture emphasizes the separation of concerns, which significantly enhances maintainability and scalability. This is the most common choice amongst SSW developers, as they value its clear boundaries and testability. The learning curve for Clean Architecture can initially slow down development if the team is inexperienced. However, the layering provides guardrails, especially useful for junior developers.
+
+### #2 Vertical Slice Architecture (VSA)
+
+Vertical Slice Architecture (VSA) structures the application around fully implemented features rather than technical layers. VSA helps reduce inter-team friction and simplifies feature delivery. This architecture is loved by SSW teams – it is used for SSWTimePro.com, and they see fast, iterative delivery. However, due to the lack of guardrails, the juniors would need more supervision because it’s easier to make mistakes.
+
+### #3 Modular Monolith (MoMo)
+
+This architecture balances simplicity and modularity by encapsulating functionality within distinct modules while maintaining a single deployment unit. Modular Monoliths provide significant benefits when teams have moderate DevOps capabilities and seek simplicity in deployment and testing. The modularity helps to manage complexity in large projects by reducing coupling between unrelated modules.
+
+### #4 Microservices (no abbreviation, nothing is simplified)
+
+Microservices involve independently deployable, scalable, and maintainable services. This architecture works best in environments with mature DevOps practices and larger teams. However, the complexity and overhead of managing numerous services can create significant challenges, particularly for smaller teams or less experienced developers. I’ve seen this chosen in too many teams and it’s given them more pain, than pleasure.
+
+## Choosing the right architecture
+
+So with so many choices, how do you know you’re making the right one? The SSW Software Architecture Whiterobes, led by [Solution Architect Daniel Mackay](https://www.ssw.com.au/people/daniel-mackay/), have written a practical [SSW Rule – Do you know how to choose the best software architecture for your system?](https://www.ssw.com.au/rules/software-architecture-decision-tree/)
+
+This rule helps developers at the critical early stage. It includes a great decision tree that contains a whole bunch of decision points that you can ask yourself when starting a new project (see image below).
+
+It’s important to remember you don’t have to choose just one architecture. You can mix and match different architectures. For example, in a Modular Monolith, each module can use either Clean Architecture or Vertical Slice Architecture. In Microservices, each service can also choose Clean or Vertical Slice Architecture.
+
+Sometimes, the best solution might be combining Modular Monolith and Microservices. E.g., Modular Monolith for most of your system to keep things simple, and then use Microservices for the parts of the system that need to be extra flexible and scalable.
+
+<Figure src="/media/2025/06/image-2.png" alt="Architecture decision tree" caption="Figure: The SSW Architecture Decision Tree is a useful guide" />
+
+## Best Practices and Recommendations
+
+Choosing the right software architecture doesn’t have to be overwhelming. Here are 4 practical recommendations I often think about:
+
+#1 – Start Simple: Initially, opt for architectures like Vertical Slice when requirements are uncertain.
+
+#2 – Consider Team Capability: Align your architecture with your team’s skill set and maturity level in DevOps.
+
+#3 – Anticipate Growth: For projects that you expect to need to scale, a Modular Monolith is the best place to start. In the future, modules can be migrated to Microservices that offer considerable long-term advantages, provided sufficient upfront investment in DevOps.
+
+#4 – Modularity Matters: Even within simpler architectures, aim to maintain clear modular boundaries to facilitate future scaling and maintenance.
+
+## Conclusion
+
+Choosing the right software architecture from the start can significantly influence your project’s success. I hope you find the SSW Architecture Decision Tree helpful, it is backed by real-world insights from SSW developers and should trigger some conversation that will enhance decision-making. Of course, chatting with an experienced Solution Architect would be even more valuable.
+
+I’d love to hear your stories or suggestions below 👇🏻and you can give feedback on the GitHub Repos for the [Clean Architecture template](https://github.com/SSWConsulting/SSW.CleanArchitecture) or [Vertical Slice template](https://github.com/SSWConsulting/SSW.VerticalSliceArchitecture), on the [SSW Rule](https://www.ssw.com.au/rules/software-architecture-decision-tree/)

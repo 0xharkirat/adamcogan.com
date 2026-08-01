@@ -1,0 +1,29 @@
+---
+/**
+ * Captioned image. Adam captions almost every image on the blog using the
+ * "Figure: ..." convention, so captions are content and get real markup
+ * (<figure>/<figcaption>) rather than being folded into alt text.
+ */
+interface Props {
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+
+const { src, alt = '', caption = '' } = Astro.props;
+
+// Captions are authored as "Figure: the actual caption". Split the label off so
+// it can be styled separately, and fall back cleanly when the prefix is absent.
+const match = caption.match(/^\s*(Figure|Bad example|Good example|Video)\s*:\s*(.*)$/is);
+const label = match?.[1] ?? '';
+const text = match?.[2] ?? caption;
+---
+
+<figure class="my-8">
+  <img src={src} alt={alt || text} loading="lazy" decoding="async" class="h-auto max-w-full rounded" />
+  {caption && (
+    <figcaption class="mt-2 text-sm leading-snug text-muted-foreground">
+      {label && <span class="font-semibold">{label}:</span>}{' '}{text}
+    </figcaption>
+  )}
+</figure>

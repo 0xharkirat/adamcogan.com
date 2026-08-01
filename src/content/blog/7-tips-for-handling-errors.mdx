@@ -1,0 +1,136 @@
+---
+title: "Avoiding a Jurassic problem – 7 tips for handling errors, before they bite"
+description: "Error handling doesn’t need to be a nightmare. Follow these 7 tips to manage your errors, identify bugs & keep your projects healthy."
+pubDate: 2021-10-14T05:49:52.000Z
+updatedDate: 2022-09-22T23:37:33.000Z
+heroImage: "/media/2021/10/Blog-Banner-Handling-Errors.jpg"
+author: "Adam Cogan"
+categories: ["net-core", "customer-experience", "general", "ssw-rules"]
+tags: ["application-insights", "error-handling", "healthy-code", "report-bugs"]
+legacyUrl: "/2021/10/14/7-tips-for-handling-errors/"
+wpId: 3811
+---
+
+Errors should always be caught and logged – there are plenty of great services that help you fall into the “pit of success”. They have great dashboards, integrate with your preferred communication tools, give you great telemetry, and help you drill down to the root cause.
+
+As developers you should be alerted when something is going wrong and be able to see details to help you track down and fix bugs. Every developers goal should be to know about bugs before the clients do. With exception libraries, you should already be on it.
+
+For developers, it is crucial to log errors, watch them daily and review the health of the errors in the Sprint Review.
+
+And think about the end user for a second…. we’re all aware how painful it can be when you see a nasty error message. In the best case it makes you feel uneasy, and at worst it leaves you blocked. The user experience should \*not\* be an jarring jumble of text that looks like it is designed for a computer 🤢. On the other hand, a developer should not be developing new features when they are oblivious to the unhealthy state of the application.
+
+Let’s look at 7 ways that you can handle an error, before it comes back to bite you.
+
+<YouTubeEmbed videoId="Zr4styC6S-E" />
+
+## 1\. Record your Errors – Use an Exception Handling Library
+
+When developing software, exceptions are a fact-of-life you will need to deal with. Don’t reinvent the wheel, use an existing exception handling library or service.
+
+The best exception handling libraries I’ve come across are:
+
+-   Application Insights (recommended)
+-   Seq
+-   RayGun
+-   Note: for AWS projects, use AWS CloudWatch TODO: Add to Rule
+
+For a more in-depth look at each one, check out [SSW Rules – Do you use the best exception](https://www.ssw.com.au/rules/do-you-use-the-best-exception-handling-library)
+
+<Figure src="https://www.ssw.com.au/rules/static/7990af655538a8e10fe0b3c47de3677e/2bef9/overview.png" alt="Application insights" caption="Figure: Application Insights gives you graphs and analysis that help you see the issues. It also lets you drill down to get the details." />
+
+## 2\. Present the User with a Nice Error
+
+Your users should never see the “yellow screen of death” in ASP.NET, or the “unhandled exception” message in a Windows application.
+
+<Figure src="https://www.ssw.com.au/rules/static/1886d23b16cfe26750fdb7642193275f/bce72/default-asp-error-500_small.png" alt="Yellow screen of death" caption="Figure: Bad Example – Eeek! This is ugly, and hard to read. If you see this, you are doing something wrong! And your certainly not running .NET 6" />
+
+<Figure src="https://www.ssw.com.au/rules/static/b60e80baf2ceed260cdeda2cdf019e37/79e1b/net-core-default.png" alt="net core default" caption="Figure: Bad Example – Default exception page" />
+
+<Figure src="https://www.ssw.com.au/rules/static/faaefd348a337b8eee8bd02f7b2976b8/2bef9/timepro-error.png" alt="timepro error" caption="Figure: Good Example: – This is much nicer! A nice custom error page" />
+
+<Figure src="https://www.ssw.com.au/rules/static/8cb9b8afeb927c3ec06754f2dbbfb027/2bef9/error-screen-good.png" alt="error screen good" caption="Figure: Good Example – GitHub custom error page" />
+
+However, as a developer you still want to be able to view the detail of the exception in your local development environment.
+
+SSW have a great guide to setting up a development environment exception pages in ASP.NET Core here: [https://www.ssw.com.au/rules/do-you-present-the-user-with-a-nice-error-screen](https://www.ssw.com.au/rules/do-you-present-the-user-with-a-nice-error-screen)
+
+## 3\. Use a Trace Logging Library
+
+Although commonly done and technically rewarding, writing your own logging infrastructure code is a waste of time. There are so many awesome logging abstractions in .NET Core, .NET 5 , and .NET 6, that you should be using one of them.
+
+These abstractions allow you to:
+
+-   Create log entries in a predictable and familiar fashion – you use the same patterns for logging in a [Background Service](https://docs.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line) as you would in a [Blazor WASM app](https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/logging?view=aspnetcore-5.0&pivots=webassembly) (just some slightly different bootstrapping 😉)
+-   Use Dependency Injection – your code should not take a dependency on a particular framework (as they are abstractions)
+-   Filter output based off severity (Verbose/Debug/Info/Warning/Error) – so you can dial it up or down without changing code
+-   Have different logs for different components of your application (e.g. a Customer Log and an Order Log)
+-   Multiple logging sinks – where the logs are written to e.g. log file, database, table storage, or Application Insights
+-   Supports log message templates allowing logging providers to implement [semantic or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging)
+-   Can be used with a range of [3rd party logging providers](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#third-party-logging-providers-1)
+
+When your code doesn’t run as planned, if set up correctly, logging can save you hours. I recently watched a great video by Microsoft MVP [Jernej “Jk” Kavka](https://www.ssw.com.au/people/jk), that shows you the best ways to set up your logging. Check it out below – a 20 minute watch, to save a lifetime of pain! 💪🏻
+
+<YouTubeEmbed videoId="pUMs8TkuMFk" />
+
+## 4\. Catch and re-throw your exceptions
+
+A good catch and re-throw will make life easier while debugging, a bad catch and re-throw will ruin the exception’s stack trace and make debugging difficult.
+
+-   Catch and rethrow where you can usefully add more information, and this saves the dev having to work through the layers to understand the problem
+-   Never use an empty catch block. Do something in the block or remove it
+-   Never re-throw exceptions by passing the original exception object. Wrap the exception or use throw; instead.
+
+If you are following the [Clean Architecture](https://github.com/jasontaylordev/CleanArchitecture) pattern – catching and rethrowing is useful for preventing your Infrastructure details from leaking into your Application e.g. your code shouldn’t say “we use SQL server”
+
+<Figure src="/media/2021/10/image.png" alt="Rethrowing an exception" caption="Figure: By rethrowing a specific exception, my application code now doesn’t need to know that there is a SQL database or the magic numbers that SQL exceptions use" />
+
+## 5\. Catch your exceptions precisely
+
+In life when you criticise someone, it’s better to be specific rather than to have a general whinge.
+
+It’s the same in code.
+
+In the try and catch block, if you are catching a general [Exception](https://docs.microsoft.com/en-us/dotnet/api/system.exception?redirectedfrom=MSDN&view=net-5.0) , you will never know where the true problem is. Therefore, catch the specific exception.
+
+![rethrowing an exception](/media/2021/10/image-1.png)
+
+## 6\. Don’t Throw an exception using System.Exception
+
+While everyone knows that catch (Exception ex) is bad, it is important to remember that **throw new Exception()** is worse.
+
+**System.Exception** is a very extensive class, and it is inherited by all other exception classes. If you throw an exception with the code **throw new Exception()**, what you need subsequently to handle the exception, will be the infamous **catch (Exception ex).**
+
+As a standard, you should use an exception class with the name that best describes the exception’s detail. All exception classes in .NET Framework follow this standard very well.
+
+As a result, when you see Exceptions like FileNotFoundException or DivideByZeroException, you know what’s happening just by looking at the exception’s name. The .NET Framework has provided us a comprehensive list of exception classes that we can use. If you really can’t find one that is suitable for the situation, then create your own exception class with the name that best describes the exception e.g.: EmployeeListNotFoundException.
+
+Also, System.ApplicationException should be avoided as well unless it’s an exception related to the application. While it’s acceptable and should be used in certain cases, be aware that using it broadly will be just as bad as ‘throw new Exception()’.
+
+You can see an example of this on SSW Rules: [https://www.ssw.com.au/rules/do-you-know-that-you-should-never-throw-an-exception-using-system-exception](https://www.ssw.com.au/rules/do-you-know-that-you-should-never-throw-an-exception-using-system-exception)
+
+<Figure src="/media/2021/10/image-3.png" alt="Specific exception" caption="Figure: Good example – A specific exception is thrown which you can specifically catch, the message is consistently formatted… and the consuming application can understand what was wrong with the request" />
+
+## 7\. Use an Analytics framework to help manage exceptions
+
+Finally, the ability to see the overall health performance counters, exceptions, data usages, page hit counts etc. of your application, ensures you are well in control. Developers want to have the necessary information at their hands to action any bugs or performance issues. An analytics framework allows you to do all of that in a consistent and centralized manner. 
+
+An analytics framework puts you in control of your application and allows you to do the following:
+
+-   Capture, log and action exceptions
+-   Analyse performance issues and identify bottlenecks
+-   Track application usage down to individual components
+-   View and create performance reports
+-   Analyse user demographics
+
+There are a number of existing Analytics frameworks available on the market, so there is no need to “re-invent the wheel”. Why would you write your own, if someone else has already taken the trouble to do it? We recommend using one of these frameworks or services:
+
+-   [Application Insights](https://www.ssw.com.au/rules/rules-to-better-application-insights) (preferred)
+-   [Exceptionless.NET](https://exceptionless.com/)
+-   [New Relic](https://docs.newrelic.com/docs/agents/net-agent/net-agent-api/)
+-   [Splunk](https://www.splunk.com/)
+-   [Serilog](https://serilog.net/)
+-   [elmah.io](https://elmah.io/)
+
+Each one of those frameworks has a fairly extensive set of tools available and are easy to integrate into your application.
+
+Hopefully these 7 tips will help you keep your application healthy! Let me know what you think by commenting below!

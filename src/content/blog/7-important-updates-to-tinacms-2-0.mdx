@@ -1,0 +1,72 @@
+---
+title: "7 Important Updates to 🦙TinaCMS 2.0"
+description: "See the latest updates from TinaCMS 2.0, including some great new features like more flexibility on your choice of package manager, new integrations and more"
+pubDate: 2024-08-27T07:29:13.000Z
+updatedDate: 2024-08-27T07:30:22.000Z
+heroImage: "/media/2024/08/7-Important-Updates-to-TinaCMS-Blog-Banner.jpg"
+author: "Adam Cogan"
+categories: ["general", "tina-cms"]
+tags: ["content-management", "media-manager", "package-manager", "pnpm", "react-integration", "tinacms", "tinaupdates"]
+legacyUrl: "/2024/08/27/7-important-updates-to-tinacms-2-0/"
+wpId: 4971
+---
+
+🦙TinaCMS has been progressing well. I’ve had 3 SSW teams working on it and I’ve seen a ton of work done each Sprint.
+
+<Figure src="/media/2024/08/LLama.jpg" alt="Adam and a llama" caption="Figure: Me and one of the Tina Llamas from the launch party – like the product, they are very friendly" />
+
+## Shipped v2.0🚀
+
+We’ve made changes to improve the user experience, improved the performance for large customers, and deprecated some of the legacy stuff so the API is cleaner.
+
+So, I was really happy when the team shipped 2.0. 🚀
+
+Note: We’re currently at TinaCMS v2.2.1 & CLI v1.6.1… let’s jump in and look at the big changes in v2.0.
+
+#### **1\. API – Deprecated Hook Removed**
+
+First up, we’ve fully removed a deprecated hook that was part of some old legacy systems. This cleanup ensures a leaner, more maintainable codebase. Don’t worry – the commonly used ‘`useTina`‘ hook remains unaffected, so your workflow stays smooth.
+
+#### **2\. React Framework – Upgraded to Next.js 14**
+
+We’ve taken TinaCMS packages from Next.js 12 to 14, bringing along a host of dependency updates. This upgrade means better performance, improved security, and staying on top of the latest trends in the Next.js ecosystem. It’s important to keep your stack modern.
+
+#### **3\. Package Manager – pnpm support for ‘create-tina-app**‘
+
+When you create a project, people used to choose between npm and Yarn as their package manager.
+
+However, pnpm is really popular because it’s a fast, disk space-efficient package manager for Node.js – a better alternative to npm and Yarn. So, we’ve added **pnpm support** when creating a Tina app.
+
+We want to give you the flexibility to choose your package manager of your choice.
+
+#### **4\. React 18.3.1 Integration**
+
+We’ve bumped up our React version to 18.3.1. This upgrade means you can take advantage of the newest React capabilities, keeping your app both performant and cutting-edge.
+
+#### **5\. Markdown Editor – New ‘`toolbarOverride`‘ Option for Rich Text Fields**
+
+Rich text editing just got a whole lot more customizable. We’ve introduced a new ‘`toolbarOverride`‘ option, giving you greater control over the configurations of your markdown editor toolbar. Some TinaCMS customers wanted to give their users an extended toolbar, with heaps of extra features, others wanted to pare it down and not even let users put images in the content!!
+
+You now have the ability to customize the toolbar and add and remove the buttons, which is a game changer. Check out the [docs](https://tina.io/docs/reference/types/rich-text) for a detailed guide on how to make the most of this feature.
+
+<Figure src="/media/2024/08/Image-1.png" alt="The Code with the configuration with 3 buttons (heading, bold, italic)" caption="Figure: Here you can see the configuration with 3 buttons (heading, bold, italic)" />
+
+<Figure src="/media/2024/08/image2.png" alt="Screen image showing only 3 buttons showing in a situation where a minimal amount of text customization is desired (users can't even add images)" caption="Figure: Only 3 buttons showing in a situation where a minimal amount of text customization is desired (users can’t even add images)" />
+
+#### **6\. Media Manager – Adding support for videos** **& other file types**
+
+We’re making media management better. Now, TinaCMS allows you to upload and use more file types, e.g. PDF, videos, etc. This means you can upload videos and other media types directly through the media manager, simplifying your content workflow.
+
+<Figure src="/media/2024/08/image3.png" alt="Showing the new file format" caption="Figure: Whatever file format you want you can have, even .MKV" />
+
+#### **7\. Mobile Resolution Support**
+
+Important for today’s mobile-first world, we’ve made content editing work flawlessly across devices. TinaCMS now supports various screen sizes and mobile devices, including iOS and Android. Whether you’re on the go, or at your desk, editing your content has never been more intuitive.
+
+<Figure src="/media/2024/08/image4.png" alt="Showing Tina on various screens" caption="Figure: You can now use TinaCMS on the go" />
+
+---
+
+We’ve done a ton of work, and there’s a lot more to come!
+
+What do you think of the new features? Let me know in the comments, or go to the [Tina Discord to speak to the Team](https://discord.com/invite/zumN63Ybpf).

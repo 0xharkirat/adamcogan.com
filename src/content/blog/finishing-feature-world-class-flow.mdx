@@ -1,0 +1,63 @@
+---
+title: "Finishing a feature with world class flow"
+description: "Over the years, I’ve talked about how I’ve wanted features shipped into production quicker. Now I’m going to talk about how you can ensure that the features that your devs ship are at a high quality. When the devs get to the exciting point when the code is done, they commit the code (in Git) or"
+pubDate: 2016-03-09T00:59:20.000Z
+updatedDate: 2016-03-09T08:43:32.000Z
+author: "Adam Cogan"
+categories: ["work-flow"]
+tags: []
+legacyUrl: "/2016/03/09/finishing-feature-world-class-flow/"
+wpId: 2724
+---
+
+Over the years, I’ve talked about how I’ve wanted features shipped into production quicker. Now I’m going to talk about how you can ensure that the features that your devs ship are at a high quality.
+
+When the devs get to the exciting point when the code is done, they commit the code (in Git) or check in the code (in TFS), have the feature tested, and move the tasks to the “Done” column of the Kanban board.
+
+So what now? How do we let the team know we’re finished? When do we deploy to production? How are we assured that everything will work?
+
+In the bad old days, we would just push our changes (in Git) and assume everything was fine. Of course, not everything is fine all the time, so we now use a flow that gives faster feedback, safer deployments and a more polished feature at the end.
+
+These days we have a 5 step process for a PBI:
+
+1.  **Open a Pull Request**
+
+TFS has never allowed devs a measure of safety unless there’s some heavy branching involved. Most projects we’re doing these days are on Git.
+
+That allows us to use GitHub Flow, and follow our rule, [Do you know when to branch in Git?](https://rules.ssw.com.au/do-you-know-when-to-branch-in-git) (check out Steve’s video in the rule). The first step is to open a Pull Request to allow other developers to review our feature and provide feedback.  Of course, the devs include plenty of information about what was done in the Pull Request. 🙂
+
+<Figure src="/media/2016/03/01-open-a-pull-request-github.jpg" alt="Figure: GitHub Flow is a lightweight, branch-based workflow that supports teams and projects where deployments are made regularly." caption="Figure: GitHub Flow is a lightweight, branch-based workflow that supports teams and projects where deployments are made regularly." />
+
+2.  **Complete an “Over the Shoulder” check**
+
+Two sets of eyes are better than one, so we get another developer to come around and have a look at the code.  We’re meticulous – doing a diff off every file (depending on level of trust!), and explaining why we did what we did.  When we’re reviewing, we are ruthless – we treat this this is our opportunity to improve code quality and understand what the other person has done.
+
+It’s really important not to just treat this as part of a checklist – we have found that quality code reviews make our guys much better developers, and it’s one of our primary sources of knowledge sharing.
+
+<Figure src="/media/2016/03/02-github-and-vsts-pull-requests.jpg" alt="Figure: GitHub and Visual Studio Team Services both support Pull Requests." caption="Figure: GitHub and Visual Studio Team Services both support Pull Requests." />
+
+3.  **“Test please” the functionality**
+
+It’s all too easy to fall into the trap of tunnel vision when working on the feature. We can easily think that the way _we_ use a feature is the way everyone will.  Because of this, we make sure that before we’ve shipped the change, another person takes it for a spin. If you can, choose someone who doesn’t have the same assumptions as the person who wrote the code. They drive, and we look over their shoulder and see how they accomplish the task.
+
+With any luck, their reactions are similar to [driving a Tesla for the first time](https://adamcogan.com/2015/08/12/tips-for-tesla/).
+
+The best feedback comes from someone naturally using the application, so don’t give them too much guidance while they do this. Sit back, observe, and note any problems.  Don’t hesitate to go back to the drawing board with this insight and do whatever reengineering is required to make the feature great.
+
+To ease the reporting of bugs and issues, we follow the rule [Do you use Exploratory Testing?](https://rules.ssw.com.au/do-you-do-exploratory-testing) – allowing simple creation of bugs with screenshots.
+
+4.  **Merge the feature changes to master**
+
+Once everyone is satisfied, we merge the feature (pull request) to master. From here, the continuous deployment strategies take over, and the code is pushed invisibly to staging or production. Thanks Octopus!
+
+From here it’s just a matter of [employing DevOps practices](https://rules.ssw.com.au/rules-to-better-devops) to automate and monitor these deployments ensures a stable and reliable production system.
+
+<Figure src="/media/2016/03/03-merging-tesla-video-thumbnail.jpg" alt="Figure: Merging with older source control systems is painful. Merging with Git is easy - just like merging in a Tesla" caption="Figure: Merging with older source control systems is painful. Merging with Git is easy – just like merging in a Tesla" />
+
+5.  **Send the “done” email**
+
+As per the rule, [Do you know when to send a done email in Scrum?](https://rules.ssw.com.au/done-do-you-know-when-to-send-a-done-email-in-scrum), we notify the team using a “done” email, which is a fantastic opportunity to ensure we’re ready to demo the feature for the Sprint Review. We take screenshots (or even better, a video), include instructions and everything else we need to demonstrate the feature is working, and refer to this email during the Sprint Review.
+
+For a look at how we manage the full life cycle of a feature, see the rule “[Do you know the 3 steps to a PBI?](https://rules.ssw.com.au/do-you-know-the-3-steps-to-a-pbi)“.
+
+<Figure src="/media/2016/03/04-good-done-email.jpg" alt="Figure: Good done emails include links to the work item, images and even videos of the work completed." caption="Figure: Good done emails include links to the work item, images and even videos of the work completed." />

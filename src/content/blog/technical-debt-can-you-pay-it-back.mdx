@@ -1,0 +1,71 @@
+---
+title: "Technical Debt – Can you pay it back?"
+description: "In a perfect world, development projects would be: Deployed often Developed using Agile practices, for example following Scrum Using mainstream technologies and libraries Managed & developed using best practices – the reason I started rules.ssw.com.au Run at a sustainable cadence with a team of at l"
+pubDate: 2021-02-15T11:23:26.000Z
+updatedDate: 2022-09-23T16:52:18.000Z
+heroImage: "/media/2021/02/Technical-Debt-Newsletter-Banner.png"
+author: "Adam Cogan"
+categories: ["general", "non-ssw-projects", "ssw-projects"]
+tags: ["project-management", "tech-debt", "technical-debt"]
+legacyUrl: "/2021/02/15/technical-debt-can-you-pay-it-back/"
+wpId: 3582
+---
+
+<YouTubeEmbed videoId="ASVD4YIOgpU" />
+
+In a perfect world, development projects would be:
+
+1.  Deployed often
+2.  Developed using Agile practices, for example following Scrum
+3.  Using mainstream technologies and libraries
+4.  Managed & developed using best practices – the reason I started [rules.ssw.com.au](https://rules.ssw.com.au/)
+5.  Run at a sustainable cadence with a team of at least 2 developers
+6.  Code written in buddy fashion – 2 developers sitting side by side
+7.  Covered with maintainable tests
+8.  Ran by savvy & available Product Owners
+9.  A Backlog that clearly identifies technical debt
+10.  Reasonable budgets and timeframes
+
+Do you work on a project that gets a tick on each one of these? Usually the two biggest things in a software project that developers have the least influence over, are the time they have to build a product (aka #10 – a reasonable budget).
+
+So, what does this mean in the real world? Usually, it means software developers making compromises to get something built in the desired timeframe. This often leads to what we call Technical Debt.
+
+### What is Technical Debt?​
+
+Technical Debt can arise when you take a shortcut to get a feature in to get some feedback. It can be code that is hard to understand, even after reading it multiple time! Mostly when you see a single method that spans multiple screens, that is considered to be Technical Debt.
+
+As new features are added to the system, often more Technical Debt will be introduced. And systems need to have features added to them to remain useful (or competitive).
+
+### What are the consequences?​​
+
+It really comes down to 2 things:
+
+1.  Fewer features over time for the customers
+2.  More molasses (developer friction) for the developers
+
+### ✔️ Making Technical debt visible
+
+**Example:** A developer takes a shortcut to get some early feedback on a new feature
+
+-   $100 – full feature
+-   $20 – feature with shortcuts (no tests, dirty code, whatever it takes)
+-   $80 – IOU via PBI in the backlog e.g. \[FeatureName\] – Tech Debt – Planned
+
+<Figure src="/media/2021/02/image.png" alt="A project Kanban board with Tech debt identified" caption="Figure: Good example – Tech Debt is very visible to the Product Owner" />
+
+### Can it be Reduced and/or Managed?
+
+Technical debt is inevitable in most development projects as the influence of time and money comes into play, but can it be managed? The answer is yes.
+
+SSW Software Architect, [Matt Goldman](https://www.ssw.com.au/people/matt-goldman), explains it best in the above video on SSW TV.
+
+### How to repay Technical Debt​​
+
+Just like a business that receives pre-payment from customers, a software team should be reviewing the size of their liabilities (being the list of PBIs with Technical Debt).
+
+At the Sprint Planning:
+
+1.  Show the Product Owner the list of outstanding Technical Debt PBIs
+2.  The Product Owner should make sure that the developers review the Technical Debt list and pick at least 1 PBI to pay back during the upcoming sprint​
+
+Managing technical debt is so important that we created a Rule for you to help pay it back. Check it out and let me know what you think: [https://rules.ssw.com.au/technical-debt](https://rules.ssw.com.au/technical-debt)

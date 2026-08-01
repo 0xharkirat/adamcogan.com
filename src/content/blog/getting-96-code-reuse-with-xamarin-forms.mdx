@@ -1,0 +1,59 @@
+---
+title: "Getting 96% Code Reuse with Xamarin Forms"
+description: "UPDATE:"
+pubDate: 2015-01-14T06:22:05.000Z
+updatedDate: 2015-08-28T19:26:29.000Z
+author: "Adam Cogan"
+categories: ["xamarin"]
+tags: []
+legacyUrl: "/2015/01/14/getting-96-code-reuse-with-xamarin-forms/"
+wpId: 2421
+---
+
+### UPDATE: [See my interview with Miguel de Icaza on SSW TV](http://tv.ssw.com/5751/the-vision-of-xamarin-miguel-de-icaza)
+
+We’re putting more and more business logic in our pockets these days and with our latest project we’ve crammed in an entire nursing home! To keep our mobile application lightning fast and make the most from a phone’s tiny resources we’ve decided to go native on iOS and Android.
+
+Let me tell you our experiences on our latest Xamarin project where we have just a few guys working on one code base and replicating a Windows Forms UI. How is this possible? Get ready for the mobile holy grail.
+
+[![jan15_ios_android](/media/2015/01/jan15_ios_android.jpg)](/media/2015/01/jan15_ios_android.jpg)
+
+**Figure: The forms for this business app render nicely on iOS and Android.** **Notice that the tabs are on the bottom for iOS and top for Android as per their default native designs.**
+
+Xamarin  has been the best way to build native applications for Android and iOS for years. You got to build all your business logic in C# and share it across platforms, and the only platform specific code was the UI.
+
+Before Xamarin, when creating mobile apps, it took multiple teams – 1 each for iOS and Android, and a 3rd team if you were targeting Windows phones as well. The problem was each team had their own interpretation of business rules, so there was very little code reusability between them. The beauty of when Xamarin came along was we went from 3 teams to 1 team, so there was no issue of different interpretations and code reusability improved to about 80%. Now with Xamarin Forms, we achieved 96% reusability on our latest project.
+
+I think this is awesome.
+
+Xamarin Forms takes this to the next level by letting you write your UI once – in Visual Studio using languages that you are familiar with – and it will then compile into native UIs for Android, iOS and Windows Phone!
+
+**[![jan15_96-percent-code-reuse](/media/2015/01/jan15_96-percent-code-reuse.png)](/media/2015/01/jan15_96-percent-code-reuse.png)
+Figure: The Yellow above is the only platform specific code. Only 135 lines out of 3744 is platform specific. This is 96% code reuse!**
+
+Magic!
+
+Of course this is version 1 and not everything is perfect yet.
+
+-   You only get the lowest common denominator across the platforms. E.g. the x to clear the search box in Android isn’t in the iOS UI so making it work doesn’t come out of the box in Xamarin Forms… you have to do it yourself.
+-   Offline data sync without Azure Mobile Services is a \*lot\* more work than you think.
+-   You will spend more time than you expect solving ‘quirks’ (of course, depending on how fussy your customer is).
+-   There is still not a lot of guidance around how to do best practices with Enterprise Xamarin apps. For example it took us a while to work out how to implement Dependency Injection and the Onion Architecture.
+-   I have one whinge for Miguel and the Xamarin team. You only get the lowest common denominator across the platforms. E.g. the x to clear the search box in Android isn’t in the iOS UI so making it work doesn’t come out of the box in Xamarin Forms… you have to do it yourself.
+
+[![jan15_cross-platform-functionality](/media/2015/01/jan15_cross-platform-functionality.png)](/media/2015/01/jan15_cross-platform-functionality.png)
+**Figure: This simple piece of functionality isn’t built into Xamarin forms because it doesn’t exist in iOS**
+
+The advice that we would give to anyone starting a Cross Platform mobile project is:
+
+-   Use Xamarin Forms
+-   The emulators are helpful for development but you will find many more issues once you deploy to the devices
+-   Each device has its own ‘QUIRKS’, so test on devices from day 1.
+
+That means the developer needs hardware. Not only needs a Mac (the cheapest alternative is a Mac Mini starting at $619 and you can take to clients as it is as small as a cigarette box) but a physical Android and iOS devices and optionally a Windows Phone device.
+
+Finally, update your ‘[Definition of Done](http://rules.ssw.com.au/Management/RulesToSuccessfulProjects/Pages/Done-DefinitionOfDone.aspx)‘ so that every PBI is tested on all physical devices.
+
+Don’t go it alone! The best way to get into Xamarin Development is to come along to one of [our Xamarin hack days](http://xamarinhackday.com/%20).
+
+If you want to get serious and learn how to build enterprise Xamarin apps the same way we do at SSW check out [FireBootCamp Xamarin](http://firebootcamp.com/schedule).

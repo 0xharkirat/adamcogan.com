@@ -1,0 +1,54 @@
+---
+title: "I am on Cloud 9 – SSW has migrated to Dynamics 365 Sales cloud version 9"
+description: "After months of planning, data trimming and delays (not helped by COVID-19!), I am happy to say that SSW has finally migrated our Dynamics from on-premises to the cloud. It has been well-received by all and the UX is much nicer. In addition, this is not the end of the journey – it is the"
+pubDate: 2020-07-20T07:19:45.000Z
+updatedDate: 2022-09-23T16:53:34.000Z
+heroImage: "/media/2020/07/cloud9-banner-small.jpg"
+author: "Adam Cogan"
+categories: ["general"]
+tags: ["cloud", "dynamics-365", "migration"]
+legacyUrl: "/2020/07/20/i-am-on-cloud-9-ssw-has-migrated-to-dynamics-365-sales-cloud-version-9/"
+wpId: 3442
+---
+
+After months of planning, data trimming and delays (not helped by COVID-19!), I am happy to say that SSW has finally migrated our Dynamics from on-premises to the cloud. It has been well-received by all and the UX is much nicer. In addition, this is not the end of the journey – it is the start of a brave new world of awesome integrations leveraging Microsoft’s Common Data Service (CDS) along with a cornucopia of extra features and improvements over the on-premises Dynamics CRM that has held us in good stead since version 3 back in 2005.
+
+One of the biggest pains of not being in the cloud was that any CRM related work would need to be performed by one of our Dynamics developers…who are usually in very high demand by our clients, leaving little time to work on our internal systems. This slowed down development of some of our ground-breaking projects like SSW SophieBot™ and SSW TimePro™.
+
+#### Happy SysAdmins
+
+Now that we are online, thanks to CDS, we are already seeing quick adoption of ~Flow~ Power Automate and  Logic Apps by non-developers to automate processes. I loved seeing our SysAdmins using it in many scenarios from automating developer requests to automating their Domain Registrations – there was no need to involve a developer thanks to the low-code/no-code designer experience! ⭐
+(Note: Our SysAdmins do great work, and I will be thanking them next Friday on [International SysAdmin Appreciation Day](https://sysadminday.com/) – will you be thanking yours?)
+
+Speaking of our SysAdmins, the upgrade takes some load off their shoulders too.  Maintaining an on-premises solution requires more effort than you would expect. They were often doing something with the SQL, CRM and ADFS servers… not to mention having to manage the regular little updates.  In the cloud, updates are automatically rolled out for you on a frequent release cadence (on premises hasn’t had a major update for over a year!).
+
+If something does go wrong, it is much easier to get help from Microsoft support using Dynamics Online.  You can raise tickets via the web portal and in my (anecdotal) experience they often get back to you within a day.  Since all the servers are managed by Microsoft you do not need to worry about debugging any hardware issues, giving access to support people, etc.
+
+#### One thorn!
+
+One obvious change that comes with the fact that the server management is out of your hands is the restricted access to the SQL database that sits behind CRM. Of course this shouldn’t be an issue because you should \*not\* be doing any direct access. However at SSW we were quite naughty and had many reports coming from the database directly. Oooops – of course, this was only for reporting. We would never directly write to the database!  When you are running CRM on premises you have complete access to this database to read, write, or whatever else you want.
+
+There is good news regarding SQL! In the old days this meant that if you wanted a SQL database for reporting with CRM online, you would need to create a replica database sitting outside of CRM which is kept in sync with the CRM data.  Microsoft have recently opened up direct SQL reporting, which gives a live ‘read only’ SQL view of the data, and it works great!
+More info: [https://rules.ssw.com.au/enable-sql-connect-to-the-common-data-service](https://rules.ssw.com.au/enable-sql-connect-to-the-common-data-service)
+
+#### Actually a 2nd thorn!
+
+In terms of licencing, many of our clients noticed a change. Microsoft changed the Team Member licence by adding a 15 custom entity limit.  The Team Member licence has always been limited in its edit rights to standard Dynamics entities, however previously you could use it to edit an unlimited number of custom entities per Dynamics app.  Furthermore, previously the Account entity was editable with the Team Member licence, but this is no longer the case.  Changes in licencing like this, forced us to rework solutions for our customers to meet the new requirements. Although it ended up fine in almost all cases, there were a couple of customers that required the purchase of additional full Dynamics licences… which can really add up.
+
+#### But wait… the final thorn!
+
+One more thing to be aware of with CDS is the space!  I didn’t initially understand that the space you get, is consumed by the default CDS environment entities.  When you purchase Dynamics, you get 10GB of database capacity plus an additional 250MB per user licence – seems like heaps. Right?
+What I didn’t factor in is that each environment (test, staging and production) can consume several GB of this database capacity before you even put any data in! Furthermore it is impossible to delete since it is ‘behind the scenes’.  The additional storage is also extremely expensive at $55 AUD per GB/month ($660 AUD per GB/year).
+
+<Figure src="/media/2020/07/ScreenshotBlog.jpg" alt="" caption="Figure: After creating a new environment you notice that your database usage is 3.5 GB and you haven’t even put in any data yet! Looking at the top 8 storage hogs by size, I see not one is a user table, like account, contact, activity etc. Each one of those GB is $55 AUD per month" />
+
+#### In conclusion
+
+Overall I am super happy to be on the cloud. It’s a big step forward and we should have done it sooner, but I didn’t want to delete anything! Our CRM journey continues as there are several features only available online which we can now take advantage of:
+
+-   the Unified Interface changes
+-   the marketing module, field service module and more
+-   the ability to embed Canvas PowerApps and Power BI reports into CRM forms and
+-   a much improved email template editor
+
+I’m looking forward to using it all!

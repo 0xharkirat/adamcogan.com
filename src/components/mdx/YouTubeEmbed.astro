@@ -3,9 +3,10 @@ import YouTubeFacade from '../ui/YouTubeFacade.astro';
 
 interface Props {
   videoId: string;
+  caption?: string;
 }
 
-const { videoId } = Astro.props;
+const { videoId, caption = '' } = Astro.props;
 
 /**
  * Accept a bare ID, an ID with a share suffix (`?si=...`), or a full
@@ -22,7 +23,10 @@ function extractId(input: string): string {
 const id = extractId(videoId);
 ---
 {id && (
-  <div class="relative aspect-video w-full overflow-hidden rounded-xl">
-    <YouTubeFacade id={id} />
-  </div>
+  <figure class="my-8">
+    <div class="relative aspect-video w-full overflow-hidden rounded-xl">
+      <YouTubeFacade id={id} />
+    </div>
+    {caption && <figcaption class="mt-2 text-sm leading-snug text-muted-foreground">{caption}</figcaption>}
+  </figure>
 )}

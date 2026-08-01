@@ -1,0 +1,142 @@
+---
+title: "GitHub Copilot – A developer’s friend or foe?"
+description: "Tooling for development has come a long way in the past 20 years. First, we had IntelliSense, then we had Resharper… now we have GitHub Copilot. The next frontier has arrived in the form of an AI pair programmer. At the flick of a switch, you have a computer (well, a cloud full of computers)"
+pubDate: 2022-12-21T13:18:58.000Z
+updatedDate: 2023-01-04T02:31:25.000Z
+heroImage: "/media/2022/12/Github-copilot-friend-or-foe-Blog-Banner.jpg"
+author: "Adam Cogan"
+categories: ["github"]
+tags: ["ai-code-writer", "copilot", "github"]
+legacyUrl: "/2022/12/21/github-copilot-a-developers-friend-or-foe/"
+wpId: 4204
+---
+
+Tooling for development has come a long way in the past 20 years. First, we had IntelliSense, then we had Resharper… now we have GitHub Copilot.
+
+The next frontier has arrived in the form of an AI pair programmer. At the flick of a switch, you have a computer (well, a cloud full of computers) helping you finish entire algorithms… at SSW I see a lot of developers using it, and they say the main benefit is to help them do the grunt work. Some SSW developers have been using it since it was released back in June 2021! 🤯
+
+At the last few dev conferences, I asked around to see who was already using it and was surprised that many of you have been paying and using it for ages.
+
+I did an internal survey and the results were pretty positive for using Copilot for client work, but some were not (more on that later).
+
+<Figure src="/media/2022/12/image-1.png" alt="Graph showing how many user are currently using GitHub Copilot, more than 30/58" caption="Figure: 30 vs 28 – there are more people using it, than not using GitHub Copilot… and 6 of them have used it for more than a year (purple) – impressive" />
+
+<Figure src="/media/2022/12/image-4.png" alt="The locations GitHub Copilot is being used - mostly APi and frontend" caption="Figure: Where the SSW developers have used GitHub Copilot – API (orange) and Frontend (blue) are the most popular" />
+
+Let’s take a look at what it can do…
+
+## GitHub Copilot – What Can it Do?
+
+[GitHub Copilot](https://github.com/features/copilot) is an AI pair programmer that helps you write code faster and with less work. It uses other people’s code within GitHub to suggest individual lines and whole functions. GitHub Copilot is powered by OpenAI Codex, a generative pre-trained language model created by OpenAI. It is available as an extension for Visual Studio Code, Visual Studio, Neovim, and the JetBrains suite of integrated development environments (IDEs).
+
+[According to Github’s Q&A:](https://github.com/features/copilot) the code is accepted by developers about 26% of the time, and in certain languages like Python, that goes up to 40%. It’s constantly learning, so it’ll just keep getting smarter.
+
+There is a lot to love about AI pair programming. ❤️ Here is just a taste of what it can do:
+
+-   Populate a form
+-   Do complex maths
+-   Create DTOs
+-   Hydrate data
+-   Query APIs
+-   Do unit tests
+    and more – check out SSW Rule | [Do you use AI pair programming?](https://ssw.com.au/rules/ai-pair-programming)
+
+<YouTubeEmbed videoId="edSZh-tpTIk" caption="Video: A cool demo of GitHub Copilot from Catalin Pit: https://www.youtube.com/watch?v=edSZh-tpTIk" />
+
+## How Does It Work?
+
+GitHub Copilot is powered by Codex, a generative pre-trained AI model created by OpenAI. It has been trained on natural language text and source code from publicly available sources, including code in public repositories on GitHub.
+
+GitHub Copilot works directly in your editor with you, suggesting whole lines or entire functions.
+
+## Why it’s Cool
+
+Copilot is not independent enough to steal your job, but it can definitely help a developer boost productivity. It is more like changing from a old manual car, to an automatic with cruise control, electric windows, and air conditioning.
+
+AI pair programming has so much to offer. The 3 key benefits being:
+
+-   🦾**Accessibility** – Quick suggestions in heaps of languages like:
+    -   C#
+    -   JavaScript
+    -   SQL and many more
+-   ⚡**Efficiency** – Less time doing gruntwork like repetitive tasks and making boilerplate code
+-   😎**Confidence** – Higher confidence and less wasted time when working in unfamiliar languages or areas
+
+<Video src="/media/2022/12/Copilot-Demo.mp4" caption="Figure: GitHub Copilot saves you oodles of time!" />
+
+### Cool Stuff – Thoughts from SSW Devs
+
+Here are some of the ways it helped some SSW devs in their own words…
+
+> ✅ I was working on a demo for client and needed some code to authenticate a user with the device code flow. I typed the method name and Copilot did the rest. And it was about 95% correct. In fact to clarify, it gave me 100% of what I needed, just gave me some other stuff too that I didn’t need and had to delete.
+>
+> [– Matt Goldman](https://ssw.com.au/people/matt-goldman)
+
+> ✅ Providing suggestions based on my coding style.
+>
+> [– Jason Taylor](https://ssw.com.au/people/jason-taylor)
+
+> ✅ Absolutely great for filling out classes, naming things for you. Allows me to write similar code blocks almost instantly.
+>
+> [– Jake Bayliss](https://www.ssw.com.au/people/jake-bayliss)
+
+> ✅ Copilot doesn’t just interpret the code you’re writing, but the intent of what you’re trying to achieve. It often “thinks ahead” and will correctly predict the \*next\* piece of code you will be writing, so all you have to do is open the file and Copilot will be ready and waiting with the code you need.
+>
+> – [Luke Cook](https://ssw.com.au/people/luke-cook)
+
+> ✅It remembered code I typed out earlier and then removed. When I started typing the same variable name it autocompleted with exactly the same code I had before.
+>
+> [– Billy Terblanche](https://www.ssw.com.au/people/billy-terblanche)
+
+And there are many other positive comments.
+
+## Current Value to SSW Devs
+
+I also asked them…
+
+<Figure src="/media/2022/12/image-3.png" alt="" caption="Figure: The areas SSW developers found Copilot useful.Note: a lot of the dark blue represents “N/A” will be from our Admins who don’t code!" />
+
+## What are the Dangers?
+
+-   🔐Security – There could be security bugs in the code
+-   🧐Optimization – The code you get may not be the most efficient
+-   🦥Complacency – Devs might rely too much on the AI’s suggestion
+-   ⚓Bias – Human cognitive biases can also creep in. Namely: automation bias and anchoring bias
+-   💰Cost – Copilot can be considered expensive, but at $100 a year it’s amazing value
+-   🛎️Flow interruption – The need to review code suggestions from GitHub Copilot may cause a break in flow while working on projects
+-   🎓Skills – There will be code you don’t understand
+-   ⚠️Legal implications – There’s been a class action launched to sue GitHub based on the legality of the training process
+
+### Dangers – SSW Dev Thoughts
+
+Here are some of the warnings from the SSW devs in their own words…
+
+> ❌I’ve seen security vulnerabilities.
+> ❌It’s still at the point where it’s like coding with a dev fresh out of uni. They can finish your sentence once you start talking, but I type faster than it talks, and there’s a fair cognitive load in “listening” to its suggestions that diverts me from the forward thinking I’m doing while typing.
+>
+> [– Bryden Oliver](https://ssw.com.au/people/bryden-oliver)
+
+> ❌I have found that it works sporadically. When demoing Copilot to a client, it just didn’t work. Sometimes it would suggest code, but the code it suggested wasn’t great. Other times it just did nothing. I’m assuming there’s an infrastructure issue at play here (rather than the quality of the product).
+>
+> [– Matt Goldman](https://www.ssw.com.au/people/matt-goldman)
+
+> ❌Copilot sometimes doesn’t give the best solutions and will often overwrite the Intellisense suggestions which are often what I’m after. i.e. Sometimes Copilot makes up Parameters instead of the ones in the object. For example, I define a User object with a First Name and Last Name. Intellisense knows, I can only access the first and last name. However, sometimes Copilot will try and suggest “phone number” or other common fields related to a User instead of what’s been defined in the object. So sometimes I feel like I’m fighting with the AI. For now I’m winning…
+>
+> [– Jack Pettit](https://www.ssw.com.au/people/jack-pettit)
+
+> ❌It crashes/stops working fairly regularly, requiring you to restart your IDE to bring it back to life.
+>
+> [– Luke Cook](https://ssw.com.au/people/luke-cook)
+
+> ❌Obviously, not all code is written equal (security, correctness, perf and readability) and GitHub Copilot is no different. You need to review every line of code that you accept and sometimes I’ve found terrible things.
+>
+> [– Jernej JK Kavka](https://ssw.com.au/people/jk)
+
+## Final Thoughts
+
+I think it’s clear that GitHub Copilot can be your friend, you just can’t follow this friend blindly and hope for the best!
+
+It is like the lesson we learned from our parents who used to say “if Copilot told you to jump off a bridge, would you?” 😁
+You can’t trust it blindly… yet!
+
+What do you think? Is GitHub Copilot a friend or foe? Let me know about your experience in the comments! ⬇️

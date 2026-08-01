@@ -1,0 +1,91 @@
+---
+title: ".NET Aspire 9.4 – CLI Magic and Developer-Friendly Dashboards"
+description: "2 years ago, back in December of 2023, I blogged about the first release of .NET Aspire and how it promised to simplify distributed application development. Since then, the Microsoft team has been busy, releasing new features every few months, and now it’s matured a lot. I’m certain devs are going t"
+pubDate: 2025-08-12T10:49:40.000Z
+updatedDate: 2025-08-14T04:05:48.000Z
+heroImage: "/media/2025/08/Blog-Banner-CLI-Magic.jpg"
+author: "Adam Cogan"
+categories: ["net", "general", "microsoft-aspire"]
+tags: ["net", "ai-features", "aspire-9-4", "aspire-cli", "github-integrations", "microsoft-aspire", "resource-graph-dashboard"]
+legacyUrl: "/2025/08/12/net-aspire-cli-magic-and-developer-friendly-dashboards/"
+wpId: 5184
+---
+
+2 years ago, back in December of 2023, [I blogged about the first release of .NET Aspire](https://adamcogan.com/2023/12/15/dot-net-aspire/) and how it promised to simplify distributed application development. Since then, the Microsoft team has been busy, releasing new features every few months, and now it’s matured a lot. I’m certain devs are going to love the updates. The latest release, Aspire 9.4, has just landed with some exciting new tools designed specifically to improve developers’ daily workflows. It’s got some cool new integrations, an interactive dashboard-based input, and a standalone, native AOT command line tool (CLI) for creating and running ‘Aspirified’ apps.
+
+There’s been good stuff in all the updates, being 9.1, 9.2, 9.3, and now 9.4 and along the way we’ve updated our [SSW Clean Architecture Template](https://github.com/SSWConsulting/SSW.CleanArchitecture) on GitHub.
+
+Let’s talk about the cool stuff.
+
+## #1 The new Aspire CLI
+
+For me, one of the standout features is the revamped Aspire CLI. This tool now gives developers access to their entire application’s lifecycle, directly from the command line.
+
+The most useful feature they’ve introduced is the `aspire run` command. This means you can run your full app stack from any terminal or editor (or subdirectory!). Usually, on projects you’ve got to install a few dependencies, wire up some config settings, and create files to store secrets. After that, there’s usually a document that you have to follow with 20 steps to follow to configure it so it’s up and running. Somewhere around step 3, you’ll probably stuff it up, and it’s all downhill from there…
+
+At SSW, we avoid all that and follow the [SSW Rule for awesome documentation](https://www.ssw.com.au/rules/awesome-documentation/). If you’re using Aspire, you will only need 2 steps to get your app up and running…
+
+#1 – `git clone`…
+
+#2 – `aspire run`
+
+How easy was that? !
+
+This release also introduces some additional core commands:
+
+-   `aspire new` – Choose from a set of templates to kickstart your app. If you’re using the SSW Clean Architecture template, you don’t need this because it’s already baked in
+-   `aspire add` – Add Aspire hosting integrations from anywhere in your repo
+-   `aspire config` – View, set, and change CLI settings and feature flags – local to your repo or global to your machine
+
+<YouTubeEmbed videoId="w4jd0sMWQQA" caption="Video: From Microsoft’s CLI Demo: https://devblogs.microsoft.com/dotnet/announcing-aspire-9-4/ (1 min)" />
+
+## #2 Command: aspire exec
+
+There are some good “quality of life improvements” coming down the line too with `aspire exec` (in preview). It lets you run commands without the context of a given resource e.g., running your EF migrations against your API.
+
+```
+# Execute commands, like migrations, with environment variables from your app model
+aspire exec --resource northwind-api -- dotnet ef database update
+
+# The exec command automatically provides environment variables
+# from your Aspire application resources to the executed command
+```
+
+## #3 Interaction Parameter Prompting
+
+Using the new interaction service, Aspire will detect missing config and guide you to fill in the gaps via a nice user interface. No more looking up secrets via developer docs!
+
+<Figure src="/media/2025/08/dashboard-interaction-service.gif" alt="" caption="Animated GIF: From Microsoft Docs: https://learn.microsoft.com/en-gb/dotnet/aspire/whats-new/dotnet-aspire-9.4#-interaction-service" />
+
+## #4 Resource Graph Dashboard
+
+At SlashNEW [Matt Wicks](https://www.ssw.com.au/people/matt-wicks/) had a chat with Microsoft’s Aaron Powell, who demonstrated this beautifully in the video. The dashboard provides a live, visual map of your application’s resources, allowing developers to drag, drop, and reorganize nodes interactively. You can even perform chaos testing directly from the dashboard, instantly stopping services or databases to simulate failures and observe how your system responds in real-time.
+
+Check out their chat below, it’s a great demo. I really loved how they broke the demo app, then Copilot came to the rescue ! Copilot used the Aspire logs to help them debug and fix.
+
+<YouTubeEmbed videoId="AvwPyTKdDE4" caption="Video: Top 3 Aspire Features Every Developer Needs to Know | Aaron Powell & Matt Wicks | Slash NEW 2025 | https://www.youtube.com/watch?v=AvwPyTKdDE4 (10 mins)" />
+
+## #5 Updated GitHub Models Integration
+
+Matt and Aaron also highlighted the seamless integration with GitHub Copilot. This new feature analyzes your application’s logs and telemetry data to provide real-time explanations and troubleshooting suggestions for errors. Instead of manually sifting through logs, developers now have an AI-powered assistant to pinpoint issues and suggest solutions, dramatically reducing debugging time.
+
+This integration makes it easy to add AI and manage which models your application is using, because it’s been defined in one place.
+
+If you’d like to learn more about the GitHub Models, check out this SSW Rule: [Do you pick the best Large Language Model for your project](https://www.ssw.com.au/rules/choosing-large-language-models/)? In particular, the video talks about GitHub models and how to use it.
+
+If you’re using Aspire, it’s even easier.
+
+## The 2025-2026 Roadmap (courtesy of David Fowler)
+
+Looking at the roadmap, Aspire is growing into a code-focused platform that supports multiple languages for building scalable apps. There are a bunch of things that will be released in the next 6 months, which you can check out here: [https://github.com/dotnet/aspire/discussions/10644](https://github.com/dotnet/aspire/discussions/10644).
+
+Like a lot of SSW devs, I’m looking forward to some of the enhanced AI features & workflows:
+
+-   **Conversational View** – Improved rendering for LLM interactions with structured input/output formatting and chat context.
+-   **Token Usage Visualization** – Real-time cards showing token counts, latency, and evaluation metadata for each AI call.
+-   **LLM-Specific Metrics** – Native support for Gen AI telemetry such as model name, temperature, stop sequences, and function call traces.
+-   **Azure AI Foundry Agent Support** – Native support for building agent-based apps with Azure Foundry.
+-   **OpenAI Integration** – Configure OpenAI models directly from your app host.
+-   **Aspire MCP Server** – Optional runtime endpoint exposing the app model for agents and tools.
+
+I’d love to hear if you love Aspire or what features you need most. Comment below 👇

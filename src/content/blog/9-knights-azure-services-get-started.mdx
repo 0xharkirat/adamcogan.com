@@ -1,0 +1,147 @@
+---
+title: "The 9 knights of Azure: services to get you started"
+description: "Right now Microsoft lists more than 600 Azure services, and the volume of choice can feel overwhelming. To help you out, I’ve narrowed down a list of my top 9 Azure services you should be using:"
+pubDate: 2018-06-07T04:18:12.000Z
+updatedDate: 2022-09-23T17:01:13.000Z
+heroImage: "/media/2018/06/banner01.jpg"
+author: "Adam Cogan"
+categories: ["azure"]
+tags: ["azure-services"]
+legacyUrl: "/2018/06/07/9-knights-azure-services-get-started/"
+wpId: 3088
+---
+
+On Saturday, April 21, I presented the keynote at the [Azure Global Bootcamp](https://global.azurebootcamp.net/) in Brisbane. The global bootcamp involves Azure user groups from around the world all running their own 1-day deep dive classes in their respective cities. The Brisbane event was a bringing together of several user groups into one big celebration of Azure learning.
+
+It was an honor to be asked to keynote, and I love talking about Azure. SSW has been working in the Azure space since 2010 when our solutions could use 100% of Azure! Nowadays, I don’t think any solution could possibly use 100% of Azure functionality!
+
+Azure is huge and the SSW guys all have different expertise in Azure. I was able to take our combined years of knowledge and put together a keynote that showed off the 9 best parts of Azure.
+
+Right now Microsoft lists more than 600 Azure services, and the volume of choice can feel overwhelming.
+
+To help you out, I’ve narrowed down a list of my top 9 Azure services you should be using:
+
+<Figure src="/media/2018/06/adam-cogan-presenting-on-azure.jpg" alt="" caption="Figure: Presenting at the Azure Bootcamp in Brisbane" />
+
+### **#1 – Computing: App Services**
+
+We used to build a website and then you had to think about where to host it. Now, there’s no thinking required.
+
+App services is a Platform as a Service (PaaS) environment that lets developers easily publish and manage websites. It’s an inexpensive solution that you can use to host new and existing apps and is easily scaled based on your needs. App services manage your infrastructure – you no longer need to set up and maintain a VM. Once you’re on Azure, you can easily automate businesses processes while meeting stringent security, reliability, and scalability needs.
+
+### **#2 – Best practices: DevOps Project**
+
+It took us a while to get all the moving parts under control so each deployment at SSW is smooth – but now there’s an easier way.
+
+Not all solutions require a nice DevOps pipeline, but I’m struggling to think of what ones don’t. At SSW, this is a real lifesaver, as this project gets you up and running and then lets you customize your pipeline so developers can add a test or production environment, monitor code commits, builds, and deployments from a single view in the Azure portal.
+
+From the dashboard, you can keep abreast of your:
+
+-   Source control
+-   Continuous Integration
+-   Continuous Delivery
+-   Logging, and
+-   Backlog
+
+### **#3 – Data management: Azure Cosmos DB (formerly known as Document DB)**
+
+We’ve been using SQL Server forever and it’s been my best friend for years. It’s hard to say I have a new girlfriend, but Cosmos DB is not as high maintenance.
+
+Cosmos DB is a NoSQL database service that implements a subset of the SQL SELECT statement on JSON documents. If you’re working on a large project that has big data and requires near-real-time response times, this is the service you need.
+
+It has more options than just SQL Server and provides the best capabilities of relational and non-relational databases. It’s fast and supports large datasets.
+
+Azure Cosmos DB provides the best capabilities of relational and non-relational databases, and promises:
+
+-   High availability (99.999% for multi-region)
+-   High throughput
+-   Low latency
+-   Tuneable data consistency
+
+Of course, for a developer, they need to learn a shiny new toy, but there’s not too much to learn. There are multiple APIs for accessing Cosmos DB, including popular APIs such as:
+
+-   SQL API
+-   MongoDB API
+-   Graph API
+-   Table API
+-   Cassandra API
+-   Entity Framework API (coming in EF .NET Core 2.2)
+
+No matter what API you’re using, or the size of your dataset, Azure Cosmos has you covered!
+
+### **#4 – Security: Azure AD (Active Directory)**
+
+For years, we used to roll our own security, but today, if you’ve got tables managing security, you’re crazy!
+
+There’s quite a few security options in the Azure services catalog, but if your app is built with Microsoft tools in the .NET space, I’d recommend using Azure AD. Azure Active Directory is Microsoft’s multi-tenant, cloud-based directory, and identity management service that combines core directory services, application access management, and identity protection into a single solution. God forbid, if something does go wrong and you’re using Azure AD, no one’s going to sack you!
+
+#### Social Logins
+
+And of course today, users want friendly authentication with their social network of choice. e.g. twitter, facebook logins are all the rage.
+
+If you’ve got less than 7,000 users you could get away with using [Auth0.com](https://auth0.com/), but it gets expensive after 7,000 users. [IdentityServer.io](http://identityserver.io/) is another good option, but it’s not cloud-based, which means you’d need to manage the VM yourself and developer-involved – not any developer, a smart developer.
+
+With Azure AD B2C, the first 50,000 users are free and I think it’s the best choice.
+
+### **#5 – Web: API Management**
+
+For years, we’ve exposed our API using Swagger. It’s simple, it does the job, but really, it’s a very incomplete solution.
+
+Azure has a much more comprehensive solution that you would never have time to build. Developers can create and exposed their API with a nice developer portal in the time it takes you to go and grab a coffee (about 15 minutes).
+
+Your API can:
+
+-   Allow you to monetize your data
+-   Open new channels to your customers
+-   Allow more companies to integrate your APIs into their applications
+-   The friendly portal speeds adoption of adoption of your API
+-   Ensure future updates of your APIs are handled nicely with Azure’s versioning story
+-   Even if you have crusty old ASMX web services, no one will know, because they’ll see your fresh REST services
+
+Third-party developers can try out your APIs, get code samples and documentation, and minimize time to the first successful API call.
+
+### **#6 – Automation: Logic Apps**
+
+Automation has been non-mainstream with services such as [IFTTT.com](https://ifttt.com/) and [zapier.com](https://zapier.com/) mainly being in the domain of startups rather than enterprise.
+
+Azure Logic Apps (and the similar Office 365 Flow) has seen automation explode. Logic Apps connects your apps and services your business relies on, like Zendesk, Twitter, CRM, SAP and hundreds more.
+
+Even my mom can do this – there’s no need to write a single line of code!
+
+Anything you do manually, you should do automatically, such as create tickets, add clients to CRM, and repetitive emails like notifications. Because it’s serverless, you only pay for what you use
+
+### **#7 – Automation: Cognitive Services**
+
+<Figure src="/media/2018/06/microsoft-cognitive-services.jpg" alt="" caption="Figure: Some of the uses for Microsoft Cognitive Services" />
+
+This is something we could have never done before. Microsoft has found a way of spending $13 billion a year on research and development and producing amazingly simple services to call and charge you mili-cents. They have democratized AI and every developer should learn what services are there to make their apps more intelligent.
+
+The SSW guys created [SSWSophie.com](http://sswsophie.com/), which recognizes you in the morning, shows you your schedule and even sends the PA a warning if a client looks angry! And it was as simple as using the face API to detect expressions.
+
+A bonus is any developer that calls a cognitive service API can add “AI” to their list of skills on LinkedIn, haha!
+
+During the Azure keynote, I simply detected an unhappy tweet (using Text Analytics) and added a Zendesk ticket automatically so it got investigated promptly.
+
+### **#8 – Automation: Bots**
+
+The Gardner Research Group says we will soon be talking to bots more than we talk to our partners. Customers will expect to find a bot in each application they use.
+
+Bots are great at answering the basic questions and providing automated assistance, which increases your Customer eXperience (CX) (see [my CX presentation on this](https://tv.ssw.com/7345/from-ux-to-cx-improving-the-customer-experience-with-adam-cogan)). They’re a super efficient first line of support, saving you both time and money, and improving the Customer eXperience for your users.
+
+A bot doesn’t have to be an embedded chat widget on a webpage. The bot framework contains everything a developer needs to build and connect bots that can interact with your users on a variety of platforms. From text messages/SMS, Skype, Slack, Messenger, Office 365 mail and more. Wherever you have users, you can set up a bot to interact with them.
+
+### **#9 – Storage: Containers**
+
+Containers are a lot to learn for a developer, but they’re important. The executive summary is that Docker is easy to use but orchestrating a lot of containers is hard – you’ll need to understand [Kubernetes](https://kubernetes.io/) and that can give you a headache learning.
+
+Thankfully, Microsoft have come to the rescue with AKS, Azure Kubernetes Services. For a more in-depth look at containers, see [Thiago Passos’s talk on SSW TV.](https://tv.ssw.com/7439/i-have-a-container-now-what-thiago-passos)
+
+---
+
+### Watch the talk on NDC
+
+<YouTubeEmbed videoId="-Ac7z3YEkNI" />
+
+I’d be keen to know what you think of my top 9 Azure services, and if you had one, which one you would drop and why.
+
+Cheers for now.

@@ -1,0 +1,115 @@
+---
+title: "Australian Government Software Project: How to blow 10 million dollars"
+description: "UPDATE: journalist James Robertson mentions this post in his article, “Federal election 2016: Liberal Party company charging taxpayers for ‘antiquated’ software, say experts” in the Sydney Morning Herald. – I hate waste, but while running a software company, I’ve seen plenty of it over the past 20 y"
+pubDate: 2016-06-26T15:12:24.000Z
+updatedDate: 2017-02-16T04:38:22.000Z
+heroImage: "/media/2016/07/10-million-dollars-banner.png"
+author: "Adam Cogan"
+categories: ["general", "non-ssw-projects"]
+tags: []
+legacyUrl: "/2016/06/26/australian-government-software-project-blow-10-million-dollars/"
+wpId: 2796
+---
+
+**UPDATE:** journalist James Robertson mentions this post in his article, “[Federal election 2016: Liberal Party company charging taxpayers for ‘antiquated’ software, say experts](http://www.smh.com.au/federal-politics/federal-election-2016/federal-election-2016-liberal-party-company-charging-taxpayers-for-antiquated-software-say-experts-20160628-gpte9r.html)” in the Sydney Morning Herald.
+
+–
+
+I hate waste, but while running a software company, I’ve seen plenty of it over the past 20 years. Sometimes an app that could have been built by a good guy in 3 months ends up taking a team of half a dozen developers a whole year.
+
+In 2013 we heard that Obama Care was really going to come to life. Like almost every Australian, I love the concept of universal health care: people without money should still be looked after by excellent doctors. In the summer of 2013, all of us in the IT industry cringed as we read about HealthCare.gov. This was to be the shining light for Obama Care but instead it fell over on day one. The Americans really know how to waste money. They spent USD $600 million, obviously mostly on meetings and not effective software development. And clearly the budget was too tight for any load testing. 🙂
+
+<Figure src="/media/2016/06/The-Waste-In-Software-Development.png" alt="The waste in software development" caption="Figure: The waste in software development hurts everyone and makes projects overly expensive" />
+
+In Australia recently, there’s been a lot in the press about a company called Parakeelia that has a software product for MPs called “Feedback” (for my American readers, a Member of Parliament is like a Congressman). There have been all sorts of allegations about this software company that has built a simple custom CRM (nothing fancy like Salesforce or Microsoft Dynamics CRM). People are asking why this Canberra based software company is making such large contributions to the Liberal Party, who by the way, appears to be their only client.  They were the 2nd largest contributor of Liberal Party donations last year in 2015, 4th the year before in 2014.
+(Source : [http://www.smh.com.au/federal-politics/federal-election-2016/election-2016-mps-directing-taxpayer-funds-towards-liberal-partylinked-company-and-donor-20160608-gpe87q.html](http://www.smh.com.au/federal-politics/federal-election-2016/election-2016-mps-directing-taxpayer-funds-towards-liberal-partylinked-company-and-donor-20160608-gpe87q.html) )
+
+The story goes that each MP gets an allowance from the tax payer, and all the Liberal MPs pay AUD $2.5k out of that per year to Parakeelia for access to their simple CRM database. There was also talk of Parakeelia potentially using some public servants for profit-making gain – public servants were doing the software training for Parakeelia – but I’m not talking about any of that today.
+
+The political journalist, James Robinson, from The Sydney Morning Herald contacted me this week and asked me how much a firm like SSW might charge to build the same software. With regards to politics I’m pretty neutral. My first thought was that politicians generally aren’t really into technology and you’d expect them to pay too much for software… due to more waste than you’d see in commercial firms.
+
+# Was Parakeelia really paid $15 million for the ‘Feedback’ software and maintenance and support?
+
+I’ve heard that Parakeelia was paid about AUD $15 million over the past 15 years to create, maintain, and support this software. This figure is overstating the software component as it is the total revenue since 1999. The liberals gave the company around $5m, they might have received income from other sources, they may have even got some money back, if the software was classed as “innovative” through the government’s R&D Tax Incentive program. I’d find that surprising because the software I’ve seen, seems far from “innovative”. **So I think the software cost is between $8 and $10 million.** We do know in the 2015 year they received AUD $932k.
+(Source: [http://periodicdisclosures.aec.gov.au/AssociatedEntity.aspx?SubmissionId=56&ClientId=1109](http://periodicdisclosures.aec.gov.au/AssociatedEntity.aspx?SubmissionId=56&ClientId=1109)).
+
+It’s assumed that Parakeelia only has one client, the Liberal Party.
+
+Let’s look at that AUD $15 million dollar figure a different way by trying to reconcile it with the expected fees charged. I calculated that Parakeelia currently invoice over AUD $700k per year. Times that by 15 years, and they’ve been paid again $8 and $10 million again.
+_Calculation Notes: These figures are based on my rough calculations and I assumed I didn’t know the $932k figure. What was Parakeelia paid for this “Feedback” software from Federal and State MPs? For the Federal MPs it adds up to AUD $300k per year. Then add in the State MPs, which is around the same figure of AUD $400k per year and you have $700k per year._
+_BTW my State MPs calculation is a rougher number, because only Western Australia has disclosed their figure, of AUD $80k, and if you extrapolate that to include all 6 States and 2 Territories, you’ll get $640k per year. I’ve dropped it by $240k to $400k, just to be conservative._
+
+Alternatively, Parakeelia might have more than 1 client (which might be a bit hard, since they don’t have a website to advertise).
+
+So with either scenario let’s say it is AUD $10 million, instead of $15 million to build the “Feedback” app for the MPs. Is that reasonable?
+
+# A reasonable cost for this sized project (excluding maintenance and support) is less than $400,000
+
+I believe it’s essentially 1 primary developer and 1 primary trainer. The technology that was used is antiquated – the software is really old. In fact, it seems to have originally been built on DataFlex: even though I’m old, the developer who built it must be even older than me. 🙂
+
+<Figure src="/media/2016/06/img_1341.png" alt="A page from the User Guide - attribute based data can be stored." caption="Figure: A page from the User Guide – attribute based data can be stored." />
+
+<Figure src="/media/2016/06/img_1340.png" alt="A page from the User Guide - you can do a mail merge" caption="Figure: A page from the User Guide – you can do a mail merge" />
+
+Before I give you the ballpark, there’s no way I can be super accurate without many meetings with the clients, and certainly there are clients who do not know how to specify their user requirements, which means developers can waste a lot of time and money getting to the bottom of what is needed. Also, I am skipping the issue of why this is not using an off-the-shelf software product that was customized – it certainly would have been a good choice in this case. I basically have looked at the finished product and worked out how we at SSW would build it. We have the benefit of not having to go through the usual iterations of trial and error in working out what the software should do.
+
+To help me in this endeavour I’ve been provided with a copy of the User Guide for the software from 2014. The Parakeelia User Guide claims that:
+
+> “Feedback is a confidential online database, which is exempt from privacy laws. Feedback is updated on a monthly basis with updated enrolled elector information from the Australian Electoral Commission.”
+
+I’m not sure what to make of that. I’ll leave that to the lawyers. However, it is an arrogant way to say the law doesn’t apply to us. The privacy act may not apply to many companies but they still try to respect privacy laws. Most companies even have a Privacy Policy even when they don’t have to.
+
+Anyway.
+
+From what I can understand, the software takes the census data produced every five years by the Australian Bureau of Statistics, and the more regularly updated electoral roll data from the Australian Electoral Commission. The app allows Liberal party MPs to slice and dice all the data on voters in their own electorate by marital status, age, ethnicity, religion, household size, occupation, household income, and so on.
+
+MPs like to focus on swing voters, and they need to know stuff about which voters to focus on.
+
+With the “Feedback” app, users can update a voter’s record based on information obtained about them and their views on ‘issues’. E.g. they might record whether a voter is pro or anti gay-marriage or pro or anti carbon-tax. This data could be collected when a constituent rings the local MP to raise a question or issue.
+
+As a voter’s profile is built, the reporting functionality allows the electorate office staff to find the best way of canvassing local constituents using mail, telephone or door-knocking reports. You can for example, ensure you don’t bother knocking on a person’s door where it’s known that a strong Labor supporter lives in the household.
+
+The application in the 2014 User Guide appears to be some kind of very old school rich client application, possibly DataFlex or even VB6. I’ve heard on the grapevine that there’s a web version but I haven’t seen it. Given Parakeelia apparently push out updated electoral roll data every month, you’d assume there’s some kind of simple web-service pushing that data.
+
+So it’s really a contact database with some standard additional contact management features such as mail merge. It is not a complicated system, with invoicing, receipting, inventory management, and general ledger, which are the usual culprits for turning something into a million-dollar plus custom project.
+
+So, the complexity in this Feedback app is not in the breadth of the system, it’s in the depth of data recorded about an individual.
+
+Here are a couple of screen captures to give you a taste of what was developed:
+
+<Figure src="/media/2016/06/feedbackapp.png" alt="Figure: You can record all sorts of information about a constituent. E.g. Anti gay-marriage (3rd last record above)" caption="Figure: You can record all sorts of information about a constituent. E.g. Anti gay-marriage (3rd last record above)" />
+
+<Figure src="/media/2016/06/feedbackapp2.png" alt="Figure: User Interface of the desktop application is definitely “old school”" caption="Figure: User Interface of the desktop application is definitely “old school”" />
+
+Building this original desktop app could potentially have taken 2 guys approximately 4 months of full time development (17 weeks or about 8 x 2 week [Sprints if they are doing Scrum](https://rules.ssw.com.au/rules-to-better-product-owners)), which based on AUD $250+GST per hour (that rate is more than [SSW charges for a developer](http://www.ssw.com.au)) which equates to AUD $340k+GST.
+
+If we are generous and assume that when the web application was built, the developers weren’t skilled enough to get complete reuse of the backend and middle tier services, then they might have spent the same time again building the web user interface, for another AUD $340k+GST.
+
+Unless there was a lot of difficulty building a reusable platform or some seriously valuable IP that is not obvious, for the life of me, even with additional support and training, I cannot see how you can get to a figure anywhere near AUD $10,000,000.
+
+# What are they doing for the $$ ?
+
+When we at SSW build a new software application for a client, there is initially a big upfront cost. At the conclusion of the project when it moves into maintenance mode, the costs drastically drop to around 10% – _the upper figure would be 20%_ – of the initial cost per year. You might be wondering about the monthly data update. That is not work for developers every month, that is a one-time build.
+
+So on a software build that cost $340k, which is what I think a fair price to build this project would be, maintenance for subsequent years would be expected to cost $30k – _no more than around $60k_ – per year to maintain, unless 1 of 2 situations arise:
+
+1.      New Features
+
+If there are a significant number of new features added during the following year, the cost could rise to another 50% – _the upper figure would be 100%_ – of the initial development cost. In this case it would be $170k – _no more than $340k_ – in the subsequent year only. When the new features are complete, the costs should reduce to about $30k per year again.
+
+In regards to this project it doesn’t appear that a significant number of new features are being added every year to justify the ~$700k income per year. I arrived at this conclusion because the user interface appears to be an older Windows interface.  If the software had new features being added every year, a good developer would have upgraded to the latest technology because it would be easier and less expensive to add new features.
+
+2.      Lots of Bugs
+
+If the software is riddled with bugs, the costs in the following year can be as high as 50% to fix those bugs after ‘go live’. This can happen if the software is poorly built or the design spec is not followed. If this happens it is a good indication that the project is close to failure and end users would be struggling to use the software. But these issues should be solved in the first year of deployment and are not likely to be seen in an application that is over 10 years old. So I don’t think bugs are the big issue in this piece of software.
+
+So I want to know, “What is the ~$700k of yearly income being spent on? If it is not new features or bug fixing, then where is it going?”
+
+I have no idea whether this is malice or incompetence. If it was incompetence, I don’t know if it was a hopeless developer, a weak project manager or a crazy client who kept changing his mind.
+Oh the waste… Our industry has a long way to go… there are too many bad examples like this.
+
+I’ve had to make some assumptions in this post. If I’ve got anything incorrect, sing out and I’ll update this post.
+
+Adam Cogan
+
+**Update**: I thought I should double check my views and calculations above, so I just called a colleague Troy Hunt. Troy is also a Microsoft Regional Director and I’ve worked with him, since his days in Pfizer. He gave me a figure very close to mine, so that means my figure is probably on the money.

@@ -1,0 +1,95 @@
+---
+title: "Migrating SSW Rules to TinaCMS & Next.js (and why it was worth it)"
+description: "We rebuilt our Rules editing experience so updates are fast, safe, and painless, no more unreliable saves or 20-minute deploys. Now changes go live in ~30 seconds, with review-friendly workflows that keep quality high."
+pubDate: 2026-02-10T11:53:50.000Z
+updatedDate: 2026-02-10T11:53:54.000Z
+heroImage: "/media/2026/01/Blog-Banner-Migrating-Rules.jpg"
+author: "Adam Cogan"
+categories: ["general", "ssw-projects", "ssw-rules"]
+tags: ["cms", "content-editing", "content-management", "large-migrations", "migration-stories", "migrations", "tinacms"]
+legacyUrl: "/2026/02/10/migrating-ssw-rules/"
+wpId: 5326
+---
+
+I have already shared this on LinkedIn – I got a great Christmas present this year – the [SSW Rules](https://www.ssw.com.au/rules) were migrated to [TinaCMS](https://tina.io/)!
+
+I’ve been [cultivating the SSW Rules for 35 years](https://adamcogan.com/2025/03/17/why-rules-are-cool/) to make sure SSW’s clients get the same great experience, no matter what or who they work with. The SSW Rules are followed by many and have become our biggest open-source asset and the secret behind how we consistently deliver great software. Because they’re open source, anyone can improve them with a pull request, so they’re constantly growing and being updated.
+
+The Rules have grown into a knowledge base for everything from writing emails to great software… and this is where the trouble began! For a long time, editing in Markdown was ok, but as the Rules grew, we needed a great Markdown editor. Enter TinaCMS to the rescue! 🦙
+
+<YouTubeEmbed videoId="lqqduKKhH_o" caption="Video: TinaCMS for GitHub – The SSW Rules Migration | Jake Bayliss | https://www.youtube.com/watch?v=lqqduKKhH_o" />
+
+## The problem: content editing became a daily frustration
+
+SSW Rules is a fairly large content site (3,000+ docs). Our old setup DecapCMS (formally NetlifyCMS) + Gatsby, became increasingly unreliable, especially on save, and nothing kills momentum like losing an hour of edits. 💀 Once a CMS can’t be trusted, people stop using it.
+
+Developers worked around this by editing in GitHub, but that is not an easy option for content editors. Markdown friction and image/video uploads were anything but easy.
+
+We were already using [TinaCMS](https://tina.io/) for the SSW website, so we knew we could trust it… all we needed to do was work out the best way to migrate over 3000 pages!
+
+## The Great Rules Migration!
+
+The migration needed to happen in 2 parts:
+
+-   Content aka .md -> .mdx (3000+ Rules)
+-   Frontend aka Gatsby -> Nextjs
+
+#### Part 1 – Content
+
+The Rules were originally written in **Markdown** (`.md`), a simple text format that developers love, but as I already mentioned, it can get awkward once you need anything more than headings and paragraphs.
+
+TinaCMS uses MDX (`.mdx`), basically Markdown with first-class support for richer building blocks. That matters for SSW Rules because we standardize things like tips, warnings, good/bad examples, images, and video embeds.
+This solution is simple, developers keep content-as-code, while editors get a far smoother experience.
+
+On the old site, we’d built a bunch of homegrown, slightly hacky patterns to handle those richer blocks. So as part of the migration, we converted all 3,600 rules from `.md` to `.mdx` to make the content easier to maintain and nicer to edit.
+
+And because doing that by hand would be a special kind of punishment, the team wrote a Python script to automate the conversion! 😎
+
+#### Part 2 – The Frontend – Gatsby -> Nextjs
+
+The website itself was built with Gatsby (a static site generator that turns our Rules into a fast website). Over time, Next.js has become the go-to choice for React sites because it gives you the same fast, SEO-friendly pages, but with a more modern foundation and better options for how content is published.
+
+Therefore, we rewrote SSW Rules in Next.js to keep the site on current tech and to make publishing updates faster and more reliable. For non-developers, the takeaway is simple: the site is blazingly fast, and when changes happen, only one page is built. Now that’s efficient.
+
+## What the editing experience is like
+
+Editing is now seamless:
+
+-   Open a rule and click **Edit**
+-   TinaCMS shows a **live preview** on the right and **editable fields** on the left
+-   Click a section in preview → it jumps you to the right field
+-   Make your changes in the rich text editor
+    Make more content changes using components (images, YouTube embeds, tips/warnings/good-bad boxes)
+-   Hit save → TinaCMS creates a **new GitHub branch + PR** automatically
+
+Editors don’t need to learn Markdown/HTML, and because it’s in GitHub the source control is amazing.
+
+<Figure src="/media/2026/01/image-2.png" alt="The screen view of the TinaCMS editing experience" caption="Figure: The new TinaCMS editing view – Rules are now so easy to edit!" />
+
+## Dev workflow stays safe: PRs + protected branches
+
+TinaCMS integrates with GitHub the way we work already:
+
+-   Saves go to a **new branch**
+-   A **pull request** is created
+-   Protected branches mean you can’t push changes live without review
+
+It’s a better editing UX without sacrificing quality control.
+
+## The killer improvement: from 20+ minutes to ~30 seconds
+
+The biggest win for us is the publishing speed.
+
+Before with Gatsby, any rule change, triggered a full rebuild, every page, every time. That meant waiting 20+ minutes for a deployment for a single content tweak.
+
+Now, thanks to Next.js
+
+With Next.js’ ISR (Incremental Static Regeneration), after a content change, we rebuild only that content page. That content update is typically live in 30 seconds, with the rebuild happening in the background (sorted by TinaCMS).
+
+## The takeaway
+
+The real win here isn’t “we changed frameworks” – it’s that we removed friction from improving the Rules. Contributors can now update content without fear of losing work, and developers still get the safety of PRs and reviews. With MDX for richer content and Next.js ISR for fast publishing, the Rules are easier to maintain, faster to ship, and far more likely to stay current.
+
+If your knowledge base matters, invest in the editing experience, because that’s what decides whether it grows or goes stale.
+
+I’d love to hear your experience with content editors, do you have a favourite?

@@ -1,0 +1,124 @@
+---
+title: "Combine AI Models & Custom Software with Microsoft’s Semantic Kernel"
+description: "Discover Microsoft’s game-changing AI SDK, Semantic Kernel. Revolutionize your software with ease of deployment, LLM integration, rich documentation, and AI orchestration."
+pubDate: 2023-09-10T01:17:07.000Z
+updatedDate: 2023-09-12T11:51:12.000Z
+heroImage: "/media/2023/09/MS-Semantic-Kernel-Blog-Banner.jpg"
+author: "Adam Cogan"
+categories: ["ai", "general"]
+tags: ["ai", "copilot", "microsoft-semantic-kernel", "orchestration", "semantic-kernel", "software-development"]
+legacyUrl: "/2023/09/10/ai-models-with-microsofts-semantic-kernel/"
+wpId: 4546
+---
+
+We all know that AI is re-shaping not only the way we do business, but also the way we build enterprise software. The boundaries between science fiction and what is actually possible are getting closer every day, and the latest release from Microsoft, Semantic Kernel, is going to be a game changer. As someone who has closely followed the tech industry’s trajectory for the last 30 years, the introduction of Semantic Kernel feels like a watershed moment, reminiscent of the early days of .NET…
+
+So what exactly is Semantic Kernel, and why is it poised to revolutionize enterprise software development? Let’s dive in.
+
+## **Understanding Microsoft Semantic Kernel**
+
+Semantic Kernel is a new AI Software Development Kit (SDK) introduced by Microsoft. It’s designed to bridge the gap between large language capabilities and application development, providing developers with a powerful tool to integrate AI seamlessly into their applications. It allows developers to easily integrate AI services using conventional programming languages, like C#, and Python, and it’s Open Source. This lets you enhance your apps with new features for increased user productivity, such as:
+
+-   summarizing chats
+-   highlighting important to-do list tasks from Microsoft Graph or
+-   planning a full vacation rather than just booking flights
+
+And this is just the tip of the iceberg…
+
+For example, if you want to create a chatbot, Semantic Kernel helps coordinate the connection between the LLM, the custom backend logic, and the user prompts. A user would input their prompt, and Semantic Kernel would coordinate how that prompt interacts with the LLM to produce a response for the user.
+
+<Figure src="/media/2023/09/image.png" alt="Microsoft Semantic Kernel from Build 2023" caption="Figure: The Semantic Kernel architecture, as presented at BUILD 2023" />
+
+## The Power of Semantic Kernel
+
+Semantic Kernel orchestrates several different features to provide a pipeline that solves 3 problems:
+
+-   Problem #1 – Storing Contextual Memory
+-   Problem #2 – Planning the solution to a problem
+-   Problem #3 – Running custom logic and accessing external data
+
+Let’s examine these problems in the context of a chatbot built for a Software Consulting company using Semantic Kernel.
+
+### Problem #1 – Storing Contextual Memory
+
+One of the problems LLMs have is the token limit. The model can only store information about a set number of tokens. If the user exceeds the token limit with a prompt, then the LLM will ignore parts of the prompt.
+
+Semantic Kernel helps fix this issue by enabling the developer to save context as they go. This context could include files, text, images, and more. Context is saved in chunks so as not to exceed the token limit. When receiving a prompt, Semantic Kernel chooses the most appropriate chunk for the given situation.
+
+In the example of a chatbot, if the developer wants to enable people to ask questions about the consulting services they offer, then they could upload information about those services. Furthermore, services could be grouped by tag to create categories of offerings. For example, services could have a “category” tag added, which contains either “Web” or “Low-code”.
+
+When the user asks, “What types of consulting services do you offer?” the response could be broken down by category:
+
+-   Web: .NET, React, Angular
+-   Low-code: Power Apps, Dynamics 365, Power Automate
+
+This gives the user a clear idea of the consulting firm’s expertise in specific technologies within the Web and Low-code categories.
+
+### Problem #2 – Planning the solution to a problem
+
+In a traditional chatbot, you would define all the questions a user might ask, and then it would answer those questions. For example, you might define the following questions:
+
+-   Question #1: Who is free on \{\{ DATE \}\}?
+-   Question #2: Who is good at \{\{ SKILL \}\}?
+-   Question #3: Where is SSW’s \{\{ LOCATION \}\} office?
+
+That works awesome when the user asks the question exactly like that.
+
+e.g. “Who is free on 23/05/2023?”
+
+It falls over when the user asks the question differently or when they want to combine multiple prompts.
+
+e.g. “Who is available on 23/05/2023 with Angular skills?”
+
+If the chatbot saw this, it would fall over unless you defined a new question:
+
+-   Question #4: Who is available on \{\{ DATE \}\} with \{\{ SKILL \}\} skills?
+
+Semantic Kernel solves this problem by using AI to determine which questions apply. When the user sends a prompt, it creates a “plan” for processing it.
+
+So, for the above example, it would figure out that it needs to use both Question #1 and Question #2 but not Question #3. That way, you don’t need to define Question #4 at all.
+
+### Problem #3 – Running custom logic and accessing external data
+
+As part of the “plan” Semantic Kernel creates, it will likely need to run custom logic and access external data.
+
+The developer can specify what Semantic Kernel can do via
+
+-   Out-of-the-box plugins e.g. the Microsoft Graph API
+-   Custom connectors e.g. a connection to the company database
+-   Custom plugins e.g. prompts or code which can be run within Semantic Kernel
+
+For example, the chatbot might need access to a database that contains information about the consultants, their skills, and availability.
+
+## The Big Picture
+
+Semantic Kernel all fits into one neat system that coordinates to solve these 3 problems. The result is a response to the user’s message that is highly contextualized to fit the business problem being solved.
+
+Here’s how it works:
+
+1.  The user submits a prompt.
+2.  Memories are recalled.
+3.  A “plan” is developed and enacted involving:
+    a. Connections to external data sources
+    b. Custom code which manipulates the data
+4.  A carefully crafted response is returned to the user.
+
+<Figure src="/media/2023/09/kernel-flow.png" alt="Kernel pipeline example" caption="Figure: The Semantic Kernel Pipeline. See more: https://learn.microsoft.com/en-us/semantic-kernel/overview/" />
+
+## Why it’s a Game Changer
+
+Microsoft are bringing out a stack of “copilots”, under the Microsoft 365 Copilot banner, all built using Microsoft Semantic Kernel. You’ll be using these in your normal applications like Outlook, Word, Teams etc…
+
+If you want to make your own copilot, this is a great tool to use for the following reasons:
+
+-   **Deployment Made Simple**: Gone are the days when deploying AI capabilities was a cumbersome process. With Semantic Kernel, developers can easily deploy their applications to Azure as a web app service with just a single click. This ease of deployment is a testament to Microsoft’s commitment to developer productivity.
+
+-   **Integration with Large Language Models (LLMs)**: The ability to mesh LLMs with popular programming languages is nothing short of transformative. Applications can now be supercharged with the capabilities of LLMs, paving the way for smarter and more intuitive software solutions.
+
+-   **Rich Documentation**: Microsoft has always been lauded for its comprehensive documentation, and Semantic Kernel is no exception. Whether you’re a C#, or a Python enthusiast, Microsoft has you covered with in-depth getting started guides. For those eager to delve deeper, [Microsoft Learn](https://learn.microsoft.com/en-us/semantic-kernel/overview/) offers a treasure trove of insights.
+
+-   **Versatility**: The introduction of the Java library for Semantic Kernel is a clear indication of Microsoft’s vision – a world where Semantic Kernel is the go-to SDK for developers, irrespective of their choice of programming language.
+
+In summary, the introduction of Semantic Kernel is not just another entry in Microsoft’s long list of innovations; it’s a paradigm shift. As AI continues to play an increasingly pivotal role in modern applications, tools like Semantic Kernel will be indispensable. It simplifies AI integration, making it accessible to all developers, and promises a future where applications are not just smart but are also intuitive and responsive.
+
+For enterprise software development, this means a future where applications are more than just tools; they’re intelligent partners, capable of understanding, learning, and evolving. As we stand on the cusp of this new era, one thing is clear for the applications we are building, with Semantic Kernel, the future is now. 👍

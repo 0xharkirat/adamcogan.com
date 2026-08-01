@@ -11,5 +11,11 @@ export const youTubeEmbedTemplate: Template = {
       required: true,
       description: "The 11-character ID from a YouTube URL (e.g. dQw4w9WgXcQ)",
     },
+    {
+      name: "caption",
+      label: "Caption",
+      type: "string",
+      description: 'Optional caption shown under the video. House style is "Figure: ...".',
+    },
   ],
 };

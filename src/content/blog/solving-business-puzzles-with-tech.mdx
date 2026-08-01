@@ -1,0 +1,115 @@
+---
+title: "Solving Business Puzzles with Tech: A Look at SSW Melbourne’s Brainstorming Day & Retreat"
+description: "Find out how to utilize the smart people in your company to reduce their pain and create new ideas"
+pubDate: 2023-08-14T00:57:17.000Z
+updatedDate: 2023-08-14T23:06:09.000Z
+heroImage: "/media/2023/08/Melbourne-Brainstorming-Blog-Banner-updated.jpg"
+author: "Adam Cogan"
+categories: ["ai", "azure", "chatgpt", "general", "github", "ssw-projects"]
+tags: ["ai", "azure", "azure-devops", "brainstorming", "collaboration", "copilots", "dynamics-365", "outlook", "retreat", "semantic-kernel", "teamwork"]
+legacyUrl: "/2023/08/14/solving-business-puzzles-with-tech/"
+wpId: 4498
+---
+
+Last weekend we had the best brainstorming event we’ve ever had down in our Melbourne office!
+
+At SSW we get together 4 times a year, to brainstorm great ideas that help solve our most complicated business problems using technology. Over the years the ideas investigated have resulted in incredible pain being reduced and value added. For some people, it was the first time meeting people from other offices, and we had two very special guests from SSW China joining us for their first one.
+
+<Figure src="/media/2023/08/image.png" alt="A group shot of the SSW Team" caption="Figure: The Team getting ready to kick off in Melbourne" />
+
+It was a fantastic day, and boy did the presentations at 4 pm produce some great stuff. I’m so proud of the teams.
+
+If you’re curious about what happens at an SSW brainstorming, check out this video below and give this SSW Rule a read: [ssw.com.au/rules/use-the-brains-of-your-company](http://ssw.com.au/rules/use-the-brains-of-your-company/)
+
+If you’re thinking of doing it yourself, I’d love to hear your plan. In a nutshell, it’s a great day of really fun experiences and you are using the smart people in your company to solve pain that they’re experiencing.
+
+<YouTubeEmbed videoId="ov8OGcApBjc" caption="Video: Empowering employees through brainstorming | https://youtu.be/ov8OGcApBjc" />
+
+## Some Top Ideas!
+
+There were 8 teams looking at different ideas, a lot of which are specific to SSW. Let me tell you about 5 of them to give you an idea of some of the things we looked at.
+
+#### 💡 **Idea #1 – Client booking system**
+
+[Luke Parker](https://ssw.com.au/people/luke-parker/), [Sam Smith](https://ssw.com.au/people/sam-smith/), and [Gert Marx](https://ssw.com.au/people/gert-marx/), worked together to show their pain and a prototype that would make our Dynamics booking system more simple and more stable. Their talk was so entertaining with special guest cameos coming from Account Managers, [Penny Walker](https://ssw.com.au/people/penny/), [Jean Thirion](https://ssw.com.au/people/jean-thirion/), & [Uly Maclaren](https://ssw.com.au/people/uly/) in their presentation.
+
+🧠 **The Solution –** The guys came up with a great way to re-architect the current system, without creating new entities, and without the need to create new data. Instead, we would use a simple Web User Interface and an API that communicates with Dynamics in the Background. Dynamics remains the source of truth and we would simply access that data in a better way. This would improve the UX and be more efficient and enjoyable to use.
+
+####
+💡 **Idea #2 – Auto Timesheets from a Daily Scrum**
+
+[Sylvia Huang](https://ssw.com.au/people/sylvia-huang/), [Jernej “JK” Kavka](https://ssw.com.au/people/jk/), and [Chris Clement](https://ssw.com.au/people/chris-clement/), worked on creating “AutoScrum Magic” to avoid violating the “DRY” principle when doing Daily Scrum emails in the morning and timesheets at the end of the day. The idea was to eliminate data repetition and to use the available data sources to enrich our timesheet entries in [SSW TimePro](https://sswtimepro.com/). They were also investigating whether or not AI could assist in creating nice succinct entries.
+
+Firstly, the team wanted to improve our “Suggested Timesheet” functionality, which grabs the data from Azure DevOps Commits, and from CRM appointments to fairly accurately describe what you worked on that day in order to create a default. The main problem with this method is it currently has a lot of Commit messages that might not make sense to a client, it only works if that client is using Azure DevOps, and it only supports devs. They were also hoping to incorporate “Auto Scrum,” which sends a Daily Scrum to the Product Owner based on the same data to save the developer time.
+
+🧠 **The Solution –** The team came up with a way to improve our “Suggested Timesheet” functionality in TimePro. Firstly, the team decided that they should use Azure DevOps PBIs instead of Git Commits to be more consistent with Daily Scrum emails and get better data. Then they looked at linking clients and projects with specific Azure DevOps projects for more accurate timesheets and notes.
+
+And finally, to connect to various services without too much hassle on the TimePro side, they added an API to support pulling the data from Azure DevOps, GitHub, Sprint boards, and Trello and pulling it into SSW TimePro. The API also allows AI to make sense of the data and open up new AI scenarios like for example, a Sprint Summary.
+
+#### 💡**Idea #3 – Email Templates**
+
+[Tom Iwainski](https://ssw.com.au/people/tom/), [Nadee Kodituwakku](https://ssw.com.au/people/nadee-kodituwakku/), [Warwick Leahy](https://ssw.com.au/people/warwick-leahy/), & [Aman Kumar](https://ssw.com.au/people/aman-kumar/) – looked at the problem that we have so many templates, and in different places, with different content, such as our LMS SugarLearning, our SharePoint Intranet & the SSW Rules. They investigated making an easy-to-send, standardized, & templated email engine for people to use.
+
+**🧠 The Solution –** Approaching this like a Spec Review, they were able to come up with 3 different solutions, OfficeAtWork (an Outlook Plugin), [SophieBot](https://sswsophie.com/sophiebot/) Integration, and a custom Application. All 3 options were great, and of course, they came with different pros and cons, like maintainability, speed of implementation, and customization.
+
+Obviously, OfficeAtWork would be a quick win – it had 80% of the features we need and would be a fast implementation. However, the custom solution, would work perfectly but be expensive. Watch this space to see which way we go!
+
+#### 💡**Idea #4** – **Building Bespoke Copilots with Microsoft Semantic Kernel**
+
+Uly, [Jack Duan](https://www.ssw.com.au/people/jack-duan/), and our intern AB Fahad – wanted to know how to build our own Copilots that can carry out specific tasks and save a lot of manual effort using Microsoft Semantic Kernel.
+
+🧠 **The Solution –** They discovered it’s a good way to combine traditional development with AI. They were able to replace the human that would normally take the outputs from AI models and plug them into more AI models, removing all of the manual layers. This would save a crazy amount of time when building Copilots or AI tools, as it requires no human interaction. You could basically automate any job, using a mixture of AI tools with orchestration layers – imagine the $$ you could save with this at any company.
+
+#### 💡**Idea #5 – DevOps Template for GitHub and Azure DevOps**
+
+[Dhruv Mathur](https://www.ssw.com.au/people/drew/), [Yazhi Chen](https://www.ssw.com.au/people/yazhi-chen/), [Luke Mao](https://www.ssw.com.au/people/luke-mao/), and [Ozair Ashfaque](https://www.ssw.com.au/people/ozair-ashfaque/) – investigated how to optimize deployment with callable GitHub workflows and pre-configured YAML templates for swift technology interchangeability and immediate project setups from day one
+
+🧠 **The Solution –** The team came up with a new way to streamline deployment pipelines using pre-defined DevOps template configuration files. During their presentation, they highlighted their use of callable GitHub workflows to distinctly manage deployment configurations for different parts of an application: backend (like .NET or NodeJs), frontend (such as React or Angular), and databases (like MSSQL, Blob).
+
+By harnessing pre-configured YAML files, they’ve made it easy for projects to switch between technologies. This efficient approach allows developers to kick off a project with everything deployed from the get-go and on day one, sidestepping the usual hunt for the right configuration files which every developer hates.
+
+## Let the Fun Begin – The SSW Melbourne Retreat
+
+Burning all of that brainpower requires some serious R&R afterward, so the team and I took off to the beautiful Yarra Valley for a two-day retreat!
+
+It’s a stunning location, and we had a lot of fun. Here are some of the highlights…
+
+### Tree Tops
+
+We started at Belgrade Tree Tops, which is a super fun obstacle course. The team had a great adventure traversing the trees and then having a delicious lunch at Puffing Billy! I got to the final of the long black run, and couldn’t take the step off the vertical drop, so Gert pushed me… he’s been waiting a long time to do that… 😂
+
+<YouTubeEmbed videoId="gJyPQvVvKdk" caption="Video: Adam Coo-ee in the Tree Tops | https://youtu.be/gJyPQvVvKdk" />
+
+<Figure src="/media/2023/08/image-3.png" alt="Safety briefing at Tree Tops" caption="Figure: The Group having their safety briefing" />
+
+<Figure src="/media/2023/08/image-4.png" alt="Kids at Tree Tops" caption="Figure: Even the kids could give it a go!" />
+
+<Figure src="/media/2023/08/image-8.png" alt="Group lunch" caption="Figure: Lunch at Puffing Billy" />
+
+<Figure src="/media/2023/08/image-1.jpeg" alt="SSW on the Bus" caption="Figure: Being the SSW Bus driver is always a highlight for me!" />
+
+### Retrospective
+
+Next, we had a great retro, where we find out everyone’s highlights for the previous year and there were some wonderful moments shared. It’s a special moment to hear what made everyone’s year special.
+
+<Figure src="/media/2023/08/image-6.png" alt="Group dinner" caption="Figure: The start of the retrospective" />
+
+### Team Dinner
+
+The team dinner is always a highlight, and the Yarra Valley Lodge put on quite a spread for us. It was great to see everyone relax and get to know each other better.
+
+<Figure src="/media/2023/08/image-2.png" alt="Group dinner" caption="Figure: some of the group feasting…" />
+
+### Wine Tasting
+
+On Sunday after seeing all of the wildlife on our morning walk around the Yarra Valley Lodge, we took off to Yering Station for a wine tasting. 🍷 Thanks to everyone for making it a memorable weekend!
+
+<Figure src="/media/2023/08/image-9.png" alt="Wine tasting" caption="Figure: Some of the wine Tasters" />
+
+<Figure src="/media/2023/08/image-10.png" alt="Wine tasting" caption="Figure: The big wine-tasting room" />
+
+<Figure src="/media/2023/08/image-2.jpeg" alt="" caption="Figure: Final Group shot before heading home" />
+
+The retreat was awesome, I can’t wait until the next one in Sydney! If you’ve got ideas to make it better, sing out!
+
+###

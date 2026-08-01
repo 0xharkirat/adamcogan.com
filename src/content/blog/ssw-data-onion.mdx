@@ -1,0 +1,47 @@
+---
+title: "SSW Data Onion – Helping you Simplify your Data Layer"
+description: "At SSW we build software for a large range of clients, from start ups to massive enterprises and even our own internal projects. We care that the software we build is secure, maintainable and testable. Successful devs use great tools, great frameworks, and follow best practices. Choosing great tools"
+pubDate: 2015-04-08T06:28:26.000Z
+updatedDate: 2015-04-14T02:45:19.000Z
+author: "Adam Cogan"
+categories: ["ssw-data-onion", "ssw-projects"]
+tags: []
+legacyUrl: "/2015/04/08/ssw-data-onion/"
+wpId: 2458
+---
+
+<YouTubeEmbed videoId="FcuFya8vud8" />
+
+At SSW we build software for a large range of clients, from start ups to massive enterprises and even our own internal projects. We care that the software we build is secure, maintainable and testable.
+
+Successful devs use great tools, great frameworks, and follow best practices. Choosing great tools like ReSharper and Octopus Deploy is easy, but many developers struggle with architecture decisions for their .NET projects. I recommend that developers follow the [Onion Architecture](http://rules.ssw.com.au/SoftwareDevelopment/RulesToBetterMVC/Pages/Use-a-Dependency-Injection-Centric-Architecture.aspx). One of the most common pain points is the right way to implement Data Access using the Repository and Unit of Work patterns.
+
+Implementing these enterprise data access patterns involves lots of complex up-front setup, and once implemented the plumbing code needs to be maintained.
+
+To solve this problem we created SSW Data Onion. Data Onion makes it easy to get your Data Access Layer right and keep it up to date as your schema changes. It also saves you from spending your first sprint building the plumbing. You simply add and configure the NuGet packages, and get onto adding value. Once Data Onion is up and running, a lot of technical debt is removed because it saves you from ongoing maintenance of your repository plumbing. You simply update the domain entities, and voila – Data Onion refreshes your repositories.
+
+[![data-onion](/media/2015/04/data-onion.jpg)
+](/media/2015/04/data-onion.jpg)**Figure: TT templates read your domain model and generate DBContext, Repository Interfaces and Repository Implementations.**
+
+So add SSW Data Onion to your projects to give you testable, maintainable data access using enterprise best practices!
+
+We use it on most of the projects we build and when running mentoring/training for clients. Of course it also underpins our intensive 9 week training course, [FireBootCamp](http://firebootcamp.com).
+
+To add SSW Data Onion to your solution, follow [the step-by-step tutorial](http://www.sswdataonion.com/tutorial) on the Data Onion website and watch as your data layer is generated for you.
+
+Some of the other cool things about SSW Data Onion are,
+
+-   its Unit of Work pattern supports multiple databases and supports saving across databases in a single transaction
+-   it works with your choice of IOC container
+-   it leaves you in control. You can use our templates out of the box or, for the ultimate flexibility, edit the supplied templates to completely customize the generated code
+-   All generated class are partial – which provides you with clearly defined places to put you own code and extensions
+-   Even if you don’t want to use the repository pattern, SSW Data Onion provides a tt template to generate the DBSet entries in your EF DbContext class.
+-   Support for checking the DB schema with SqlVerify. This checks you DB schema for unexpected schema changes, for example if your client has manually modified a column type in their production database.
+
+I hope you find that SSW Data Onion takes the pain out of writing and maintaining an enterprise data layer.
+
+I’m happy it’s progressed from an internal tool to something you guys can use.
+So whether you are a junior developer just starting out, and you want to build a maintainable and testable solution, or you are an experienced consultant who hates writing the same boiler plate code on every project, SSW Data Onion gives you best practices without spending hours and hours building code-generation templates.
+
+Try SSW Data Onion today
+[http://sswdataonion.com](http://sswdataonion.com) – I’d love to know your thoughts.

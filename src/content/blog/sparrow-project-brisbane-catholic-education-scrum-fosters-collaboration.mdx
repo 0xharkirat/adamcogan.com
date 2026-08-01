@@ -1,0 +1,56 @@
+---
+title: "The SPARROW project for Brisbane Catholic Education: When Scrum fosters collaboration."
+description: "Figure: BCE SPARROW uses a ‘metro’ design with all the latest Nuget packages for elegant, consistent and usable design The benefits of continually improving our processes and practices around the Scrum methodology were never more apparent than with the project we have recently completed for Brisbane"
+pubDate: 2014-01-10T00:23:27.000Z
+updatedDate: 2014-12-30T04:26:36.000Z
+author: "Adam Cogan"
+categories: ["scrum", "ssw-projects"]
+tags: []
+legacyUrl: "/2014/01/10/sparrow-project-brisbane-catholic-education-scrum-fosters-collaboration/"
+wpId: 563
+---
+
+[![BCESparrow](/media/2014/01/BCESparrow.jpg)](/media/2014/01/BCESparrow.jpg)
+**Figure: BCE SPARROW uses a ‘metro’ design with all the latest Nuget packages for elegant, consistent and usable design**
+
+The benefits of continually improving our processes and practices around the Scrum methodology were never more apparent than with the project we have recently completed for Brisbane Catholic Education (BCE).
+As developers, we’ve all worked on projects where the level of collaboration can break down due to any number of factors such as scope creep, availability of the Product Owner, ill-defined requirements or inadequate testing. One of the strongest benefits of Scrum is the focus on communication and feedback to alleviate these symptoms.
+
+**The BCE SPARROW Project**
+The SPARROW project is an extranet site designed to assist school principals when performing long term strategic planning for their school. As such, this was a project with a great deal of stakeholders.
+On arrival, we found that BCE were ready for Scrum. They had tried applying agile principles to their own projects previously and were interested in formalizing the process. Following Scrum helped us to build a single collaborative development team comprising developers and a designer from SSW with testers and IT staff from BCE. The SSW team for this project included [Damian Brady](http://sharepoint.ssw.com.au/AboutUs/Employees/Pages/Damian.aspx), [Adam Stephensen](http://sharepoint.ssw.com.au/AboutUs/Employees/Pages/AdamS.aspx), [Brendan Richards](http://sharepoint.ssw.com.au/AboutUs/Employees/Pages/Brendan.aspx), [Ben Cull](http://www.linkedin.com/in/bencull) and [Rebecca Liu](http://sharepoint.ssw.com.au/AboutUs/Employees/Pages/RebeccaL.aspx).
+
+**Client Role: The Product Owner
+**It was a pleasure to work with an excellent Product Owner from BCE, Kerry Edwards-Williams. Kerry performed brilliantly at managing this diversity of stakeholder input to give the developer team a single source of truth for tasks on the Product Backlog. For more information on this key role see [What is a Product Owner](http://www.youtube.com/watch?v=3eljozEWpf8).
+
+_“I would not undertake any other project without using the Scrum methodology. I think it’s absolutely exceptional. It’s fantastic. I think my favorite thing about working on the project, was learning about the scrum methodology… and working with the SSW team… I’d highly recommend them to anybody.”_ – Kerry Edwards-Williams.
+
+**Client Role: The Tester**
+BCE Testers, led by Latha Matta, used Microsoft Test Manager to provide excellent bug reports directly into TFS – as per our rule: [Do you know the three steps to a PBI?](http://rules.ssw.com.au/Management/RulesToBetterScrumUsingTFS/Pages/Do-you-know-the-3-steps-to-a-PBI.aspx)
+Making client testers part of the development team worked to break down barriers between client and vendor and fostered mutual understanding and respect. This, in turn, led to fantastic turnaround times in identifying and responding to issues.
+
+[![SparrowRetro](/media/2014/01/SparrowRetro.jpg)
+](/media/2014/01/SparrowRetro.jpg)**Figure:** I’ll let one of the emails do the talking here…
+
+**Technical Details: The Middle Tier**
+It’s always exciting when a client comes you with a “greenfield” project as you get the opportunity to practice what you preach from day one. The core of the application follows Domain Driven Design within the [Onion Architecture](http://rules.ssw.com.au/SoftwareDevelopment/RulesToBetterMVC/Pages/The-layers-of-the-onion-architecture.aspx) pattern. Dependency injection with [Structure Map](http://docs.structuremap.net/) connects the various system components together.
+
+[![DependencyInjection](/media/2014/01/DependencyInjection.jpg)](/media/2014/01/DependencyInjection.jpg)
+**Figure: Designing a system with Dependency Injection from day one encourages a clean, organised system design.**
+
+**Technical Details: The Data Layer**
+Entity Framework Code First provides the main data persistence layer for the application while Entity Framework Database First was utilised when interacting with existing database resources. Updates to database the schema are managed through EF Code-First Migrations.
+
+**Technical Details: The User Interface**
+A rich user interface was delivered via ASP.NET MVC, a web application combining JQuery, Ajax, [Twitter Bootstrap](http://www.youtube.com/watch?v=bIGiUSMBwoo), LESS, Telerik Kendo UI, [Unobtrusive Validation with Fluent Validation](http://rules.ssw.com.au/SoftwareDevelopment/RulesToBetterMVC/Pages/UnobtrusiveValidation.aspx) and Knockout.js.
+
+**Technical Details: Automated Testing**
+Unit tests cover the core application components while automated Selenuim tests cover the overall site.
+
+**Technical Details: Continuous Deployment**
+In order to get fast feedback from testers, it is crucial that the process for deploying code changes to a testing server is as fast and painless as possible. Continuous deployment to a testing server, combined with automatic deployment of database schema changes via Entity Framework Code First migrations, means that a developer just needs to check in a code change and, if it compiles and the tests pass, this will be available on the test site within a few minutes.
+
+**Summary**
+Getting this deployed to the live production server was great, and I’m proud of the team for achieving this. Following the formal framework provided by Scrum helped us to build trust and collaboration across all aspects of this project. This then flowed through to a high level of agility when responding to issues and changes. Everyone on the team enjoyed working on this system and we’re confident that BCE is happy with the result – because at the end of every sprint we conducted a full review and retrospective.
+
+Of course, you can learn for yourself everything about how we build awesome web applications at our [FireBootCamp](http://firebootcamp.com/).

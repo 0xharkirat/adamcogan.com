@@ -1,0 +1,100 @@
+---
+title: "Managing your Azure Costs – How to Avoid Ballooning Budgets"
+description: "Do you want to control your Azure Costs? Find out how to both monitor your spend, as well as avoiding unexpected spend blow outs"
+pubDate: 2023-03-09T11:14:42.000Z
+updatedDate: 2023-03-09T11:15:36.000Z
+heroImage: "/media/2023/03/Azure-Budget-blog-banner.jpg"
+author: "Adam Cogan"
+categories: ["azure", "general", "ssw-rules"]
+tags: ["azure", "azure-cost", "azure-monitoring", "azure-services", "azure-spend"]
+legacyUrl: "/2023/03/09/managing-your-azure-costs/"
+wpId: 4385
+---
+
+Have you ever had an Azure bill that was a total surprise? I have some awesome war stories, and the most memorable was when our Azure costs skyrocketed 🚀 unexpectedly after someone put a [Superpowers](https://firebootcamp.com/superpower-tours/) poster up in the foyer at SSW. I know what you’re thinking, how on earth did a simple poster on a wall send me a crazy Azure bill? 🤔 Well it wasn’t the poster that was the problem, it was our receptionist… our AI receptionist called [SophieHub](https://sswsophie.com/). It uses Azure facial recognition to welcome people to the office. Sophie kept recognizing the faces on the poster as a person and sending it off to Azure 24/7. Ouch.
+
+Once you’ve had a bill shock, you’ll start looking at ways to stop it from happening again in the future. Even better, if you are proactive, you’ll never encounter bill shock.
+
+## Azure Monitoring
+
+Recently, [SSW TV released an Azure cost video](https://youtu.be/G7JEz8b-G24) from [Warwick Leahy](https://www.ssw.com.au/people/warwick-leahy) – it is so important to set up alerts so you are informed when you hit budget limits. That’s step 1, but you should be using some other tools and tricks where you never get a nasty bill from Microsoft.
+
+We’ve written a handy Rule to help you get started with this: [ssw.com.au/rules/azure-budgets/](https://www.ssw.com.au/rules/azure-budgets/)
+
+<YouTubeEmbed videoId="G7JEz8b-G24" />
+
+## Azure Cost Analysis 💰
+
+Azure Cost Analysis is a fantastic tool for determining where the larger $ costs are coming from. This analysis lets you quickly identify the big-ticket items to reduce your bill.
+
+When it comes to Azure expenses, you want to be [informed and monitor your costs](https://www.ssw.com.au/rules/azure-budgets). You can also have a solution that not only helps you understand where the spending is coming from but also helps you find ways to optimize it. With Azure Cost Analysis, you can confidently provide your Product Owners with insights and recommendations that will save time and money, and make everyone’s day a little brighter ✨
+
+When looking at your cost, it’s best to take a look at your top 3 spenders first. By the time you get down to the 4th one you’ve hit the law of diminishing returns, and the effort will outweigh the savings, unless your cost is really enormous.
+
+> _Always tackle the biggest 3 costs first. In most instances they will be upwards of 98% of your spend, particularly if you are in a wasteful environment. I have seen MANY projects where the largest cost by a significant margin was Application Insights._
+>
+> **Bryden Oliver, Azure expert**
+
+Azure Cost Analysis gives you a detailed breakdown of where any Azure spending is coming from. It breaks down your cost by:
+
+-   Scoped Area e.g. a subscription
+-   Resource Group e.g. Northwind.Website
+-   Location e.g. Australia East
+-   Service Type e.g. Azure App Service
+
+**Note:** You can also ‘filter by’ any of these things to give you a narrowed-down view
+
+<YouTubeEmbed videoId="whXWijQCQTU" />
+
+## Analyzing the expenditure – Finding the big dogs 🐶
+
+To optimize spending, analyze major costs in each category. Generally, it’s a good idea to focus on the top 3 contributors – optimizing beyond that is usually not worth the effort.
+
+Key questions to ask:
+
+-   Do you need that resource?
+-   Can you scale down?
+-   Can you refactor your application to consume less?
+-   Can you change the type of service or consumption model?
+
+## Scoped Area ⚡
+
+The cumulative costs show a selected area over a given time period, e.g. the cost of a subscription charted over the last year, showing the period of higher or sudden growth during that time. You can clearly see the cost went up in August and remained high.
+
+<Figure src="https://www.ssw.com.au/rules/static/123f1deacbed52cc8365c6a285ba1e2f/72e01/area-chart.jpg" alt="Azure Costs - area chart" caption="Figure: Azure Portal | Cost Analysis | Scoped Area Chart e.g. in February it was deployed and in August a marketing campaign caused more traffic" />
+
+## Resource Group💲
+
+This is where you can see the cost of each resource group in the scoped area, e.g the cost of the Northwind website infrastructure.
+
+Ignore the tiny ones, you should look at the most expensive Resource Group and try to reduce it.
+
+<Figure src="https://www.ssw.com.au/rules/static/b6885959d213bc724bd243b73d1e02ba/18815/resource-groups.jpg" alt="Azure Costs - resource groups" caption="Figure: Azure Portal | Cost Analysis | Resource Group Breakdown" />
+
+## Location 🌏[](https://www.ssw.com.au/rules/reduce-azure-costs/#location)
+
+This breaks down what region the resources are deployed in, and shows you the cost of each location e.g. Australia East.
+
+If you have your applications spread across multiple locations, this chart can help figure out if one of those locations is costing more than others. Consider scaling each location to the scale of usage in that location ⚖️.
+
+<Figure src="/media/2023/03/image.png" alt="Azure Costs - Location breakdown" caption="Figure: Azure Portal | Cost Analysis | Location breakdown" />
+
+## Service Type 🌩️[](https://www.ssw.com.au/rules/reduce-azure-costs/#service-type)
+
+This will show you which of your Azure Services is costing you the most money, e.g. Azure App Service.
+
+If a specific service is costing a lot of money, you can consider if there is a service that might be better suited, or if that service can have its consumption model adapted to better fit the usage levels.
+
+<Figure src="https://www.ssw.com.au/rules/static/1da6bb5e2aadda638e676dcd28836658/a2d2e/services.jpg" alt="Azure Costs - services" caption="Figure: Azure Portal | Cost Analysis | Service type breakdown" />
+
+## What if you suspect a specific resource is a problem? 🕵🏻[](https://www.ssw.com.au/rules/reduce-azure-costs/#what-if-you-suspect-a-specific-resource-is-a-problem)
+
+The Azure Cost Analysis tool also allows for different views to be selected. One of the most useful filters you can use to see if a specific resource is causing a problem, is the “CostByResource” view. You can view each aspect of a resource that is costing money. That way you can identify an area that can be improved 🎯. Often clients say things like:
+
+‘My storage is costing me a fortune, but I’m not actually using a lot of storage’.
+
+If you check the “CostByResource’ it’s often something like the bandwidth, or the operations, which is all of the reads and writes. They cost you money too, not just the storage itself.
+
+<Figure src="https://www.ssw.com.au/rules/static/f94756119620b1b4322fcaf0d65ba379/72e01/service-breakdown.jpg" alt="Azure Costs - service breakdown" caption="Figure: Azure Portal | Cost Analysis | View | CostByResource | Resource breakdown" />
+
+Those are the most important tips, but there’s more on [Rules to Better Azure](https://ssw.com.au/rules/rules-to-better-azure/). Do you have any tips that I missed? Let me know in the comments!

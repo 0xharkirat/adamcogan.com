@@ -1,0 +1,102 @@
+---
+title: "Microsoft Fabric – Unifying your Data Analytics"
+description: "Learn more about how you can use Microsoft Fabric to have an all-in-one data analytics solution"
+pubDate: 2023-07-17T10:49:02.000Z
+updatedDate: 2023-07-18T01:53:55.000Z
+heroImage: "/media/2023/07/Microsoft-Fabric-Unifying-your-Data-Analytics-Blog-Banner.jpg"
+author: "Adam Cogan"
+categories: ["ai", "data-engineering"]
+tags: ["ai", "copilot", "data", "data-engineering", "microsoft-fabric"]
+legacyUrl: "/2023/07/17/microsoft-fabric-unifying-your-data-analytics/"
+wpId: 4471
+---
+
+<YouTubeEmbed videoId="X_c7gLfJz_Q" caption="Video: Microsoft Fabric: Satya Nadella at Microsoft Build 2023 https://www.youtube.com/watch?v=X_c7gLfJz_Q" />
+
+Microsoft has recently announced Fabric – and it is a super impressive data analytics tool using AI! 🤩
+
+As a Microsoft MVP, I was lucky enough to see Microsoft Fabric a little early, and I knew immediately that it would be a game-changer. Data projects are really complex, and if you don’t get it right, you can end up with a mess – or a data swamp as it’s often known to data engineers.
+
+Let’s take a look at why this tool is going to revolutionize data analytics!
+
+## What is Microsoft Fabric?
+
+Microsoft Fabric integrates technologies like Azure Data Factory, Azure Synapse Analytics, and Power BI into a single unified product, empowering employees to unlock their data and lay the foundation for the next era of AI.
+
+In the past, Microsoft had other data platforms like HDInsight and SQL Data Warehouse, but they were a bit separate from each other. Then came Azure Synapse Analytics, which tried to bring them together, but it was still a little disconnected.
+
+Now, with Microsoft Fabric, it is easier for people to work with their organization’s data. People like Data Scientists, Data Engineers, and even Power Users can all use this great technology now. The way it looks and feels is similar to a popular tool called Power BI, which you might have heard of. 😉
+
+At the start, provisioning resources in order to get up and running on a data project, was painful and time-consuming and could be in the order of weeks. Now with Microsoft Fabric that is now a Cloud Service, which means it is now minutes to have the resources you need.
+
+Microsoft Fabric also introduces a new way of charging for the service. Instead of managing different bills for different parts of the technology, they have a standard way of charging based on how much you use. It’s like having a fixed price for using the technology, which is easier to understand and manage. Let’s hope the cost doesn’t creep up too much. For reference, the cost to get started with Microsoft Fabric is lower than some of their other services.
+
+## Microsoft Fabric vs Synapse
+
+Microsoft Fabric has some similarities to Synapse but it also has some extra features. The way you use it and the look and feel will be familiar if you’ve used Synapse before. For example, Power BI, which is a popular data visualization tool, is now integrated into Fabric, making it even more powerful.
+
+Microsoft has put a lot of thought into helping people migrate their data from Synapse to Fabric, so if you’re already using Synapse, you have options for moving to Fabric. Microsoft knows that many people who use Azure Synapse Analytics already have a lot of data stored in it, and they seem to have put a lot of effort into making the migration from Synapse to Fabric as simple as possible. They have come up with different strategies, including technical solutions and step-by-step processes, to help with the transition. It’s obvious they want the transition to be smooth.
+
+While Synapse will still be available, Microsoft will likely focus more on developing and investing in Fabric. So, if you’re looking for the latest innovations, Fabric is where you’ll find them. However, if you’re happy with Synapse and not ready to switch, that’s okay too. Microsoft will continue to support it.
+
+## How does it compare to Databricks/Snowflake?
+
+When looking at Databricks, Snowflake, and Microsoft Fabric, it’s important to know that each platform has its own strengths and areas of focus. You’re not really comparing like for like.
+
+Databricks is mostly known for its versatility in handling Data Science and Machine Learning tasks across various cloud platforms. It’s a popular choice for customers working on these types of workloads. Recently, they have expanded their services to become a complete data warehouse solution, positioning themselves as the “home of the Lakehouse.”
+
+Whereas, Snowflake is well-known for being an innovative cloud data warehouse provided as a service. It’s like a warehouse that helps people store and analyze large amounts of data easily. Lately, Snowflake has been adding features like Snowpark, which are particularly appealing to data engineers.
+
+So, while both Databricks and Snowflake have their own strengths and target different types of users, they are not exactly the same. Databricks is more focused on Data Science and Machine Learning, while Snowflake is primarily a cloud data warehouse.
+
+Microsoft Fabric on the other hand wants to cover everything and bring it under one roof. It aims to innovate and improve every aspect, from the foundational elements of data and computing, to the user experiences targeted at knowledge workers. You may have seen some of these impressive experiences in recent Microsoft demos.
+
+Expect to see more exciting developments in this space…
+
+## What are the main features?
+
+<Figure src="/media/2023/07/image-2.png" alt="" caption="Figure: An overview of the Microsoft Fabric umbrella" />
+
+✅ Everything-as-a-service: It simplifies the process by taking care of hardware, infrastructure, and complex administration, allowing users to focus on data analysis.
+
+✅ Centralized administration: All organizational data artifacts are governed in one place, reducing security and compliance challenges.
+
+✅ Low-code: Businesses don’t need to rely solely on professional developers.
+
+✅ Emphasis on the data lake: OneLake serves as a logical structure for managing data from various sources, reducing data duplication.
+
+✅ Lakehouse architecture: Microsoft Fabric embraces the lakehouse architecture, combining the benefits of data lake and data warehouse concepts.
+
+✅ DirectLake mode: Power BI can directly query data from OneLake without the need for data movement, achieving high performance and real-time data availability.
+
+✅ Seamless integration with Office tools: Data stories created in Power BI can be seamlessly integrated into other Microsoft Office applications like Excel, PowerPoint, Teams, and Outlook.
+
+✅ Security and governance: Fabric supports features like data lineage and information protection labels, ensuring data security and facilitating administrative tasks through the Admin center.
+
+## Some Limitations
+
+Microsoft Fabric is currently in Preview, so while exciting, it is not a fully robust product as yet and it has some known limitations. According to Microsoft:
+
+⚠️ There’s limited T-SQL functionality, and certain T-SQL commands can cause warehouse corruption. You can see more about this on the Microsoft docs: [T-SQL surface area](https://learn.microsoft.com/en-us/fabric/data-warehouse/tsql-surface-area) for a list of T-SQL command limitations
+
+⚠️ Data warehousing is not supported for multiple geographies at this time. Your Warehouse and Lakehouse items should not be moved to a different region during preview
+
+⚠️ Warehouse recovery capabilities are not available during preview
+
+## Using Fabric with Copilot
+
+<YouTubeEmbed videoId="Pmt9TyvNsQM" caption="Video: Check out this Microsoft Demo on Copilot in Power BI Overview | https://www.youtube.com/watch?v=Pmt9TyvNsQM" />
+
+Microsoft has now announced that you will be able to use Copilot in Power BI, and this could be a game changer too. In Power BI, Copilot (currently in private preview) takes advantage of advanced generative AI technology to accelerate insights, discovery, and sharing. This is crazy good. You will be able to ask it questions about your data, and Copilot will analyze and compile the relevant data into an impressive report for you to review. Soon you will be able to take your raw data and transform it into something that will help you make decisions.
+
+It’s going to be a game changer for many businesses and Data Engineers are going to be cool as Software Engineers. 😎🙂
+
+SSW have a few Rules about this topic:
+
+-   [Do you have a Data Lake?](https://www.ssw.com.au/rules/data-lake/)
+-   [Do you use the right data storage?](https://www.ssw.com.au/rules/use-the-right-data-storage/)
+-   [Do you use the right database for the job?](https://www.ssw.com.au/rules/use-the-right-database/)
+
+Also a few jobs in this space: [https://www.ssw.com.au/employment](https://www.ssw.com.au/employment)
+
+What do you think of Microsoft Fabric? Leave me a comment below with your thoughts.

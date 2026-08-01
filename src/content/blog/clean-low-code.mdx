@@ -1,0 +1,106 @@
+---
+title: "Clean Low Code – How to keep your Power Automate Flows lean & clean"
+description: "Find out the best way to use Power Automate, and how to keep your low code clean and maintainable."
+pubDate: 2022-06-09T12:49:19.000Z
+updatedDate: 2022-09-21T00:59:18.000Z
+heroImage: "/media/2022/06/Blog-Banner-GitHub-.jpg"
+author: "Adam Cogan"
+categories: ["general", "power-automate"]
+tags: ["automated-flows", "flow", "microsoft-power-suite", "power-automate"]
+legacyUrl: "/2022/06/09/clean-low-code/"
+wpId: 4024
+---
+
+<YouTubeEmbed videoId="U_RyTidILKg" caption="Video: Power Automate Flows best practices with Adam Cogan and Calum Simpson" />
+
+As many of you already know, Microsoft’s Power Platform is revolutionizing how businesses can digitize their processes in a very cost-effective way. Over the last year, more and more of our customers at SSW have chosen to go the low-code route instead of custom development. Last year, I spoke to you about [Power Apps with Calum Simpson](https://adamcogan.com/2021/04/19/powering-a-business-with-low-code/) and you got a good idea of the how a solution is put together with costings.
+
+Let’s talk about the next best product in the Power Platform and how to simplify your Microsoft Power Automate Flows.
+
+Power Automate is a cloud-based service that is awesome for connecting services and creating workflows. In the old days, if employees wanted something automated, they would have to call up the development team and go through a long bureaucratic process to get a traditional solution built with code. Today it is scarily easy.
+
+### What can you use Power Automate for?
+
+Power Automate is best used for those pesky, time-consuming, manual, repetitive tasks. For example, at SSW, we used to use stored templates to manually copy, paste, and send appointments to candidates completing a coding challenge. It was long, tedious and left room for error. It also required a 3rd party scheduling tool costing $ per licence.
+
+We replaced it with a couple of Flows that have saved us bucketloads of time and money… and probably the sanity of SSW Managers. 😄
+
+Power Automate lets power users automate away repeatable manual processes. For example, say you want to:
+
+-   Monitor an inbox
+-   Read emails with the subject “Invoice”
+-   Get the attached PDF
+-   Put the PDF in a SharePoint Document Library (there is a connector)
+-   Put a record in Xero (there is an API – no connector)
+
+These are all easy in Power Automate vs. a ton of code if you were to use an Azure Function.
+
+### Connectors & Integrations
+
+Power Automate provides heaps of out-of-the-box integrations that mean you don’t need to code in authentication, security and custom integrations with APIs. So, as long as your logic is just moving data from one place to another, it can be done really fast.
+
+Some of the great connectors that exist include:
+
+-   CRM systems e.g. Dynamics 365
+-   Emails
+-   Microsoft Dataverse
+-   Microsoft Office 365
+-   Microsoft SharePoint
+-   Custom APIs
+    and more…
+
+**Custom Connectors**
+
+If the connector you want doesn’t exist, you can create custom connectors to access your favourite APIs, and you can even [throw your own code into them](https://docs.microsoft.com/en-us/connectors/custom-connectors/write-code).
+
+**Beyond the Basics**
+
+DevOps with Power Automate is simple. You can package it up in a Power Platform solution and then deploy it to dev, test and production at the click of the button.
+
+However, once the logic gets complex or you need to integrate with custom systems, it’s time to look at another solution. For more info: [https://www.ssw.com.au/rules/automation-tools](https://www.ssw.com.au/rules/automation-tools)
+
+<Figure src="/media/2022/06/image-3.png" alt="Power Automate Templates" caption="Figure: Microsoft Power Automate templates selection" />
+
+### It can be used outside of the Microsoft Office 365 Environment
+
+What makes Power Automate really special is that you can work across platforms. Power Automate allows you to integrate with 3rd party services in the Flow, e.g. Salesforce, RSS, and Google Drive, in just a few clicks.
+
+<Figure src="/media/2022/06/image-2.png" alt="Example Flow with Salesforce" caption="Figure: a simple flow in Power Automate with Salesforce. Source" />
+
+## Keep it Clean & Lean
+
+Now that I’ve convinced you to use Power Automate, I should warn you about a few limitations.
+
+While Power Automate is easy and fast to use, it can get ridiculously long and complicated. This can lead to many problems if things change within the solution.
+
+Here are a few best practices to keep you on track:
+
+1.  **Naming conventions** – it should be clear at first glance what your flow does and what the triggers do. You should rename the action to the function that you are trying to perform. This will help with the maintainability of your Flow; any developer should be able to understand it without digging into the actions. You can even include Emojis! 👍🏻
+
+<Figure src="/media/2022/06/image-1.png" alt="Nice example of a well ordered Flow" caption="Figure: Good example – complex logic is put into Azure Functions & Step names use the default name with a brief description of what it does" />
+
+2.  **Add comments to your Actions** – again, it helps with the maintainability of the Flow, and you can add the Expressions you have used in the actions. A dev won’t need to look at the ‘advanced options’ to understand if there is additional information required to understand its purpose. Anything that saves you from unnecessarily exploding out an action is a good thing.
+
+3.  **Copy and pasting Actions** – you can copy and paste an action in a Flow. If you use the 3 ellipses (…), you can copy the action for reuse. Also you can also paste it to Notepad if you want to change instances or close the browser.
+
+4.  **Using Scopes** – scopes are a simple way to group 2 or more actions together to better organize your Flows. When you put Actions inside a Scope, they can be visually collapsed so that you can make the readability much simpler. This will help organize your Flow, which is especially useful for larger Flows.
+
+<Figure src="/media/2022/06/image-4.png" alt="A neat ordered Flow" caption="Figure: Good example – a Group of Actions inside a Scope – nice and neat!" />
+
+5.  **Compose vs Variable** – you should only use a Variable when you really need to. Variables are useful when you will likely need to change a value throughout the course of a Flow, or if the value is going to be set in more than one place. It is best practice to use a Compose action when the value is going to be set once.
+    Tip: You cannot initialize a Variable inside a Scope. You must keep them separate.
+
+6.  **Avoid using personal emails** – if a person leaves your organization and the Flow is attached to their account, it’s going to break the Flow when they leave. So use a shared email instead, controlled by your SysAdmins or a group of people.
+
+7.  **Documentation** – always have a diagram to show how the Flow is mapped out. It will help any new developer quickly understand the purpose and architecture of your Flows.
+
+8.  **Child Flows** – just like coding has functions, Power Automate has Child Flows which allow you to define a set of steps once and use it in many places, allowing you to adhere to the DRY principle (Don’t Repeat Yourself).
+
+Want to take a deeper dive into low code? We have many other great tips and tricks, including when to use an Azure Function.
+
+Check out these SSW Rules:
+
+-   [www.ssw.com.au/rules/automation-tools](https://www.ssw.com.au/rules/automation-tools)
+-   [www.ssw.com.au/rules/rules-to-better-power-platform](https://www.ssw.com.au/rules/rules-to-better-power-platform)
+
+Got a comment, tip or anything to share? Hit me up in the comments below – I’d love to hear from you.

@@ -1,0 +1,94 @@
+---
+title: "Aussie Azure – Winning on Visual Studio Online in Australia – I feel the speed"
+description: "7 months ago in October 2014, Scott Guthrie announced the long-awaited availability of Microsoft Azure cloud services in Australia. Currently there are two data centers, Sydney and Melbourne. Today, 11th May 2015, sees Visual Studio Online (also known by my clients as VS Online or VSO or TFS Azure) "
+pubDate: 2015-05-10T23:24:13.000Z
+updatedDate: 2015-06-11T02:30:29.000Z
+author: "Adam Cogan"
+categories: ["general", "tfs", "visual-studio"]
+tags: ["brian-harry", "microsoft"]
+legacyUrl: "/2015/05/10/aussie-azure-winning-on-visual-studio-online-in-australia/"
+wpId: 2472
+---
+
+[![VisualStudio_AzureAustralia](/media/2015/05/VisualStudio_AzureAustralia.jpg)](/media/2015/05/VisualStudio_AzureAustralia.jpg)
+
+7 months ago in October 2014, Scott Guthrie announced the long-awaited availability of Microsoft Azure cloud services in Australia. Currently there are two data centers, Sydney and Melbourne. Today, 11th May 2015, sees Visual Studio Online (also known by my clients as VS Online or VSO or TFS Azure) come to our Australian Azure data centers. This is great news as VSO is the daily backbone for most Microsoft developers who have embraced the cloud. I work at SSW and VSO is one of the most important apps we use on a daily basis. I already find VSO fast and we use it happily every day for 70% of our customer projects. That said we have a fast connection at SSW. If you have a slow connection at your work, you probably feel all the little browser lags and will be happy with Microsoft’s decision to put VSO on Azure in Australia.
+
+When Brian Harry (Mr TFS – Team Foundation Server) told me Aussies would get VSO in Australia I knew it was great news, but I also wondered if everyone would benefit, or just developers on a dodgy connection.
+
+I decided to test the speed. The developers that will experience the least benefit will be those on a blazing connection. The gold standard in Australia is the 100/40 Mbps NBN connection. So I have done these tests with Igor from our Brisbane office (using an NBN connection).
+
+**Long story short, expect at least 2-3 times faster. My findings below gave me improvements of 260%, 170% and 200% on key scenarios… and that’s on an NBN connection. If your connection is slower than 100 Mbps (most of Australia), then you will get even greater results. I will be interested to know what results you get.**
+
+More information:
+
+### Test 1: Testing Clicking Around VSO
+
+I created 2 blank VSO accounts:
+
+-   auPing.visualstudio.com – **AU Server**
+-   usPing.visualstudio.com – **US Server**
+
+Then I opened both sessions in 2 side by side Chrome incognito windows. I browsed around an empty project with an empty backlog.
+
+**Result:** When using NBN it is hard to spot any significant differences in performance.
+
+### Test 2: Testing Download Speeds
+
+Then I opened Visual Studio 2015 and:
+
+-   Created a blank MVC Web Project called PingTest,
+-   Connected to Team Explorer
+-   Checked it in to each VSO server… (that uploads it to TFS source control on AU and then US)
+
+<Figure src="/media/2015/05/vs-aus-test2.png" alt="vs-aus-test2" caption="Figure: US and AU servers on VSO" />
+
+Then I downloaded the code from both VSOs to compare speeds.
+FYI the size of zipped project: 18 MB (actual project: 55 MB)
+
+<Figure src="/media/2015/05/vs-aus-test2-b.png" alt="Figure: Downloaded PingTest.zip (US), then downloaded PingTest (1).zip (AU)…. AU performed much faster (260%)" caption="Figure: Downloaded PingTest.zip (US), then downloaded PingTest (1).zip (AU)… AU performed much faster (260%)" />
+
+**Result:**
+
+-   AU 5 seconds
+-   US 13 seconds
+
+\= AU performed much faster (260%)
+
+### Test 3: Testing Backlog Performance
+
+To get more accurate numbers, I looked in the network tab of Chrome Tools and tested the backlog.
+
+<Figure src="/media/2015/05/vs-aus-test3.png" alt="Figure: Testing the speed adding a new PBI" caption="Figure: Testing the speed adding a new PBI" />
+
+<Figure src="/media/2015/05/vs-aus-test3-b.png" alt="Figure: Creating a new PBI is about 2-3 times faster (after adding up all calls)" caption="Figure: Creating a new PBI is about 2-3 times faster (after adding up all calls)" />
+
+**Result:**
+
+-   AU total 1.5 seconds
+-   US total 2.5 seconds
+
+\= AU performed much faster (170%)
+
+### Test 4: Testing Query Performance
+
+Next was a similar test, but this time it was running the same query multiple times.
+
+<Figure src="/media/2015/05/vs-aus-test4.png" alt="Figure: Testing Running Queries against VS Online" caption="Figure: Testing Running Queries against VS Online" />
+
+<Figure src="/media/2015/05/vs-aus-test4-b.png" alt="Figure: Once again VS Online on the Australian server was about 2-3 times faster" caption="Figure: Once again VS Online on the Australian server was about 2-3 times faster" />
+
+**Result:**
+
+-   AU total 1 second
+-   US total 2 seconds
+
+\= AU performed much faster (200%)
+
+## Summary
+
+If you work on a dodgy connection and move your Team Project to Azure Australia, today will be a very good day… for others on a good connection the improvement will be less obvious. I’m sure you will notice that VS Online feels a little snappier (about 2-3 times faster).  Of course if you are not OCD then improvements may feel only marginal.
+
+I feel good knowing that Microsoft is interested enough in Australia to first give us Microsoft Azure here and now that Brian Harry’s team has put VSO here.
+
+**Question:** Are you happy? Will you take take advantage of Azure in Australia for your application?  for VSO?
