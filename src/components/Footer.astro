@@ -1,10 +1,15 @@
 ---
-import { tinaField } from '@tinacms/astro/tina-field';
 import type { CmsConfig } from '../lib/data';
 
 /**
  * Footer: a back-to-top control above a hairline rule, then the credit line.
  * On the original the credit splits left and right and stacks on mobile.
+ *
+ * The right-hand credit is markup rather than a Global Config string because
+ * it carries links, and the config collection is JSON, where a rich-text field
+ * would be stored as an escaped blob and be worse to edit than this file. The
+ * original had the same shape: "Powered by WordPress | Built by SSW", with the
+ * builder linked.
  */
 interface Props {
 	config?: CmsConfig | null;
@@ -13,7 +18,6 @@ interface Props {
 const { config } = Astro.props;
 const seo = config?.seo ?? null;
 const year = new Date().getFullYear();
-const colophon = config?.footerCredit ?? 'Built with Astro and TinaCMS';
 ---
 
 <footer class="mx-auto w-full max-w-[978px] px-[5%] xl:px-0">
@@ -33,8 +37,10 @@ const colophon = config?.footerCredit ?? 'Built with Astro and TinaCMS';
 			<p>
 				&copy; <a href="/">{seo?.siteOwner}</a> {year}
 			</p>
-			<p data-tina-field={config ? tinaField(config, 'footerCredit') : undefined}>
-				{colophon}
+			<p>
+				Powered by <a href="https://tina.io" rel="noopener">TinaCMS</a>, migrated by{' '}
+				<a href="https://harksingh.com" rel="noopener">Harky</a> with{' '}
+				<span aria-label="love" role="img">❤️</span>
 			</p>
 		</div>
 	</div>
