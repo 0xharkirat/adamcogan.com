@@ -30,6 +30,7 @@ if (!data) return new Response('Not Found', { status: 404 });
 	title={data.title ?? summary.title}
 	description={data.description ?? summary.description}
 	image={data.heroImage ?? undefined}
+	indexable
 >
 	<TinaIsland name="blog" wrapper={islands.blog.wrapper} params={{ slug }} primary>
 		<BlogBody data={data} summary={summary} />

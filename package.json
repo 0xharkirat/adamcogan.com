@@ -7,11 +7,11 @@
   },
   "scripts": {
     "dev": "tinacms dev -c \"astro dev\"",
-    "build": "tinacms build --content=local -c \"astro build\"",
-    "build:local": "tinacms build --local --skip-cloud-checks -c \"astro build\"",
-    "build:search": "tinacms search-index",
+    "build": "tinacms build --content=local -c \"astro build\" && pnpm run index-search",
+    "build:local": "tinacms build --local --skip-cloud-checks -c \"astro build\" && pnpm run index-search",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "index-search": "pagefind --site dist/client --output-path dist/client/pagefind"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.7.0",
@@ -39,6 +39,7 @@
     "@astrojs/check": "^0.9.9",
     "@tinacms/cli": "^2.5.3",
     "@types/node": "^25.9.1",
+    "pagefind": "^1.5.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tinacms": "^3.10.0",

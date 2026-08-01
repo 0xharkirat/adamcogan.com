@@ -21,6 +21,7 @@ const config = (await getConfig()).data?.config ?? null;
 <Shell
 	title={data.seoTitle || data.title || config?.seo?.title || ''}
 	description={data.description ?? config?.seo?.description ?? ''}
+	indexable
 >
 	<TinaIsland name="page" wrapper={islands.page.wrapper} params={{ slug }} primary>
 		<PageBody data={data} />

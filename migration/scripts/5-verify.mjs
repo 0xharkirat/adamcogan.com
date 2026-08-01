@@ -96,9 +96,15 @@ expectPath("/tag/scrum/", "tag archive");
 expectPath("/2025/", "year archive");
 expectPath("/about-adam-cogan/", "about page");
 expectPath("/tesla/", "tesla page");
+expectPath("/search/", "search page");
 
 const feed = builtFiles.some((f) => f.endsWith("feed.xml"));
 feed ? ok("feed.xml") : fail("feed.xml missing");
+
+// The search index is generated after astro build, so it is absent if the
+// `index-search` step was skipped. Search silently returns nothing without it.
+const pagefind = builtFiles.some((f) => f.includes("/pagefind/") && f.endsWith("pagefind.js"));
+pagefind ? ok("pagefind index") : fail("pagefind index missing (run pnpm run index-search)");
 
 /* ---------------------------------------------- 4. media integrity */
 

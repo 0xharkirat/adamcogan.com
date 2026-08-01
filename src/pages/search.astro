@@ -1,0 +1,124 @@
+---
+import Shell from '../layouts/Shell.astro';
+
+/**
+ * Search results, backed by Pagefind.
+ *
+ * WordPress search was a database query, which a static site cannot do.
+ * Pagefind indexes the built HTML after `astro build` (see the `index-search`
+ * script) and serves that index as static files, so search keeps working with
+ * no server and no third party.
+ */
+---
+
+<Shell title="Search" description="Search posts by Adam Cogan.">
+	<h1 class="mb-[0.4em] text-[32px] leading-none font-semibold">Search</h1>
+
+	<form id="search-form" role="search" class="mb-8 flex gap-[10px]">
+		<label for="q" class="sr-only">Search posts</label>
+		<input
+			id="q"
+			name="q"
+			type="search"
+			autocomplete="off"
+			class="min-w-0 flex-1 rounded-[5px] border border-[var(--color-hairline)] bg-[var(--color-field)] px-[10px] py-[7px] text-base text-black"
+		/>
+		<button
+			type="submit"
+			class="shrink-0 cursor-pointer rounded-[5px] bg-[var(--color-button)] px-[23px] py-[12px] text-base text-white"
+		>
+			Search
+		</button>
+	</form>
+
+	<p id="search-status" aria-live="polite" class="mb-4"></p>
+	<div id="search-results"></div>
+</Shell>
+
+{/*
+  is:inline is required, not stylistic. The Pagefind bundle is generated into
+  dist/ after astro build, so it is not a module Vite can resolve. A processed
+  script gets its dynamic import rewritten through Vite's preload helper, which
+  emits an unresolved __VITE_PRELOAD__ identifier and throws at runtime.
+  Inline scripts are emitted verbatim, so the import stays a plain browser one.
+*/}
+<script is:inline>
+	(function () {
+		const form = document.getElementById('search-form');
+		const input = document.getElementById('q');
+		const status = document.getElementById('search-status');
+		const results = document.getElementById('search-results');
+		if (!form) return;
+
+		let pagefind;
+		async function load() {
+			if (!pagefind) {
+				pagefind = await import('/pagefind/pagefind.js');
+				await pagefind.options({ excerptLength: 30 });
+			}
+			return pagefind;
+		}
+
+		const escapeHtml = (s) =>
+			String(s).replace(
+				/[&<>"']/g,
+				(c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
+			);
+
+		async function run(query) {
+			results.innerHTML = '';
+			if (!query.trim()) {
+				status.textContent = '';
+				return;
+			}
+			status.textContent = 'Searching...';
+
+			let search;
+			try {
+				search = await (await load()).search(query);
+			} catch (e) {
+				status.textContent = 'Search is unavailable. Run a production build to generate the index.';
+				return;
+			}
+
+			if (!search.results.length) {
+				status.textContent = 'No results for "' + query + '".';
+				return;
+			}
+
+			const shown = search.results.slice(0, 30);
+			status.textContent =
+				search.results.length + ' result' + (search.results.length === 1 ? '' : 's') + ' for "' + query + '".';
+
+			const data = await Promise.all(shown.map((r) => r.data()));
+			// Pagefind's excerpt is its own generated HTML with <mark> highlights,
+			// so it is inserted as-is; the title comes from page content and is escaped.
+			results.innerHTML = data
+				.map(
+					(d) =>
+						'<article class="mb-10">' +
+						'<h2 class="mt-0 mb-[5px] text-[26px] font-semibold leading-[1.3]">' +
+						'<a href="' + encodeURI(d.url) + '" class="no-underline">' +
+						escapeHtml((d.meta && d.meta.title) || d.url) +
+						'</a></h2>' +
+						'<p class="mb-[1.2rem]">' + d.excerpt + '</p>' +
+						'</article>',
+				)
+				.join('');
+		}
+
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+			const url = new URL(location.href);
+			url.searchParams.set('q', input.value);
+			history.replaceState(null, '', url);
+			run(input.value);
+		});
+
+		const initial = new URLSearchParams(location.search).get('q') || '';
+		if (initial) {
+			input.value = initial;
+			run(initial);
+		}
+	})();
+</script>

@@ -16,9 +16,20 @@ interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	/**
+	 * Whether this page's content belongs in the search index. Only posts and
+	 * standalone pages do. Listings are made of excerpts already present on the
+	 * posts themselves, so indexing them means every query returns the same
+	 * text two or three times over, once from the post and again from each
+	 * archive it appears in. WordPress search only ever returned posts.
+	 *
+	 * Pagefind indexes only pages carrying `data-pagefind-body` once any page
+	 * has one, so leaving it off is what excludes a listing.
+	 */
+	indexable?: boolean;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, indexable = false } = Astro.props;
 
 // The sidebar's Recent Posts and Archives widgets are data-driven, and every
 // page renders the sidebar, so both are resolved once here.
@@ -30,10 +41,12 @@ const recentPosts = posts.slice(0, 14).map((post) => ({ title: post.title, url: 
 <Base title={title} description={description} image={image}>
 	<div class="mx-auto w-full max-w-[978px] px-[5%] xl:px-0">
 		<div class="flex flex-col gap-x-[54px] pt-[5%] pb-[3%] min-[760px]:flex-row">
-			<main class="min-w-0 min-[760px]:w-[67.8%]">
+			{/* Scopes the index to the content column, so the sidebar (identical
+			    on all 592 pages) cannot drown out every result. */}
+			<main data-pagefind-body={indexable ? true : undefined} class="min-w-0 min-[760px]:w-[67.8%]">
 				<slot />
 			</main>
-			<div class="mt-10 min-[760px]:mt-0 min-[760px]:w-[26.2%]">
+			<div data-pagefind-ignore class="mt-10 min-[760px]:mt-0 min-[760px]:w-[26.2%]">
 				<Sidebar recentPosts={recentPosts} archives={archives} />
 			</div>
 		</div>
