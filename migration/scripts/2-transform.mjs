@@ -9,7 +9,7 @@
  * bare `{`/`<` would all break the build. Every rule below therefore emits real
  * Markdown or a registered MDX component, never passthrough HTML.
  */
-import { readFile, readdir, writeFile, mkdir, rm } from "node:fs/promises";
+import { readFile, readdir, writeFile, mkdir, rm, stat } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import TurndownService from "turndown";
@@ -389,45 +389,63 @@ const writtenPosts = await emit(posts, "post", join(ROOT, "src", "content", "blo
 const writtenPages = await emit(pages, "page", join(ROOT, "src", "content", "page"));
 
 /**
- * Re-apply the media renames from the optimise pass.
+ * Point every media reference at the file that actually exists on disk.
  *
  * This script emits the extensions WordPress used (.jpg/.png/.mov), but
- * `4-optimise-media.mjs` converted those files to .webp/.mp4. Without this,
- * re-running the transform silently points every image at a file that was
- * deleted, so the two stay in step regardless of the order they are run in.
+ * `4-optimise-media.mjs` converts those to .webp/.mp4. Rather than replaying a
+ * rename log, which is per-run state that goes stale the moment the optimiser
+ * runs with nothing to do, each reference is resolved against the filesystem.
+ * That is self-healing: it cannot be desynchronised by the order the scripts
+ * are run in, and it degrades to leaving the reference alone.
  */
 async function relinkOptimisedMedia() {
-  let report;
-  try {
-    report = JSON.parse(await readFile(join(RAW, "_optimise-report.json"), "utf8"));
-  } catch {
-    return; // optimise pass has not run yet
+  const PUBLIC = join(ROOT, "public");
+  const CANDIDATE_EXT = [".webp", ".mp4", ".png", ".jpg", ".jpeg", ".gif"];
+  const cache = new Map();
+
+  async function resolve(ref) {
+    if (cache.has(ref)) return cache.get(ref);
+    const decoded = decodeURI(ref);
+    let result = ref;
+    try {
+      await stat(join(PUBLIC, decoded.slice(1)));
+    } catch {
+      const stem = decoded.replace(/\.[a-z0-9]+$/i, "");
+      for (const ext of CANDIDATE_EXT) {
+        try {
+          await stat(join(PUBLIC, `${stem}${ext}`.slice(1)));
+          const target = `${stem}${ext}`;
+          result = target === decodeURI(target) ? target : target.split("/").map(encodeURIComponent).join("/");
+          break;
+        } catch {
+          /* keep looking */
+        }
+      }
+    }
+    cache.set(ref, result);
+    return result;
   }
 
-  const map = new Map(
-    report.filter((r) => r.renamedFrom).map((r) => [decodeURI(r.renamedFrom), r.renamedTo]),
-  );
-  if (!map.size) return;
-
-  const reencode = (p) => p.split("/").map(encodeURIComponent).join("/");
   let touched = 0;
+  let unresolved = 0;
   for (const dir of [join(ROOT, "src", "content", "blog"), join(ROOT, "src", "content", "page")]) {
     for (const name of await readdir(dir)) {
       if (!name.endsWith(".mdx")) continue;
       const path = join(dir, name);
       const original = await readFile(path, "utf8");
-      const updated = original.replace(/\/media\/[^\s"')\]]+/g, (m) => {
-        const target = map.get(decodeURI(m));
-        if (!target) return m;
-        return m === decodeURI(m) ? target : reencode(target);
-      });
+
+      const refs = [...new Set(original.match(/\/media\/[^\s"')\]]+/g) ?? [])];
+      const mapped = new Map(await Promise.all(refs.map(async (r) => [r, await resolve(r)])));
+      unresolved += [...mapped].filter(([from, to]) => from === to && !refs.includes(to)).length;
+
+      const updated = original.replace(/\/media\/[^\s"')\]]+/g, (m) => mapped.get(m) ?? m);
       if (updated !== original) {
         await writeFile(path, updated);
         touched += 1;
       }
     }
   }
-  console.log(`Relinked optimised media in ${touched} files (${map.size} known renames).`);
+  if (touched) console.log(`Relinked media to on-disk files in ${touched} content file(s).`);
 }
 
 await relinkOptimisedMedia();

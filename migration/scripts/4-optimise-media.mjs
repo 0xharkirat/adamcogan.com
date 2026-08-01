@@ -141,8 +141,26 @@ async function optimiseVideo(file) {
 /* ------------------------------------------------------------------ run */
 
 const files = await walk(MEDIA);
+const present = new Set(files);
 const images = files.filter((f) => RASTER.has(extname(f).toLowerCase()) || extname(f).toLowerCase() === ".gif");
-const videos = files.filter((f) => VIDEO.has(extname(f).toLowerCase()));
+
+/**
+ * Only unprocessed sources. Without this the script is not idempotent for
+ * video: a second run treats its own .mp4 and .webm outputs as inputs and
+ * re-encodes both, which loses quality and, because it re-compresses already
+ * compressed data, makes the files bigger.
+ *
+ * A .webm is only ever an output. An .mp4 with a sibling .webm has already
+ * been through this, so it is left alone.
+ */
+const videos = files.filter((f) => {
+  const ext = extname(f).toLowerCase();
+  if (!VIDEO.has(ext)) return false;
+  if (ext === ".webm") return false;
+  const sibling = `${f.slice(0, -ext.length)}.webm`;
+  if (ext === ".mp4" && present.has(sibling)) return false;
+  return true;
+});
 console.log(`${images.length} images, ${videos.length} videos.`);
 
 const results = [];
