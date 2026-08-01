@@ -16,4 +16,29 @@ Previously at SSW, we had TFS on-premises (at tfs.ssw.com.au) and TFS in the clo
 
 Our TFS migration went well and if we did it today, it would go even smoother. We have a good relationship with the Visual Studio and TFS teams, and for our migration we had some bumpy bits. Rogan Ferguson from the TFS Database Import Service Team helped us plenty and we gave some feedback and it was impressive to see the fixes done so quickly
 
+### How do you do it?
+
+Using what we learned from the migration, SSW Solution Architect Danijel Malik and I gave a presentation on the best tools and simplest way of making the move – check out the video of the presentation below.
+
 <YouTubeEmbed videoId="a6A1wl9_4Jg" />
+
+We also gave this presentation at Ignite – you can [see that version of the presentation over at Channel 9](https://channel9.msdn.com/Events/Ignite/Australia-2017/NET336).
+
+### The benefits:
+
+-   Always on the latest version
+-   No migration costs to keep installing the updates on our TFS Server
+-   No TFS server to maintain
+-   Power BI reports (as that only works on the cloud version)
+-   Our SysAdmin Stan can now relax a little… maybe even twiddle his thumbs
+
+### Other things you can do
+
+-   To save money, we use an on-premise build server – [https://rules.ssw.com.au/do-you-know-when-to-use-an-on-premises-build-server-with-visual-studio-online](https://rules.ssw.com.au/do-you-know-when-to-use-an-on-premises-build-server-with-visual-studio-online "https://rules.ssw.com.au/do-you-know-when-to-use-an-on-premises-build-server-with-visual-studio-online Ctrl+Click or tap to follow the link")
+-   We also have been moving our TFVC source control to Git on VisualStudio.com – [https://rules.ssw.com.au/do-you-know-the-best-tool-to-migration-from-tfvc-to-git](https://rules.ssw.com.au/do-you-know-the-best-tool-to-migration-from-tfvc-to-git "https://rules.ssw.com.au/do-you-know-the-best-tool-to-migration-from-tfvc-to-git Ctrl+Click or tap to follow the link")
+
+### You should do it too
+
+The TFS Database Import Service team say they support 2 versions of TFS at one time. You can assume that when a new version of TFS comes out, support for the old version is dropped. You see this mentioned in phase 3 of [the TFS Migration guide](https://aka.ms/DownloadTFSMigrator) (page 21). Currently the two supported versions are TFS 2017 RTM and TFS 2017 Update 1. However, the team has been extending the support for TFS 2015 Update 3 beyond the normal window for a few months now. They have said that this version of TFS will be retired on Monday, April 24th. Better factor this deadline into your migration plans.
+
+[Call us if you want to join the fun in the cloud](https://www.ssw.com.au/ssw/Consulting/alm-tfs.aspx) and jump on VisualStudio.com (aka Team Services).

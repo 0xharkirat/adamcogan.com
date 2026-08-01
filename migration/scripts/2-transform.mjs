@@ -47,8 +47,15 @@ function decodeEntities(s) {
     .replace(/&([a-z]+);/gi, (m, name) => ENTITIES[name] ?? ENTITIES[name.toLowerCase()] ?? m);
 }
 
+/**
+ * Tags become a space, not nothing. Captions contain `<br>` and `<strong>`
+ * between words, so removing tags outright glues them together:
+ * "SSW Hangzhou<br>New Office Tour" became "HangzhouNew".
+ */
 function stripTags(html) {
-  return decodeEntities(String(html ?? "").replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+  return decodeEntities(String(html ?? "").replace(/<[^>]+>/g, " "))
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 /** Escape a value going into an MDX attribute string. */
@@ -93,8 +100,15 @@ td.remove(["script", "style", "noscript"]);
  * (bare <iframe>, no wp-block wrapper) are caught by the same rule.
  */
 td.addRule("youtube", {
+  // FIGURE only. This rule replaces the whole matched element with the embed,
+  // so matching any ancestor that merely CONTAINS an iframe destroys
+  // everything else inside it: a wrapper div holding an embed plus the rest of
+  // the article silently collapsed to just the video, costing one post 88% of
+  // its words. A <figure> is a self-contained embed unit, so it is safe; every
+  // other position is handled by `bareYoutubeIframe` below, which replaces
+  // only the iframe and leaves its siblings alone.
   filter: (node) =>
-    (node.nodeName === "FIGURE" || node.nodeName === "DIV" || node.nodeName === "SPAN" || node.nodeName === "P") &&
+    node.nodeName === "FIGURE" &&
     node.querySelector?.("iframe") &&
     youtubeId(node.querySelector("iframe").getAttribute("src") || ""),
   replacement: (_content, node) => {
@@ -111,9 +125,15 @@ td.addRule("bareYoutubeIframe", {
   replacement: (_c, node) => `\n\n<YouTubeEmbed videoId="${youtubeId(node.getAttribute("src"))}" />\n\n`,
 });
 
-/** Non-YouTube iframes (LinkedIn, Facebook) degrade to a plain link. */
+/**
+ * Non-YouTube iframes (LinkedIn, Facebook) degrade to a plain link.
+ *
+ * The YouTube guard is load-bearing: turndown gives later-registered rules
+ * higher precedence, so without it this rule outranks `bareYoutubeIframe` and
+ * turns every video into "View embedded content".
+ */
 td.addRule("otherIframe", {
-  filter: "iframe",
+  filter: (node) => node.nodeName === "IFRAME" && !youtubeId(node.getAttribute("src") || ""),
   replacement: (_c, node) => {
     const src = node.getAttribute("src");
     if (!src) return "";
