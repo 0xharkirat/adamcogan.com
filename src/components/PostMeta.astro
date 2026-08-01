@@ -4,36 +4,35 @@ import { categoryName, tagName, type PostSummary } from '../lib/posts';
 /**
  * The author / categories / tags line under a post title. Same colour as body
  * copy on the original, just smaller, with comma-separated taxonomy links.
+ *
+ * The separators are built into a single flat array rather than emitted from
+ * inside the map. JSX collapses the newlines around a `{i > 0 && ', '}` into
+ * real whitespace, which renders as "General , SSW Projects".
  */
 interface Props {
 	post: PostSummary;
 }
 
 const { post } = Astro.props;
+
+type Item = { href: string; label: string };
+const link = (kind: 'category' | 'tag', slug: string): Item => ({
+	href: `/${kind}/${slug}/`,
+	label: kind === 'category' ? categoryName(slug) : tagName(slug),
+});
+
+const categories = post.categories.map((slug) => link('category', slug));
+const tags = post.tags.map((slug) => link('tag', slug));
 ---
 
 <p class="mb-[7px] text-[0.9em] leading-normal">
-	{post.author && <span class="mr-4">{post.author}</span>}
+	{post.author && <span class="mr-4 inline-block">{post.author}</span>}
 
-	{post.categories.length > 0 && (
-		<span class="mr-4">
-			{post.categories.map((slug, i) => (
-				<>
-					{i > 0 && ', '}
-					<a href={`/category/${slug}/`}>{categoryName(slug)}</a>
-				</>
-			))}
-		</span>
+	{categories.length > 0 && (
+		<span class="mr-4 inline-block">{categories.map((item, i) => (<>{i > 0 ? ', ' : ''}<a href={item.href}>{item.label}</a></>))}</span>
 	)}
 
-	{post.tags.length > 0 && (
-		<span>
-			{post.tags.map((slug, i) => (
-				<>
-					{i > 0 && ', '}
-					<a href={`/tag/${slug}/`}>{tagName(slug)}</a>
-				</>
-			))}
-		</span>
+	{tags.length > 0 && (
+		<span class="inline-block">{tags.map((item, i) => (<>{i > 0 ? ', ' : ''}<a href={item.href}>{item.label}</a></>))}</span>
 	)}
 </p>

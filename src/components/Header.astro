@@ -44,7 +44,10 @@ const isActive = (link: string) =>
 				<div class="min-w-0 pt-1">
 					<a
 						href="/"
-						class="block text-[2.25rem] leading-none font-semibold tracking-[-0.02em] uppercase no-underline sm:text-[60px] sm:leading-[40px]"
+						{/* -0.72px, not -0.02em: the original declares -0.02em at 36px and
+						    inherits the resolved pixel value up to the 60px wordmark, so an em
+						    value here would compute to -1.2px and tighten it too far. */}
+						class="block text-[2.25rem] leading-none font-semibold tracking-[-0.72px] uppercase no-underline sm:text-[60px] sm:leading-[40px]"
 						data-tina-field={seo ? tinaField(seo, 'title') : undefined}
 					>
 						{seo?.title}
