@@ -1,19 +1,20 @@
-This is a [TinaCMS](https://tina.io/) starter project.
+# adamcogan.com
 
-Edit your site visually in the browser, ship it as fast static HTML.
+The blog of Adam Cogan, migrated from WordPress to Astro and TinaCMS.
 
-## Getting started
+183 posts, 2 pages and 907 media files were moved off WordPress. Every post
+keeps the permalink it had, so no inbound link to a site running since 2002 is
+broken.
 
-Create the project:
+## Prerequisites
 
-```sh
-pnpm dlx create-tina-app@latest --template tina-astro-starter
-```
+- Node.js 22.22.0 or later (`.nvmrc` pins the version)
+- pnpm 10 or later
+- ffmpeg, only if you re-run the media pipeline
+
+## Run the site locally
 
 Install dependencies:
-
-> [!NOTE]
-> **[Which package manager is best for Node.js?](https://www.ssw.com.au/rules/best-package-manager-for-node)** The right one makes a real difference to your workflow. We recommend pnpm for its speed and efficient dependency handling — this SSW rule explains why.
 
 ```sh
 pnpm install
@@ -25,38 +26,99 @@ Start the dev server, then edit visually at `localhost:4321/admin/`:
 pnpm dev
 ```
 
-![homepage](./public/home-page.png)
+Build the site and generate the search index:
 
-**Figure: Homepage UI**
+```sh
+pnpm build:local
+```
 
-## Features 
+> [!NOTE]
+> If another TinaCMS project is already running, its dev server holds ports
+> 4001 and 9000, and this build will silently query that project's content
+> instead of failing. Pass `--port` and `--datalayer-port` to move ours:
+> `npx tinacms build --local --skip-cloud-checks --port 4077 --datalayer-port 9077 -c "astro build"`
 
-- Visual editing via [`@tinacms/astro`](https://www.npmjs.com/package/@tinacms/astro) — a vanilla-JS bridge, with no React in the page tree
-- Tailwind CSS v4 block builder: Hero, CTA, Features, Stats, Testimonial, Callout, Content, Split, and Video
-- Light/dark theme toggle with a Tina-ember space theme
-- Markdown and MDX with `<TinaMarkdown>` rich-text rendering
-- Collections for Pages, Blog, and global Config
-- Astro view transitions, SEO meta, OpenGraph, sitemap, and RSS
-- Icons via [`astro-icon`](https://github.com/natemoo-re/astro-icon) and the Tabler set
+## How the site is put together
 
-## Deploying
+Content lives in `src/content/` as MDX and is edited through TinaCMS. Posts
+carry `categories`, `tags`, `author`, and a `legacyUrl` recording the path the
+post had on WordPress, which is what the verification step checks against.
 
-The starter is host-neutral — it isn't tied to any one platform. Every content page is prerendered to static HTML; the only on-demand route is the `/tina-island` endpoint that powers live visual editing.
+URLs mirror WordPress exactly:
 
-`astro.config.mjs` picks the right adapter automatically from the platform's build environment — [Vercel](https://docs.astro.build/en/guides/integrations-guide/vercel/), [Cloudflare](https://docs.astro.build/en/guides/integrations-guide/cloudflare/) (Pages or Workers) and [Netlify](https://docs.astro.build/en/guides/integrations-guide/netlify/) are detected and configured with no changes, and anywhere else falls back to a portable [Node](https://docs.astro.build/en/guides/integrations-guide/node/) server you can run with `node ./dist/server/entry.mjs`. The bundled `wrangler.jsonc` targets Cloudflare Workers and enables `nodejs_compat`, which the editing route's `node:async_hooks` needs.
+| Route | Path |
+| --- | --- |
+| Post | `/YYYY/MM/DD/<slug>/` |
+| Listing | `/`, `/blog/`, then `/page/N/` |
+| Category | `/category/<slug>/` |
+| Tag | `/tag/<slug>/` |
+| Year archive | `/YYYY/` |
+| Feed | `/feed.xml`, with `/feed` and `/rss.xml` redirecting to it |
 
-Set `SITE_URL` to your production URL — it feeds the sitemap, RSS, and OpenGraph tags; see `.env.example`. Most platforms inject their own deploy URL as a fallback, but Cloudflare Workers exposes none, so set `SITE_URL` there to avoid `localhost` canonicals.
+Categories and tags store WordPress slugs rather than display names, so those
+archive URLs stay byte-identical. `src/data/taxonomy.json` maps each slug back
+to its display name.
 
-### Before your first deploy: TinaCloud credentials
+### Post dates are wall-clock values, not instants
 
-The default `pnpm build` compiles the CMS against TinaCloud, so it needs your project credentials. Without them it fails fast with `ERR_MISSING_CLOUD_CREDS`. Create a project at [app.tina.io](https://app.tina.io), then set `PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` (see `.env.example`) in your host's environment variables.
+Dates are stored as the local time WordPress published under, pinned to UTC,
+and every route and component reads them back in UTC.
 
-To build without TinaCloud — a purely local/offline build with no auth — run `pnpm build:local` instead, which skips the cloud checks.
+This looks wrong and is deliberate. WordPress exposes both `date` (site local)
+and `date_gmt` (UTC), but `date_gmt` on this site is identical to local time
+for 158 of the 183 posts, meaning no real GMT was ever recorded, while the
+other 25 carry a true +10h offset. Treating that field as UTC moves posts
+across day boundaries in both directions and breaks their permalinks. The local
+`date` field matches the permalink for all 183 posts, so it is the only usable
+source. The trade is that the absolute instant is off by the Sydney offset,
+which nothing depends on.
 
-## A note on React
+## Re-running the migration
 
-`react` and `react-dom` are both pinned to the same version (`^19.2.7`) in `devDependencies` for the TinaCMS admin UI build only — the site itself ships zero React. The pin keeps the two packages locked in lockstep; without it, pnpm's peer auto-install can pair mismatched `react` / `react-dom` versions and the admin crashes on init (`Cannot read properties of undefined (reading 'ReactCurrentDispatcher')`). This is tracked in [tinacms#6985](https://github.com/tinacms/tinacms/issues/6985); remove the pin once Tina declares `react` / `react-dom` as direct dependencies.
+The scripts in `migration/scripts/` are numbered and idempotent. They exist so
+the migration can be repeated rather than being a one-time manual effort.
 
-## Want to learn more?
+```sh
+node migration/scripts/1-extract.mjs        # WordPress REST API -> migration/raw/
+node migration/scripts/2-transform.mjs      # raw JSON -> src/content/**/*.mdx
+node migration/scripts/3-media.mjs          # download referenced uploads
+node migration/scripts/4-optimise-media.mjs # resize, WebP, WebM
+node migration/scripts/5-verify.mjs         # check the build against the live sitemap
+```
 
-Read the [TinaCMS documentation](https://tina.io/docs) and the [Astro documentation](https://docs.astro.build), or come and say hello in the [TinaCMS Discord server](https://discord.gg/cG2UNREu).
+`migration/raw/` and `migration/design/shots/` are not committed. Step 1
+recreates the raw export; the design capture is reference material.
+
+Run `2-transform.mjs` and `3-media.mjs` before `4-optimise-media.mjs`, and run
+step 4 against freshly downloaded originals. Re-encoding its own output loses
+quality for no size benefit. The transform re-applies the renames recorded in
+`migration/raw/_optimise-report.json`, so running it again cannot leave content
+pointing at pre-WebP filenames.
+
+`5-verify.mjs` needs a completed build in `dist/`. It fetches the live
+WordPress sitemap and fails if any of the 183 post URLs is missing, if any
+dated URL was invented, if any media reference has no file, or if WordPress
+markup leaked into the output.
+
+## Deployment
+
+The site targets Vercel and detects the adapter from the platform's own
+environment variables, so there is nothing to configure. Set `SITE_URL` if you
+need absolute URLs (sitemap, feed, Open Graph) to differ from what the platform
+reports.
+
+`pnpm build` runs the Tina build, the Astro build, and then the Pagefind index.
+Skipping the index step does not fail the build; search just returns nothing.
+
+## Known gaps
+
+- **Subscribe form.** The original posts to Jetpack, which validates a
+  single-use nonce server-side. There is no external endpoint to copy, so the
+  form renders with no action and a TODO. The original form contract is
+  recorded in `src/data/sidebar.json` under `subscribe.originalForm`. This
+  needs a real mailing list (Mailchimp, Buttondown, or similar) before launch.
+- **Comments.** WordPress comments were not migrated. Adding Giscus or a
+  similar service is a separate decision.
+- **Images.** Images were resized to a 2000px long edge and re-encoded, which
+  is lossy. The originals are still on the WordPress host and `3-media.mjs`
+  re-fetches them, so this is reversible until that host is switched off.
