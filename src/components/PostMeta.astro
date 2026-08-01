@@ -1,0 +1,39 @@
+---
+import { categoryName, tagName, type PostSummary } from '../lib/posts';
+
+/**
+ * The author / categories / tags line under a post title. Same colour as body
+ * copy on the original, just smaller, with comma-separated taxonomy links.
+ */
+interface Props {
+	post: PostSummary;
+}
+
+const { post } = Astro.props;
+---
+
+<p class="mb-[7px] text-[0.9em] leading-normal">
+	{post.author && <span class="mr-4">{post.author}</span>}
+
+	{post.categories.length > 0 && (
+		<span class="mr-4">
+			{post.categories.map((slug, i) => (
+				<>
+					{i > 0 && ', '}
+					<a href={`/category/${slug}/`}>{categoryName(slug)}</a>
+				</>
+			))}
+		</span>
+	)}
+
+	{post.tags.length > 0 && (
+		<span>
+			{post.tags.map((slug, i) => (
+				<>
+					{i > 0 && ', '}
+					<a href={`/tag/${slug}/`}>{tagName(slug)}</a>
+				</>
+			))}
+		</span>
+	)}
+</p>

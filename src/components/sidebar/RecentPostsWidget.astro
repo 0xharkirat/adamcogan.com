@@ -1,0 +1,34 @@
+---
+import WidgetHeading from './WidgetHeading.astro';
+import LinkList from './LinkList.astro';
+
+/**
+ * Recent Posts.
+ *
+ * Content driven, so the posts come in as a prop. The parent already loads the
+ * post list for its own routes and knows how to build permalinks, so it passes
+ * them down rather than this widget reaching into the content collection.
+ */
+interface Props {
+	/**
+	 * Posts newest first, already carrying their permalink.
+	 *
+	 * `src/lib/posts.ts` produces exactly this shape: `getPosts()` returns
+	 * `PostSummary[]` sorted newest first, with `url` built by `postUrl()` as
+	 * `/YYYY/MM/DD/<slug>/` from the UTC parts of `pubDate`. Passing the full
+	 * `PostSummary[]` is fine, only `title` and `url` are read.
+	 */
+	posts: { title: string; url: string }[];
+	/** How many to show. The live site shows 14. */
+	limit?: number;
+}
+
+const { posts, limit = 14 } = Astro.props;
+
+const items = posts.slice(0, limit).map((post) => ({ label: post.title, href: post.url }));
+---
+
+<section class="mb-[30px]" aria-labelledby="sidebar-recent-posts-heading">
+	<WidgetHeading id="sidebar-recent-posts-heading">Recent Posts</WidgetHeading>
+	<LinkList items={items} />
+</section>

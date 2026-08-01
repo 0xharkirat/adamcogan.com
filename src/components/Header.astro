@@ -1,102 +1,148 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { tinaField } from "@tinacms/astro/tina-field";
+import { tinaField } from '@tinacms/astro/tina-field';
 import type { CmsConfig } from '../lib/data';
-import IconLink from "./IconLink.astro";
-import ThemeToggle from './ThemeToggle.astro';
 
+/**
+ * Site header: a 6px red bar, then a light band holding the avatar, wordmark,
+ * tagline and nav.
+ *
+ * The wordmark's 60px font-size against a 40px line-height is measured, not a
+ * mistake. The glyph box deliberately overflows its line box, and that is what
+ * keeps the header compact. A "sensible" line-height makes the header visibly
+ * taller than the original.
+ */
 interface Props {
 	config?: CmsConfig | null;
+	/** Path of the current page, used to mark the active nav item. */
+	pathname?: string;
 }
 
-const { config } = Astro.props;
+const { config, pathname = '' } = Astro.props;
 const seo = config?.seo ?? null;
-const nav = (config?.nav ?? []).filter(item => item !== null);
-const contactLinks = (config?.contactLinks ?? []).filter(item => item !== null);
+const nav = (config?.nav ?? []).filter((item) => item !== null);
+
+const normalise = (path: string) => (path.endsWith('/') ? path : `${path}/`);
+const isActive = (link: string) =>
+	link.startsWith('/') && link !== '/' && normalise(pathname) === normalise(link);
 ---
 
-<header class="fixed top-0 z-20 w-full border-b bg-background/50 backdrop-blur-xl">
-	<nav class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-		<a href="/" class="flex items-center gap-2 font-semibold">
-			{seo?.logo && <img src={seo.logo} alt="Logo" width="32" height="32" data-tina-field={tinaField(seo, "logo")} />}
-			<span data-tina-field={seo ? tinaField(seo, "title") : undefined}>{seo?.title}</span>
-		</a>
-		<div class="hidden items-center gap-8 text-sm lg:flex">
-			{nav.map((item) => (
-				<a href={item.link} class="text-muted-foreground transition-colors hover:text-foreground" data-tina-field={tinaField(item, "title")}>{item.title}</a>
-			))}
-		</div>
-		<div class="flex items-center gap-3">
-			<div class="hidden items-center gap-3 lg:flex">
-				{contactLinks.map((link) => (
-					<IconLink title={link.title} link={link.link} icon={link.icon} data-tina-field={tinaField(link, "title")} />
-				))}
-				<ThemeToggle />
-			</div>
-			<button
-				id="mobile-menu-toggle"
-				type="button"
-				aria-label="Toggle navigation menu"
-				aria-controls="mobile-menu-panel"
-				aria-expanded="false"
-				class="inline-flex size-9 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none lg:hidden"
-			>
-				<Icon name="tabler:menu-2" class="icon-open size-5" />
-				<Icon name="tabler:x" class="icon-close size-5" />
-			</button>
-		</div>
-	</nav>
-	<div
-		id="mobile-menu-panel"
-		hidden
-		class="border-t bg-background/95 backdrop-blur-xl lg:hidden"
-	>
-		<div class="mx-auto flex max-w-6xl flex-col px-6 py-4">
-			{nav.map((item) => (
-				<a
-					href={item.link}
-					class="border-b border-border/50 py-3 text-sm text-muted-foreground transition-colors last:border-b-0 hover:text-foreground"
-					data-tina-field={tinaField(item, "title")}
-				>
-					{item.title}
-				</a>
-			))}
-			<div class="mt-4 flex items-center justify-between gap-3 pt-4">
-				<div class="flex items-center gap-2">
-					{contactLinks.map((link) => (
-						<IconLink title={link.title} link={link.link} icon={link.icon} data-tina-field={tinaField(link, "title")} />
-					))}
+<header class="border-t-[6px] border-t-[var(--color-accent-red)] bg-[var(--color-band)]">
+	<div class="mx-auto w-full max-w-[978px] px-[5%] pt-4 xl:px-0">
+		<div class="relative pb-2">
+			<div class="flex items-start gap-[15px]">
+				{seo?.logo && (
+					<img
+						src={seo.logo}
+						alt=""
+						width="85"
+						height="85"
+						class="size-[85px] shrink-0 object-cover"
+						data-tina-field={tinaField(seo, 'logo')}
+					/>
+				)}
+				<div class="min-w-0 pt-1">
+					<a
+						href="/"
+						class="block text-[2.25rem] leading-none font-semibold tracking-[-0.02em] uppercase no-underline sm:text-[60px] sm:leading-[40px]"
+						data-tina-field={seo ? tinaField(seo, 'title') : undefined}
+					>
+						{seo?.title}
+					</a>
+					<p class="mt-[10px] mb-[30px] text-[20px] leading-[20px]">
+						{seo?.description}
+					</p>
 				</div>
-				<ThemeToggle />
+			</div>
+
+			<a
+				href="/feed.xml"
+				class="flex items-center gap-1 py-[10px] text-sm no-underline xl:absolute xl:right-0 xl:bottom-[10px] xl:py-0"
+			>
+				<Icon name="tabler:rss" class="size-5 text-[#f9a447]" aria-hidden="true" />
+				<span>RSS</span>
+			</a>
+
+			<nav aria-label="Main" class="mt-6 mb-2 hidden xl:block">
+				<ul class="flex flex-wrap">
+					{nav.map((item) => (
+						<li>
+							<a
+								href={item.link}
+								aria-current={isActive(item.link) ? 'page' : undefined}
+								class:list={[
+									'block py-[5px] text-base leading-[1.4] uppercase no-underline',
+									isActive(item.link)
+										? 'mr-5 rounded-[5px] bg-[var(--color-foreground)] px-[10px] text-white'
+										: 'mr-[5px] pr-[30px]',
+								]}
+								data-tina-field={tinaField(item, 'title')}
+							>
+								{item.title}
+							</a>
+						</li>
+					))}
+				</ul>
+			</nav>
+
+			<button
+				id="menu-toggle"
+				type="button"
+				aria-label="Open navigation menu"
+				aria-controls="menu-panel"
+				aria-expanded="false"
+				class="absolute top-0 right-0 inline-flex size-[38px] cursor-pointer items-center justify-center xl:hidden"
+			>
+				<Icon name="tabler:menu-2" class="icon-open size-6" />
+				<Icon name="tabler:x" class="icon-close size-6" />
+			</button>
+
+			<div
+				id="menu-panel"
+				hidden
+				class="absolute top-[38px] right-0 z-20 w-[200px] rounded-[5px] bg-white py-[5px] shadow-[0_0_0_1px_rgba(0,0,0,0.2),0_2px_12px_rgba(0,0,0,0.15)] xl:hidden"
+			>
+				<ul>
+					{nav.map((item) => (
+						<li>
+							<a
+								href={item.link}
+								class="block px-[14px] py-[6px] text-base text-[#666] no-underline hover:bg-black/[0.07] hover:text-black"
+							>
+								{item.title}
+							</a>
+						</li>
+					))}
+				</ul>
 			</div>
 		</div>
 	</div>
 </header>
+
 <style>
-	#mobile-menu-toggle .icon-close { display: none; }
-	#mobile-menu-toggle[aria-expanded="true"] .icon-open { display: none; }
-	#mobile-menu-toggle[aria-expanded="true"] .icon-close { display: block; }
+	#menu-toggle .icon-close { display: none; }
+	#menu-toggle[aria-expanded='true'] .icon-open { display: none; }
+	#menu-toggle[aria-expanded='true'] .icon-close { display: block; }
 </style>
+
 <script is:inline>
-	if (!window.__mobileMenuBound) {
-		window.__mobileMenuBound = true;
+	if (!window.__navBound) {
+		window.__navBound = true;
 		const setOpen = (open) => {
-			const btn = document.getElementById('mobile-menu-toggle');
-			const panel = document.getElementById('mobile-menu-panel');
+			const btn = document.getElementById('menu-toggle');
+			const panel = document.getElementById('menu-panel');
 			if (!btn || !panel) return;
 			btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+			btn.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
 			panel.hidden = !open;
 		};
 		document.addEventListener('click', (e) => {
-			const toggle = e.target.closest('#mobile-menu-toggle');
+			const toggle = e.target.closest('#menu-toggle');
 			if (toggle) {
-				const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-				setOpen(!isOpen);
+				setOpen(toggle.getAttribute('aria-expanded') !== 'true');
 				return;
 			}
-			if (e.target.closest('#mobile-menu-panel a')) {
-				setOpen(false);
-			}
+			if (!e.target.closest('#menu-panel')) setOpen(false);
 		});
 		document.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape') setOpen(false);

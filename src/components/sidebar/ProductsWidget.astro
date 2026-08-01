@@ -1,0 +1,18 @@
+---
+import WidgetHeading from './WidgetHeading.astro';
+import LinkList from './LinkList.astro';
+import sidebar from '../../data/sidebar.json';
+
+/**
+ * Adam's Favourite Products.
+ *
+ * Same split as Adam's Profiles: heading and list are separate widgets on the
+ * live site, so the heading takes the 30px between-widget gap.
+ */
+const { title, items } = sidebar.favouriteProducts;
+---
+
+<section class="mb-[30px]" aria-labelledby="sidebar-products-heading">
+	<WidgetHeading id="sidebar-products-heading" gap="block">{title}</WidgetHeading>
+	<LinkList items={items} />
+</section>

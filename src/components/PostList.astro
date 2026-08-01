@@ -1,0 +1,29 @@
+---
+import PostCard from './PostCard.astro';
+import Pagination from './Pagination.astro';
+import type { Page } from '../lib/posts';
+
+/**
+ * A paginated post listing. Shared by the homepage, /blog/, and the category,
+ * tag and year archives, which all render identically on the original.
+ */
+interface Props {
+	page: Page;
+	/** Archive heading, e.g. a category name. The homepage passes nothing. */
+	heading?: string;
+}
+
+const { page, heading } = Astro.props;
+---
+
+{heading && <h1 class="mb-[0.4em] text-[32px] leading-none font-semibold">{heading}</h1>}
+
+{page.posts.length === 0 ? (
+	<p>No posts here yet.</p>
+) : (
+	page.posts.map((post, i) => (
+		<PostCard post={post} eager={i === 0 && page.current === 1} />
+	))
+)}
+
+<Pagination page={page} />

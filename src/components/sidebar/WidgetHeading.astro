@@ -1,0 +1,35 @@
+---
+/**
+ * Sidebar widget heading.
+ *
+ * Measured on the live site: 19.2px (1.2rem), weight 700 in the CSS but only a
+ * 600 face is loaded, so it renders as semibold. Sentence case, no uppercase
+ * transform and no rule underneath.
+ */
+interface Props {
+	/** Element id, so the owning section can point `aria-labelledby` at it. */
+	id?: string;
+	/**
+	 * Space between the heading and the widget body.
+	 *
+	 * WordPress split the sidebar two ways. Some headings live in the same
+	 * widget as their content and get the widget title's 10px margin ("widget").
+	 * Others were their own standalone block, so the gap is really the 30px
+	 * between-widget margin ("block"). Both spacings are visible on the live
+	 * site, so both are reproduced.
+	 */
+	gap?: 'widget' | 'block';
+}
+
+const { id, gap = 'widget' } = Astro.props;
+---
+
+<h2
+	id={id}
+	class:list={[
+		'text-[1.2rem] leading-[24.96px] font-semibold text-[#333]',
+		gap === 'block' ? 'mb-[30px]' : 'mb-[10px]',
+	]}
+>
+	<slot />
+</h2>

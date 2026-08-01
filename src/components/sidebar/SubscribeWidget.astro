@@ -1,0 +1,51 @@
+---
+import WidgetHeading from './WidgetHeading.astro';
+import sidebar from '../../data/sidebar.json';
+
+const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
+
+/*
+ * TODO: this form has no endpoint yet.
+ *
+ * The live site does not post anywhere external. Its markup is
+ * `<form action="#" method="post">` and the Jetpack plugin intercepts the
+ * request server side on WordPress, validating a single-use `_wpnonce` that is
+ * stamped into the page at render time. A static build has neither the handler
+ * nor a way to mint that nonce, so there is nothing to copy and no endpoint is
+ * invented here.
+ *
+ * To wire it up, set `subscribe.action` in `src/data/sidebar.json` to a real
+ * endpoint (a Jetpack or WordPress.com subscribe URL for blog 91274000, or a
+ * Mailchimp form action) and add whatever hidden fields it needs. The full
+ * original form contract, including every hidden input, is recorded under
+ * `subscribe.originalForm` in that file.
+ */
+---
+
+<section class="mb-[30px]" aria-labelledby="sidebar-subscribe-heading">
+	<WidgetHeading id="sidebar-subscribe-heading">{title}</WidgetHeading>
+
+	<p class="mb-[19.2px] text-[16px] leading-[24px] text-[#333]">{body}</p>
+
+	<form method="post" action={action ?? '#'}>
+		<div class="mb-[19.2px]">
+			<label class="sr-only" for="sidebar-subscribe-email">Email Address</label>
+			<input
+				id="sidebar-subscribe-email"
+				type="email"
+				name="email"
+				autocomplete="email"
+				required
+				placeholder={placeholder}
+				class="w-[95%] rounded-[5px] border border-black/10 bg-[#F3F3F3] px-[10px] py-[6px] text-[16px] leading-[24px] text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141]"
+			/>
+		</div>
+
+		<button
+			type="submit"
+			class="rounded-full bg-[#32373C] px-[23.328px] py-[12.672px] text-[16px] leading-[24px] font-normal text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141]"
+		>
+			{buttonLabel}
+		</button>
+	</form>
+</section>

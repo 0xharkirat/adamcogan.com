@@ -1,49 +1,41 @@
 ---
-import { tinaField } from "@tinacms/astro/tina-field";
-import type { CmsConfig, CmsConfigContactLink } from '../lib/data';
-import IconLink from "./IconLink.astro";
-import Starfield from './space/Starfield.astro';
+import { tinaField } from '@tinacms/astro/tina-field';
+import type { CmsConfig } from '../lib/data';
 
+/**
+ * Footer: a back-to-top control above a hairline rule, then the credit line.
+ * On the original the credit splits left and right and stacks on mobile.
+ */
 interface Props {
 	config?: CmsConfig | null;
 }
 
 const { config } = Astro.props;
 const seo = config?.seo ?? null;
-const contactLinks = (config?.contactLinks ?? []).filter(
-	(item): item is CmsConfigContactLink => item !== null,
-);
-const today = new Date();
+const year = new Date().getFullYear();
+const colophon = config?.footerCredit ?? 'Built with Astro and TinaCMS';
 ---
-<footer class="border-t bg-background py-12 text-center text-sm text-muted-foreground relative overflow-hidden">
-	{config?.footerStarfield !== false && <Starfield count={50} class="text-foreground/15" />}
-	<div class="relative flex flex-col items-center gap-6">
-		{contactLinks.length > 0 && (
-			<div class="flex justify-center gap-4">
-				{contactLinks.map((link) => (
-					<IconLink
-						title={link.title}
-						link={link.link}
-						icon={link.icon}
-						data-tina-field={tinaField(link, "title")}
-					/>
-				))}
-			</div>
-		)}
-		<p>
-			&copy; {today.getFullYear()}
-			<span data-tina-field={seo ? tinaField(seo, "siteOwner") : undefined}>{seo?.siteOwner}</span>. All rights reserved.
+
+<footer class="mx-auto w-full max-w-[978px] px-[5%] xl:px-0">
+	<div class="border-t border-[var(--color-hairline)] py-[30px]">
+		<p class="mt-[-3px] mb-[1.2rem]">
+			<a
+				href="#top"
+				aria-label="Back to top"
+				class="inline-flex size-[30px] items-center justify-center rounded-full bg-black text-white no-underline transition-colors hover:bg-[var(--color-accent-red)]"
+			>
+				<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+					<path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			</a>
 		</p>
-		<a
-			href="https://tina.io"
-			target="_blank"
-			rel="noopener noreferrer"
-			class="group inline-flex items-center gap-2.5 rounded-full border bg-card/60 py-1.5 pl-1.5 pr-4 text-xs font-medium text-muted-foreground shadow-xs transition-colors duration-200 hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
-		>
-			<span class="flex size-6 items-center justify-center rounded-full bg-primary transition-transform duration-300 group-hover:scale-105">
-				<img src="/llama.svg" alt="" aria-hidden="true" class="size-3.5" />
-			</span>
-			<span>Powered by <span class="font-semibold text-foreground">TinaCMS</span></span>
-		</a>
+		<div class="flex flex-col gap-2 text-[0.9em] sm:flex-row sm:items-center sm:justify-between">
+			<p>
+				&copy; <a href="/">{seo?.siteOwner}</a> {year}
+			</p>
+			<p data-tina-field={config ? tinaField(config, 'footerCredit') : undefined}>
+				{colophon}
+			</p>
+		</div>
 	</div>
 </footer>

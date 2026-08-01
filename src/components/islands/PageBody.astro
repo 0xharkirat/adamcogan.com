@@ -1,11 +1,28 @@
 ---
-import Blocks from '../blocks/Blocks.astro';
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
+import { tinaField } from '@tinacms/astro/tina-field';
 import type { CmsPage } from '../../lib/data';
+import { mdxComponents } from '../mdx/components';
 
+/** A standalone page: heading, then prose. */
 interface Props {
 	data?: CmsPage | null;
 }
 
 const { data } = Astro.props;
 ---
-{data && <Blocks data={data} />}
+
+{data && (
+	<article>
+		{data.title && (
+			<h1 data-tina-field={tinaField(data, 'title')} class="mb-[0.4em] text-[32px] leading-none font-semibold">
+				{data.title}
+			</h1>
+		)}
+		{data.body && (
+			<div data-tina-field={tinaField(data, 'body')} class="entry">
+				<TinaMarkdown content={data.body} components={mdxComponents} />
+			</div>
+		)}
+	</article>
+)}

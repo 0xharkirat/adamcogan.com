@@ -1,0 +1,33 @@
+---
+import WidgetHeading from './WidgetHeading.astro';
+import LinkList from './LinkList.astro';
+
+/**
+ * Archives.
+ *
+ * Content driven, so the years come in as a prop. `getArchives()` in
+ * `src/lib/posts.ts` returns exactly this shape, already sorted newest first,
+ * so no sorting happens here.
+ *
+ * The heading and the list are separate widgets on the live site, hence the
+ * 30px gap under the heading rather than 10px.
+ */
+interface Props {
+	/** Years with a post count, newest first. The count is not displayed. */
+	archives: { year: number; count: number }[];
+}
+
+const { archives } = Astro.props;
+
+/*
+ * The original archive widget shows bare years with no counts
+ * (`showPostCounts` is off), so `count` is accepted but not rendered. It is
+ * part of the prop because that is what the archive route already computes.
+ */
+const items = archives.map(({ year }) => ({ label: String(year), href: `/${year}/` }));
+---
+
+<section class="mb-[30px]" aria-labelledby="sidebar-archives-heading">
+	<WidgetHeading id="sidebar-archives-heading" gap="block">Archives</WidgetHeading>
+	<LinkList items={items} />
+</section>

@@ -1,44 +1,54 @@
 {
   "seo": {
-    "title": "TinaCMS + Astro",
-    "description": "Welcome to my website!",
-    "siteOwner": "TinaCMS",
-    "logo": "/orange-llama.svg"
+    "title": "Adam Cogan",
+    "description": "Microsoft Regional Director | Scrum Master | Speaker",
+    "siteOwner": "Adam Cogan",
+    "logo": "/adam-cogan.webp"
   },
+  "footerCredit": "Built by SSW",
   "nav": [
     {
-      "title": "Home",
-      "link": "/"
-    },
-    {
       "title": "Blog",
-      "link": "/blog"
+      "link": "/blog/"
     },
     {
       "title": "About",
-      "link": "/about"
+      "link": "/about-adam-cogan/"
+    },
+    {
+      "title": "SSW TV Talks",
+      "link": "https://tv.ssw.com/tag/adam-cogan"
+    },
+    {
+      "title": "Tesla Discount Coupon",
+      "link": "/tesla/"
     }
   ],
   "contactLinks": [
     {
       "title": "X",
-      "link": "https://x.com/tinacms",
+      "link": "https://x.com/AdamCogan",
       "icon": "tabler:brand-x"
     },
     {
-      "title": "Docs",
-      "link": "https://tina.io/docs",
-      "icon": "tabler:book-2"
+      "title": "Facebook",
+      "link": "https://www.facebook.com/adamcogan",
+      "icon": "tabler:brand-facebook"
     },
     {
-      "title": "GitHub",
-      "link": "https://github.com/tinacms/tinacms",
-      "icon": "tabler:brand-github"
+      "title": "YouTube",
+      "link": "https://www.youtube.com/c/AdamCogan2000",
+      "icon": "tabler:brand-youtube"
     },
     {
-      "title": "Discord",
-      "link": "https://tina.io/discord",
-      "icon": "tabler:brand-discord"
+      "title": "LinkedIn",
+      "link": "https://www.linkedin.com/in/adamcogan",
+      "icon": "tabler:brand-linkedin"
+    },
+    {
+      "title": "Strava",
+      "link": "https://www.strava.com/athletes/adamcogan",
+      "icon": "tabler:brand-strava"
     }
   ]
 }

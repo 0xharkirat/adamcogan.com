@@ -1,0 +1,35 @@
+---
+/**
+ * Untitled search widget.
+ *
+ * Measured widths at the 259px column: 152px input, 10px gap, 97px button,
+ * which is why the input flexes and the button sizes to its label. The row is
+ * `items-stretch` on purpose - that is how the original gets a 49px input, the
+ * same height as the button, from only 7px of vertical padding.
+ *
+ * Note the button radius: 5px here, but a full pill on the Subscribe button
+ * above. That inconsistency comes from two different WordPress core blocks and
+ * is in the original, so it is kept.
+ *
+ * The results page at /search is built elsewhere.
+ */
+---
+
+<div class="mb-[30px]">
+	<form role="search" method="get" action="/search" class="flex items-stretch">
+		<label class="sr-only" for="sidebar-search">Search</label>
+		<input
+			id="sidebar-search"
+			type="search"
+			name="q"
+			required
+			class="min-w-0 flex-1 rounded-[5px] border border-black/10 bg-[#F3F3F3] px-[10px] py-[7px] text-[16px] leading-[24px] text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141]"
+		/>
+		<button
+			type="submit"
+			class="ml-[10px] shrink-0 rounded-[5px] bg-[#32373C] px-[23.328px] py-[12.672px] text-[16px] leading-[24px] font-normal text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141]"
+		>
+			Search
+		</button>
+	</form>
+</div>

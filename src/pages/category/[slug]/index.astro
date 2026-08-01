@@ -1,0 +1,21 @@
+---
+import Shell from '../../../layouts/Shell.astro';
+import PostList from '../../../components/PostList.astro';
+import { categoryName, groupBy, paginate } from '../../../lib/posts';
+
+/** Category archive at /category/<slug>/, unchanged from WordPress. */
+export async function getStaticPaths() {
+	const groups = await groupBy('categories');
+	return [...groups.keys()].map((slug) => ({ params: { slug } }));
+}
+
+const slug = Astro.params.slug!;
+const groups = await groupBy('categories');
+const posts = groups.get(slug) ?? [];
+const page = paginate(posts, 1, `/category/${slug}/`);
+const name = categoryName(slug);
+---
+
+<Shell title={name} description={`Posts filed under ${name}.`}>
+	<PostList page={page} heading={name} />
+</Shell>

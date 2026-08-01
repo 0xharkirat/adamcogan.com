@@ -1,0 +1,23 @@
+---
+import Shell from '../../../../layouts/Shell.astro';
+import PostList from '../../../../components/PostList.astro';
+import { categoryName, extraPageNumbers, groupBy, paginate } from '../../../../lib/posts';
+
+/** Pages 2..N of a category archive. Only "general" is long enough today. */
+export async function getStaticPaths() {
+	const groups = await groupBy('categories');
+	return [...groups.entries()].flatMap(([slug, posts]) =>
+		extraPageNumbers(posts.length).map((n) => ({ params: { slug, page: String(n) } })),
+	);
+}
+
+const slug = Astro.params.slug!;
+const current = Number(Astro.params.page);
+const groups = await groupBy('categories');
+const page = paginate(groups.get(slug) ?? [], current, `/category/${slug}/`);
+const name = categoryName(slug);
+---
+
+<Shell title={`${name} - page ${current}`} description={`Posts filed under ${name}.`}>
+	<PostList page={page} heading={name} />
+</Shell>

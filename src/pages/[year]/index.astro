@@ -1,0 +1,19 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PostList from '../../components/PostList.astro';
+import { getArchives, getPosts, paginate, postYear } from '../../lib/posts';
+
+/** Year archive at /YYYY/, matching the WordPress date archives. */
+export async function getStaticPaths() {
+	const archives = await getArchives();
+	return archives.map(({ year }) => ({ params: { year: String(year) } }));
+}
+
+const year = Number(Astro.params.year);
+const posts = (await getPosts()).filter((post) => postYear(post) === year);
+const page = paginate(posts, 1, `/${year}/`);
+---
+
+<Shell title={`${year}`} description={`Posts from ${year}.`}>
+	<PostList page={page} heading={String(year)} />
+</Shell>

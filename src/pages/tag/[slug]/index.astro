@@ -1,0 +1,20 @@
+---
+import Shell from '../../../layouts/Shell.astro';
+import PostList from '../../../components/PostList.astro';
+import { groupBy, paginate, tagName } from '../../../lib/posts';
+
+/** Tag archive at /tag/<slug>/, unchanged from WordPress. */
+export async function getStaticPaths() {
+	const groups = await groupBy('tags');
+	return [...groups.keys()].map((slug) => ({ params: { slug } }));
+}
+
+const slug = Astro.params.slug!;
+const groups = await groupBy('tags');
+const page = paginate(groups.get(slug) ?? [], 1, `/tag/${slug}/`);
+const name = tagName(slug);
+---
+
+<Shell title={name} description={`Posts tagged ${name}.`}>
+	<PostList page={page} heading={name} />
+</Shell>

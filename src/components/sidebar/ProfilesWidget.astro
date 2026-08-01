@@ -1,0 +1,22 @@
+---
+import WidgetHeading from './WidgetHeading.astro';
+import LinkList from './LinkList.astro';
+import sidebar from '../../data/sidebar.json';
+
+/**
+ * Adam's Profiles.
+ *
+ * The heading and the list are two separate widgets on the live site, so the
+ * gap under the heading is the 30px between-widget margin, not the 10px a
+ * widget title would give. Hence `gap="block"`.
+ *
+ * The list has nine items and Scrum.org appears twice. That duplicate is in
+ * the original content - see the note in `src/data/sidebar.json`.
+ */
+const { title, items } = sidebar.profiles;
+---
+
+<section class="mb-[30px]" aria-labelledby="sidebar-profiles-heading">
+	<WidgetHeading id="sidebar-profiles-heading" gap="block">{title}</WidgetHeading>
+	<LinkList items={items} />
+</section>

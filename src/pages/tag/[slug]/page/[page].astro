@@ -1,0 +1,23 @@
+---
+import Shell from '../../../../layouts/Shell.astro';
+import PostList from '../../../../components/PostList.astro';
+import { extraPageNumbers, groupBy, paginate, tagName } from '../../../../lib/posts';
+
+/** Pages 2..N of a tag archive. */
+export async function getStaticPaths() {
+	const groups = await groupBy('tags');
+	return [...groups.entries()].flatMap(([slug, posts]) =>
+		extraPageNumbers(posts.length).map((n) => ({ params: { slug, page: String(n) } })),
+	);
+}
+
+const slug = Astro.params.slug!;
+const current = Number(Astro.params.page);
+const groups = await groupBy('tags');
+const page = paginate(groups.get(slug) ?? [], current, `/tag/${slug}/`);
+const name = tagName(slug);
+---
+
+<Shell title={`${name} - page ${current}`} description={`Posts tagged ${name}.`}>
+	<PostList page={page} heading={name} />
+</Shell>

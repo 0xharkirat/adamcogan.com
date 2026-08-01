@@ -9,7 +9,7 @@
  * bare `{`/`<` would all break the build. Every rule below therefore emits real
  * Markdown or a registered MDX component, never passthrough HTML.
  */
-import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
+import { readFile, readdir, writeFile, mkdir, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import TurndownService from "turndown";
@@ -304,9 +304,27 @@ function toMdx(html) {
     .trim();
 }
 
+/**
+ * Post dates are WALL-CLOCK, not instants, and that is a deliberate call.
+ *
+ * WordPress exposes `date` (site local) and `date_gmt` (UTC). On this site
+ * `date_gmt` is unusable: it is identical to `date` for 158 of 183 posts,
+ * meaning no real GMT was ever computed, while the other 25 carry a true +10h
+ * offset. Treating it as UTC moves posts across day boundaries in both
+ * directions and breaks their permalinks.
+ *
+ * `date` matches the WordPress permalink for all 183 posts, so it is the only
+ * source of truth. We take that local wall clock and pin it to UTC, so reading
+ * the parts back with getUTC* reproduces exactly the date WordPress published
+ * under. The absolute instant is then off by the Sydney offset, which nothing
+ * depends on, and that is a better trade than false precision that corrupts
+ * URLs.
+ */
+const wallClock = (naive) => new Date(`${naive}Z`);
+
 function frontmatter(item, kind) {
-  const date = new Date(item.date_gmt + "Z");
-  const modified = new Date(item.modified_gmt + "Z");
+  const date = wallClock(item.date);
+  const modified = wallClock(item.modified);
   const hero = mediaById.get(item.featured_media);
   const author = userById.get(item.author);
 
@@ -348,6 +366,50 @@ async function emit(items, kind, outDir) {
 
 const writtenPosts = await emit(posts, "post", join(ROOT, "src", "content", "blog"));
 const writtenPages = await emit(pages, "page", join(ROOT, "src", "content", "page"));
+
+/**
+ * Re-apply the media renames from the optimise pass.
+ *
+ * This script emits the extensions WordPress used (.jpg/.png/.mov), but
+ * `4-optimise-media.mjs` converted those files to .webp/.mp4. Without this,
+ * re-running the transform silently points every image at a file that was
+ * deleted, so the two stay in step regardless of the order they are run in.
+ */
+async function relinkOptimisedMedia() {
+  let report;
+  try {
+    report = JSON.parse(await readFile(join(RAW, "_optimise-report.json"), "utf8"));
+  } catch {
+    return; // optimise pass has not run yet
+  }
+
+  const map = new Map(
+    report.filter((r) => r.renamedFrom).map((r) => [decodeURI(r.renamedFrom), r.renamedTo]),
+  );
+  if (!map.size) return;
+
+  const reencode = (p) => p.split("/").map(encodeURIComponent).join("/");
+  let touched = 0;
+  for (const dir of [join(ROOT, "src", "content", "blog"), join(ROOT, "src", "content", "page")]) {
+    for (const name of await readdir(dir)) {
+      if (!name.endsWith(".mdx")) continue;
+      const path = join(dir, name);
+      const original = await readFile(path, "utf8");
+      const updated = original.replace(/\/media\/[^\s"')\]]+/g, (m) => {
+        const target = map.get(decodeURI(m));
+        if (!target) return m;
+        return m === decodeURI(m) ? target : reencode(target);
+      });
+      if (updated !== original) {
+        await writeFile(path, updated);
+        touched += 1;
+      }
+    }
+  }
+  console.log(`Relinked optimised media in ${touched} files (${map.size} known renames).`);
+}
+
+await relinkOptimisedMedia();
 
 // Taxonomy lookup: frontmatter stores WP slugs so archive URLs stay identical
 // to the old site; this maps them back to display names for the UI.

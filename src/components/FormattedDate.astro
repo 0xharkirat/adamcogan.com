@@ -1,4 +1,11 @@
 ---
+import { SITE_TIMEZONE } from '../lib/posts';
+
+/**
+ * Dates render in the site's timezone, not the visitor's, so the date shown
+ * always matches the date in the post's URL. Format follows the original:
+ * "July 29, 2026".
+ */
 interface Props {
 	date: Date;
 }
@@ -8,9 +15,10 @@ const { date } = Astro.props;
 
 <time datetime={date.toISOString()}>
 	{
-		date.toLocaleDateString('en-us', {
+		date.toLocaleDateString('en-US', {
+			timeZone: SITE_TIMEZONE,
 			year: 'numeric',
-			month: 'short',
+			month: 'long',
 			day: 'numeric',
 		})
 	}

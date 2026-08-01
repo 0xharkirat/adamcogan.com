@@ -1,0 +1,44 @@
+---
+import FormattedDate from './FormattedDate.astro';
+import PostMeta from './PostMeta.astro';
+import type { PostSummary } from '../lib/posts';
+
+/**
+ * One entry in a post listing: optional hero, date, title, meta line, excerpt.
+ * Items are separated by 40px of whitespace, with no divider rule.
+ */
+interface Props {
+	post: PostSummary;
+	/** The first item on page one is the LCP image, so it should not lazy-load. */
+	eager?: boolean;
+}
+
+const { post, eager = false } = Astro.props;
+---
+
+<article class="mb-10">
+	{post.heroImage && (
+		<a href={post.url} class="mb-[5px] block no-underline">
+			<img
+				src={post.heroImage}
+				alt=""
+				width="670"
+				height="241"
+				loading={eager ? 'eager' : 'lazy'}
+				fetchpriority={eager ? 'high' : undefined}
+				decoding="async"
+				class="aspect-[670/241] w-full object-cover"
+			/>
+		</a>
+	)}
+
+	<FormattedDate date={post.pubDate} />
+
+	<h2 class="mt-0 mb-[5px] text-[26px] leading-[1.3] font-semibold">
+		<a href={post.url} class="no-underline">{post.title}</a>
+	</h2>
+
+	<PostMeta post={post} />
+
+	{post.description && <p class="mb-[1.2rem]">{post.description}</p>}
+</article>

@@ -1,0 +1,18 @@
+---
+import Shell from '../../../layouts/Shell.astro';
+import PostList from '../../../components/PostList.astro';
+import { extraPageNumbers, getPosts, paginate } from '../../../lib/posts';
+
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	return extraPageNumbers(posts.length).map((n) => ({ params: { page: String(n) } }));
+}
+
+const current = Number(Astro.params.page);
+const posts = await getPosts();
+const page = paginate(posts, current, '/blog/');
+---
+
+<Shell title={`Blog - page ${current}`} description="Posts by Adam Cogan.">
+	<PostList page={page} />
+</Shell>

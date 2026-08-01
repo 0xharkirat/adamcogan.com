@@ -56,7 +56,13 @@ export default defineConfig({
 	site: getSiteUrl(),
 	output: 'static',
 	adapter: await getAdapter(),
-	redirects: { '/home': '/' },
+	redirects: {
+		'/home': '/',
+		// Feed URLs WordPress published, kept alive for existing subscribers.
+		'/feed': '/feed.xml',
+		'/rss.xml': '/feed.xml',
+		'/comments/feed': '/feed.xml',
+	},
 	integrations: [mdx(), sitemap(), icon(), tina()],
 	build: {
 		// Inline the (~10 KiB) bundled CSS into a <style> in <head> instead of a

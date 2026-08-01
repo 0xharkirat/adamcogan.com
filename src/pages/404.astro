@@ -1,17 +1,19 @@
 ---
-import Base from '../layouts/Base.astro';
-import Starfield from '../components/space/Starfield.astro';
-import Button from '../components/ui/Button.astro';
+import Shell from '../layouts/Shell.astro';
+
+/**
+ * WordPress served a 404 through the same two-column template as everything
+ * else, so this keeps the header, sidebar and footer rather than becoming a
+ * full-bleed splash.
+ */
 ---
-<Base title="Lost in space (404)" description="This page drifted out of orbit.">
-	<section class="relative flex min-h-[70vh] items-center justify-center overflow-hidden px-6 text-center">
-		<Starfield count={90} class="text-foreground/20" />
-		<div class="relative flex flex-col items-center">
-			<img src="/llamanaut.png" alt="" aria-hidden="true" width="160" height="160" class="mb-6 size-40 object-contain" />
-			<p class="text-sm font-medium tracking-widest text-primary uppercase">Error 404</p>
-			<h1 class="mt-2 text-4xl font-semibold tracking-tight lg:text-5xl">Lost in space</h1>
-			<p class="mx-auto mt-4 max-w-md text-muted-foreground">This page drifted out of orbit. Let's get you back to mission control.</p>
-			<Button href="/" class="mt-8">Back to home</Button>
-		</div>
-	</section>
-</Base>
+
+<Shell title="Page not found" description="That page does not exist.">
+	<h1 class="mb-[0.4em] text-[32px] leading-none font-semibold">Page not found</h1>
+	<p class="mb-[1.2rem]">
+		That page does not exist. It may have moved, or the link that brought you here may be wrong.
+	</p>
+	<p class="mb-[1.2rem]">
+		Try the <a href="/">latest posts</a>, or search using the box in the sidebar.
+	</p>
+</Shell>

@@ -15,4 +15,7 @@ allowBuilds:
   esbuild: true
   protobufjs: true
   sharp: true
-  workerd: set this to true or false
+  # Cloudflare's runtime. This site deploys to Vercel, so its native build is
+  # not needed. Left as a decision by the starter, which made `pnpm install`
+  # exit non-zero and blocked the build.
+  workerd: false

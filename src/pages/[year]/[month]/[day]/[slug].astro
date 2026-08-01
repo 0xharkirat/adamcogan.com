@@ -1,0 +1,37 @@
+---
+import Shell from '../../../../layouts/Shell.astro';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import BlogBody from '../../../../components/islands/BlogBody.astro';
+import { getBlog } from '../../../../lib/data';
+import { islands } from '../../../../lib/islands';
+import { dateParts, getPosts } from '../../../../lib/posts';
+
+/**
+ * A single post, at the permalink it had on WordPress: /YYYY/MM/DD/<slug>/.
+ * Preserving these is the point of the whole migration - the site dates back
+ * to 2002 and the inbound links are worth more than a tidier URL scheme.
+ */
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	return posts.map((post) => ({
+		params: { ...dateParts(post.pubDate), slug: post.slug },
+		props: { summary: post },
+	}));
+}
+
+const { summary } = Astro.props;
+const slug = summary.slug;
+const blog = await getBlog(slug);
+const data = blog.data?.blog;
+if (!data) return new Response('Not Found', { status: 404 });
+---
+
+<Shell
+	title={data.title ?? summary.title}
+	description={data.description ?? summary.description}
+	image={data.heroImage ?? undefined}
+>
+	<TinaIsland name="blog" wrapper={islands.blog.wrapper} params={{ slug }} primary>
+		<BlogBody data={data} summary={summary} />
+	</TinaIsland>
+</Shell>

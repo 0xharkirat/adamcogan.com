@@ -115,9 +115,11 @@ export const GlobalConfigCollection: Collection = {
       ],
     },
     {
-      name: "footerStarfield",
-      label: "Show starfield in footer",
-      type: "boolean",
+      name: "footerCredit",
+      label: "Footer credit",
+      type: "string",
+      description:
+        'Shown on the right of the footer. The WordPress site read "Powered by WordPress | Built by SSW"; the first half is no longer true.',
     }
 
     // Add other config fields here...

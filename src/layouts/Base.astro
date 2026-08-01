@@ -21,9 +21,9 @@ const config = (await getConfig()).data?.config ?? null;
 	<head>
 		<BaseHead title={title} description={description} image={image} />
 	</head>
-	<body>
+	<body id="top">
 		<TinaIsland name="global" wrapper={islands.global.wrapper}>
-			<Header config={config} />
+			<Header config={config} pathname={Astro.url.pathname} />
 		</TinaIsland>
 		<slot />
 		<TinaIsland name="global-footer" wrapper={islands['global-footer'].wrapper}>

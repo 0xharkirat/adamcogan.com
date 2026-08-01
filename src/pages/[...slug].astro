@@ -1,16 +1,14 @@
 ---
-import Base from '../layouts/Base.astro';
+import Shell from '../layouts/Shell.astro';
 import TinaIsland from '@tinacms/astro/TinaIsland.astro';
 import PageBody from '../components/islands/PageBody.astro';
 import { getConfig, getPage, listPages } from '../lib/data';
 import { islands } from '../lib/islands';
 
+/** Standalone pages, at the paths they had on WordPress. */
 export async function getStaticPaths() {
 	const pages = await listPages();
-	return pages
-		.map((node) => node._sys.filename)
-		.filter((slug) => slug !== 'home')
-		.map((slug) => ({ params: { slug } }));
+	return pages.map((node) => ({ params: { slug: node._sys.filename } }));
 }
 
 const slug = (Astro.params.slug ?? '').toString();
@@ -20,11 +18,11 @@ if (!data) return new Response('Not Found', { status: 404 });
 const config = (await getConfig()).data?.config ?? null;
 ---
 
-<Base
-	title={data.seoTitle || config?.seo?.title || 'TinaCMS + Astro'}
-	description={config?.seo?.description ?? 'Welcome to my website!'}
+<Shell
+	title={data.seoTitle || data.title || config?.seo?.title || ''}
+	description={data.description ?? config?.seo?.description ?? ''}
 >
 	<TinaIsland name="page" wrapper={islands.page.wrapper} params={{ slug }} primary>
 		<PageBody data={data} />
 	</TinaIsland>
-</Base>
+</Shell>

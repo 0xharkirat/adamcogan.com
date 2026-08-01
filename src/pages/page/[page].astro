@@ -1,0 +1,24 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import PostList from '../../components/PostList.astro';
+import { getConfig } from '../../lib/data';
+import { extraPageNumbers, getPosts, paginate } from '../../lib/posts';
+
+/** Pages 2..N of the homepage listing, at the WordPress /page/N/ URLs. */
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	return extraPageNumbers(posts.length).map((n) => ({ params: { page: String(n) } }));
+}
+
+const current = Number(Astro.params.page);
+const posts = await getPosts();
+const page = paginate(posts, current, '/');
+const config = (await getConfig()).data?.config ?? null;
+---
+
+<Shell
+	title={`${config?.seo?.title ?? 'Adam Cogan'} - page ${current}`}
+	description={config?.seo?.description ?? ''}
+>
+	<PostList page={page} />
+</Shell>

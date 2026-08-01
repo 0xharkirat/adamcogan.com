@@ -1,22 +1,21 @@
 ---
-import Base from '../layouts/Base.astro';
-import TinaIsland from '@tinacms/astro/TinaIsland.astro';
-import PageBody from '../components/islands/PageBody.astro';
-import { getConfig, getPage } from '../lib/data';
-import { islands } from '../lib/islands';
+import Shell from '../layouts/Shell.astro';
+import PostList from '../components/PostList.astro';
+import { getConfig } from '../lib/data';
+import { getPosts, paginate } from '../lib/posts';
 
-const slug = 'home';
-const page = await getPage(slug);
-const data = page.data?.page;
-if (!data) return new Response('Not Found', { status: 404 });
+/**
+ * The homepage is the blog listing, as it is on the WordPress site.
+ * Pages 2 and up live at /page/N/.
+ */
+const posts = await getPosts();
+const page = paginate(posts, 1, '/');
 const config = (await getConfig()).data?.config ?? null;
 ---
 
-<Base
-	title={data.seoTitle || config?.seo?.title || 'TinaCMS + Astro'}
-	description={config?.seo?.description ?? 'Welcome to my website!'}
+<Shell
+	title={config?.seo?.title ?? 'Adam Cogan'}
+	description={config?.seo?.description ?? ''}
 >
-	<TinaIsland name="page" wrapper={islands.page.wrapper} params={{ slug }} primary>
-		<PageBody data={data} />
-	</TinaIsland>
-</Base>
+	<PostList page={page} />
+</Shell>

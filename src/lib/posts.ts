@@ -26,10 +26,17 @@ export type PostSummary = {
 export const POSTS_PER_PAGE = 10;
 
 /**
- * WordPress permalinks were generated from the site's local date. `pubDate` is
- * stored as UTC, so the parts must be read back in UTC too, otherwise a post
- * published late in the Sydney evening would shift to the previous day.
+ * Post dates are wall-clock values pinned to UTC, not true instants. See the
+ * long note in `migration/scripts/2-transform.mjs`: WordPress's `date_gmt` is
+ * identical to local time for 158 of the 183 posts, so it cannot be trusted,
+ * and the local `date` field is the only thing that matches every permalink.
+ *
+ * Everything therefore reads and formats in UTC. Doing anything timezone-aware
+ * here would shift posts across day boundaries and break their URLs.
  */
+export const SITE_TIMEZONE = 'UTC';
+
+/** Year/month/day of a post, exactly as WordPress numbered it. */
 export function dateParts(date: Date) {
 	return {
 		year: String(date.getUTCFullYear()),
@@ -119,12 +126,15 @@ export function extraPageNumbers(postCount: number): number[] {
 	return Array.from({ length: Math.max(0, total - 1) }, (_, i) => i + 2);
 }
 
+/** The year a post belongs to, in the site's timezone. */
+export const postYear = (post: PostSummary) => Number(dateParts(post.pubDate).year);
+
 /** Year archives, newest first. Drives both /YYYY/ and the sidebar list. */
 export async function getArchives(): Promise<{ year: number; count: number }[]> {
 	const posts = await getPosts();
 	const counts = new Map<number, number>();
 	for (const post of posts) {
-		const year = post.pubDate.getUTCFullYear();
+		const year = postYear(post);
 		counts.set(year, (counts.get(year) ?? 0) + 1);
 	}
 	return [...counts.entries()]

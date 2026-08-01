@@ -1,0 +1,38 @@
+---
+import { Icon } from 'astro-icon/components';
+import sidebar from '../../data/sidebar.json';
+
+/**
+ * Untitled row of social profile links.
+ *
+ * This is the only sidebar widget with a divider. The original gives it an
+ * extra `.borderbottom` class for a 1px #DDD rule, roughly 20px under the
+ * icons. Everything else in the sidebar is separated by whitespace alone.
+ *
+ * Boxes are 48x48 with 4px between them, measured off the live page: five
+ * boxes plus four gaps is 256px, which fits the 259px column exactly. The
+ * glyphs are 28px and keep the original's brand colours.
+ */
+const { social } = sidebar;
+---
+
+<div class="mb-[30px] border-b border-[#DDDDDD] pb-[20px]">
+	<ul class="m-0 flex list-none flex-wrap gap-[4px] p-0">
+		{
+			social.map((item) => (
+				<li>
+					<a
+						href={item.href}
+						target="_blank"
+						rel="noopener"
+						aria-label={`Adam Cogan on ${item.label}`}
+						class="flex size-12 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141]"
+						style={`color: ${item.color}`}
+					>
+						<Icon name={item.icon} size={28} />
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</div>

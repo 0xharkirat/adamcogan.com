@@ -24,49 +24,52 @@ export const getPage = (slug: string) =>
 export const getBlog = (slug: string) =>
 	requestWithMetadata(client.queries.blog({ relativePath: `${slug}.mdx` }), { priority: 'primary' });
 
+/**
+ * Tina connections are cursor-paginated and cap a single response well below
+ * this site's 183 posts, so every listing has to walk `hasNextPage` to the end.
+ * Reading only the first page silently truncates the site: the build looks
+ * clean and two thirds of the posts simply do not exist.
+ */
+async function listAll<T>(
+	fetchPage: (after?: string) => Promise<{
+		pageInfo: { hasNextPage: boolean; endCursor: string };
+		edges?: ({ node?: T | null } | null)[] | null;
+	}>,
+): Promise<T[]> {
+	const nodes: T[] = [];
+	let after: string | undefined;
+
+	for (;;) {
+		const connection = await fetchPage(after);
+		nodes.push(...(connection.edges ?? []).flatMap((edge) => (edge?.node ? [edge.node] : [])));
+		if (!connection.pageInfo.hasNextPage) return nodes;
+		after = connection.pageInfo.endCursor;
+	}
+}
+
 export async function listPages() {
-	const result = await client.queries.pageConnection();
-	return (result.data.pageConnection.edges ?? [])
-		.flatMap((edge) => (edge?.node ? [edge.node] : []));
+	return listAll(async (after) => (await client.queries.pageConnection({ first: 100, after })).data.pageConnection);
 }
 
 export async function listBlogs() {
-	const result = await client.queries.blogConnection();
-	return (result.data.blogConnection.edges ?? [])
-		.flatMap((edge) => (edge?.node ? [edge.node] : []))
-		.sort((a, b) => {
-			const ad = a.pubDate ? new Date(a.pubDate).valueOf() : 0;
-			const bd = b.pubDate ? new Date(b.pubDate).valueOf() : 0;
-			return bd - ad;
-		});
+	const nodes = await listAll(
+		async (after) => (await client.queries.blogConnection({ first: 100, after })).data.blogConnection,
+	);
+	return nodes.sort((a, b) => {
+		const ad = a.pubDate ? new Date(a.pubDate).valueOf() : 0;
+		const bd = b.pubDate ? new Date(b.pubDate).valueOf() : 0;
+		return bd - ad;
+	});
 }
 
 export type CmsConfig = Awaited<ReturnType<typeof getConfig>>['data']['config'];
 export type CmsPage = Awaited<ReturnType<typeof getPage>>['data']['page'];
 export type CmsBlog = Awaited<ReturnType<typeof getBlog>>['data']['blog'];
 
-export type PageBlock = NonNullable<NonNullable<CmsPage['blocks']>[number]>;
-export type PageBlockTypename = PageBlock['__typename'];
-
-export type HeroBlock = Extract<PageBlock, { __typename: 'PageBlocksHero' }>;
-export type CalloutBlock = Extract<PageBlock, { __typename: 'PageBlocksCallout' }>;
-export type FeaturesBlock = Extract<PageBlock, { __typename: 'PageBlocksFeatures' }>;
-export type StatsBlock = Extract<PageBlock, { __typename: 'PageBlocksStats' }>;
-export type CtaBlock = Extract<PageBlock, { __typename: 'PageBlocksCta' }>;
-export type ContentBlock = Extract<PageBlock, { __typename: 'PageBlocksContent' }>;
-export type TestimonialBlock = Extract<PageBlock, { __typename: 'PageBlocksTestimonial' }>;
-export type VideoBlock = Extract<PageBlock, { __typename: 'PageBlocksVideo' }>;
-export type SplitBlock = Extract<PageBlock, { __typename: 'PageBlocksSplit' }>;
-
 export type CmsConfigNav = NonNullable<NonNullable<CmsConfig['nav']>[number]>;
 export type CmsConfigContactLink = NonNullable<NonNullable<CmsConfig['contactLinks']>[number]>;
 export type CmsConfigSeo = NonNullable<CmsConfig['seo']>;
 
-export type Action = NonNullable<NonNullable<HeroBlock['actions']>[number]>;
-export type ImageField = NonNullable<HeroBlock['image']>;
-export type FeatureItem = NonNullable<NonNullable<FeaturesBlock['items']>[number]>;
-export type StatItem = NonNullable<NonNullable<StatsBlock['stats']>[number]>;
-export type TestimonialItem = NonNullable<NonNullable<TestimonialBlock['testimonials']>[number]>;
 
 /** Tina rich-text bodies are typed as `any` in the generated client; this is what `<TinaMarkdown>` expects. */
 export type RichText = TinaRichTextContent;

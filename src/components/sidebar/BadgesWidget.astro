@@ -1,0 +1,55 @@
+---
+import sidebar from '../../data/sidebar.json';
+
+/**
+ * The eleven credential and sponsor badges.
+ *
+ * On the live site each badge is its own WordPress widget, so the 30px between
+ * them is the between-widget margin rather than list spacing. One list here
+ * reproduces that exactly: 30px under every badge except the last, which the
+ * wrapper's own 30px covers.
+ *
+ * The 1px #F5F5F5 frame with 4px of padding is the site's photo mat, applied
+ * by custom CSS to every `.wp-block-image img`. It is visible on these badges,
+ * so it is reproduced locally rather than depending on a global rule.
+ *
+ * Sources, dimensions and the original alt text are in `src/data/sidebar.json`.
+ * Images were downloaded from wp-content into `public/images/badges/`.
+ */
+const { badges } = sidebar;
+---
+
+<ul class="m-0 mb-[30px] list-none p-0">
+	{
+		badges.map((badge) => {
+			const img = (
+				<img
+					src={badge.src}
+					alt={badge.alt}
+					width={badge.width}
+					height={badge.height}
+					loading="lazy"
+					decoding="async"
+					class="block h-auto max-w-full border border-[#F5F5F5] p-1"
+				/>
+			);
+
+			return (
+				<li class="mb-[30px] last:mb-0">
+					{badge.href ? (
+						<a
+							href={badge.href}
+							target="_blank"
+							rel="noopener"
+							class="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141]"
+						>
+							{img}
+						</a>
+					) : (
+						img
+					)}
+				</li>
+			);
+		})
+	}
+</ul>

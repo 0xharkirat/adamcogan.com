@@ -29,10 +29,10 @@
   },
 
   "social": [
-    { "network": "x", "label": "X", "href": "https://x.com/AdamCogan", "icon": "tabler:brand-x", "color": "#000000" },
-    { "network": "facebook", "label": "Facebook", "href": "https://www.facebook.com/adamcogan", "icon": "tabler:brand-facebook", "color": "#3B5998" },
-    { "network": "youtube", "label": "YouTube", "href": "https://www.youtube.com/c/AdamCogan2000", "icon": "tabler:brand-youtube", "color": "#B31217" },
-    { "network": "linkedin", "label": "LinkedIn", "href": "http://www.linkedin.com/in/adamcogan", "icon": "tabler:brand-linkedin", "color": "#0077B5" },
+    { "network": "x", "label": "X", "href": "https://x.com/AdamCogan", "icon": "tabler:brand-x-filled", "color": "#000000" },
+    { "network": "facebook", "label": "Facebook", "href": "https://www.facebook.com/adamcogan", "icon": "tabler:brand-facebook-filled", "color": "#3B5998" },
+    { "network": "youtube", "label": "YouTube", "href": "https://www.youtube.com/c/AdamCogan2000", "icon": "tabler:brand-youtube-filled", "color": "#B31217" },
+    { "network": "linkedin", "label": "LinkedIn", "href": "http://www.linkedin.com/in/adamcogan", "icon": "tabler:brand-linkedin-filled", "color": "#0077B5" },
     { "network": "strava", "label": "Strava", "href": "https://www.strava.com/athletes/adamcogan", "icon": "tabler:brand-strava", "color": "#FC4C02" }
   ],
 
@@ -180,8 +180,7 @@
     "ids": {
       "block-18": "empty block",
       "block-23": "a Strava activity summary iframe, commented out in the HTML",
-      "block-22": "an empty paragraph",
-      "block-19": "not present in the rendered page"
+      "block-22": "an empty paragraph"
     }
   }
 }

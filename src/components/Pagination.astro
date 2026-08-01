@@ -1,0 +1,71 @@
+---
+import type { Page } from '../lib/posts';
+
+/**
+ * Numbered pagination, right aligned.
+ *
+ * The original inverts the usual convention: the CURRENT page is the plain
+ * unfilled chip and every OTHER page is a filled black circle. That reads as a
+ * bug but it is what the live site does, so it is reproduced deliberately.
+ * Long runs are windowed - 19 pages of filled chips would wrap badly.
+ */
+interface Props {
+	page: Page;
+}
+
+const { page } = Astro.props;
+const WINDOW = 2;
+
+const shown = page.pages.filter(
+	({ number }) =>
+		number === 1 ||
+		number === page.total ||
+		Math.abs(number - page.current) <= WINDOW,
+);
+---
+
+{page.total > 1 && (
+	<nav aria-label="Pagination" class="pb-5 text-right">
+		<ul class="flex flex-wrap items-center justify-end gap-[4px]">
+			{shown.map(({ number, url }, i) => (
+				<>
+					{i > 0 && number - shown[i - 1].number > 1 && (
+						<li aria-hidden="true" class="px-1">…</li>
+					)}
+					<li>
+						{number === page.current ? (
+							<span
+								aria-current="page"
+								class="inline-flex size-6 items-center justify-center rounded-full text-base"
+							>
+								{number}
+							</span>
+						) : (
+							<a
+								href={url}
+								aria-label={`Page ${number}`}
+								class="inline-flex size-6 items-center justify-center rounded-full bg-[var(--color-chip)] text-base text-white no-underline"
+							>
+								{number}
+							</a>
+						)}
+					</li>
+				</>
+			))}
+
+			{page.nextUrl && (
+				<li>
+					<a
+						href={page.nextUrl}
+						aria-label="Next page"
+						class="inline-flex size-6 items-center justify-center rounded-full bg-[var(--color-chip)] text-white no-underline"
+					>
+						<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+							<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+				</li>
+			)}
+		</ul>
+	</nav>
+)}

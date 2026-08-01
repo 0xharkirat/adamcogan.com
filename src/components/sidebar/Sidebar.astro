@@ -1,0 +1,43 @@
+---
+import SubscribeWidget from './SubscribeWidget.astro';
+import SocialWidget from './SocialWidget.astro';
+import BadgesWidget from './BadgesWidget.astro';
+import SearchWidget from './SearchWidget.astro';
+import ProfilesWidget from './ProfilesWidget.astro';
+import ProductsWidget from './ProductsWidget.astro';
+import RecentPostsWidget from './RecentPostsWidget.astro';
+import ArchivesWidget from './ArchivesWidget.astro';
+
+/**
+ * The blog sidebar, identical on every page type of the original site.
+ *
+ * Widgets render in the live site's order and are separated by a flat 30px
+ * margin, which each widget carries itself. There is no card treatment: no
+ * background, no border and no shadow. The only rule anywhere is the one under
+ * the social icons.
+ *
+ * Column sizing is the layout's job, not this component's. The original is
+ * 26.2% (259px at a 1440px viewport) floated right of a 67.8% main column with
+ * a 54px gutter, stacking full width below the content on narrow screens. This
+ * renders full width and takes whatever box the layout gives it.
+ */
+interface Props {
+	/** Recent Posts. Newest first, permalinks already built. See RecentPostsWidget. */
+	recentPosts: { title: string; url: string }[];
+	/** Year archives, newest first. The count is not displayed. See ArchivesWidget. */
+	archives: { year: number; count: number }[];
+}
+
+const { recentPosts, archives } = Astro.props;
+---
+
+<aside id="sidebar" aria-label="Blog sidebar" class="w-full text-[16px] leading-[24px] text-[#333]">
+	<SubscribeWidget />
+	<SocialWidget />
+	<BadgesWidget />
+	<SearchWidget />
+	<ProfilesWidget />
+	<ProductsWidget />
+	<RecentPostsWidget posts={recentPosts} />
+	<ArchivesWidget archives={archives} />
+</aside>
