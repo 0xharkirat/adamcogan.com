@@ -32,11 +32,30 @@ Build the site and generate the search index:
 pnpm build:local
 ```
 
-> [!NOTE]
-> If another TinaCMS project is already running, its dev server holds ports
-> 4001 and 9000, and this build will silently query that project's content
-> instead of failing. Pass `--port` and `--datalayer-port` to move ours:
-> `npx tinacms build --local --skip-cloud-checks --port 4077 --datalayer-port 9077 -c "astro build"`
+### Editing at /admin
+
+`/admin` works only while `pnpm dev` is running. In local mode the CMS talks to
+a GraphQL server that `tinacms dev` starts on port 4001; it is not part of the
+static output. Opening `/admin` on a built site with no TinaCloud credentials
+falls through to the "Log in with TinaCloud" screen, which looks like a
+misconfiguration but is just the CMS finding no backend.
+
+### If another TinaCMS project is running
+
+Tina defaults to ports 4001 (GraphQL) and 9000 (datalayer), and those are
+global. When a second project holds them:
+
+- `pnpm dev` fails outright with "Tina Dev server is already in use".
+- `tinacms build` does **not** fail. It quietly queries the *other* project's
+  schema, and the build only breaks later with errors about collections this
+  site does not have.
+
+Either stop the other dev server, or move this one:
+
+```sh
+npx tinacms dev --port 4077 --datalayer-port 9077 -c "astro dev"
+npx tinacms build --local --skip-cloud-checks --port 4077 --datalayer-port 9077 -c "astro build"
+```
 
 ## How the site is put together
 
@@ -58,6 +77,14 @@ URLs mirror WordPress exactly:
 Categories and tags store WordPress slugs rather than display names, so those
 archive URLs stay byte-identical. `src/data/taxonomy.json` maps each slug back
 to its display name.
+
+> [!WARNING]
+> Tina connections are cursor-paginated, and `totalCount` reports the size of
+> the page you asked for, not the size of the collection. Querying
+> `blogConnection { totalCount }` returns 50, not 183. Always page through
+> `pageInfo.hasNextPage`, which is what `listAll()` in `src/lib/data.ts` does.
+> Reading only the first page truncates the site silently: the build succeeds
+> and two thirds of the posts simply do not exist.
 
 ### Post dates are wall-clock values, not instants
 
