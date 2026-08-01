@@ -3,7 +3,6 @@
     "source": "https://adamcogan.com/ sidebar, fetched 2026-08-01",
     "notes": "Static sidebar content lifted verbatim from the live WordPress widgets. Widget ids are the WordPress ones, kept so anything here can be traced back to the original. The dynamic widgets (Recent Posts, Archives) are not in this file - they come from the content collection via props."
   },
-
   "subscribe": {
     "widgetId": "blog_subscription-2",
     "title": "Subscribe via email",
@@ -27,15 +26,43 @@
       "notes": "The live form has no external endpoint. It posts back to the page it sits on and the Jetpack plugin intercepts the request server side, validating a single-use _wpnonce. Neither the self-post nor the nonce survives a static build, so `action` above is left null on purpose. Set it to a real endpoint (a Jetpack or WordPress.com subscribe URL for blog 91274000, or a Mailchimp form action) and add whatever hidden fields that endpoint requires."
     }
   },
-
   "social": [
-    { "network": "x", "label": "X", "href": "https://x.com/AdamCogan", "icon": "tabler:brand-x-filled", "color": "#000000" },
-    { "network": "facebook", "label": "Facebook", "href": "https://www.facebook.com/adamcogan", "icon": "tabler:brand-facebook-filled", "color": "#3B5998" },
-    { "network": "youtube", "label": "YouTube", "href": "https://www.youtube.com/c/AdamCogan2000", "icon": "tabler:brand-youtube-filled", "color": "#B31217" },
-    { "network": "linkedin", "label": "LinkedIn", "href": "http://www.linkedin.com/in/adamcogan", "icon": "tabler:brand-linkedin-filled", "color": "#0077B5" },
-    { "network": "strava", "label": "Strava", "href": "https://www.strava.com/athletes/adamcogan", "icon": "tabler:brand-strava", "color": "#FC4C02" }
+    {
+      "network": "x",
+      "label": "X",
+      "href": "https://x.com/AdamCogan",
+      "icon": "fa6-brands:x-twitter",
+      "color": "#000000"
+    },
+    {
+      "network": "facebook",
+      "label": "Facebook",
+      "href": "https://www.facebook.com/adamcogan",
+      "icon": "fa6-brands:facebook-f",
+      "color": "#3B5998"
+    },
+    {
+      "network": "youtube",
+      "label": "YouTube",
+      "href": "https://www.youtube.com/c/AdamCogan2000",
+      "icon": "fa6-brands:youtube",
+      "color": "#B31217"
+    },
+    {
+      "network": "linkedin",
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/adamcogan",
+      "icon": "fa6-brands:linkedin-in",
+      "color": "#0077B5"
+    },
+    {
+      "network": "strava",
+      "label": "Strava",
+      "href": "https://www.strava.com/athletes/adamcogan",
+      "icon": "fa6-brands:strava",
+      "color": "#FC4C02"
+    }
   ],
-
   "badges": [
     {
       "widgetId": "block-5",
@@ -148,33 +175,69 @@
       "href": null
     }
   ],
-
   "profiles": {
-    "widgetIds": ["block-3", "block-4"],
+    "widgetIds": [
+      "block-3",
+      "block-4"
+    ],
     "title": "Adam's Profiles",
     "notes": "Nine items, exactly as the live site renders them. Scrum.org appears twice with the same href. That duplicate is in the original content, not a transcription error. Delete one entry here if it should be fixed.",
     "items": [
-      { "label": "Microsoft MVP", "href": "https://mvp.microsoft.com/en-us/PublicProfile/33518" },
-      { "label": "Microsoft Regional Director", "href": "http://rd.microsoft.com/adam.cogan" },
-      { "label": "SSW", "href": "https://www.ssw.com.au/people/adam-cogan" },
-      { "label": "Scrum.org", "href": "https://www.scrum.org/User-Profile/userId/339" },
-      { "label": "Scrum.org", "href": "https://www.scrum.org/User-Profile/userId/339" },
-      { "label": "ASPInsiders", "href": "http://aspinsiders.com/insiders" },
-      { "label": "Adam's Flickr", "href": "https://www.flickr.com/photos/adamcogan2000/sets/" },
-      { "label": "SSW's Flickr", "href": "https://www.flickr.com/photos/121375466@N08/sets/" },
-      { "label": "Goodreads", "href": "https://www.goodreads.com/adamcogan" }
+      {
+        "label": "Microsoft MVP",
+        "href": "https://mvp.microsoft.com/en-us/PublicProfile/33518"
+      },
+      {
+        "label": "Microsoft Regional Director",
+        "href": "http://rd.microsoft.com/adam.cogan"
+      },
+      {
+        "label": "SSW",
+        "href": "https://www.ssw.com.au/people/adam-cogan"
+      },
+      {
+        "label": "Scrum.org",
+        "href": "https://www.scrum.org/User-Profile/userId/339"
+      },
+      {
+        "label": "Scrum.org",
+        "href": "https://www.scrum.org/User-Profile/userId/339"
+      },
+      {
+        "label": "ASPInsiders",
+        "href": "http://aspinsiders.com/insiders"
+      },
+      {
+        "label": "Adam's Flickr",
+        "href": "https://www.flickr.com/photos/adamcogan2000/sets/"
+      },
+      {
+        "label": "SSW's Flickr",
+        "href": "https://www.flickr.com/photos/121375466@N08/sets/"
+      },
+      {
+        "label": "Goodreads",
+        "href": "https://www.goodreads.com/adamcogan"
+      }
     ]
   },
-
   "favouriteProducts": {
-    "widgetIds": ["block-20", "block-21"],
+    "widgetIds": [
+      "block-20",
+      "block-21"
+    ],
     "title": "Adam's Favourite Products",
     "items": [
-      { "label": "TinaCMS", "href": "https://tina.io" },
-      { "label": "YakShaver", "href": "https://yakshaver.ai" }
+      {
+        "label": "TinaCMS",
+        "href": "https://tina.io"
+      },
+      {
+        "label": "YakShaver",
+        "href": "https://yakshaver.ai"
+      }
     ]
   },
-
   "emptyWidgets": {
     "notes": "Four sidebar widgets on the live site render nothing and are deliberately not rebuilt.",
     "ids": {

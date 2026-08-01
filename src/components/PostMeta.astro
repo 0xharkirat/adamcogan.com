@@ -2,37 +2,54 @@
 import { categoryName, tagName, type PostSummary } from '../lib/posts';
 
 /**
- * The author / categories / tags line under a post title. Same colour as body
- * copy on the original, just smaller, with comma-separated taxonomy links.
+ * The author / categories / tags / comments line under a post title.
  *
- * The separators are built into a single flat array rather than emitted from
- * inside the map. JSX collapses the newlines around a `{i > 0 && ', '}` into
- * real whitespace, which renders as "General , SSW Projects".
+ * The original separates each group with a slash and joins items inside a
+ * group with commas: "Adam Cogan / General, SSW Projects / best practice / 2 Comments".
+ *
+ * Separators are interleaved from an array rather than emitted inline in the
+ * markup. JSX turns the newlines around an inline `{cond && ', '}` into real
+ * whitespace, which renders as "General , SSW Projects".
  */
 interface Props {
 	post: PostSummary;
+	/** Rendered as the trailing "N Comments" group when comments are known. */
+	commentCount?: number;
+	/** Anchor for the comment link. Falls back to the post URL. */
+	commentHref?: string;
 }
 
-const { post } = Astro.props;
+const { post, commentCount, commentHref } = Astro.props;
 
 type Item = { href: string; label: string };
-const link = (kind: 'category' | 'tag', slug: string): Item => ({
-	href: `/${kind}/${slug}/`,
-	label: kind === 'category' ? categoryName(slug) : tagName(slug),
-});
+const groups: Item[][] = [];
 
-const categories = post.categories.map((slug) => link('category', slug));
-const tags = post.tags.map((slug) => link('tag', slug));
+if (post.author) groups.push([{ href: '', label: post.author }]);
+
+const categories = post.categories.map((slug) => ({
+	href: `/category/${slug}/`,
+	label: categoryName(slug),
+}));
+if (categories.length) groups.push(categories);
+
+const tags = post.tags.map((slug) => ({ href: `/tag/${slug}/`, label: tagName(slug) }));
+if (tags.length) groups.push(tags);
+
+if (typeof commentCount === 'number') {
+	groups.push([
+		{
+			href: `${commentHref ?? post.url}#comments`,
+			label: `${commentCount} ${commentCount === 1 ? 'Comment' : 'Comments'}`,
+		},
+	]);
+}
 ---
 
 <p class="mb-[7px] text-[0.9em] leading-normal">
-	{post.author && <span class="mr-4 inline-block">{post.author}</span>}
-
-	{categories.length > 0 && (
-		<span class="mr-4 inline-block">{categories.map((item, i) => (<>{i > 0 ? ', ' : ''}<a href={item.href}>{item.label}</a></>))}</span>
-	)}
-
-	{tags.length > 0 && (
-		<span class="inline-block">{tags.map((item, i) => (<>{i > 0 ? ', ' : ''}<a href={item.href}>{item.label}</a></>))}</span>
-	)}
+	{groups.map((group, g) => (
+		<>
+			{g > 0 && <span class="mx-2 text-[#999]" aria-hidden="true">/</span>}
+			<span>{group.map((item, i) => (<>{i > 0 ? ', ' : ''}{item.href ? <a href={item.href}>{item.label}</a> : item.label}</>))}</span>
+		</>
+	))}
 </p>
