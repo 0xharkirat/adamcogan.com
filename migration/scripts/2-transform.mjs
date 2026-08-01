@@ -268,6 +268,29 @@ td.addRule("table", {
   },
 });
 
+/**
+ * Blockquotes: one block per paragraph.
+ *
+ * Tina's markdown parser flattens a blockquote containing several paragraphs
+ * into a flat list of text nodes with no separators, so five distinct
+ * testimonials on the About page rendered as one unbroken run of italic text.
+ * Emitting each paragraph as its own blockquote survives that, and the stacked
+ * padding lands within ~2px of the original's paragraph spacing.
+ */
+td.addRule("blockquote", {
+  filter: "blockquote",
+  replacement: (content) => {
+    const blocks = content
+      .replace(/^\n+|\n+$/g, "")
+      .split(/\n{2,}/)
+      .map((b) => b.trim())
+      .filter(Boolean);
+    if (!blocks.length) return "";
+    const quoted = blocks.map((b) => b.split("\n").map((line) => `> ${line}`.trimEnd()).join("\n"));
+    return `\n\n${quoted.join("\n\n")}\n\n`;
+  },
+});
+
 /** Empty paragraphs (WP leaves many behind) produce stray blank lines. */
 td.addRule("emptyParagraph", {
   filter: (node) => node.nodeName === "P" && !node.querySelector?.("img,iframe") && !stripTags(node.innerHTML),

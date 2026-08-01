@@ -16,7 +16,7 @@ interface Props {
 const { post, eager = false } = Astro.props;
 ---
 
-<article class="mb-10">
+<article class="mb-10 flow-root">
 	{post.heroImage && (
 		<a href={post.url} class="mb-[5px] block no-underline">
 			<img
@@ -34,7 +34,7 @@ const { post, eager = false } = Astro.props;
 
 	<FormattedDate date={post.pubDate} />
 
-	<h2 class="mt-0 mb-[5px] text-[26px] leading-[1.3] font-semibold">
+	<h2 class="mt-0 mb-[5px] text-[26px] leading-[1.3] font-bold">
 		<a href={post.url} class="no-underline">{post.title}</a>
 	</h2>
 

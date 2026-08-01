@@ -40,7 +40,14 @@ const recentPosts = posts.slice(0, 14).map((post) => ({ title: post.title, url: 
 
 <Base title={title} description={description} image={image}>
 	<div class="mx-auto w-full max-w-[978px] px-[5%] xl:px-0">
-		<div class="flex flex-col gap-x-[54px] pt-[5%] pb-[3%] min-[760px]:flex-row">
+		{/*
+		  Percentages, not a fixed gutter. The original floats 68% / 26.5% with
+		  the remaining 5.5% as the gap, so the gutter shrinks with the viewport.
+		  A fixed 54px is right at 1440 but steals 13px from the reading column
+		  at 768, and 67.8 + 26.2 + 54px only added up to 973 of the 978
+		  available, leaving the sidebar 4.5px short of the footer's right edge.
+		*/}
+		<div class="flex flex-col gap-x-[5.5%] pt-[5%] pb-[3%] min-[760px]:flex-row">
 			{/* Scopes the index to the content column, so the sidebar (identical
 			    on all 592 pages) cannot drown out every result. */}
 			<main data-pagefind-body={indexable ? true : undefined} class="min-w-0 min-[760px]:w-[67.8%]">

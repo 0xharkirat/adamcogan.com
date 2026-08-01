@@ -11,10 +11,10 @@
  * 1. There is no dark mode. The site is light only, so the toggle and the
  *    .dark block that shipped with the starter are gone rather than left
  *    switched off.
- * 2. Only Open Sans 400 and 600 are loaded, while the CSS asks for 700
- *    throughout, so every "bold" renders as 600. We use 600 directly, because
- *    loading a real 700 face would make the whole site heavier than the
- *    original.
+ * 2. Headings are 700. The original only self-hosts Open Sans 400 and 600
+ *    while its CSS asks for 700, so the browser synthesises a bolder face.
+ *    Matching the loaded weight (600) instead looked visibly lighter side by
+ *    side, so we load a real 700 from the variable font.
  */
 
 @theme inline {
@@ -78,7 +78,7 @@
 
 /*
  * Post body. The scale is em-based off 16px: h1 2em, h2 1.8em, h3 1.6em,
- * h4 1.4em, h5 1.2em, h6 1em, all at weight 600 (see note above).
+ * h4 1.4em, h5 1.2em, h6 1em, all at weight 700 (see note above).
  */
 .entry {
 	max-width: none;
@@ -91,7 +91,7 @@
 }
 
 .entry :where(h1, h2, h3, h4, h5, h6) {
-	font-weight: 600;
+	font-weight: 700;
 	color: var(--color-foreground);
 }
 
@@ -109,6 +109,7 @@
 }
 
 .entry :where(ul) { list-style: disc; }
+.entry :where(ul ul) { list-style: circle; }
 .entry :where(ol) { list-style: decimal; }
 .entry :where(li) { margin: 0 0 0.5rem; }
 
@@ -127,6 +128,7 @@
 /* A 1px mat around in-content images, straight from the original's custom CSS. */
 .entry :where(img) {
 	border: 1px solid var(--color-band);
+	border-radius: 0;
 	padding: 0.25rem;
 	box-sizing: border-box;
 	max-width: 100%;
@@ -135,7 +137,7 @@
 
 /* Bold text on a light grey strip flush under the image. Distinctive. */
 .entry :where(figcaption) {
-	font-weight: 600;
+	font-weight: 700;
 	font-size: 1rem;
 	line-height: 1.5;
 	background-color: var(--color-band);
@@ -148,6 +150,18 @@
 	margin: 0 0 1.2rem;
 	width: fit-content;
 	max-width: 100%;
+	display: grid;
+}
+
+/*
+ * Keep the caption out of the figure's intrinsic width. Without this the grey
+ * strip is sized by its own text and juts out past the photo, by 178px on the
+ * About page. Zero width plus a 100% minimum makes the image set the width and
+ * the caption fill it.
+ */
+.entry :where(figcaption) {
+	width: 0;
+	min-width: 100%;
 }
 
 /* Horizontal rules only, no vertical rules, no zebra striping. */
@@ -161,7 +175,7 @@
 }
 
 .entry :where(th) {
-	font-weight: 600;
+	font-weight: 700;
 	padding: 0.75rem;
 	text-align: left;
 	border-top: 1px solid var(--color-table-rule);
@@ -199,4 +213,14 @@
 .entry :where(pre code) {
 	font-size: inherit;
 	white-space: pre-wrap;
+}
+
+/*
+ * Small print sits on the same 24px baseline as body copy. The original
+ * inherits an absolute 24px line-height, so 14.4px text keeps 24px rather than
+ * collapsing to 21.6px, which reads noticeably tighter in the meta line.
+ */
+.text-smallprint {
+	font-size: 0.9em;
+	line-height: 24px;
 }

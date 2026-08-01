@@ -15,7 +15,7 @@ const { data } = Astro.props;
 {data && (
 	<article>
 		{data.title && (
-			<h1 data-tina-field={tinaField(data, 'title')} class="mb-[0.4em] text-[32px] leading-none font-semibold">
+			<h1 data-tina-field={tinaField(data, 'title')} class="mb-[0.4em] text-[32px] leading-none font-bold">
 				{data.title}
 			</h1>
 		)}

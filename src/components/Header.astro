@@ -28,7 +28,7 @@ const isActive = (link: string) =>
 ---
 
 <header class="border-t-[6px] border-t-[var(--color-accent-red)] bg-[var(--color-band)]">
-	<div class="mx-auto w-full max-w-[978px] px-[5%] pt-4 xl:px-0">
+	<div class="mx-auto w-full max-w-[978px] px-[5%] pt-[26px] xl:px-0">
 		<div class="relative pb-2">
 			<div class="flex items-start gap-[15px]">
 				{seo?.logo && (
@@ -47,7 +47,7 @@ const isActive = (link: string) =>
 						{/* -0.72px, not -0.02em: the original declares -0.02em at 36px and
 						    inherits the resolved pixel value up to the 60px wordmark, so an em
 						    value here would compute to -1.2px and tighten it too far. */}
-						class="block text-[2.25rem] leading-none font-semibold tracking-[-0.72px] uppercase no-underline sm:text-[60px] sm:leading-[40px]"
+						class="block text-[60px] leading-[40px] font-bold tracking-[-0.72px] uppercase no-underline"
 						data-tina-field={seo ? tinaField(seo, 'title') : undefined}
 					>
 						{seo?.title}
@@ -60,9 +60,9 @@ const isActive = (link: string) =>
 
 			<a
 				href="/feed.xml"
-				class="flex items-center gap-1 py-[10px] text-sm no-underline xl:absolute xl:right-0 xl:bottom-[10px] xl:py-0"
+				class="flex items-center gap-1 py-[10px] text-base no-underline xl:absolute xl:right-0 xl:bottom-[38px] xl:py-0"
 			>
-				<Icon name="tabler:rss" class="size-5 text-[#f9a447]" aria-hidden="true" />
+				<Icon name="fa6-solid:rss" class="size-[22px] text-[#f9a447]" aria-hidden="true" />
 				<span>RSS</span>
 			</a>
 

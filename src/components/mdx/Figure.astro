@@ -20,10 +20,10 @@ const text = match?.[2] ?? caption;
 ---
 
 <figure class="my-8">
-  <img src={src} alt={alt || text} loading="lazy" decoding="async" class="h-auto max-w-full rounded" />
+  <img src={src} alt={alt || text} loading="lazy" decoding="async" class="h-auto max-w-full" />
   {caption && (
     <figcaption class="mt-2 text-sm leading-snug text-muted-foreground">
-      {label && <span class="font-semibold">{label}:</span>}{' '}{text}
+      {label && <span class="font-bold">{label}:</span>}{' '}{text}
     </figcaption>
   )}
 </figure>

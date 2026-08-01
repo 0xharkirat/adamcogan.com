@@ -16,7 +16,7 @@ interface Props {
 const { page, heading } = Astro.props;
 ---
 
-{heading && <h1 class="mb-[0.4em] text-[32px] leading-none font-semibold">{heading}</h1>}
+{heading && <h1 class="mb-[0.4em] text-[32px] leading-none font-bold">{heading}</h1>}
 
 {page.posts.length === 0 ? (
 	<p>No posts here yet.</p>
