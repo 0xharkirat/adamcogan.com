@@ -32,7 +32,18 @@ There is nothing to install, and nobody has to start anything for you.
 8. Write the post in the **Post** field.
 9. Click **Save**.
 
+The form fills the whole screen while you write a new post, so the page preview
+beside it stays hidden until the first save.
+Expect to write blind the first time round, then use the preview from the next
+edit onwards.
+See [Known gaps](../README.md#known-gaps) for where this is up to.
+
 ## What happens when you save
+
+> [!WARNING]
+> Saving publishes. Whatever you save goes to the public site, with no draft
+> step in between. Leave a half-written post unsaved until you are happy with
+> it.
 
 Saving records your post and starts a rebuild of the site.
 The post appears on the live site a few minutes later.
@@ -119,7 +130,12 @@ There is no separate library per post.
 Open the post from **Blogs**, or click straight onto the text on the preview beside the form.
 Clicking the page opens the form at that exact field, which is usually faster than scrolling.
 
-Changes appear in the preview as you type.
+Changes appear in the preview as you type, though the preview often runs well
+behind what you have typed.
+Treat it as a rough guide rather than a live view, and rely on the published
+page for the final word.
+See [Known gaps](../README.md#known-gaps) for where this is up to.
+
 Nothing is saved until you click **Save**.
 **Reset** discards everything since your last save.
 

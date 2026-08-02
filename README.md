@@ -75,6 +75,33 @@ a new one needs Giscus configured, which takes a public GitHub repository with
 Discussions enabled and 4 values from [giscus.app](https://giscus.app). See
 [About the site's structure](docs/architecture.md#comments).
 
+**Saving publishes straight away.** The CMS commits every save directly to
+`main`, which triggers a rebuild and puts the change on the live site a few
+minutes later. Every save is a publish, and the only way back is reverting the
+commit. Anyone with CMS access is publishing rather than staging.
+
+TinaCMS has an editorial workflow that commits to a branch and opens a pull
+request instead. It is not set up here. Until it is, treat the editor as live.
+
+**Visual editing is half working.** The CMS is meant to put the form on the left
+and a live preview of the page on the right, so an editor sees the result as
+they type. What it does instead:
+
+- On an existing post, the preview loads and clicking the page still jumps to
+  the right field, but typed changes reach it late or stall.
+- On a new post, the form takes the full width and the preview appears only
+  after the first save.
+
+Under investigation, and parked until the editorial workflow above is set up.
+That work changes how a save reaches the site, which is the layer the preview
+depends on, so it is worth doing first rather than tuning the preview twice.
+The forms are unaffected either way.
+
+**A new post 404s until the build finishes.** Every page is built ahead of time,
+so a post has no page to serve until the rebuild completes, usually 2 to 3
+minutes. The CMS preview shows it immediately, which makes the gap look like a
+failure. This resolves on its own.
+
 **Image quality.** Images were resized to a 2000px long edge and re-encoded,
 which is lossy. The originals remain on the WordPress host and
 `migration/scripts/3-media.mjs` re-fetches them, so this is reversible until
