@@ -13,7 +13,7 @@
     "build:local": "tinacms build --local --skip-cloud-checks -c \"astro build\" && pnpm run index-search",
     "preview": "astro preview",
     "astro": "astro",
-    "index-search": "pagefind --site dist/client --output-path dist/client/pagefind"
+    "index-search": "node migration/scripts/index-search.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.7.0",
