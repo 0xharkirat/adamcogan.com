@@ -5,23 +5,17 @@ It assumes no knowledge of how the site is built. You edit everything through a 
 
 ## Before you start
 
-Ask a developer to start the editor for you.
-They run one command, and it stays running while you work:
+Open **<https://adamcogan.vercel.app/admin>** and click **Log in**.
 
-```bash
-pnpm dev
-```
+You sign in with TinaCloud, the service that looks after the site's content.
+If you have never signed in, ask a developer to invite you first.
 
-They will give you an address to open, usually **http://localhost:4321/admin/index.html**.
-Open it and click **Enter Edit Mode**.
-
-You should see "You are in local mode" in the top left.
-If you see a TinaCloud sign-in screen instead, reload the page fully.
-If it still asks you to sign in, tell the developer: the editor needs restarting.
+That is the whole setup.
+There is nothing to install, and nobody has to start anything for you.
 
 ## Create a post
 
-1. Open the editor and choose **Blogs** in the sidebar.
+1. Choose **Blogs** in the sidebar.
 2. Click **Add File**.
 3. Fill in the **Title**.
    This is the heading readers see, and it also builds the post's web address.
@@ -38,10 +32,16 @@ If it still asks you to sign in, tell the developer: the editor needs restarting
 8. Write the post in the **Post** field.
 9. Click **Save**.
 
-Saving writes the post to the copy of the site on that computer, and the preview updates straight away.
-It is not on adamcogan.com yet.
-A developer publishes it, which takes one step on their side.
-Tell them when a post is ready.
+## What happens when you save
+
+Saving records your post and starts a rebuild of the site.
+The post appears on the live site a few minutes later.
+
+The delay is normal.
+Every page is built ahead of time, which is what makes the site fast, and that
+build has to finish before anything new is visible.
+
+If a post has not appeared after about 10 minutes, tell a developer.
 
 ## How the web address is built
 
@@ -136,5 +136,16 @@ They stay hidden on the form, so you can leave them alone.
 Reload the page first.
 A stale editor is the most common cause, and a reload fixes it.
 
-If the preview shows "Page not found" for a post you have created, or the editor refuses to save, tell a developer.
-Those are both signs the editor needs restarting rather than anything you did.
+If the editor refuses to save, or a post has not appeared on the site after
+about 10 minutes, tell a developer.
+Those are signs something needs attention behind the scenes rather than
+anything you did.
+
+## Editing on a developer's machine
+
+Developers sometimes run the site on their own computer to try changes before
+they go live. That editor is at `localhost:4321/admin/index.html` and needs
+`pnpm dev` running. See [Run the site locally](running-locally.md).
+
+Anything saved there stays on that machine until it is pushed. For normal
+writing, use the hosted editor at the top of this guide.

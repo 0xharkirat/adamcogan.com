@@ -6,6 +6,9 @@ Adam Cogan's blog, migrated from WordPress to Astro and TinaCMS.
 Every post keeps the address it had, so links pointing at a site running since
 2002 still resolve.
 
+Live at <https://adamcogan.vercel.app>, edited at
+<https://adamcogan.vercel.app/admin>.
+
 Migrated to [TinaCMS](https://tina.io) by [Harky](https://harksingh.com) with ❤️.
 
 ## Table of contents
@@ -14,14 +17,13 @@ Migrated to [TinaCMS](https://tina.io) by [Harky](https://harksingh.com) with �
 - [Install](#install)
 - [Usage](#usage)
 - [Known gaps](#known-gaps)
-- [Maintainer](#maintainer)
 - [License](#license)
 
 ## Documentation
 
 | Read this | If you want to |
 | --- | --- |
-| [Write and edit posts](docs/writing-posts.md) | Write a post. No coding, and it explains how a post's address is built. |
+| [Write and edit posts](docs/writing-posts.md) | Write a post in the browser at `/admin`. Assumes no coding, and explains how a post's address is built. |
 | [Run the site locally](docs/running-locally.md) | Start the site and CMS, or fix the TinaCloud login screen. |
 | [Deploy to Vercel](docs/deployment.md) | Set up hosting, or fix a failing build. |
 | [About the site's structure](docs/architecture.md) | Understand the URLs, dates, taxonomy and comments. |
@@ -73,10 +75,6 @@ Discussions enabled and 4 values from [giscus.app](https://giscus.app). See
 which is lossy. The originals remain on the WordPress host and
 `migration/scripts/3-media.mjs` re-fetches them, so this is reversible until
 that host is switched off.
-
-## Maintainer
-
-[Harky](https://harksingh.com)
 
 ## License
 
