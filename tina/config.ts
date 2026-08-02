@@ -12,13 +12,25 @@ const branch =
   process.env.HEAD || // Netlify
   "main";
 
+/**
+ * A separate TinaCloud token from `TINA_TOKEN`, issued under API Tokens in the
+ * dashboard. The content token will not index search.
+ */
+const searchToken = process.env.TINA_SEARCH_TOKEN;
+
 export default defineConfig({
   telemetry: 'disabled',
   branch,
 
-  // Get this from tina.io
-  clientId: process.env.PUBLIC_TINA_CLIENT_ID,
-  // Get this from tina.io
+  /*
+   * Both spellings are accepted. Astro exposes `PUBLIC_`-prefixed variables to
+   * the browser and the starter shipped that name, but the TinaCloud dashboard
+   * hands you `TINA_CLIENT_ID`. Reading only one of them leaves the other
+   * silently undefined, and the symptom is obscure: the CMS redirects to
+   * `app.tina.io/signin?clientId=undefined` and asks you to log in, which looks
+   * like an auth problem rather than a missing variable.
+   */
+  clientId: process.env.PUBLIC_TINA_CLIENT_ID || process.env.TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
 
   build: {
@@ -43,4 +55,29 @@ export default defineConfig({
       GlobalConfigCollection,
     ],
   },
+
+  /*
+   * Search inside the CMS, so an editor can find one of 183 posts without
+   * scrolling. This is NOT the search on the public site: readers use
+   * /search, which Pagefind builds from the static HTML and needs no service.
+   * The two are unrelated and both are wanted.
+   *
+   * Declared only when the token exists. Passing `indexerToken: undefined`
+   * makes the build fail rather than degrade, which would block anyone
+   * building without TinaCloud credentials.
+   */
+  ...(searchToken
+    ? {
+        search: {
+          tina: {
+            indexerToken: searchToken,
+            stopwordLanguages: ["eng"],
+          },
+          // 183 posts index comfortably in one pass; the field cap keeps long
+          // post bodies from bloating the index.
+          indexBatchSize: 100,
+          maxSearchIndexFieldLength: 100,
+        },
+      }
+    : {}),
 });

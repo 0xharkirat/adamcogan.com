@@ -71,3 +71,5 @@ migration/design/shots
 .netlify
 .wrangler
 dist
+
+node_modules

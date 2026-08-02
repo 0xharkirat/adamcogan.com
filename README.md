@@ -166,12 +166,42 @@ PUBLIC_GISCUS_CATEGORY_ID=...
 ## Deployment
 
 The site targets Vercel and detects the adapter from the platform's own
-environment variables, so there is nothing to configure. Set `SITE_URL` if you
-need absolute URLs (sitemap, feed, Open Graph) to differ from what the platform
-reports.
+environment variables, so the adapter and `SITE_URL` need no configuration. Set
+`SITE_URL` only if absolute URLs (sitemap, feed, Open Graph) should differ from
+what the platform reports.
 
-`pnpm build` runs the Tina build, the Astro build, and then the Pagefind index.
-Skipping the index step does not fail the build; search just returns nothing.
+Build command: `pnpm build`. That runs the Tina build, the Astro build, and then
+the Pagefind index. Skipping the index step does not fail the build; the search
+page just returns nothing.
+
+### Environment variables on Vercel
+
+| Variable | Required | Notes |
+| --- | --- | --- |
+| `TINA_CLIENT_ID` | yes | From app.tina.io. `PUBLIC_TINA_CLIENT_ID` is also accepted. |
+| `TINA_TOKEN` | yes | From app.tina.io. |
+| `TINA_SEARCH_TOKEN` | no | Enables search inside the CMS. Separate token, created under API Tokens. |
+| `TINA_PUBLIC_IS_LOCAL` | **must not be set** | See below. |
+
+> [!WARNING]
+> `TINA_PUBLIC_IS_LOCAL=true` belongs in local `.env` only. It forces the CMS to
+> talk to a GraphQL server that `tinacms dev` runs on your machine. Set it on
+> Vercel and the deployed `/admin` looks for a server that does not exist there.
+
+Node is pinned to 22.22.0 in `.nvmrc`, and `package.json` requires >=22.22.0.
+Vercel reads `.nvmrc`, so this needs no separate setting.
+
+### Two different searches
+
+They are unrelated, and both are wanted.
+
+**Readers** use `/search`, built by Pagefind from the static HTML at deploy time.
+No token, no service, works offline.
+
+**Editors** use the search box inside the CMS to find one of 183 posts. That is
+TinaCloud's, and it only appears once `TINA_SEARCH_TOKEN` is set. Without it the
+CMS shows "You have not configured search" and the post list is browsed by
+scrolling.
 
 ## Known gaps
 
