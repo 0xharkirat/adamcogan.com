@@ -1,5 +1,5 @@
 ---
-import { categoryName, tagName, type PostSummary } from '../lib/posts';
+import { categoryName, slugifyTerm, tagName, type PostSummary } from '../lib/posts';
 
 /**
  * The author / categories / tags / comments line under a post title.
@@ -26,13 +26,20 @@ const groups: Item[][] = [];
 
 if (post.author) groups.push([{ href: '', label: post.author }]);
 
-const categories = post.categories.map((slug) => ({
-	href: `/category/${slug}/`,
-	label: categoryName(slug),
+// Hrefs slugify the stored value. Migrated posts already hold slugs, where
+// this is a no-op, but a term typed in the CMS as "AI Agents" would otherwise
+// link to "/category/AI Agents/" while the archive is built at
+// "/category/ai-agents/", so the label would point at a 404.
+const categories = post.categories.map((value) => ({
+	href: `/category/${slugifyTerm(value)}/`,
+	label: categoryName(value),
 }));
 if (categories.length) groups.push(categories);
 
-const tags = post.tags.map((slug) => ({ href: `/tag/${slug}/`, label: tagName(slug) }));
+const tags = post.tags.map((value) => ({
+	href: `/tag/${slugifyTerm(value)}/`,
+	label: tagName(value),
+}));
 if (tags.length) groups.push(tags);
 
 if (typeof commentCount === 'number') {

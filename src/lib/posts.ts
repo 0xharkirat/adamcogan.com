@@ -53,12 +53,39 @@ export function postUrl(slug: string, pubDate: Date): string {
 	return `/${year}/${month}/${day}/${slug}/`;
 }
 
-export function categoryName(slug: string): string {
-	return (taxonomy.categories as Record<string, { name: string }>)[slug]?.name ?? slug;
+/**
+ * Turn a taxonomy value into its URL segment.
+ *
+ * Migrated posts store WordPress slugs ("ssw-projects"), and slugifying one is
+ * a no-op, so their archive URLs are unchanged. Anything typed fresh in the CMS
+ * ("AI Agents") becomes "ai-agents", which means an editor can invent a new
+ * category or tag without having to know what a slug is.
+ */
+export function slugifyTerm(value: string): string {
+	return String(value)
+		.toLowerCase()
+		.replace(/['’]/g, '')
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '');
 }
 
-export function tagName(slug: string): string {
-	return (taxonomy.tags as Record<string, { name: string }>)[slug]?.name ?? slug;
+/**
+ * Display label for a taxonomy value. Known WordPress slugs resolve to the
+ * name they had on the old site ("net" -> ".NET"); anything else is shown as
+ * it was typed.
+ */
+function displayName(group: Record<string, { name: string }>, value: string): string {
+	if (group[value]) return group[value].name;
+	const match = Object.keys(group).find((slug) => slug === slugifyTerm(value));
+	return match ? group[match].name : value;
+}
+
+export function categoryName(value: string): string {
+	return displayName(taxonomy.categories as Record<string, { name: string }>, value);
+}
+
+export function tagName(value: string): string {
+	return displayName(taxonomy.tags as Record<string, { name: string }>, value);
 }
 
 let cache: PostSummary[] | null = null;
@@ -153,12 +180,23 @@ export async function getArchives(): Promise<{ year: number; count: number }[]> 
 		.sort((a, b) => b.year - a.year);
 }
 
-/** Posts grouped by taxonomy slug, for the category and tag archive routes. */
+/**
+ * Posts grouped by taxonomy slug, for the category and tag archive routes.
+ *
+ * Grouping is on the slugified value, so a term typed as "AI Agents" in the CMS
+ * lands in the same archive as the migrated "ai-agents" instead of creating a
+ * near-duplicate page. A post is only counted once per group even if it carries
+ * both spellings.
+ */
 export async function groupBy(field: 'categories' | 'tags'): Promise<Map<string, PostSummary[]>> {
 	const posts = await getPosts();
 	const groups = new Map<string, PostSummary[]>();
 	for (const post of posts) {
-		for (const slug of post[field]) {
+		const seen = new Set<string>();
+		for (const value of post[field]) {
+			const slug = slugifyTerm(value);
+			if (!slug || seen.has(slug)) continue;
+			seen.add(slug);
 			if (!groups.has(slug)) groups.set(slug, []);
 			groups.get(slug)!.push(post);
 		}

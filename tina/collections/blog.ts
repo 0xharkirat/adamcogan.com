@@ -6,15 +6,19 @@ import { galleryTemplate } from "../../src/components/mdx/Gallery.template";
 import taxonomy from "../../src/data/taxonomy.json";
 
 /**
- * Category and tag options come from the migrated WordPress taxonomy so the
- * editor picks from the real list instead of retyping slugs. Values are WP
- * slugs, which keeps /category/<slug>/ and /tag/<slug>/ identical to the old
- * site; labels are the human-readable names.
+ * The most-used migrated terms are surfaced as guidance under the category and
+ * tag fields, so an editor is nudged towards reusing an existing name rather
+ * than inventing a near-duplicate, without being prevented from adding one.
  */
-const options = (group: Record<string, { name: string; count?: number }>) =>
-  Object.entries(group)
-    .sort(([, a], [, b]) => (b.count ?? 0) - (a.count ?? 0) || a.name.localeCompare(b.name))
-    .map(([value, { name }]) => ({ value, label: name }));
+const mostUsed = (group: Record<string, { name: string; count?: number }>, n: number) =>
+  Object.values(group)
+    .sort((a, b) => (b.count ?? 0) - (a.count ?? 0) || a.name.localeCompare(b.name))
+    .slice(0, n)
+    .map((t) => t.name)
+    .join(", ");
+
+const EXISTING_CATEGORIES = mostUsed(taxonomy.categories, 12);
+const EXISTING_TAGS = mostUsed(taxonomy.tags, 12);
 
 export const BlogCollection: Collection = {
   name: "blog",
@@ -103,34 +107,52 @@ export const BlogCollection: Collection = {
       type: "string",
       options: Object.values(taxonomy.authors).map((a) => a.name),
     },
+    /*
+     * Free-text, not a fixed list.
+     *
+     * These started as `options` dropdowns built from the migrated taxonomy,
+     * which meant an editor could pick one of the existing 63 categories or 288
+     * tags but could never add a new one. WordPress always allowed that, so the
+     * dropdown was a regression dressed up as tidiness.
+     *
+     * Values are slugified when URLs are built, so typing "AI Agents" files the
+     * post under /tag/ai-agents/ alongside the migrated "ai-agents" posts.
+     * Existing slugs are unaffected, because slugifying a slug changes nothing.
+     */
     {
       name: "categories",
       label: "Categories",
       type: "string",
       list: true,
-      options: options(taxonomy.categories),
-      description: "Broad topic. Pick one or two.",
+      ui: { component: "tags" },
+      description:
+        "Broad topic, one or two. Type to add. Reuse an existing name where you can: " +
+        EXISTING_CATEGORIES,
     },
     {
       name: "tags",
       label: "Tags",
       type: "string",
       list: true,
-      options: options(taxonomy.tags),
-      description: "Specific subjects. Pick as many as apply.",
+      ui: { component: "tags" },
+      description:
+        "Specific subjects, as many as apply. Type to add. Existing tags include: " +
+        EXISTING_TAGS,
     },
     {
       name: "legacyUrl",
       label: "Legacy: original WordPress URL",
       type: "string",
-      description:
-        "Migration bookkeeping. Leave blank on new posts. On migrated posts this records the address the post had on WordPress, and the verification script fails if a post stops serving at it.",
+      // Hidden rather than deleted: the verification script fails if a migrated
+      // post stops serving at this address, but it is noise on the form and
+      // meaningless on a new post.
+      ui: { component: "hidden" },
     },
     {
       name: "wpId",
       label: "Legacy: WordPress post ID",
       type: "number",
-      description: "Migration bookkeeping. Leave blank on new posts.",
+      ui: { component: "hidden" },
     },
     {
       type: "rich-text",
