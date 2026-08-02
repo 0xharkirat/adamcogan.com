@@ -16,6 +16,7 @@ import TurndownService from "turndown";
 import { gfm } from "turndown-plugin-gfm";
 import { toLocal } from "./lib/images.mjs";
 import { buildArchive, countAll } from "./lib/comments.mjs";
+import { buildMediaSizes } from "./lib/media-sizes.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const RAW = join(ROOT, "migration", "raw");
@@ -139,6 +140,45 @@ td.addRule("otherIframe", {
     if (!src) return "";
     const url = src.startsWith("//") ? `https:${src}` : src;
     return `\n\n[View embedded content](${url})\n\n`;
+  },
+});
+
+/**
+ * WordPress `[gallery]` blocks -> <Gallery />.
+ *
+ * This matches the wrapping <div>, so it does not compete with the <figure>
+ * rules on precedence: turndown converts children first, then hands the parent
+ * rule their output, and this replacement reads the DOM directly and discards
+ * it. Without a rule at the div level the gallery has no representation of its
+ * own and collapses into a stack of full-width photos, which is what happened
+ * to the 2011 Juval Lowy post.
+ *
+ * Items are serialised as a JSON attribute. See Gallery.astro for why that is
+ * a deliberate shortcut for two frozen legacy posts.
+ */
+td.addRule("gallery", {
+  filter: (node) =>
+    node.nodeName === "DIV" && /(^|\s)gallery(\s|$)/.test(node.getAttribute?.("class") || ""),
+  replacement: (_content, node) => {
+    const columns = (node.getAttribute("class") || "").match(/gallery-columns-(\d+)/)?.[1] ?? "3";
+    const items = all(node, "figure, .gallery-item")
+      .map((item) => {
+        const img = item.querySelector?.("img");
+        if (!img) return null;
+        const cap = item.querySelector?.("figcaption, .gallery-caption");
+        // The gallery <a> points at an attachment page, not the file, so the
+        // image src is the only usable source here.
+        return {
+          src: toLocal(img.getAttribute("src") || ""),
+          alt: stripTags(img.getAttribute("alt") || ""),
+          caption: cap ? stripTags(cap.innerHTML) : "",
+        };
+      })
+      .filter(Boolean);
+
+    if (!items.length) return "";
+    const json = JSON.stringify(items).replace(/"/g, "&quot;");
+    return `\n\n<Gallery columns="${columns}" items="${json}" />\n\n`;
   },
 });
 
@@ -319,7 +359,7 @@ function toMdx(html) {
   // The sentinel uses NUL because it cannot occur in the source HTML; a
   // space-delimited marker would collide with ordinary text like "in 5 minutes".
   const guarded = [];
-  md = md.replace(/\`\`\`[\s\S]*?\`\`\`|\`[^\`\n]*\`|<(?:YouTubeEmbed|Figure)\b[^>]*\/>/g, (m) => {
+  md = md.replace(/\`\`\`[\s\S]*?\`\`\`|\`[^\`\n]*\`|<(?:YouTubeEmbed|Figure|Video|Gallery)\b[^>]*\/>/g, (m) => {
     guarded.push(m);
     return `\u0000${guarded.length - 1}\u0000`;
   });
@@ -457,11 +497,11 @@ async function relinkOptimisedMedia() {
       const path = join(dir, name);
       const original = await readFile(path, "utf8");
 
-      const refs = [...new Set(original.match(/\/media\/[^\s"')\]]+/g) ?? [])];
+      const refs = [...new Set(original.match(/\/media\/[^\s"')\]&<]+/g) ?? [])];
       const mapped = new Map(await Promise.all(refs.map(async (r) => [r, await resolve(r)])));
       unresolved += [...mapped].filter(([from, to]) => from === to && !refs.includes(to)).length;
 
-      const updated = original.replace(/\/media\/[^\s"')\]]+/g, (m) => mapped.get(m) ?? m);
+      const updated = original.replace(/\/media\/[^\s"')\]&<]+/g, (m) => mapped.get(m) ?? m);
       if (updated !== original) {
         await writeFile(path, updated);
         touched += 1;
@@ -472,6 +512,14 @@ async function relinkOptimisedMedia() {
 }
 
 await relinkOptimisedMedia();
+
+/* Image dimensions, so the browser can reserve space instead of reflowing as
+   each image decodes. Runs after relinking, so it measures the files the
+   content actually points at. */
+{
+  const { count, failed } = await buildMediaSizes(join(ROOT, "public"), join(ROOT, "src", "data", "media-sizes.json"));
+  console.log(`media sizes: ${count} images measured${failed ? `, ${failed} unreadable` : ""}`);
+}
 
 /* Comment archive: read-only history, kept out of the MDX so Tina does not
    present other people's words as editable post content. */

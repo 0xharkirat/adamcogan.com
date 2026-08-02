@@ -1,8 +1,14 @@
 ---
+import { mediaSize } from '../../lib/media';
+
 /**
  * Captioned image. Adam captions almost every image on the blog using the
  * "Figure: ..." convention, so captions are content and get real markup
  * (<figure>/<figcaption>) rather than being folded into alt text.
+ *
+ * Presentation lives in `.entry` in global.css (the grey caption strip, the
+ * 1px photo mat, the caption sizing), matching the original's own CSS. This
+ * component only supplies structure and the intrinsic dimensions.
  */
 interface Props {
   src: string;
@@ -11,6 +17,7 @@ interface Props {
 }
 
 const { src, alt = '', caption = '' } = Astro.props;
+const size = mediaSize(src);
 
 // Captions are authored as "Figure: the actual caption". Split the label off so
 // it can be styled separately, and fall back cleanly when the prefix is absent.
@@ -19,11 +26,19 @@ const label = match?.[1] ?? '';
 const text = match?.[2] ?? caption;
 ---
 
-<figure class="my-8">
-  <img src={src} alt={alt || text} loading="lazy" decoding="async" class="h-auto max-w-full" />
+<figure>
+  <img
+    src={src}
+    alt={alt || text}
+    width={size?.width}
+    height={size?.height}
+    loading="lazy"
+    decoding="async"
+    class="h-auto max-w-full"
+  />
   {caption && (
-    <figcaption class="mt-2 text-sm leading-snug text-muted-foreground">
-      {label && <span class="font-bold">{label}:</span>}{' '}{text}
+    <figcaption>
+      {label && <span>{label}:</span>}{label ? ' ' : ''}{text}
     </figcaption>
   )}
 </figure>

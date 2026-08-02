@@ -1,0 +1,57 @@
+---
+import { mediaSize } from '../../lib/media';
+
+/**
+ * A WordPress `[gallery]`, rendered as the compact grid it was rather than a
+ * stack of full-width photos.
+ *
+ * Two 2011-era posts use this. Items arrive as a JSON string rather than a
+ * structured Tina list because these are frozen legacy galleries that nobody
+ * will edit; keeping it to one attribute avoids adding a nested schema and an
+ * editor UI for content that will never be touched. If a gallery is ever
+ * wanted in a new post, promote this to a proper object-list template.
+ */
+interface GalleryItem {
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+
+interface Props {
+  columns?: string | number;
+  items?: string;
+}
+
+const { columns = 3, items = '[]' } = Astro.props;
+
+let parsed: GalleryItem[] = [];
+try {
+  parsed = JSON.parse(items) as GalleryItem[];
+} catch {
+  parsed = [];
+}
+
+const cols = Math.min(Math.max(Number(columns) || 3, 1), 6);
+---
+
+{parsed.length > 0 && (
+  <div class="gallery my-6 grid gap-3" style={`grid-template-columns: repeat(${cols}, minmax(0, 1fr))`}>
+    {parsed.map((item) => {
+      const size = mediaSize(item.src);
+      return (
+        <figure class="m-0 w-full">
+          <img
+            src={item.src}
+            alt={item.alt || item.caption || ''}
+            width={size?.width}
+            height={size?.height}
+            loading="lazy"
+            decoding="async"
+            class="aspect-square h-auto w-full object-cover"
+          />
+          {item.caption && <figcaption class="gallery-caption">{item.caption}</figcaption>}
+        </figure>
+      );
+    })}
+  </div>
+)}

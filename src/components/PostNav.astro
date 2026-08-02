@@ -1,0 +1,34 @@
+---
+import type { PostSummary } from '../lib/posts';
+
+/**
+ * Previous/next post links, sitting between the article and the comments as
+ * they do on the original: older post on the left, newer on the right, each
+ * showing the adjacent post's title rather than a bare "Previous".
+ */
+interface Props {
+	older?: PostSummary | null;
+	newer?: PostSummary | null;
+}
+
+const { older, newer } = Astro.props;
+---
+
+{(older || newer) && (
+	<nav aria-label="More posts" class="mb-[30px] flex flex-col gap-3 py-[15px] sm:flex-row sm:justify-between sm:gap-8">
+		<div class="sm:max-w-[48%]">
+			{older && (
+				<a href={older.url} rel="prev" class="inline-block">
+					<span aria-hidden="true">&laquo;</span> {older.title}
+				</a>
+			)}
+		</div>
+		<div class="sm:max-w-[48%] sm:text-right">
+			{newer && (
+				<a href={newer.url} rel="next" class="inline-block">
+					{newer.title} <span aria-hidden="true">&raquo;</span>
+				</a>
+			)}
+		</div>
+	</nav>
+)}

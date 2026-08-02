@@ -3,6 +3,7 @@ import Shell from '../../../../layouts/Shell.astro';
 import TinaIsland from '@tinacms/astro/TinaIsland.astro';
 import BlogBody from '../../../../components/islands/BlogBody.astro';
 import Comments from '../../../../components/Comments.astro';
+import PostNav from '../../../../components/PostNav.astro';
 import { getBlog } from '../../../../lib/data';
 import { islands } from '../../../../lib/islands';
 import { dateParts, getPosts } from '../../../../lib/posts';
@@ -14,13 +15,14 @@ import { dateParts, getPosts } from '../../../../lib/posts';
  */
 export async function getStaticPaths() {
 	const posts = await getPosts();
-	return posts.map((post) => ({
+	// Posts are newest-first, so the neighbour at i+1 is the older one.
+	return posts.map((post, i) => ({
 		params: { ...dateParts(post.pubDate), slug: post.slug },
-		props: { summary: post },
+		props: { summary: post, newer: posts[i - 1] ?? null, older: posts[i + 1] ?? null },
 	}));
 }
 
-const { summary } = Astro.props;
+const { summary, newer, older } = Astro.props;
 const slug = summary.slug;
 const blog = await getBlog(slug);
 const data = blog.data?.blog;
@@ -36,6 +38,8 @@ if (!data) return new Response('Not Found', { status: 404 });
 	<TinaIsland name="blog" wrapper={islands.blog.wrapper} params={{ slug }} primary>
 		<BlogBody data={data} summary={summary} />
 	</TinaIsland>
-	{/* Outside the island: archived comments are records, not editable content. */}
+	{/* Outside the island: neither neighbour links nor archived comments are
+	    editable content, so they stay out of the visual-editing region. */}
+	<PostNav older={older} newer={newer} />
 	<Comments slug={slug} />
 </Shell>

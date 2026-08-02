@@ -1,0 +1,27 @@
+---
+import { mediaSize } from '../../lib/media';
+
+/**
+ * Plain Markdown images (`![alt](src)`), rendered with their real dimensions
+ * so the browser reserves space instead of reflowing the article as each one
+ * decodes. Captioned images go through `<Figure />` instead.
+ */
+interface Props {
+  url: string;
+  caption?: string;
+  alt?: string;
+}
+
+const { url, caption = '', alt = '' } = Astro.props;
+const size = mediaSize(url);
+---
+
+<img
+  src={url}
+  alt={alt || caption}
+  width={size?.width}
+  height={size?.height}
+  loading="lazy"
+  decoding="async"
+  class="h-auto max-w-full"
+/>

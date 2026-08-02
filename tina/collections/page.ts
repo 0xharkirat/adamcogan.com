@@ -2,6 +2,7 @@ import type { Collection } from 'tinacms';
 import { youTubeEmbedTemplate } from '../../src/components/mdx/YouTubeEmbed.template';
 import { figureTemplate } from '../../src/components/mdx/Figure.template';
 import { videoTemplate } from '../../src/components/mdx/Video.template';
+import { galleryTemplate } from '../../src/components/mdx/Gallery.template';
 
 /**
  * Pages are prose documents. Both pages migrated from WordPress (About,
@@ -57,7 +58,7 @@ export const PageCollection: Collection = {
 			name: 'body',
 			label: 'Body',
 			isBody: true,
-			templates: [youTubeEmbedTemplate, figureTemplate, videoTemplate],
+			templates: [youTubeEmbedTemplate, figureTemplate, videoTemplate, galleryTemplate],
 		},
 	],
 };
