@@ -2,7 +2,7 @@
 
 Adam Cogan's blog, migrated from WordPress to Astro and TinaCMS.
 
-183 posts, 2 pages, 910 media files and 175 comments were moved off WordPress.
+183 posts, 2 pages, 910 media files and 175 comments were copied from WordPress.
 Every post keeps the address it had, so links pointing at a site running since
 2002 still resolve.
 
