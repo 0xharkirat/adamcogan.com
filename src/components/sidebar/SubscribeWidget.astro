@@ -27,7 +27,7 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 
 	<p class="mb-[19.2px] text-[16px] leading-[24px] text-[#333]">{body}</p>
 
-	<form method="post" action={action ?? '#'}>
+	<form method="post" action={action ?? '#'} data-subscribe data-wired={action ? 'true' : 'false'}>
 		<div class="mb-[19.2px]">
 			<label class="sr-only" for="sidebar-subscribe-email">Email Address</label>
 			<input
@@ -47,5 +47,26 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 		>
 			{buttonLabel}
 		</button>
+
+		<p data-subscribe-note hidden class="mt-[10px] text-[0.9em] leading-[24px] text-[#666]">
+			Email sign-up is not connected yet, so nothing was sent.
+		</p>
 	</form>
 </section>
+
+{/*
+  Until an endpoint exists the form posts to "#", which reloads the page and
+  silently discards the address. Saying so is better than looking broken. The
+  guard removes itself the moment `subscribe.action` is set.
+*/}
+<script is:inline>
+	(function () {
+		const form = document.querySelector('[data-subscribe]');
+		if (!form || form.dataset.wired === 'true') return;
+		const note = form.querySelector('[data-subscribe-note]');
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			if (note) note.hidden = false;
+		});
+	})();
+</script>
