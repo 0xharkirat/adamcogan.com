@@ -63,9 +63,16 @@ export function tagName(slug: string): string {
 
 let cache: PostSummary[] | null = null;
 
-/** All published posts, newest first. Memoised: every route calls this. */
+/**
+ * All published posts, newest first.
+ *
+ * Memoised for production builds only, where every route calls this and the
+ * content cannot change mid-build. In dev the cache is skipped: it persists
+ * across requests, so a post created in the CMS would 404 until the server was
+ * restarted, which makes the editor look broken to whoever just wrote it.
+ */
 export async function getPosts(): Promise<PostSummary[]> {
-	if (cache) return cache;
+	if (cache && import.meta.env.PROD) return cache;
 
 	const nodes = await listBlogs();
 	cache = nodes

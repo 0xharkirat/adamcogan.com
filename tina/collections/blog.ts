@@ -32,6 +32,33 @@ export const BlogCollection: Collection = {
       const dd = String(date.getUTCDate()).padStart(2, "0");
       return `/${yyyy}/${mm}/${dd}/${document._sys.filename}/`;
     },
+
+    /**
+     * Writing a post should not start with "what should the file be called".
+     * The filename becomes the last part of the URL, so it is derived from the
+     * title automatically and stays editable for anyone who wants a shorter
+     * slug.
+     */
+    filename: {
+      readonly: false,
+      slugify: (values) =>
+        String(values?.title ?? "")
+          .toLowerCase()
+          .replace(/['’]/g, "")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .slice(0, 80) || "untitled",
+    },
+
+    /**
+     * A new post opens ready to write in: dated today and attributed, rather
+     * than showing empty required fields that block saving.
+     */
+    defaultItem: () => ({
+      pubDate: new Date().toISOString(),
+      author: "Adam Cogan",
+      categories: ["general"],
+    }),
   },
   fields: [
     {
@@ -40,29 +67,35 @@ export const BlogCollection: Collection = {
       label: "Title",
       isTitle: true,
       required: true,
+      description: "Shown as the post heading and used to build the page address.",
     },
     {
       name: "description",
-      label: "Description",
+      label: "Summary",
       type: "string",
       ui: { component: "textarea" },
+      description:
+        "The teaser shown on the blog list and in Google results. Two or three sentences.",
     },
     {
       name: "pubDate",
       label: "Publication Date",
       type: "datetime",
       required: true,
-      description: "Also determines the post URL, so changing it changes the permalink.",
+      description:
+        "Sets the page address (/YYYY/MM/DD/...). Changing it on a published post changes its address and breaks existing links.",
     },
     {
       name: "updatedDate",
       label: "Updated Date",
       type: "datetime",
+      description: "Optional. Shown at the foot of the post as \"Last updated\".",
     },
     {
       name: "heroImage",
-      label: "Hero Image",
+      label: "Banner image",
       type: "image",
+      description: "Wide banner at the top of the post and on the blog list. Around 670x241.",
     },
     {
       name: "author",
@@ -76,6 +109,7 @@ export const BlogCollection: Collection = {
       type: "string",
       list: true,
       options: options(taxonomy.categories),
+      description: "Broad topic. Pick one or two.",
     },
     {
       name: "tags",
@@ -83,24 +117,28 @@ export const BlogCollection: Collection = {
       type: "string",
       list: true,
       options: options(taxonomy.tags),
+      description: "Specific subjects. Pick as many as apply.",
     },
     {
       name: "legacyUrl",
-      label: "Original WordPress URL",
+      label: "Legacy: original WordPress URL",
       type: "string",
-      description: "Path this post had on WordPress. Kept so permalink drift is detectable.",
+      description:
+        "Migration bookkeeping. Leave blank on new posts. On migrated posts this records the address the post had on WordPress, and the verification script fails if a post stops serving at it.",
     },
     {
       name: "wpId",
-      label: "WordPress post ID",
+      label: "Legacy: WordPress post ID",
       type: "number",
-      description: "Traceability back to the source export.",
+      description: "Migration bookkeeping. Leave blank on new posts.",
     },
     {
       type: "rich-text",
       name: "body",
-      label: "Body",
+      label: "Post",
       isBody: true,
+      description:
+        "Use the + button for images, videos and YouTube embeds. Captions follow the house style: \"Figure: what the image shows\".",
       templates: [youTubeEmbedTemplate, figureTemplate, videoTemplate, galleryTemplate],
     },
   ],

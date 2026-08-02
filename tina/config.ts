@@ -27,7 +27,11 @@ export default defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: "",
+      // Scoped to the media library so the picker shows Adam's images and
+      // nothing else. Rooted at "" it also listed the built CMS assets, the
+      // sidebar badge sprites and the favicon, which is noise for anyone
+      // choosing a banner image. Existing content already references /media.
+      mediaRoot: "media",
       publicFolder: "public",
     },
   },
