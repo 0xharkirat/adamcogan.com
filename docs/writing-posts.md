@@ -1,7 +1,7 @@
 # Write and edit posts
 
 This guide is for whoever writes on adamcogan.com.
-You do not need to know how the site is built, and you never edit a file directly.
+It assumes no knowledge of how the site is built. You edit everything through a form in your browser.
 
 ## Before you start
 
@@ -129,12 +129,12 @@ Only the date and filename change its address.
 ## Fields you can ignore
 
 Posts migrated from WordPress carry two hidden fields recording where they used to live.
-You will not see them on the form, and you do not need them.
+They stay hidden on the form, so you can leave them alone.
 
 ## If something looks wrong
 
 Reload the page first.
 A stale editor is the most common cause, and a reload fixes it.
 
-If the preview shows "Page not found" for a post you just created, or the editor will not save, tell a developer.
+If the preview shows "Page not found" for a post you have created, or the editor refuses to save, tell a developer.
 Those are both signs the editor needs restarting rather than anything you did.

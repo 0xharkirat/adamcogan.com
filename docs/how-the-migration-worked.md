@@ -21,10 +21,10 @@ A script does the same thing every time, and if it gets something wrong it gets 
 
 You might expect step one to be "get the WordPress admin password".
 
-We never had it, and never needed it.
+We never had it. It turned out not to be necessary.
 
 WordPress publishes everything on the site through something called a **REST API**, and it is on by default.
-An API is just a web address that returns data instead of a web page.
+An API is a web address that returns data instead of a web page.
 Open a normal blog post and you get something designed for a human to read.
 Open the API version and you get the same post as structured data: title here, date there, categories in a list.
 
@@ -134,11 +134,11 @@ Every image referenced actually exists, and no WordPress leftovers ended up in t
 The word-by-word comparison found two bugs that nothing else would have.
 
 Both were invisible.
-No error message, no warning, and the pages looked fine.
+Nothing failed, and the pages looked fine.
 
 **One post lost 88% of its text.**
 The rule for handling YouTube videos was too greedy.
-If a video sat inside a box that also contained the rest of the article, the rule replaced the *whole box* with just the video, deleting everything around it.
+If a video sat inside a box that also contained the rest of the article, the rule replaced the *whole box* with only the video, deleting everything around it.
 Two other posts lost 70% and 52% the same way.
 
 **Two words got glued together.**
