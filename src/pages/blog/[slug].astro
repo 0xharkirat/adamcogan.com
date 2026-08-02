@@ -1,0 +1,28 @@
+---
+import { getPosts, postUrl } from '../../lib/posts';
+
+/**
+ * Redirects /blog/<slug> to the post's real dated permalink.
+ *
+ * This exists because of the CMS. The Tina collection router builds
+ * /YYYY/MM/DD/<slug>/ from `pubDate`, but Tina's `Document` type only
+ * guarantees `_sys`: field values are passed for a document that has been
+ * loaded, and not for one that has just been created. So the moment an editor
+ * saves a new post, the router falls back to /blog/<slug> and the preview
+ * showed "Page not found" for a post that existed and was live.
+ *
+ * Making the fallback resolve is better than trying to guarantee the date is
+ * present, and it means anyone linking to /blog/<slug> by hand lands correctly
+ * too. Nothing on the site generates these URLs, so this only ever redirects.
+ */
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { target: postUrl(post.slug, post.pubDate) },
+	}));
+}
+
+const { target } = Astro.props;
+return Astro.redirect(target, 301);
+---

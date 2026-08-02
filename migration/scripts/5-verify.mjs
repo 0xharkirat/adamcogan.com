@@ -50,7 +50,8 @@ const builtPaths = new Set(
 );
 
 const missing = wpPostUrls.filter((u) => !builtPaths.has(u));
-const datedBuilt = [...builtPaths].filter((p) => /^\/\d{4}\/\d{2}\/\d{2}\//.test(p));
+// A post has a fourth segment; /2026/07/29/ on its own is the day archive.
+const datedBuilt = [...builtPaths].filter((p) => /^\/\d{4}\/\d{2}\/\d{2}\/[^/]+\//.test(p));
 const extra = datedBuilt.filter((p) => !wpPostUrls.includes(p));
 
 console.log(`  WordPress post URLs: ${wpPostUrls.length}, dated URLs built: ${datedBuilt.length}`);
@@ -59,10 +60,35 @@ if (missing.length) {
   missing.slice(0, 10).forEach((u) => console.error(`         ${u}`));
 } else ok("every WordPress post URL exists in the build");
 
-if (extra.length) {
-  fail(`${extra.length} dated URLs built that WordPress does not have`);
-  extra.slice(0, 10).forEach((u) => console.error(`         ${u}`));
-} else ok("no dated URLs invented");
+// Posts written since the migration have no legacyUrl and are not expected in
+// the WordPress sitemap. Only a post claiming to be migrated is a problem here,
+// because that means its permalink moved.
+const migratedPaths = new Set();
+const newPaths = new Set();
+for (const name of await readdir(join(ROOT, "src", "content", "blog"))) {
+  if (!name.endsWith(".mdx")) continue;
+  const text = await readFile(join(ROOT, "src", "content", "blog", name), "utf8");
+  const legacy = text.match(/^legacyUrl:\s*"([^"]+)"/m)?.[1];
+  (legacy ? migratedPaths : newPaths).add(name.replace(/\.mdx$/, ""));
+}
+
+const movedPosts = extra.filter((u) => {
+  const slug = u.split("/").filter(Boolean).pop();
+  return migratedPaths.has(slug);
+});
+const addedSincePosts = extra.filter((u) => {
+  const slug = u.split("/").filter(Boolean).pop();
+  return newPaths.has(slug);
+});
+
+if (movedPosts.length) {
+  fail(`${movedPosts.length} migrated post(s) no longer at their WordPress URL`);
+  movedPosts.slice(0, 10).forEach((u) => console.error(`         ${u}`));
+} else ok("no migrated post moved off its WordPress URL");
+
+if (addedSincePosts.length) {
+  console.log(`  note ${addedSincePosts.length} post(s) written since the migration: ${addedSincePosts.join(", ")}`);
+}
 
 /* ---------------------------------------------- 2. legacyUrl round-trip */
 
@@ -105,6 +131,31 @@ feed ? ok("feed.xml") : fail("feed.xml missing");
 // `index-search` step was skipped. Search silently returns nothing without it.
 const pagefind = builtFiles.some((f) => f.includes("/pagefind/") && f.endsWith("pagefind.js"));
 pagefind ? ok("pagefind index") : fail("pagefind index missing (run pnpm run index-search)");
+
+/* ------------------------------------------- 3b. date archives */
+
+// WordPress publishes a page at every level of a post's permalink, not just
+// the year: /2026/, /2026/01/ and /2026/01/19/ are all real URLs. Only the
+// year level existed at first, and nothing caught it because the post sitemap
+// does not list archives.
+console.log("\n3b. Date archives at every level of each permalink");
+
+const expectedArchives = new Set();
+for (const url of wpPostUrls) {
+  const m = url.match(/^\/(\d{4})\/(\d{2})\/(\d{2})\//);
+  if (!m) continue;
+  const [, y, mo, d] = m;
+  expectedArchives.add(`/${y}/`);
+  expectedArchives.add(`/${y}/${mo}/`);
+  expectedArchives.add(`/${y}/${mo}/${d}/`);
+}
+
+const missingArchives = [...expectedArchives].filter((p) => !builtPaths.has(p)).sort();
+console.log(`  ${expectedArchives.size} date archives implied by the post permalinks`);
+if (missingArchives.length) {
+  fail(`${missingArchives.length} date archives missing`);
+  missingArchives.slice(0, 10).forEach((p) => console.error(`         ${p}`));
+} else ok("year, month and day archives all exist");
 
 /* ---------------------------------------------- 4. media integrity */
 

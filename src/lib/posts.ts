@@ -164,6 +164,26 @@ export function extraPageNumbers(postCount: number): number[] {
 	return Array.from({ length: Math.max(0, total - 1) }, (_, i) => i + 2);
 }
 
+/**
+ * Every date archive WordPress serves, at all three levels: /YYYY/, /YYYY/MM/
+ * and /YYYY/MM/DD/. The month and day levels are real published URLs on the old
+ * site, not just path prefixes, so they have to exist here too.
+ */
+export async function getDateArchives(depth: 'year' | 'month' | 'day') {
+	const posts = await getPosts();
+	const groups = new Map<string, { parts: string[]; posts: PostSummary[] }>();
+
+	for (const post of posts) {
+		const { year, month, day } = dateParts(post.pubDate);
+		const parts = depth === 'year' ? [year] : depth === 'month' ? [year, month] : [year, month, day];
+		const key = parts.join('/');
+		if (!groups.has(key)) groups.set(key, { parts, posts: [] });
+		groups.get(key)!.posts.push(post);
+	}
+
+	return [...groups.values()].sort((a, b) => b.parts.join('/').localeCompare(a.parts.join('/')));
+}
+
 /** The year a post belongs to, in the site's timezone. */
 export const postYear = (post: PostSummary) => Number(dateParts(post.pubDate).year);
 

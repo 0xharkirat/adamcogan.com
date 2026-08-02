@@ -1,0 +1,33 @@
+---
+import Shell from '../../../layouts/Shell.astro';
+import PostList from '../../../components/PostList.astro';
+import { getDateArchives, paginate, SITE_TIMEZONE } from '../../../lib/posts';
+
+/**
+ * Month archive at /YYYY/MM/, matching WordPress. These are published URLs on
+ * the old site, not just path prefixes, so they need real pages.
+ */
+export async function getStaticPaths() {
+	const archives = await getDateArchives('month');
+	return archives.map(({ parts, posts }) => ({
+		params: { year: parts[0], month: parts[1] },
+		props: { posts },
+	}));
+}
+
+const { year, month } = Astro.params;
+const { posts } = Astro.props;
+
+// Day 1 at noon avoids any chance of the label slipping a month at the edges.
+const heading = new Date(Date.UTC(Number(year), Number(month) - 1, 1, 12)).toLocaleDateString('en-US', {
+	timeZone: SITE_TIMEZONE,
+	month: 'long',
+	year: 'numeric',
+});
+
+const page = paginate(posts, 1, `/${year}/${month}/`);
+---
+
+<Shell title={heading} description={`Posts from ${heading}.`}>
+	<PostList page={page} heading={heading} />
+</Shell>
