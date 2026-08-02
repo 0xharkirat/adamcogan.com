@@ -19,6 +19,12 @@ export const PageCollection: Collection = {
 	path: 'src/content/page',
 	format: 'mdx',
 	ui: {
+		/*
+		 * Adam's posts live in one flat folder, so folder creation is only a way to
+		 * put a post somewhere the routes will not find it. `create` and `delete`
+		 * stay on; only the folder buttons go.
+		 */
+		allowedActions: { create: true, delete: true, createFolder: false, createNestedFolder: false },
 		router: ({ document }) => `/${document._sys.filename}/`,
 	},
 	fields: [

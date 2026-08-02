@@ -26,6 +26,12 @@ export const BlogCollection: Collection = {
   path: "src/content/blog",
   format: "mdx",
   ui: {
+    /*
+     * Adam's posts live in one flat folder, so folder creation is only a way to
+     * put a post somewhere the routes will not find it. `create` and `delete`
+     * stay on; only the folder buttons go.
+     */
+    allowedActions: { create: true, delete: true, createFolder: false, createNestedFolder: false },
     router({ document }) {
       // Posts keep their WordPress permalink, so the router rebuilds the dated
       // path rather than using the filename alone.
