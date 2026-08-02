@@ -21,7 +21,7 @@ There is nothing to install, and nobody has to start anything for you.
    This is the heading readers see, and it also builds the post's web address.
 4. Write a **Summary**.
    This is the teaser on the blog list and the description Google shows.
-   Two or three sentences is right.
+   Aim for 2 or 3 sentences.
 5. Check the **Publication Date**.
    It is already set to today.
    Change it only if you are backdating the post.
@@ -57,7 +57,7 @@ A post titled **"Why we moved to Azure"** published on **19 January 2026** becom
 The date supplies `/2026/01/19/`, and the title becomes `why-we-moved-to-azure`.
 This is the same address format the old WordPress site used, which is why every old link still works.
 
-Three more pages appear on their own, and you do not create them:
+Another 3 pages appear on their own, and you do not create them:
 
 | Address | What it lists |
 | --- | --- |
@@ -65,7 +65,7 @@ Three more pages appear on their own, and you do not create them:
 | `/2026/01/` | Everything published in January 2026 |
 | `/2026/01/19/` | Everything published that day |
 
-If two posts go out on the same day, both appear on the day page, and each keeps its own address.
+If 2 posts go out on the same day, both appear on the day page, and each keeps its own address.
 There are no folders to create.
 The site groups posts by date for you.
 
@@ -86,7 +86,7 @@ Both group posts, and both get their own page.
 
 **Categories** are broad, and there should be few of them.
 General, SSW Projects, AI, Scrum.
-Pick one or two.
+Pick 1 or 2.
 
 **Tags** are specific, and there can be many.
 best practice, customer journey, TinaCMS.
@@ -107,9 +107,9 @@ Click the **+** button inside the Post field and choose an image.
 Use **Figure (captioned image)** when the image needs a caption, which is most of the time.
 House style is to start the caption with `Figure:`, as in `Figure: The new homepage on mobile`.
 
-**YouTube Embed** takes the video ID, the eleven characters after `v=` in a YouTube address.
+**YouTube Embed** takes the video ID, the 11 characters after `v=` in a YouTube address.
 **Video (self-hosted)** is for video files uploaded to the site rather than YouTube.
-Ignore **Gallery (legacy)**; it exists only for two old posts.
+Ignore **Gallery (legacy)**; it exists only for 2 old posts.
 
 Images you upload go into the site's shared media library.
 There is no separate library per post.
@@ -128,7 +128,7 @@ Only the date and filename change its address.
 
 ## Fields you can ignore
 
-Posts migrated from WordPress carry two hidden fields recording where they used to live.
+Posts migrated from WordPress carry 2 hidden fields recording where they used to live.
 They stay hidden on the form, so you can leave them alone.
 
 ## If something looks wrong

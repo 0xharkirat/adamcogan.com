@@ -76,4 +76,4 @@ what it protects.
 > `blogConnection { totalCount }` returns 50, not 183. Always page through
 > `pageInfo.hasNextPage`, which is what `listAll()` in `src/lib/data.ts` does.
 > Reading only the first page truncates the site silently: the build succeeds
-> and two thirds of the posts do not exist.
+> and 2 in 3 posts do not exist.

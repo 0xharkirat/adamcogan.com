@@ -2,7 +2,7 @@
 
 Adam Cogan's blog, migrated from WordPress to Astro and TinaCMS.
 
-183 posts, 2 pages, 910 media files and 175 comments were copied from WordPress.
+The move brought over 183 posts, 2 pages, 910 media files and 175 comments.
 Every post keeps the address it had, so links pointing at a site running since
 2002 still resolve.
 
@@ -10,6 +10,10 @@ Live at <https://adamcogan.vercel.app>, edited at
 <https://adamcogan.vercel.app/admin>.
 
 Migrated to [TinaCMS](https://tina.io) by [Harky](https://harksingh.com) with ❤️.
+
+Built with Claude Code and Playwright MCP, driving a deterministic migration
+script, so every run produces the same output. See
+[How this migration worked](docs/how-the-migration-worked.md).
 
 ## Table of contents
 
@@ -75,6 +79,15 @@ Discussions enabled and 4 values from [giscus.app](https://giscus.app). See
 which is lossy. The originals remain on the WordPress host and
 `migration/scripts/3-media.mjs` re-fetches them, so this is reversible until
 that host is switched off.
+
+**The design is the old one, on purpose.** The layout, type, colours and spacing
+were measured off the WordPress site and rebuilt to match, down to details that
+look like mistakes: the wordmark's line height, links marked only by a grey
+underline, unstyled code blocks, and pagination where the current page is the
+unfilled chip. The migration was judged on whether readers notice a change, so
+redesigning it at the same time would have made that impossible to tell. Adam
+can now change any of it, against a version that is known to match what he had.
+See [About the site's structure](docs/architecture.md).
 
 ## License
 
