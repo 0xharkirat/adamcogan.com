@@ -449,7 +449,17 @@ async function emit(items, kind, outDir) {
 }
 
 const writtenPosts = await emit(posts, "post", join(ROOT, "src", "content", "blog"));
-const writtenPages = await emit(pages, "page", join(ROOT, "src", "content", "page"));
+/*
+ * WordPress's "Blog" page is an empty placeholder: it exists only so the theme
+ * has something to hang the post listing on, and its body is blank. Here the
+ * listing is a real route (src/pages/blog/index.astro), so emitting the page
+ * would put an editable but useless "Blog" entry in the CMS and leave two
+ * things claiming /blog/. Excluded by its WordPress id so a page that merely
+ * happens to be titled "Blog" later is unaffected.
+ */
+const PLACEHOLDER_PAGE_IDS = new Set([216]);
+const realPages = pages.filter((p) => !PLACEHOLDER_PAGE_IDS.has(p.id));
+const writtenPages = await emit(realPages, "page", join(ROOT, "src", "content", "page"));
 
 /**
  * Point every media reference at the file that actually exists on disk.

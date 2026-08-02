@@ -1,14 +1,20 @@
 # adamcogan.com
 
-The blog of Adam Cogan, migrated from WordPress to Astro and TinaCMS.
+The blog of Adam Cogan, migrated from WordPress to [TinaCMS](https://tina.io) Astro template by [Harky](https://harksingh.com) with ❤️.
 
-183 posts, 2 pages and 907 media files were moved off WordPress. Every post
+183 posts, 2 pages and 910 media files were copied from WordPress via Playwright MCP and Claude Code . Every post
 keeps the permalink it had, so no inbound link to a site running since 2002 is
 broken.
+
+
 
 **Writing or editing posts?** See [docs/writing-posts.md](docs/writing-posts.md).
 It covers the editor rather than the code, including how a post's web address is
 built from its title and date.
+
+**Curious how the migration was done?** See
+[docs/how-the-migration-worked.md](docs/how-the-migration-worked.md). It is
+written for a general reader, and explains why no WordPress login was needed.
 
 ## Prerequisites
 
@@ -75,12 +81,19 @@ URLs mirror WordPress exactly:
 | Listing | `/`, `/blog/`, then `/page/N/` |
 | Category | `/category/<slug>/` |
 | Tag | `/tag/<slug>/` |
-| Year archive | `/YYYY/` |
+| Date archives | `/YYYY/`, `/YYYY/MM/`, `/YYYY/MM/DD/` |
+| Search | `/search` (Pagefind) |
 | Feed | `/feed.xml`, with `/feed` and `/rss.xml` redirecting to it |
 
-Categories and tags store WordPress slugs rather than display names, so those
-archive URLs stay byte-identical. `src/data/taxonomy.json` maps each slug back
-to its display name.
+`/blog/<slug>` redirects to the dated permalink. Nothing links there; it exists
+because the CMS falls back to that shape for a post it has just created, before
+it knows the date.
+
+Categories and tags are free text, so an editor can add one. Values are
+slugified when URLs are built, which leaves the migrated WordPress slugs
+byte-identical (slugifying a slug is a no-op) while letting a term typed as
+"AI Agents" file under `/category/ai-agents/`. `src/data/taxonomy.json` maps the
+original slugs back to their WordPress display names.
 
 > [!WARNING]
 > Tina connections are cursor-paginated, and `totalCount` reports the size of
@@ -115,6 +128,7 @@ node migration/scripts/2-transform.mjs      # raw JSON -> src/content/**/*.mdx
 node migration/scripts/3-media.mjs          # download referenced uploads
 node migration/scripts/4-optimise-media.mjs # resize, WebP, WebM
 node migration/scripts/5-verify.mjs         # check the build against the live sitemap
+node migration/scripts/6-content-diff.mjs   # compare every post's words against WordPress
 ```
 
 `migration/raw/` and `migration/design/shots/` are not committed. Step 1
@@ -127,9 +141,15 @@ quality for no size benefit. The transform re-applies the renames recorded in
 pointing at pre-WebP filenames.
 
 `5-verify.mjs` needs a completed build in `dist/`. It fetches the live
-WordPress sitemap and fails if any of the 183 post URLs is missing, if any
-dated URL was invented, if any media reference has no file, or if WordPress
-markup leaked into the output.
+WordPress sitemap and fails if any of the 183 post URLs is missing, if a
+migrated post moved off its address, if any date archive is absent, if any
+media reference has no file, or if WordPress markup leaked into the output.
+
+`6-content-diff.mjs` compares the words of every built post against the raw
+WordPress HTML. Spot-checking pages cannot answer "did any of the 183 lose a
+paragraph"; this can, and it found two silent bugs that built cleanly. It
+separates real loss from cases where the original's inline tags split a word,
+so the report is not drowned in false positives.
 
 ## Comments
 
