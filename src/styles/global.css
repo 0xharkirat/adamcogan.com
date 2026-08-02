@@ -224,3 +224,17 @@
 	font-size: 0.9em;
 	line-height: 24px;
 }
+
+/*
+ * External-link marker. Small, in the link's own colour, and nudged up so it
+ * reads as a mark on the link rather than a character in the sentence.
+ * `inline-block` is what keeps the parent's underline from running under it.
+ */
+.external-marker {
+	font-size: 0.75em;
+	line-height: 1;
+	margin-left: 0.15em;
+	vertical-align: 0.25em;
+	display: inline-block;
+	text-decoration: none;
+}

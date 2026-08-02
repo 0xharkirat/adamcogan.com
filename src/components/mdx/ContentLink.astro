@@ -1,0 +1,32 @@
+---
+import { isExternalHref } from '../../lib/links';
+
+/**
+ * Links inside post bodies.
+ *
+ * External ones open in a new tab and say so, both visually and to a screen
+ * reader. A reader partway through a 2002 post following a link to some other
+ * site should not lose the article.
+ *
+ * The site's own addresses stay in the same tab. That includes absolute links
+ * to adamcogan.com, of which the migrated content has 74: they were written as
+ * absolute URLs on WordPress but they point here, so treating them as external
+ * would open the site in a tab on top of itself.
+ */
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+const external = isExternalHref(url);
+---
+
+{external ? (
+  <a href={url} target="_blank" rel="noopener">
+    <slot />
+    <span class="external-marker" aria-hidden="true">↗</span>
+    <span class="sr-only"> (opens in a new tab)</span>
+  </a>
+) : (
+  <a href={url}><slot /></a>
+)}

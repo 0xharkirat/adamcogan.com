@@ -1,4 +1,6 @@
 ---
+import { isExternalHref } from '../../lib/links';
+
 /**
  * The link list shared by Adam's Profiles, Adam's Favourite Products, Recent
  * Posts and Archives. All four render identically on the live site.
@@ -14,24 +16,31 @@ interface Props {
 }
 
 const { items } = Astro.props;
-
-/** Everything absolute leaves the site. Internal links are all root-relative. */
-const isExternal = (href: string) => /^https?:\/\//.test(href);
 ---
 
 <ul class="m-0 list-none p-0">
 	{
-		items.map((item) => (
-			<li class="py-[6px] leading-[22.4px]">
-				<a
-					href={item.href}
-					target={isExternal(item.href) ? '_blank' : undefined}
-					rel={isExternal(item.href) ? 'noopener' : undefined}
-					class="text-[16px] font-normal text-[#333] underline decoration-[#CCCCCC] hover:decoration-[#CC4141] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141]"
-				>
-					{item.label}
-				</a>
-			</li>
-		))
+		items.map((item) => {
+			const external = isExternalHref(item.href);
+
+			return (
+				<li class="py-[6px] leading-[22.4px]">
+					<a
+						href={item.href}
+						target={external ? '_blank' : undefined}
+						rel={external ? 'noopener' : undefined}
+						class="text-[16px] font-normal text-[#333] underline decoration-[#CCCCCC] hover:decoration-[#CC4141] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141]"
+					>
+						{item.label}
+						{external && (
+							<>
+								<span class="external-marker" aria-hidden="true">↗</span>
+								<span class="sr-only"> (opens in a new tab)</span>
+							</>
+						)}
+					</a>
+				</li>
+			);
+		})
 	}
 </ul>

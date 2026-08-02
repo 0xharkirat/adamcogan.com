@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { tinaField } from '@tinacms/astro/tina-field';
 import type { CmsConfig } from '../lib/data';
+import { isExternalHref } from '../lib/links';
 
 /**
  * Site header: a 6px red bar, then a light band holding the avatar, wordmark,
@@ -72,6 +73,8 @@ const isActive = (link: string) =>
 						<li>
 							<a
 								href={item.link}
+								target={isExternalHref(item.link) ? '_blank' : undefined}
+								rel={isExternalHref(item.link) ? 'noopener' : undefined}
 								aria-current={isActive(item.link) ? 'page' : undefined}
 								class:list={[
 									'block py-[5px] text-base leading-[1.4] uppercase no-underline',
@@ -82,6 +85,12 @@ const isActive = (link: string) =>
 								data-tina-field={tinaField(item, 'title')}
 							>
 								{item.title}
+								{isExternalHref(item.link) && (
+									<>
+										<span class="external-marker" aria-hidden="true">↗</span>
+										<span class="sr-only"> (opens in a new tab)</span>
+									</>
+								)}
 							</a>
 						</li>
 					))}
@@ -110,9 +119,17 @@ const isActive = (link: string) =>
 						<li>
 							<a
 								href={item.link}
+								target={isExternalHref(item.link) ? '_blank' : undefined}
+								rel={isExternalHref(item.link) ? 'noopener' : undefined}
 								class="block px-[14px] py-[6px] text-base text-[#666] no-underline hover:bg-black/[0.07] hover:text-black"
 							>
 								{item.title}
+								{isExternalHref(item.link) && (
+									<>
+										<span class="external-marker" aria-hidden="true">↗</span>
+										<span class="sr-only"> (opens in a new tab)</span>
+									</>
+								)}
 							</a>
 						</li>
 					))}

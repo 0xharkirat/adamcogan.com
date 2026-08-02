@@ -1,5 +1,6 @@
 import CodeBlock from './CodeBlock.astro';
 import ContentImage from './ContentImage.astro';
+import ContentLink from './ContentLink.astro';
 import Figure from './Figure.astro';
 import Gallery from './Gallery.astro';
 import Video from './Video.astro';
@@ -16,4 +17,5 @@ export const mdxComponents = {
 	Video,
 	code_block: CodeBlock,
 	img: ContentImage,
+	a: ContentLink,
 };

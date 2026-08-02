@@ -20,7 +20,7 @@ const Self = Astro.self;
 	<p class="mb-1 text-[0.9em]">
 		<span class="font-semibold">
 			{comment.authorUrl ? (
-				<a href={comment.authorUrl} rel="nofollow ugc noopener" target="_blank">{comment.author}</a>
+				<a href={comment.authorUrl} rel="nofollow ugc noopener" target="_blank">{comment.author}<span class="external-marker" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
 			) : (
 				comment.author
 			)}
