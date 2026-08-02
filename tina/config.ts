@@ -62,22 +62,26 @@ export default defineConfig({
    * /search, which Pagefind builds from the static HTML and needs no service.
    * The two are unrelated and both are wanted.
    *
-   * Declared only when the token exists. Passing `indexerToken: undefined`
-   * makes the build fail rather than degrade, which would block anyone
-   * building without TinaCloud credentials.
+   * Declared unconditionally, and that is the important part. This block was
+   * originally wrapped in `...(searchToken ? {...} : {})` so a build without
+   * credentials would skip it. That made the SCHEMA depend on an environment
+   * variable: `tina-lock.json` gained or lost `schema.config.search` depending
+   * on whether the token happened to be set, so a lock committed from one
+   * machine never matched a build on another, and TinaCloud rejected every
+   * deploy with "the local Tina schema doesn't match the remote Tina schema".
+   *
+   * The token itself is stripped before the lock is written (only
+   * `stopwordLanguages` survives), so keeping this static costs nothing and
+   * leaks nothing.
    */
-  ...(searchToken
-    ? {
-        search: {
-          tina: {
-            indexerToken: searchToken,
-            stopwordLanguages: ["eng"],
-          },
-          // 183 posts index comfortably in one pass; the field cap keeps long
-          // post bodies from bloating the index.
-          indexBatchSize: 100,
-          maxSearchIndexFieldLength: 100,
-        },
-      }
-    : {}),
+  search: {
+    tina: {
+      indexerToken: searchToken,
+      stopwordLanguages: ["eng"],
+    },
+    // 183 posts index comfortably in one pass; the field cap keeps long post
+    // bodies from bloating the index.
+    indexBatchSize: 100,
+    maxSearchIndexFieldLength: 100,
+  },
 });
