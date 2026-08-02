@@ -6,6 +6,10 @@ The blog of Adam Cogan, migrated from WordPress to Astro and TinaCMS.
 keeps the permalink it had, so no inbound link to a site running since 2002 is
 broken.
 
+**Writing or editing posts?** See [docs/writing-posts.md](docs/writing-posts.md).
+It covers the editor rather than the code, including how a post's web address is
+built from its title and date.
+
 ## Prerequisites
 
 - Node.js 22.22.0 or later (`.nvmrc` pins the version)
