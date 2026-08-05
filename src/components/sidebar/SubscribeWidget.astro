@@ -5,20 +5,28 @@ import sidebar from '../../data/sidebar.json';
 const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 
 /*
- * TODO: this form has no endpoint yet.
+ * Sign-up posts to Kit.
  *
- * The live site does not post anywhere external. Its markup is
- * `<form action="#" method="post">` and the Jetpack plugin intercepts the
- * request server side on WordPress, validating a single-use `_wpnonce` that is
- * stamped into the page at render time. A static build has neither the handler
- * nor a way to mint that nonce, so there is nothing to copy and no endpoint is
- * invented here.
+ * The original posted back to its own page, where the Jetpack plugin picked the
+ * request up server side and validated a single-use `_wpnonce` stamped in at
+ * render time. A static build can mint neither, which is why no endpoint was
+ * invented here and `action` stayed null until a real one existed.
  *
- * To wire it up, set `subscribe.action` in `src/data/sidebar.json` to a real
- * endpoint (a Jetpack or WordPress.com subscribe URL for blog 91274000, or a
- * Mailchimp form action) and add whatever hidden fields it needs. The full
- * original form contract, including every hidden input, is recorded under
- * `subscribe.originalForm` in that file.
+ * Set `subscribe.action` in `src/data/sidebar.json` to a Kit form endpoint:
+ *
+ *   https://app.kit.com/forms/<FORM_ID>/subscriptions
+ *
+ * The form ID comes from the form's embed code in Kit, under Grow, Landing
+ * Pages & Forms. Two things that look like details and are not:
+ *
+ *   1. The field must be named `email_address`. Called `email`, the request
+ *      succeeds and Kit records nothing at all.
+ *   2. Turn on double opt-in for the form, which is what Jetpack did. The
+ *      confirmation message below promises an email, and imported subscribers
+ *      are unaffected because an import arrives already confirmed.
+ *
+ * The full original form contract, every hidden input included, is still
+ * recorded under `subscribe.originalForm` in that file.
  */
 ---
 
@@ -33,7 +41,7 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 			<input
 				id="sidebar-subscribe-email"
 				type="email"
-				name="email"
+				name="email_address"
 				autocomplete="email"
 				required
 				placeholder={placeholder}
@@ -48,25 +56,72 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 			{buttonLabel}
 		</button>
 
-		<p data-subscribe-note hidden class="mt-[10px] text-[0.9em] leading-[24px] text-[#666]">
-			Email sign-up is not connected yet, so nothing was sent.
+		<p
+			data-subscribe-note
+			data-unwired="Email sign-up is not connected yet, so nothing was sent."
+			role="status"
+			aria-live="polite"
+			hidden
+			class="mt-[10px] text-[0.9em] leading-[24px] text-[#666]"
+		>
 		</p>
 	</form>
 </section>
 
 {/*
-  Until an endpoint exists the form posts to "#", which reloads the page and
-  silently discards the address. Saying so is better than looking broken. The
-  guard removes itself the moment `subscribe.action` is set.
+  Submitting without leaving the page.
+
+  Kit's public form endpoint sends `access-control-allow-origin: *`, so a fetch
+  from this origin is allowed and the reader stays on the article they were
+  reading. A native post would navigate them to a Kit confirmation page instead.
+
+  The form keeps a real `action` and `method="post"` regardless, so it still
+  works with JavaScript off, and the catch below falls back to that same native
+  post if the fetch is blocked. Losing an address is worse than a page change.
 */}
 <script is:inline>
 	(function () {
 		const form = document.querySelector('[data-subscribe]');
-		if (!form || form.dataset.wired === 'true') return;
+		if (!form) return;
+
 		const note = form.querySelector('[data-subscribe-note]');
-		form.addEventListener('submit', (e) => {
-			e.preventDefault();
-			if (note) note.hidden = false;
+		const wired = form.dataset.wired === 'true';
+		const say = (message) => {
+			if (!note) return;
+			note.textContent = message;
+			note.hidden = false;
+		};
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+
+			if (!wired) {
+				say(note ? note.dataset.unwired : '');
+				return;
+			}
+
+			const input = form.querySelector('input[type="email"]');
+			const button = form.querySelector('button[type="submit"]');
+			if (button) button.disabled = true;
+			say('Signing you up...');
+
+			try {
+				const response = await fetch(form.action, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ email_address: input.value }),
+				});
+				if (!response.ok) throw new Error(String(response.status));
+				form.reset();
+				say('Thanks. Check your inbox to confirm your subscription.');
+			} catch {
+				// form.submit() does not re-fire this listener, so this is a
+				// genuine native post rather than a loop.
+				form.submit();
+				return;
+			} finally {
+				if (button) button.disabled = false;
+			}
 		});
 	})();
 </script>
