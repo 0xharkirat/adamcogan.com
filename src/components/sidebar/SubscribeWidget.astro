@@ -92,6 +92,15 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 			note.hidden = false;
 		};
 
+		/*
+		 * Stricter than `type="email"`, which follows the HTML spec and accepts
+		 * `a@b` with no dot in the domain. That is a typo far more often than a
+		 * real intranet address, and it would otherwise reach Kit and bounce.
+		 * Same shape as EMAIL_RE in migration/scripts/7-subscribers.mjs, so the
+		 * sign-up path and the import path agree on what an address is.
+		 */
+		const EMAIL = /^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/;
+
 		form.addEventListener('submit', async (event) => {
 			event.preventDefault();
 
@@ -102,6 +111,14 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 
 			const input = form.querySelector('input[type="email"]');
 			const button = form.querySelector('button[type="submit"]');
+			const address = input.value.trim();
+
+			if (!EMAIL.test(address)) {
+				say('That does not look like a complete email address.');
+				input.focus();
+				return;
+			}
+
 			if (button) button.disabled = true;
 			say('Signing you up...');
 
@@ -109,16 +126,26 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 				const response = await fetch(form.action, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ email_address: input.value }),
+					body: JSON.stringify({ email_address: address }),
 				});
+
+				// A 4xx is a complaint about the address, so let the reader fix
+				// it here. Reposting natively would only send the same bad value
+				// again and dump them on an error page to do it.
+				if (response.status >= 400 && response.status < 500) {
+					say('That address was not accepted. Check it and try again.');
+					return;
+				}
+				// Anything else that failed is our end, not theirs. Fall through
+				// to the native post below rather than lose the address.
 				if (!response.ok) throw new Error(String(response.status));
+
 				form.reset();
 				say('Thanks. Check your inbox to confirm your subscription.');
 			} catch {
 				// form.submit() does not re-fire this listener, so this is a
 				// genuine native post rather than a loop.
 				form.submit();
-				return;
 			} finally {
 				if (button) button.disabled = false;
 			}
