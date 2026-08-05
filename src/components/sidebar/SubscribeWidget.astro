@@ -51,7 +51,7 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 
 		<button
 			type="submit"
-			class="rounded-full bg-[#32373C] px-[23.328px] py-[12.672px] text-[16px] leading-[24px] font-normal text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141]"
+			class="rounded-full bg-[#32373C] px-[23.328px] py-[12.672px] text-[16px] leading-[24px] font-normal text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC4141] disabled:cursor-not-allowed disabled:opacity-60"
 		>
 			{buttonLabel}
 		</button>
@@ -86,6 +86,10 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 
 		const note = form.querySelector('[data-subscribe-note]');
 		const wired = form.dataset.wired === 'true';
+		// Disabling the button stops a second click, but not a second submit:
+		// Enter in the field and programmatic submits both bypass it, and each
+		// one would be another sign-up request. Guard the handler itself.
+		let inFlight = false;
 		const say = (message) => {
 			if (!note) return;
 			note.textContent = message;
@@ -103,6 +107,7 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 
 		form.addEventListener('submit', async (event) => {
 			event.preventDefault();
+			if (inFlight) return;
 
 			if (!wired) {
 				say(note ? note.dataset.unwired : '');
@@ -119,6 +124,7 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 				return;
 			}
 
+			inFlight = true;
 			if (button) button.disabled = true;
 			say('Signing you up...');
 
@@ -147,6 +153,7 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 				// genuine native post rather than a loop.
 				form.submit();
 			} finally {
+				inFlight = false;
 				if (button) button.disabled = false;
 			}
 		});
