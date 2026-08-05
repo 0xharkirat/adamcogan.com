@@ -9,7 +9,7 @@
 		"body": "Enter your email address to subscribe to this blog and receive notifications of new posts by email.",
 		"placeholder": "Email Address",
 		"buttonLabel": "Subscribe",
-		"action": null,
+		"action": "https://app.kit.com/forms/9766845/subscriptions",
 		"originalForm": {
 			"action": "#",
 			"method": "post",
@@ -25,7 +25,7 @@
 			},
 			"notes": "The live form has no external endpoint. It posts back to the page it sits on and the Jetpack plugin intercepts the request server side, validating a single-use _wpnonce. Neither the self-post nor the nonce survives a static build, so `action` above is left null on purpose. Set it to a real endpoint (a Jetpack or WordPress.com subscribe URL for blog 91274000, or a Mailchimp form action) and add whatever hidden fields that endpoint requires."
 		},
-		"notes": "Set `action` to a Kit form endpoint, https://app.kit.com/forms/<FORM_ID>/subscriptions, taking FORM_ID from the form's embed code in Kit. The input is named `email_address` because Kit ignores a field called `email`. Leave `action` null to keep the form telling readers it is not connected, rather than silently discarding addresses. `originalForm` below records what WordPress did, for reference."
+		"notes": "`action` posts to Kit form 9766845 (uid 1a45d0e38b), double opt-in on. The input is named `email_address` because Kit ignores a field called `email`. Find the numeric id with `curl https://api.kit.com/v4/forms?type=embed -H \"X-Kit-Api-Key: $KIT_API_KEY\"`; the uid in the JavaScript embed is a different value and does not work here. Set `action` back to null to make the form tell readers it is not connected, rather than silently discarding addresses. `originalForm` below records what WordPress did."
 	},
 	"social": [
 		{
