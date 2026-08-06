@@ -27,7 +27,7 @@ on:
         type: string
         default: "7"
 
-# Two saves in quick succession would otherwise race while both wait for a
+# 2 saves in quick succession would otherwise race while both wait for a
 # deploy, and could draft the same post twice.
 concurrency:
   group: notify-subscribers
@@ -56,7 +56,8 @@ jobs:
         id: posts
         # A post's MDX filename is its URL slug, so the slug needs no date
         # arithmetic here. Added and modified both count: a post edited before
-        # it was ever announced still deserves its email, and the script's own
+        # it was ever announced still deserves its email, R catches a rename
+        # into the collection, and the script's own
         # age window and already-sent check stop an old edit from re-sending.
         #
         # SHAs go through env rather than being interpolated into the script
@@ -71,7 +72,7 @@ jobs:
           else
             RANGE="${BEFORE}..${AFTER}"
           fi
-          SLUGS=$(git diff --name-only --diff-filter=AM "$RANGE" -- 'src/content/blog/*.mdx' \
+          SLUGS=$(git diff --name-only --diff-filter=AMR "$RANGE" -- 'src/content/blog/*.mdx' \
                   | xargs -r -n1 basename \
                   | sed 's/\.mdx$//' \
                   | paste -sd, -)

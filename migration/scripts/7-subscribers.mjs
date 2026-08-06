@@ -22,7 +22,7 @@
  *   node migration/scripts/7-subscribers.mjs reconcile <import.csv> <provider-export.csv>
  *   node migration/scripts/7-subscribers.mjs --selftest
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -122,17 +122,32 @@ export function findStatusColumn(header) {
 }
 
 /**
- * Anything that is not clearly an active subscription is held back rather than
- * imported. Mailing someone who unsubscribed on WordPress is both a compliance
- * failure and the fastest way to get a sending domain flagged, so the default
- * for an unrecognised status is to exclude and report it.
+ * Decide whether a row may be mailed.
+ *
+ * Substring matching is the trap here, and it bites in the dangerous direction:
+ * /active/ matches "inactive", /valid/ matches "invalid", /confirm/ matches
+ * "not confirmed", and /subscrib/ matches "never subscribed". Every one of those
+ * would have imported somebody who must not be mailed.
+ *
+ * So the active test is anchored to the whole value. Only a value that is
+ * exactly a known-good word counts, and anything unrecognised falls through to
+ * "unknown", which is held back and reported. An empty cell in a status column
+ * proves nothing either, so it is unknown rather than active. A file with no
+ * status column at all is handled by the caller, which treats every row as
+ * active because there is nothing to contradict it.
  */
+const EXCLUDED =
+  /(^|\b)(un-?subscribed?|bounced?|hard.?bounce|spam|complained?|blocked?|removed?|deleted?|cleaned?|cancell?ed|suppressed|opted?.?out|do.?not.?(email|contact)|invalid|inactive|never.?subscribed)(\b|$)/;
+const PENDING =
+  /(^|\b)(pending|un-?confirmed|not.?confirmed|awaiting|invited?|double.?opt.?in)(\b|$)/;
+const ACTIVE = /^(subscribed|active|confirmed|valid|enabled|opted?.?in|yes|true|1)$/;
+
 export function classifyStatus(raw) {
   const v = (raw ?? "").trim().toLowerCase();
-  if (v === "") return "active";
-  if (/unsub|bounce|spam|complain|block|remove|delet|clean/.test(v)) return "excluded";
-  if (/pending|unconfirm|awaiting|invit/.test(v)) return "pending";
-  if (/subscrib|active|confirm|valid|yes|true|1/.test(v)) return "active";
+  if (v === "") return "unknown";
+  if (EXCLUDED.test(v)) return "excluded";
+  if (PENDING.test(v)) return "pending";
+  if (ACTIVE.test(v)) return "active";
   return "unknown";
 }
 
@@ -175,17 +190,23 @@ function check(inputPath) {
     `  status column : ${statusCol === -1 ? "none found, treating every row as active" : JSON.stringify(header[statusCol])}`
   );
 
-  const importable = [];
+  // Status is resolved per row before any deduplication. Doing it the other way
+  // round loses the case that matters: the same address listed once as
+  // subscribed and again as unsubscribed would keep the first row and mail
+  // somebody who opted out. Where an address repeats, the most restrictive
+  // status wins.
+  const RANK = { excluded: 0, pending: 1, unknown: 2, active: 3 };
   const seen = new Map();
-  const buckets = { active: 0, excluded: 0, pending: 0, unknown: 0, invalid: 0, duplicate: 0 };
   const problems = [];
+  let invalid = 0;
+  let duplicate = 0;
 
   for (const [i, r] of body.entries()) {
     const line = i + 2;
     const email = (r[emailCol] ?? "").trim();
 
     if (!EMAIL_RE.test(email)) {
-      buckets.invalid += 1;
+      invalid += 1;
       problems.push({ line, kind: "invalid" });
       continue;
     }
@@ -193,20 +214,34 @@ function check(inputPath) {
     // Addresses are case-insensitive for routing, so dedupe on the lowered form
     // while importing whatever the subscriber originally typed.
     const key = email.toLowerCase();
-    if (seen.has(key)) {
-      buckets.duplicate += 1;
-      problems.push({ line, kind: "duplicate", firstSeen: seen.get(key) });
+    const status = statusCol === -1 ? "active" : classifyStatus(r[statusCol]);
+    const previous = seen.get(key);
+
+    if (previous) {
+      duplicate += 1;
+      problems.push({ line, kind: "duplicate", firstSeen: previous.line });
+      if (RANK[status] < RANK[previous.status]) {
+        problems.push({ line, kind: "conflicting-status", kept: status, was: previous.status });
+        seen.set(key, { email, status, line: previous.line });
+      }
       continue;
     }
-    seen.set(key, line);
 
-    const status = statusCol === -1 ? "active" : classifyStatus(r[statusCol]);
-    buckets[status] += 1;
-    if (status === "active") importable.push([email]);
+    seen.set(key, { email, status, line });
+  }
+
+  const buckets = { active: 0, excluded: 0, pending: 0, unknown: 0, invalid, duplicate };
+  const importable = [];
+  for (const entry of seen.values()) {
+    buckets[entry.status] += 1;
+    if (entry.status === "active") importable.push([entry.email]);
   }
 
   const outPath = join(OUT_DIR, "subscribers-import.csv");
   assertIgnoredByGit(outPath);
+  // migration/raw holds no tracked files, so it does not exist in a fresh
+  // clone. Without this the run does all its work and then dies on ENOENT.
+  mkdirSync(OUT_DIR, { recursive: true });
   writeFileSync(outPath, toCsv([["email"], ...importable]));
 
   console.log(`\n  rows read      : ${body.length}`);
@@ -305,11 +340,27 @@ function selftest() {
   assert.equal(findEmailColumn(odd[0], odd.slice(1)), 1, "email column found by content");
 
   assert.equal(classifyStatus("subscribed"), "active");
-  assert.equal(classifyStatus(""), "active");
   assert.equal(classifyStatus("unsubscribed"), "excluded");
   assert.equal(classifyStatus("bounced"), "excluded");
   assert.equal(classifyStatus("pending"), "pending");
   assert.equal(classifyStatus("weird-new-value"), "unknown", "unknown must not import");
+
+  // A blank cell in a status column proves nothing, so it is held back rather
+  // than assumed good. A file with no status column at all is a different case,
+  // handled by the caller.
+  assert.equal(classifyStatus(""), "unknown");
+
+  // Substring matching used to classify all 4 of these as active, which would
+  // have imported and mailed people who must not be. The active test is now
+  // anchored to the whole value.
+  for (const nope of ["inactive", "invalid", "not confirmed", "never subscribed"]) {
+    assert.notEqual(classifyStatus(nope), "active", `${nope} must never be mailable`);
+  }
+  assert.equal(classifyStatus("inactive"), "excluded");
+  assert.equal(classifyStatus("invalid"), "excluded");
+  assert.equal(classifyStatus("not confirmed"), "pending");
+  assert.equal(classifyStatus("opted out"), "excluded");
+  assert.equal(classifyStatus("do not email"), "excluded");
 
   assert.equal(toCsv([["a,b"], ['say "hi"']]), '"a,b"\n"say ""hi"""\n');
 

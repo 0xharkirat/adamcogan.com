@@ -17,7 +17,7 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
  *   https://app.kit.com/forms/<FORM_ID>/subscriptions
  *
  * The form ID comes from the form's embed code in Kit, under Grow, Landing
- * Pages & Forms. Two things that look like details and are not:
+ * Pages & Forms. 2 things that look like details and are not:
  *
  *   1. The field must be named `email_address`. Called `email`, the request
  *      succeeds and Kit records nothing at all.
@@ -135,11 +135,17 @@ const { title, body, placeholder, buttonLabel, action } = sidebar.subscribe;
 					body: JSON.stringify({ email_address: address }),
 				});
 
-				// A 4xx is a complaint about the address, so let the reader fix
-				// it here. Reposting natively would only send the same bad value
+				// 422 is Kit objecting to the address itself, so the reader can
+				// fix it here. Reposting natively would send the same bad value
 				// again and dump them on an error page to do it.
-				if (response.status >= 400 && response.status < 500) {
+				if (response.status === 422 || response.status === 400) {
 					say('That address was not accepted. Check it and try again.');
+					return;
+				}
+				// 403, 404 and 429 are our configuration or Kit's rate limit, and
+				// telling the reader their address is wrong would be a lie.
+				if (response.status >= 400 && response.status < 500) {
+					say('Sign-up is temporarily unavailable. Please try again later.');
 					return;
 				}
 				// Anything else that failed is our end, not theirs. Fall through
