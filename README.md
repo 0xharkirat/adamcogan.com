@@ -31,6 +31,7 @@ script, so every run produces the same output. See
 | [Run the site locally](docs/running-locally.md) | Start the site and CMS, or fix the TinaCloud login screen. |
 | [Deploy to Vercel](docs/deployment.md) | Set up hosting, or fix a failing build. |
 | [About the site's structure](docs/architecture.md) | Understand the URLs, dates, taxonomy and comments. |
+| [Move the mailing list off Jetpack](docs/migrating-subscribers.md) | Migrate Adam's email subscribers off WordPress without losing anybody. |
 | [Re-run the migration](docs/running-the-migration.md) | Rebuild the content from WordPress. |
 | [How this migration worked](docs/how-the-migration-worked.md) | Follow the whole process. Written for a general reader. |
 
@@ -67,12 +68,18 @@ holds the defaults.
 **Subscribe form.** The original posts to Jetpack, which validates a single-use
 nonce on the server. There is no endpoint to copy, so the form tells the reader
 it is not connected rather than failing silently. The original form contract is
-recorded in `src/data/sidebar.json` under `subscribe.originalForm`. This needs a
-mailing list before launch.
+recorded in `src/data/sidebar.json` under `subscribe.originalForm`, and setting
+`subscribe.action` to a real endpoint is what switches it on.
+
+This is the last thing that must be done before launch, because Adam's existing
+subscribers live on WordPress.com and go away with it. The plan is
+[issue #1](https://github.com/0xharkirat/adamcogan.com/issues/1), and the
+procedure is [Move the mailing list off Jetpack](docs/migrating-subscribers.md).
 
 **New comments.** The 175 existing comments are migrated and displayed. Posting
-a new one needs Giscus configured, which takes a public GitHub repository with
-Discussions enabled and 4 values from [giscus.app](https://giscus.app). See
+a new one needs Giscus configured, which takes Discussions enabled on this
+repository and 4 values from [giscus.app](https://giscus.app). The repository is
+public now, so the only remaining steps are those. See
 [About the site's structure](docs/architecture.md#comments).
 
 **Saving publishes straight away.** The CMS commits every save directly to

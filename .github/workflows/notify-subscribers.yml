@@ -1,0 +1,94 @@
+# Draft a Kit broadcast when Adam publishes a post.
+#
+# Push-triggered rather than scheduled, on purpose. Scheduled workflows in a
+# public repository are disabled automatically after 60 days without activity,
+# and this blog averages a post every 33 days, so a cron would eventually switch
+# itself off without telling anybody. A push trigger never expires.
+#
+# Tina commits to `main` the moment an editor saves, which is before Vercel has
+# rebuilt. So this passes the pushed slugs to the script, which waits for them
+# to appear in the published feed. The feed is a build artifact, so a slug
+# showing up in it proves the page is live and the email is safe to link to.
+name: Notify subscribers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/content/blog/**"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Report what would be drafted, without contacting Kit"
+        type: boolean
+        default: true
+      max_age_days:
+        description: "How recent a post must be to qualify"
+        type: string
+        default: "7"
+
+# 2 saves in quick succession would otherwise race while both wait for a
+# deploy, and could draft the same post twice.
+concurrency:
+  group: notify-subscribers
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    # Bounds the feed wait, which is 20 attempts 30 seconds apart.
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Needed to diff against the previous head and see which posts moved.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+
+      - name: Work out which posts were pushed
+        id: posts
+        # A post's MDX filename is its URL slug, so the slug needs no date
+        # arithmetic here. Added and modified both count: a post edited before
+        # it was ever announced still deserves its email, R catches a rename
+        # into the collection, and the script's own
+        # age window and already-sent check stop an old edit from re-sending.
+        #
+        # SHAs go through env rather than being interpolated into the script
+        # body, which is the habit that stops workflow command injection.
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [ -z "${BEFORE:-}" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            RANGE="${AFTER}~1..${AFTER}"
+          else
+            RANGE="${BEFORE}..${AFTER}"
+          fi
+          SLUGS=$(git diff --name-only --diff-filter=AMR "$RANGE" -- 'src/content/blog/*.mdx' \
+                  | xargs -r -n1 basename \
+                  | sed 's/\.mdx$//' \
+                  | paste -sd, -)
+          echo "Pushed post slugs: ${SLUGS:-none}"
+          echo "slugs=${SLUGS}" >> "$GITHUB_OUTPUT"
+
+      - name: Draft the broadcast
+        # On a push with no post added or modified there is nothing to announce.
+        if: github.event_name == 'workflow_dispatch' || steps.posts.outputs.slugs != ''
+        run: |
+          node scripts/notify-subscribers.mjs \
+            ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
+        env:
+          KIT_API_KEY: ${{ secrets.KIT_API_KEY }}
+          FEED_URL: ${{ vars.FEED_URL || 'https://adamcogan.vercel.app/feed.xml' }}
+          MAX_AGE_DAYS: ${{ inputs.max_age_days || '7' }}
+          # Empty on workflow_dispatch, which lets a manual run pick the newest
+          # unsent post instead of waiting for a specific one.
+          EXPECT_SLUGS: ${{ steps.posts.outputs.slugs }}

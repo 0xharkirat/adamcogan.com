@@ -73,3 +73,8 @@ migration/design/shots
 dist
 
 node_modules
+
+# Local GitHub Actions runs with `act`. These hold real credentials, and this
+# repository is public, so they must never become committable.
+.secrets
+.vars
